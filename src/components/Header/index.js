@@ -9,7 +9,7 @@ import cart from 'src/assets/images/cart.svg';
 import logo from 'src/assets/images/logo.svg';
 import burger from 'src/assets/images/burger.svg';
 // actions
-import { setSearchBarValue } from '../../actions';
+import { toggleBurger, setSearchBarValue } from 'src/actions';
 
 function Header() {
   const dispatch = useDispatch();
@@ -38,6 +38,18 @@ function Header() {
     }
   }
 
+  //  ______________Gestion du menu burger_____________
+  // Recherche dans le state de la valeur de isOpen
+  //  conditionnant l'affichage du menu burger
+  const isOpen = useSelector((state) => state.navbar.isOpen);
+  // Gestion des classes CSS
+
+  const className = isOpen ? 'header--container' : 'header--container__closed';
+
+  function handleToggleClick() {
+    dispatch(toggleBurger());
+  }
+
   return (
     <>
       <div className="header">
@@ -64,7 +76,14 @@ function Header() {
         </div>
         <nav className="header--nav">
           <div className="header--nav__burger">
-            <img src={burger} alt={burger} />
+            <button
+              type="button"
+              className="header--nav__burger--button"
+              onClick={handleToggleClick}
+            >
+              <img src={burger} alt={burger} />
+            </button>
+
           </div>
           <ul className="header--nav__list">
             <li className="header--nav__item">
@@ -99,7 +118,7 @@ function Header() {
         </nav>
 
       </div>
-      <div className="header--container">
+      <div className={className}>
         <div className="header--nav__burgertranslation">
           <ul className="header--nav__burgertranslation--list">
             <li className="header--nav__burgertranslation--item">

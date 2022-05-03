@@ -1,4 +1,4 @@
-import { SET_SEARCH_BAR_VALUE } from '../actions';
+import { SET_SEARCH_BAR_VALUE, TOGGLE_BURGER } from '../actions';
 
 const initialState = {
   navbar: {
@@ -15,6 +15,14 @@ function mainReducer(state = initialState, action = {}) {
         navbar: {
           ...state.navbar,
           searchBarValue: action.value,
+        },
+      };
+    case TOGGLE_BURGER:
+      return {
+        ...state,
+        navbar: {
+          ...state.navbar,
+          isOpen: !state.navbar.isOpen,
         },
       };
     default:

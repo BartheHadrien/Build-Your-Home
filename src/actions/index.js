@@ -14,3 +14,11 @@ export const SEND_RESEARCH = 'SEND_RESEARCH';
 export const sendResearch = () => ({
   type: SEND_RESEARCH,
 });
+
+// ACTION TYPE TOGGLE_BURGER
+export const TOGGLE_BURGER = 'TOGGLE_BURGER';
+
+// ACTION CREATOR toggleBurger
+export const toggleBurger = () => ({
+  type: TOGGLE_BURGER,
+});
