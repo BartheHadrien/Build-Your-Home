@@ -1,11 +1,19 @@
 @use 'src/styles/vars';
 
 .home {
-  width: auto;
+width: 100vw;
+@media (min-width : vars.$pad) {
+  width: 80vw;
+  margin: auto;
+  }
+@media (min-width: vars.$desktop){
+  width: 80vw;
+  margin: auto;
+}
 
   &__categories {
     background: linear-gradient(#B8B9B9,vars.$primary-color);
-    padding: 20px 20px 20px 20px;
+    padding: 1rem 1rem 1rem 1rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -14,11 +22,20 @@
     &__category {
       background-color: vars.$text-color;
       margin: 10px 0px 10px 0px;
-      border: 1px solid pink;
 
       &__picture {
-        max-width:300px;
-        padding: 50px 50px 50px 50px;
+        max-width:40vw;
+        max-height: 40vh;
+        padding: 1rem 1rem 1rem 1rem;
+
+        @media (min-width : vars.$pad) {
+          max-width:30vw;
+          max-height: 30vh;
+          }
+        @media (min-width: vars.$desktop){
+          max-width:25vw;
+          max-height: 25vh;
+        }
       }
     }
   }
@@ -28,14 +45,25 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    padding-bottom: 30px;
+    padding: 1rem 1rem 1rem 1rem;
 
     &__article {
       background-color: vars.$text-color;
+      margin: 1rem 0.5rem 1rem 0.5rem;
 
       &__picture {
-        max-width: 200px;
-        padding: 50px 50px 50px 50px;
+        max-width: 40vw;
+        max-height: 40vh;
+        padding: 1rem 1rem 1rem 1rem;
+
+        @media (min-width : vars.$pad) {
+          max-width:30vw;
+          max-height: 30vh;
+          }
+        @media (min-width: vars.$desktop){
+          max-width:20vw;
+          max-height: 20vh;
+        }
       }
     }
   }

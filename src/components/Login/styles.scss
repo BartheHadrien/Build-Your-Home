@@ -1,0 +1,30 @@
+@use 'src/styles/vars';
+
+.login {
+  margin: 5em  auto;
+  width: 50%;
+  
+  padding: vars.$gutter;
+
+  &--title{
+
+  }
+
+  &--form{
+
+  }
+}
+.field__label{
+}
+.field__input {
+  display: block;
+  width: 100%;
+  padding: 1em;
+  margin-bottom: 50px;
+  border-radius: 4px;
+  border: 1px solid grey;
+}
+.container {
+  border: 1px solid grey;
+  border-radius: 4px;
+}
