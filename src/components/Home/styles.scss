@@ -1,0 +1,42 @@
+@use 'src/styles/vars';
+
+.home {
+  width: auto;
+
+  &__categories {
+    background: linear-gradient(#B8B9B9,vars.$primary-color);
+    padding: 20px 20px 20px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    
+
+    &__category {
+      background-color: vars.$text-color;
+      margin: 10px 0px 10px 0px;
+      border: 1px solid pink;
+
+      &__picture {
+        max-width:300px;
+        padding: 50px 50px 50px 50px;
+      }
+    }
+  }
+
+  &__articles {
+    background-color: vars.$primary-color;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-bottom: 30px;
+
+    &__article {
+      background-color: vars.$text-color;
+
+      &__picture {
+        max-width: 200px;
+        padding: 50px 50px 50px 50px;
+      }
+    }
+  }
+}

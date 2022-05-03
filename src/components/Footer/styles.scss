@@ -1,0 +1,27 @@
+@use 'src/styles/vars';
+
+.footer {
+  background-color: vars.$secondary-color;
+  color: vars.$text-color;
+  text-align: center;
+  padding: 10px 10px 10px 10px;
+
+  &__icons {
+    display: flex;
+    justify-content: space-evenly;
+    &__icon {
+      fill: vars.$text-color;
+    }
+  }
+
+  &__cgv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px 20px 0px ;
+
+    &__legal-mentions {
+      margin: 0px 50px 0px 50px ;
+    }
+  }
+}

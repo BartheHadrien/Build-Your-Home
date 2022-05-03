@@ -1,0 +1,131 @@
+@use 'src/styles/vars';
+
+.header {
+  background-color: vars.$main-color;
+ 
+
+  &--top{
+    display: flex;
+    justify-content: space-between;
+    padding: vars.$gutter;
+
+    &__form{
+      width: 60%;
+
+    }
+    
+    &__input{
+      padding: 1em;
+      width: 90%;
+      border-radius: 1rem 0rem 0rem 1rem;
+      border: 0;
+      @media (max-width : vars.$pad) {
+        width: 75%;
+        }
+    }
+
+    &__submit{
+      padding: 1em;
+      width: 10%;
+      border-radius: 0rem 1rem 1rem 0rem;
+      border: 0;
+      background-image: url('src/assets/images/search.svg');
+      background-repeat: no-repeat;
+      background-size: 2em;
+      background-position: center;
+      background-color: #46A1C4;
+      
+      @media (max-width : vars.$pad) {
+        width: 25%;
+        }
+      
+    }
+    
+    &__logo{
+    
+    }
+    &__logoSite{
+      background-color: whitesmoke;
+      border-radius: 1rem;
+        @media (max-width : vars.$pad) {
+        width: 32px;
+        height: 32px;
+        }
+    }
+    &__user{
+      background-color: whitesmoke;
+      border-radius: 1rem;
+      @media (max-width : vars.$pad) {
+        width: 32px;
+        height: 32px;
+        }
+        @media (max-width : vars.$phone) {
+          width: 24px;
+          height: 24px;
+          }
+    }
+    &__cart{
+      background-color: whitesmoke;
+      border-radius: 1rem;
+      margin-left: 1rem;
+      @media (max-width : vars.$pad) {
+        width: 32px;
+        height: 32px;
+        }
+        @media (max-width : vars.$phone) {
+          width: 24px;
+          height: 24px;
+          }
+    }
+  }
+
+  &--nav{
+    margin-top: 0.5em;
+    padding: 1em;
+    background-color: vars.$secondary-color;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    &__burger{
+      background: transparent;
+      border: none;
+      color: white;
+    }
+
+    &__list{
+
+    }
+
+    &__item{
+      display: inline;
+      margin: 0em 1em;
+      color: vars.$text-color;
+ 
+    }
+  }
+
+}
+
+.burger-bar,
+.burger-bar::before,
+.burger-bar::after {
+  display: block;
+  width:40px;
+  height:3px;
+  border-radius: 3px;
+  background:white ;
+}
+.burger-bar::before,
+.burger-bar::after {
+  content:"";
+}
+
+.burger-bar::before {
+  transform: translateY(-12px);
+}
+
+.burger-bar::after {
+  transform: translateY(12px);
+}
