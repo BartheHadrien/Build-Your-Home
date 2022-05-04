@@ -17,6 +17,7 @@ flex-wrap: wrap;
       align-items: baseline;
       border-bottom: 0.1rem solid vars.$secondary-color;
       margin: 1rem 1rem 1rem 1rem;
+      }
 
       &__title {
         font-size: 1.5rem;
@@ -27,14 +28,14 @@ flex-wrap: wrap;
       }
     }
 
-    &__article {
+  &__article {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-evenly;
       margin: 0.5rem 0.5rem 0.5rem 0.5rem;
       padding: 0.5rem 0rem 0.5rem 0rem;
       border-bottom: 0.1rem solid vars.$secondary-color;
-
+      
       &__picture {
         width: 50%;
         height: 50%;
@@ -50,18 +51,51 @@ flex-wrap: wrap;
 
       }
 
+      &__avalaible {
+        background-color: rgb(26, 237, 26);
+        padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+        border-radius: 5%;
+      }
+
+      
+
       &__stock {
 
-      }
+        &__quantity {
+          background-color: white;
+          padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+          border-radius: 5%;
+        }
 
-      &__quantity {
-        background-color: white;
-        padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-      }
+        &__delete {
+    
+          &__picture {
+            width: 1.5rem;
+          }
+  
+          &__paragraph {
+            display: none;
+            visibility: hidden;
+            background-color: black;
+          }
+        }
 
-      &__delete {
-
+        &__add {
+          display: flex;
+          align-items: center;
+  
+          &__picture {
+            width: 1.5rem;
+          }
+  
+          &__paragraph {
+            display: none;
+          }
+        }
+          
       }
+      
+      
 
       &__total {
         display: flex;
