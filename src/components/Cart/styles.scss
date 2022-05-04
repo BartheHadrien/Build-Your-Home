@@ -1,7 +1,6 @@
 @use 'src/styles/vars';
 
 .carts {
-
 width: 96vw;
 margin: auto;
 display: flex;
@@ -28,6 +27,7 @@ flex-wrap: wrap;
       align-items: baseline;
       border-bottom: 0.1rem solid vars.$secondary-color;
       margin: 1rem 1rem 1rem 1rem;
+      }
 
       &__title {
         font-size: 1.5rem;
@@ -45,7 +45,7 @@ flex-wrap: wrap;
       margin: 0.5rem 0.5rem 0.5rem 0.5rem;
       padding: 1rem 0rem 1rem 0rem;
       border-bottom: 0.1rem solid vars.$secondary-color;
-
+      
       &__picture {
         width: 50%;
         height: 50%;
@@ -59,10 +59,10 @@ flex-wrap: wrap;
       &__value {
         width: 10%;
         text-align: right;
+
         @media (min-width: vars.$desktop4k){
           width: 15%;
         }
-
       }
 
       &__avalaible {
