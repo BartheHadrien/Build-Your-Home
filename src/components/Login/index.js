@@ -51,7 +51,7 @@ function Login() {
           </form>
         </div>
         <p>Nouveau ?</p>
-        <Link to="/creation">
+        <Link to="/inscription">
           <button
             type="button"
             className="login--button__create"

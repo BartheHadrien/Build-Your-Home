@@ -1,5 +1,6 @@
 // Import
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 // librairies
 import classnames from 'classnames';
@@ -57,7 +58,9 @@ function Header() {
     <>
       <div className="header">
         <div className="header--top">
-          <img className="header--top__logoSite" src={logo} alt="logo site" />
+          <Link to="/">
+            <img className="header--top__logoSite" src={logo} alt="logo site" />
+          </Link>
           <form
             className="header--top__form"
             onSubmit={handleSubmitSearchBar}
@@ -72,8 +75,12 @@ function Header() {
             <input className="header--top__submit" type="submit" value=" " />
           </form>
           <div className="header--top__logo">
-            <img className="header--top__user" src={user} alt="logo user" />
-            <img className="header--top__cart" src={cart} alt="logo panier" />
+            <Link to="/connexion">
+              <img className="header--top__user" src={user} alt="logo user" />
+            </Link>
+            <Link to="/panier">
+              <img className="header--top__cart" src={cart} alt="logo panier" />
+            </Link>
           </div>
 
         </div>
