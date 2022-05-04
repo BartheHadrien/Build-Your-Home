@@ -1,6 +1,9 @@
 // Import
 import { useSelector, useDispatch } from 'react-redux';
 
+// librairies
+import classnames from 'classnames';
+
 // Styles
 import './styles.scss';
 // Images
@@ -44,7 +47,7 @@ function Header() {
   const isOpen = useSelector((state) => state.navbar.isOpen);
   // Gestion des classes CSS
 
-  const className = isOpen ? 'header--container' : 'header--container__closed';
+  const className = classnames('header--container', { 'header--container__closed': !isOpen });
 
   function handleToggleClick() {
     dispatch(toggleBurger());
