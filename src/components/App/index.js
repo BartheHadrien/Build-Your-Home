@@ -15,6 +15,7 @@ import LegalMentions from '../LegalMentions';
 import Error from '../Error';
 
 import './styles.scss';
+import NewAccount from '../NewAccount';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/categorie" element={<Articles />} />
         <Route path="/panier" element={<Cart />} />
         <Route path="/connexion" element={<Login />} />
+        <Route path="/inscription" element={<NewAccount />} />
         <Route path="/favoris" element={<Favorites />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/mentions-legales" element={<LegalMentions />} />

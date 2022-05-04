@@ -1,9 +1,9 @@
 @use 'src/styles/vars';
 
-.login{
+.new-account{
   &--field__input {
     display: block;
-    width: 100%;
+    width: 40%;
     padding: 0.5em;
     margin-bottom: 3em;
     border-radius: 4px;
@@ -13,11 +13,13 @@
   &--container {
     border: 1px solid grey;
     border-radius: 4px;
-    width: 20vw;
+    width: 40vw;
     margin: 5em auto;
     padding: vars.$gutter;
     text-align: left;
     margin-bottom: 2em;
+    display: flex;
+    flex-direction: column;
   }
 
   &--button__submit{
@@ -40,7 +42,7 @@
   &--section{
     margin: auto;
     text-align: center;
-    width: 20vw;
+    width: 40vw;
   }
 }
 

@@ -92,6 +92,9 @@
     &__list{
       display: flex;
       flex-wrap: wrap;
+      @media (max-width : vars.$phone) {
+        display: none;
+        }
       
      
     }
@@ -118,7 +121,7 @@ transform: translate(-15%);
     ;
     }
     @media (max-width : vars.$phone) {
-      transform: translate(-30%);
+      transform: translate(-50%);
 
       }
 
@@ -137,7 +140,7 @@ transform: translate(-15%);
         width: 20%;
         }
         @media (max-width : vars.$phone) {
-          width: 30%;
+          width: 50%;
           }
 
       &--list {

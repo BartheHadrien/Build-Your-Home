@@ -1,0 +1,17 @@
+@use 'src/styles/vars';
+
+.legal-mentions {
+  width: 90vw;
+  height: auto;
+  margin: auto;
+
+  &__title {
+    padding: 2rem 0rem 2rem 0rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 2px solid vars.$secondary-color;
+  }
+
+  &__paragraph:last-child {
+    padding-bottom: 5rem;
+  }
+}
