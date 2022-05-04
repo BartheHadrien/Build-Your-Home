@@ -12,7 +12,7 @@ width: 100vw;
 }
 
   &__categories {
-    background: linear-gradient(#B8B9B9,vars.$primary-color);
+    background: linear-gradient(vars.$third-color,vars.$primary-color);
     padding: 1rem 1rem 1rem 1rem;
     display: flex;
     flex-wrap: wrap;
