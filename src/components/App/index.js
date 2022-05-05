@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 
 import Home from 'src/components/Home';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
 import Article from '../Article';
@@ -16,8 +18,18 @@ import Error from '../Error';
 
 import './styles.scss';
 import NewAccount from '../NewAccount';
+import { fetchArticles } from '../../actions/article';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(
+    () => {
+      dispatch(fetchArticles());
+    },
+    [],
+  );
+
   return (
     <div className="app">
       <Header />
