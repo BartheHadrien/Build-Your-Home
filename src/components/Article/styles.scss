@@ -1,51 +1,81 @@
 @use 'src/styles/vars';
 
+// div with product presentation image and purchase options
+
 
 .article {
 
   padding: 2*vars.$gutter;
+
   @media (max-width : vars.$pad) {
     padding: 2*vars.$gutter 0 0;
      }
 
   &--container{
     display: flex;
+
     @media (max-width : vars.$pad) {
      display: block;
       }
 
 
+
+
+    // image of first div
+
     &__img {
       width: 25%;
       display: flex;
+
       @media (max-width : vars.$pad) {
-        width: 100%;
-        height: 100%;
-        margin: auto;
-         }
+        width: 80%;
+        margin: 0 auto 1em;
+      }
+
+      @media (max-width : vars.$phone) {
+        width: 90%;
+      }
       
-      @media (max-width : 950px) {
-        width: 20%;
-        }
+      
       &--art {
+        
         width: 100%;
         margin: auto;
+        @media (min-width : 1800px) {
+          width: 80%;
+          margin:  auto ;
+           }
+
+        
       }
     }
 
+
+
+
+
+  // detail of first div 
+
     &__details {
       width: 50%;
-      @media (max-width : vars.$pad) {
-        width: 80%;
-        margin: auto;
-         }
+      
       @media (max-width : 950px) {
-        width: 45%;
+        width: 40%;
         }
 
+      @media (max-width : vars.$pad) {
+        width: 80%;
+        margin: 1em auto 1em;
+         }
+
+      @media (max-width : vars.$phone) {
+        width: 90%;
+      }
+     
        &--box {
          display: flex;
          justify-content: space-between;
+
         &__title {
         
           text-align: center;
@@ -53,23 +83,29 @@
           font-size: 4em;
           display: inline-block;
           width: auto;
+
           @media (max-width : vars.$pad) {
             width: 100%;
-             }
+          }
         }
+
         & div {
+
           @media (max-width : vars.$pad) {
             display: none;
              }
+
         }
-        &__notation{
+
+        &__notation {
           
           display: inline-block;
           width: 60px;
           text-align: end;
          
         }
-        &__rate{
+
+        &__rate {
          
           display: inline-block;
           width: 70px;
@@ -83,6 +119,7 @@
         display: flex;
         justify-content: flex-end;
         margin-bottom: vars.$gutter;
+
         strong {
           background-color: indigo;
           margin-right: vars.$gutter;
@@ -93,20 +130,25 @@
           border-radius: 20px;
         }
       }
+
       &--description {
         border: 1px solid grey;
         border-radius: 15px;
         padding: vars.$gutter;
         font-size: 1.2em;
+
         & span {
           display: block;
           padding-top: vars.$gutter;
         }
       }
       
-      
-
     }
+
+
+
+
+// Cart with purshase option
 
     &__cart {
       width: 25%;
@@ -115,17 +157,26 @@
       margin: 0 0 0 2*vars.$gutter;
       padding: 0.5*vars.$gutter;
       text-align: center;
-      @media (max-width : 950px) {
-        width: 35%;
-        }
-      
       max-height: 300px;
 
+
       @media (max-width : 950px) {
-        max-height: 400px;
+        width: 35%;
+        margin-top: 6*vars.$gutter;
+        
         }
 
+      @media (max-width : vars.$pad) {
+          
+        width: 80%;
+        margin: 3*vars.$gutter auto 0;
+            
+      }
 
+      @media (max-width : vars.$phone) {
+        width: 90%;
+      }
+      
 
       &--title{
         padding-top: 2*vars.$gutter;
@@ -133,6 +184,7 @@
         font-weight: bold;
         font-size: 1.8em;
       }
+
       &--add {
 
        margin-bottom: vars.$gutter;
@@ -160,46 +212,58 @@
        &--buy {
         margin-bottom: vars.$gutter;
         text-align: center;
+
          &__click {
            width: 25px;
            font-weight: bold;
          }
+
          &__counter {
            width: 35px;
          }
+
          &__cart {
           margin-left: 0.7em;
           padding: 0.4em;
           border-radius: 10px;
           background-color: #e78c03;
           width: 50%;
-
          }
-   
        }
 
        &--favorite {
-         width: 100%;
-         text-align: center;
-         margin: 2em auto 0;
-         padding: 0.6em;
-          border-radius: 10px;
-          background-color: #e6d924;
+        width: 100%;
+        text-align: center;
+        margin: 2em auto 0;
+        padding: 0.6em;
+        border-radius: 10px;
+        background-color: #e6d924;
        }
     }
-
-    
-
   }
-
-
 }
+
+
+
+
+
+
+
+// Second part with slider
+
 .slider--container {
   border: 1px solid grey;
   border-radius: 10px;
   margin-top: 2*vars.$gutter;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+
+  @media (max-width : vars.$pad) {
+          
+    display: none;
+    }
+
+    // box for 1 item
 
   &__box {
     padding: vars.$gutter;
@@ -219,15 +283,37 @@
   }
 }
 
+
+
+
+// third part with avis
+
 .avis--container {
   display: flex;
+  justify-content: space-evenly;
   margin-top: 2*vars.$gutter;
   border: 1px solid grey;
   border-radius: 15px;
   padding: 3*vars.$gutter;
 
+  @media (max-width : vars.$pad) {
+          
+    display: block;
+    width: 80%;
+    margin: 3*vars.$gutter auto vars.$gutter;
+    padding: 0 0 vars.$gutter 0;
+    }
+
+  @media (max-width : vars.$phone) {
+    width: 90%;
+  }
+
   &__title {
     padding-right: 3*vars.$gutter;
+    @media (max-width : vars.$pad) {
+      text-align: center;
+      padding: vars.$gutter 0 vars.$gutter;
+      }
 
   }
 
@@ -238,6 +324,16 @@
     margin-right: 2*vars.$gutter;
     padding: vars.$gutter;
     box-shadow: 0 0 10px #555;
+
+    @media (max-width : vars.$pad) {
+      margin: 1*vars.$gutter auto 0;
+      width: 80%;
+      }
+
+  @media (max-width : vars.$phone) {
+      width: 90%;
+  }
+  
 
     &--img {
 

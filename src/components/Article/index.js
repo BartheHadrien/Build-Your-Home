@@ -120,6 +120,16 @@ function Article() {
           <h3 className="slider--container__box--title">Title</h3>
           <span className="slider--container__box--description">Description de l'article</span>
         </div>
+        <div className="slider--container__box">
+          <img className="slider--container__box--img" src={keyboard} alt="slider" />
+          <h3 className="slider--container__box--title">Title</h3>
+          <span className="slider--container__box--description">Description de l'article</span>
+        </div>
+        <div className="slider--container__box">
+          <img className="slider--container__box--img" src={keyboard} alt="slider" />
+          <h3 className="slider--container__box--title">Title</h3>
+          <span className="slider--container__box--description">Description de l'article</span>
+        </div>
       </section>
 
       {/* Avis */}
