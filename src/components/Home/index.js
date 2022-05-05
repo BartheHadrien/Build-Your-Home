@@ -1,14 +1,23 @@
+// npm
+import { useSelector, useDispatch } from 'react-redux';
+
 import './styles.scss';
 import desktop from 'src/assets/images/desktop.svg';
 import CardArticle from '../CardArticle';
 import CardCategory from '../CardCategory';
 
 function Home() {
+  const categories = useSelector((state) => state.categories.categories);
+
+  const filteredCategories = () => {
+    console.log('filteredCategories');
+  };
+  // console.log(filteredCategories);
+  console.log(categories);
   return (
     <div className="home">
       <section className="home__categories">
-        <CardCategory />
-        <CardCategory />
+        {categories.map((categorie) => <CardCategory key={categorie.id} {...categorie} />)}
         <CardCategory />
         <CardCategory />
         <div className="home__categories__category">
