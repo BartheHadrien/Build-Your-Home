@@ -16,43 +16,43 @@ import burger from 'src/assets/images/burger.svg';
 import { toggleBurger, setSearchBarValue } from 'src/actions';
 
 function Header() {
-  const dispatch = useDispatch();
-  const searchBarValue = useSelector((state) => state.navbar.searchBarValue);
+  // const dispatch = useDispatch();
+  // const searchBarValue = useSelector((state) => state.navbar.searchBarValue);
 
-  function handleSearchBar(event) {
-    dispatch(setSearchBarValue(event.target.value));
-  }
+  // function handleSearchBar(event) {
+  //   dispatch(setSearchBarValue(event.target.value));
+  // }
 
-  function handleSubmitSearchBar(event) {
-    event.preventDefault();
-    dispatch(sendResearch()); // #TODO a envoyer a l'API
-  }
+  // function handleSubmitSearchBar(event) {
+  //   event.preventDefault();
+  //   dispatch(sendResearch()); // #TODO a envoyer a l'API
+  // }
 
   // Fonction qui permet de trier les articles en fonction de la valeur du champs.
-  function getFilteredArticle() {
-    const search = useSelector((state) => state.navbar.searchBarValue);
-    let filteredArticles = articlesList; // articlesList a récupérer de l'API
-    if (search.length > 0) {
-      filteredArticles = articlesList.filter((item) => {
-        const nameLowerCase = item.name.toLowerCase();
-        const inputSearchLowerCase = search.toLowerCase();
+  // function getFilteredArticle() {
+  //   const search = useSelector((state) => state.navbar.searchBarValue);
+  //   let filteredArticles = articlesList; // articlesList a récupérer de l'API
+  //   if (search.length > 0) {
+  //     filteredArticles = articlesList.filter((item) => {
+  //       const nameLowerCase = item.name.toLowerCase();
+  //       const inputSearchLowerCase = search.toLowerCase();
 
-        return nameLowerCase.includes(inputSearchLowerCase);
-      });
-    }
-  }
+  //       return nameLowerCase.includes(inputSearchLowerCase);
+  //     });
+  //   }
+  // }
 
   //  ______________Gestion du menu burger_____________
   // Recherche dans le state de la valeur de isOpen
   //  conditionnant l'affichage du menu burger
-  const isOpen = useSelector((state) => state.navbar.isOpen);
+  // const isOpen = useSelector((state) => state.navbar.isOpen);
   // Gestion des classes CSS
 
-  const className = classnames('header--container', { 'header--container__closed': !isOpen });
+  // const className = classnames('header--container', { 'header--container__closed': !isOpen });
 
-  function handleToggleClick() {
-    dispatch(toggleBurger());
-  }
+  // function handleToggleClick() {
+  //   dispatch(toggleBurger());
+  // }
 
   return (
     <>
@@ -63,14 +63,14 @@ function Header() {
           </Link>
           <form
             className="header--top__form"
-            onSubmit={handleSubmitSearchBar}
+            // onSubmit={handleSubmitSearchBar}
           >
             <input
               className="header--top__input"
               type="text"
               placeholder="Rechercher"
-              value={searchBarValue}
-              onChange={handleSearchBar}
+              // value={searchBarValue}
+              // onChange={handleSearchBar}
             />
             <input className="header--top__submit" type="submit" value=" " />
           </form>
@@ -89,7 +89,7 @@ function Header() {
             <button
               type="button"
               className="header--nav__burger--button"
-              onClick={handleToggleClick}
+              // onClick={handleToggleClick}
             >
               <img src={burger} alt={burger} />
             </button>
@@ -128,7 +128,7 @@ function Header() {
         </nav>
 
       </div>
-      <div className={className}>
+      <div className="">
         <div className="header--nav__burgertranslation">
           <ul className="header--nav__burgertranslation--list">
             <li className="header--nav__burgertranslation--item">

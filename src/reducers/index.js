@@ -1,55 +1,15 @@
-import {
-  SET_EMAIL_IN_LOGIN, SET_PASSWORD_IN_LOGIN, SET_SEARCH_BAR_VALUE, TOGGLE_BURGER,
-} from '../actions';
+import { combineReducers } from 'redux';
 
-const initialState = {
-  navbar: {
-    isOpen: false,
-    searchBarValue: '',
-  },
-  login: {
-    email: '',
-    password: '',
-  },
-};
+import userReducer from './user';
+import articleReducer from './article';
+import cartReducer from './cart';
+import categoriesReducer from './categories';
 
-function mainReducer(state = initialState, action = {}) {
-  switch (action.type) {
-    case SET_SEARCH_BAR_VALUE:
-      return {
-        ...state,
-        navbar: {
-          ...state.navbar,
-          searchBarValue: action.value,
-        },
-      };
-    case TOGGLE_BURGER:
-      return {
-        ...state,
-        navbar: {
-          ...state.navbar,
-          isOpen: !state.navbar.isOpen,
-        },
-      };
-    case SET_EMAIL_IN_LOGIN:
-      return {
-        ...state,
-        login: {
-          ...state.login,
-          email: action.value,
-        },
-      };
-    case SET_PASSWORD_IN_LOGIN:
-      return {
-        ...state,
-        login: {
-          ...state.login,
-          password: action.value,
-        },
-      };
-    default:
-      return state;
-  }
-}
+const rootReducer = combineReducers({
+  user: userReducer,
+  article: articleReducer,
+  cart: cartReducer,
+  categories: categoriesReducer,
+});
 
-export default mainReducer;
+export default rootReducer;
