@@ -10,6 +10,7 @@ export const fetchArticles = () => ({
 export const SAVE_ARTICLES = 'SAVE_ARTICLES';
 
 // ACTION CREATOR saveArticles
-export const saveArticles = () => ({
+export const saveArticles = (articles) => ({
   type: SAVE_ARTICLES,
+  articles,
 });
