@@ -1,5 +1,8 @@
-// import style
-import './styles.scss';
+// import npm
+import { Navigate, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+// import selectors function
 
 // import semantic ui
 
@@ -9,8 +12,25 @@ import { Rating } from 'semantic-ui-react';
 import user from 'src/assets/images/user.svg';
 
 import keyboard from 'src/assets/images/keyboard.svg';
+import { findArticle } from '../../selectors/article';
+
+// import style
+import './styles.scss';
 
 function Article() {
+  // useParams permet d'extraire les paramètres d'url dynamique
+  // ici on s'en sert pour récupérer l'id de l'article à afficher
+  const { id } = useParams();
+
+  // On passe l'id en argument de l'article à la fonction findRecipes
+  // (codée dans le selectors correspondant) pour récupérer l'article à afficher
+  const article = useSelector((state) => findArticle(state.article.list, id));
+  // Si l'id rentré dans l'url ne match pas avec un article
+  // en BDD on fait une redirection vers une 404
+  if (!article) {
+    return <Navigate to="/error" replace />;
+  }
+
   return (
     <div className="article">
       {/* Article */}
