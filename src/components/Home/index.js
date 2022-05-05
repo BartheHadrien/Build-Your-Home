@@ -1,5 +1,4 @@
 import './styles.scss';
-import desktop from 'src/assets/images/desktop.svg';
 import { useSelector } from 'react-redux';
 import CardArticle from '../CardArticle';
 import CardCategory from '../CardCategory';
@@ -17,6 +16,8 @@ function Home() {
       </section>
       <section className="home__articles">
         {articles.map((article) => (
+          // On map sur la liste des articles récupéré depuis le state.
+          // On passe en props les données nécessaire au composant CardArticle.
           <CardArticle key={article.id} {...article} />
         ))}
       </section>
