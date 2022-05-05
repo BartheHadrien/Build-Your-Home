@@ -13,3 +13,17 @@ export function findArticle(articles, searchedId) {
   });
   return article;
 }
+
+/**
+ *  on trouve 5 articles dans la liste globales
+ * @param {Array} articles - tout les articles
+ * @param {string} searchedNumberId - nombre 'article recherché jusqu'à tel id
+ * @return {Object} - liste d'article trouvés
+ */
+
+export function findFiveArticles(articles, searchedNumberId) {
+  const listArticle = articles.filter((itemArticle) => {
+    return itemArticle.id <= searchedNumberId;
+  });
+  return listArticle;
+}
