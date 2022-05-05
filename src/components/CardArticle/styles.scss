@@ -1,20 +1,39 @@
 @use 'src/styles/vars';
-.card-article {
-    background-color: vars.$text-color;
-    margin: 1rem 0.5rem 1rem 0.5rem;
+.card--article {
+  background-color: vars.$text-color;
+  margin: 1rem 0.5rem 1rem 0.5rem;
 
-    &__picture {
-      max-width: 40vw;
-      max-height: 40vh;
-      padding: 1rem;
+  &__title{
+    padding: 1rem 1rem 0em 1rem;
+    font-size: 2em;
+  }
 
-      @media (min-width : vars.$pad) {
-        max-width:30vw;
-        max-height: 30vh;
-        }
-      @media (min-width: vars.$desktop){
-        max-width:20vw;
-        max-height: 20vh;
-      }
+  &--container {  
+    display: flex;
+    justify-content: space-between;
+
+    &__rate {
+      padding: 1em;
     }
+
+    &__price {
+      padding: 1em;
+    }
+  }
+
+
+  &__picture {
+    max-width: 40vw;
+    max-height: 40vh;
+    padding: 1rem;
+
+    @media (min-width : vars.$pad) {
+      max-width:30vw;
+      max-height: 30vh;
+      }
+    @media (min-width: vars.$desktop){
+      max-width:20vw;
+      max-height: 20vh;
+    }
+  }
 }
