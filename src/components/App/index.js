@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 import Home from 'src/components/Home';
 import { useDispatch } from 'react-redux';
@@ -22,12 +22,23 @@ import { fetchArticles } from '../../actions/article';
 
 function App() {
   const dispatch = useDispatch();
-
+  const location = useLocation();
+  // Au montage du composant principal
   useEffect(
     () => {
+      // Récupération des articles
       dispatch(fetchArticles());
     },
     [],
+  );
+  // Conditionne un effet au changement d'url
+  useEffect(
+    () => {
+      // dans cet effet, on interragit avec le
+      // dom réel pour scroller en haut de page
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+    [location],
   );
 
   return (
