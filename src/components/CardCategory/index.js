@@ -5,17 +5,18 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 import desktop from 'src/assets/images/desktop.svg';
 
-function CardCategory({ name }) {
+function CardCategory({ name, picture }) {
   return (
     <div className="card-category">
-      <p>{name}Test catégorie</p>
-      <img src={desktop} alt={desktop} className="card-category__picture" />
+      <p>{name}</p>
+      <img src={picture} alt={picture} className="card-category__picture" />
     </div>
   );
 }
 
 CardCategory.propTypes = {
   name: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
 };
 
 export default CardCategory;
