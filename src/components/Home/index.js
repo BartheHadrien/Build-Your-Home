@@ -14,7 +14,7 @@ function Home() {
 
   // Fonction filtrant le nombre de catégorie à afficher
   const filteredCategories = () => {
-    const filteredCategorie = categories.filter((categorie) => categorie.id < 10);
+    const filteredCategorie = categories.filter((categorie) => categorie.displayOrder < 10);
     return filteredCategorie;
   };
   // console.log(filteredCategories());

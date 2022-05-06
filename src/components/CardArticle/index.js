@@ -5,7 +5,7 @@ import { Rating } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 function CardArticle({
-  id, name, picture: picture_link, price,
+  id, name, picture, price,
 }) {
   return (
     <Link to={`/article/${id}`}>

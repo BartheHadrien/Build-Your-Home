@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // styles
 import './styles.scss';
 
-function CardCategory({ name, picture: picture_link }) {
+function CardCategory({ name, picture }) {
   return (
     <div className="card-category">
       <p>{name}</p>
