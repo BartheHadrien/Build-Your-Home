@@ -1,4 +1,4 @@
-// npm
+// import
 import PropTypes from 'prop-types';
 
 // styles
