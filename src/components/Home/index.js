@@ -1,18 +1,12 @@
 // npm
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import './styles.scss';
-import { useSelector } from 'react-redux';
 import CardArticle from '../CardArticle';
 import CardCategory from '../CardCategory';
-import { fetchCategories } from '../../actions/categories';
 
 function Home() {
-
   const articles = useSelector((state) => state.article.list);
-
-  const dispatch = useDispatch();
 
   // Selection des catégorie récupérée dans le state
   const categories = useSelector((state) => state.categories.list);
@@ -28,21 +22,10 @@ function Home() {
   // Stockage de la fonction de filtre dans une constante pour pouvoir l'utiliser
   const categoriesToDisplay = filteredCategories();
 
-  useEffect(() => {
-    dispatch(fetchCategories());
-  }, []);
-
-
   return (
 
     <div className="home">
       <section className="home__categories">
-
-        <CardCategory />
-        <CardCategory />
-        <CardCategory />
-        <CardCategory />
-
 
         {
           // Boucle avec la méthode map sur le tableau de catégorie récupéré qui va afficher les
@@ -51,12 +34,15 @@ function Home() {
         }
 
       </section>
+
       <section className="home__articles">
+
         {articles.map((article) => (
           // On map sur la liste des articles récupéré depuis le state.
           // On passe en props les données nécessaire au composant CardArticle.
           <CardArticle key={article.id} {...article} />
         ))}
+
       </section>
     </div>
   );

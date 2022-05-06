@@ -19,6 +19,7 @@ import Error from '../Error';
 import './styles.scss';
 import NewAccount from '../NewAccount';
 import { fetchArticles } from '../../actions/article';
+import { fetchCategories } from '../../actions/categories';
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,8 @@ function App() {
     () => {
       // Récupération des articles
       dispatch(fetchArticles());
+      // Récupération des catégories
+      dispatch(fetchCategories());
     },
     [],
   );

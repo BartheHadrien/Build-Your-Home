@@ -5,12 +5,12 @@ import { Rating } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 function CardArticle({
-  id, name, picture_link, price,
+  id, name, picture: picture_link, price,
 }) {
   return (
     <Link to={`/article/${id}`}>
       <div className="card--article">
-        <img src={picture_link} alt="" className="card--article__picture" />
+        <img src={picture} alt="" className="card--article__picture" />
         <h1 className="card--article__title">{name}</h1>
         <div className="card--article--container">
           <p className="card--article--container__price">{price}€</p>
@@ -24,7 +24,7 @@ function CardArticle({
 CardArticle.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  picture_link: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
 };
 

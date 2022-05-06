@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 
 // styles
 import './styles.scss';
-import desktop from 'src/assets/images/desktop.svg';
 
-function CardCategory({ name, picture }) {
+function CardCategory({ name, picture: picture_link }) {
   return (
     <div className="card-category">
       <p>{name}</p>
