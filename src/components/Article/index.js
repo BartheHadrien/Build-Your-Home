@@ -31,7 +31,7 @@ function Article() {
   const article = findArticle(articles, id);
   console.log(article);
 
-  const listArticle = findFiveArticles(articles, 5);
+  const listArticle = findFiveArticles(articles);
   console.log(listArticle);
 
   // Si l'id rentré dans l'url ne match pas avec un article
