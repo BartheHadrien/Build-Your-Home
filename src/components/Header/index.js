@@ -2,6 +2,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+// actions
+import { toggleBurger, setSearchBarValue } from 'src/actions';
+
 // librairies
 import classnames from 'classnames';
 
@@ -12,10 +15,28 @@ import user from 'src/assets/images/user.svg';
 import cart from 'src/assets/images/cart.svg';
 import logo from 'src/assets/images/logo.svg';
 import burger from 'src/assets/images/burger.svg';
-// actions
-import { toggleBurger, setSearchBarValue } from 'src/actions';
+
+// Components
+import Navbar from './Navbar';
+import BurgerItems from './BurgerItems';
 
 function Header() {
+  // ________________Affichage des catégories____________________//
+
+  // Selection des catégorie récupérée dans le state
+  const categories = useSelector((state) => state.categories.list);
+
+  // Fonction filtrant le nombre de catégorie à afficher
+  const filteredCategories = () => {
+    const filteredCategorie = categories.filter((categorie) => categorie.displayOrder < 10);
+    return filteredCategorie;
+  };
+
+  // Stockage de la fonction de filtre dans une constante pour pouvoir l'utiliser
+  const categoriesToDisplay = filteredCategories();
+
+  // _____________________________________________________________//
+
   // const dispatch = useDispatch();
   // const searchBarValue = useSelector((state) => state.navbar.searchBarValue);
 
@@ -96,33 +117,9 @@ function Header() {
 
           </div>
           <ul className="header--nav__list">
-            <li className="header--nav__item">
-              Catégorie
-            </li>
-            <li className="header--nav__item">
-              Catégorie
-            </li>
-            <li className="header--nav__item">
-              Catégorie
-            </li>
-            <li className="header--nav__item">
-              Catégorie
-            </li>
-            <li className="header--nav__item">
-              Catégorie
-            </li>
-            <li className="header--nav__item">
-              Catégorie
-            </li>
-            <li className="header--nav__item">
-              Catégorie
-            </li>
-            <li className="header--nav__item">
-              Catégorie
-            </li>
-            <li className="header--nav__item">
-              Catégorie
-            </li>
+            {
+              categoriesToDisplay.map((categorie) => (<Navbar key={categorie.id} {...categorie} />))
+            }
           </ul>
 
         </nav>
@@ -131,33 +128,10 @@ function Header() {
       <div className="">
         <div className="header--nav__burgertranslation">
           <ul className="header--nav__burgertranslation--list">
-            <li className="header--nav__burgertranslation--item">
-              Catégorie 1
-            </li>
-            <li className="header--nav__burgertranslation--item">
-              Catégorie 1
-            </li>
-            <li className="header--nav__burgertranslation--item">
-              Catégorie 1
-            </li>
-            <li className="header--nav__burgertranslation--item">
-              Catégorie 1
-            </li>
-            <li className="header--nav__burgertranslation--item">
-              Catégorie 1
-            </li>
-            <li className="header--nav__burgertranslation--item">
-              Catégorie 1
-            </li>
-            <li className="header--nav__burgertranslation--item">
-              Catégorie 1
-            </li>
-            <li className="header--nav__burgertranslation--item">
-              Catégorie 1
-            </li>
-            <li className="header--nav__burgertranslation--item">
-              Catégorie 1
-            </li>
+            {
+              categoriesToDisplay.map((categorie) => (
+                <BurgerItems key={categorie.id} {...categorie} />))
+            }
           </ul>
         </div>
       </div>
