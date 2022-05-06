@@ -9,7 +9,7 @@
 
 export function findArticle(articles, searchedId) {
   const article = articles.find((itemArticle) => {
-    return itemArticle.id === searchedId;
+    return itemArticle.id == searchedId;
   });
   return article;
 }

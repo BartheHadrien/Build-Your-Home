@@ -12,7 +12,7 @@ import { Rating } from 'semantic-ui-react';
 import user from 'src/assets/images/user.svg';
 
 import keyboard from 'src/assets/images/keyboard.svg';
-import { findArticle } from '../../selectors/article';
+import { findArticle, findFiveArticles } from '../../selectors/article';
 
 // import style
 import './styles.scss';
@@ -24,26 +24,34 @@ function Article() {
 
   // On passe l'id en argument de l'article à la fonction findRecipes
   // (codée dans le selectors correspondant) pour récupérer l'article à afficher
-  const article = useSelector((state) => findArticle(state.article.list, id));
+  const articles = useSelector((state) => state.article.list);
+  console.log(articles);
+
+  const article = findArticle(articles, id);
+  console.log(article);
+
+  const listArticle = findFiveArticles(articles, 5);
+  console.log(listArticle);
+
   // Si l'id rentré dans l'url ne match pas avec un article
   // en BDD on fait une redirection vers une 404
-  if (!article) {
-    return <Navigate to="/error" replace />;
-  }
+  // if (!article) {
+  //   return <Navigate to="/error" replace />;
+  // }
 
   return (
     <div className="article">
       {/* Article */}
       <section className="article--container">
         <div className="article--container__img">
-          <img className="article--container__img--art" src={article.picture_link} alt={`illustration ${article.name}`} />
+          <img className="article--container__img--art" src={article.picture} alt={`illustration ${article.name}`} />
         </div>
         <div className="article--container__details">
           <div className="article--container__details--box">
             <h2 className="article--container__details--box__title">{article.name}</h2>
             <div>
               <a className="article--container__details--box__notation" href="#">Notes :</a>
-              <Rating className="article--container__details--box__rate" icon="star" defaultRating={article.rating} maxRating={5} />
+              <Rating className="article--container__details--box__rate" icon="star" defaultRating={article.rating} maxRating={5} size="tiny" />
             </div>
           </div>
 
