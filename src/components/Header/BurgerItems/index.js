@@ -7,7 +7,7 @@ import './styles.scss';
 
 function BurgerItems({ name, id, slug }) {
   // URL de la catégorie à afficher
-  const link = `/categorie/${slug}`;
+  const link = `/categories/${slug}`;
   return (
     <Link to={link}>
       <li className="header--nav__burgertranslation--item" key={id}>
