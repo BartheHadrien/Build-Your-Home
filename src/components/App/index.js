@@ -49,7 +49,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/article" element={<Article />} />
+        <Route path="/article/:id" element={<Article />} />
         <Route path="/categories/:slug" element={<Articles />} />
         <Route path="/panier" element={<Cart />} />
         <Route path="/connexion" element={<Login />} />
