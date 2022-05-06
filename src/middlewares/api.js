@@ -2,6 +2,7 @@ import axios from 'axios';
 import { FETCH_ARTICLES, saveArticles } from '../actions/article';
 import { FETCH_CATEGORIES, saveCategories } from '../actions/categories';
 
+
 // pour que ce middleware puisse intercepter les actions,
 // il faut qu'il soit brancher sur le store -> src/store/index.js
 const apiMiddleWare = (store) => (next) => (action) => {
