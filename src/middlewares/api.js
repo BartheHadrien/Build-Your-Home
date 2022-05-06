@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { FETCH_ARTICLES, saveArticles } from '../actions/article';
+
 import { FETCH_CATEGORIES, saveCategories } from '../actions/categories';
 
 
@@ -25,6 +26,7 @@ const apiMiddleWare = (store) => (next) => (action) => {
         );
       next(action);
       break;
+
     case FETCH_CATEGORIES:
       // on la traduit par un appel à l'API
       axios
@@ -44,6 +46,7 @@ const apiMiddleWare = (store) => (next) => (action) => {
         );
       next(action);
       break;
+
     default:
       next(action);
   }

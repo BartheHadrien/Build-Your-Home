@@ -1,4 +1,6 @@
+
 import { SAVE_ARTICLES } from '../actions/article';
+
 
 export const initialState = {
   list: [],
