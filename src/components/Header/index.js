@@ -66,13 +66,13 @@ function Header() {
   //  ______________Gestion du menu burger_____________
   // Recherche dans le state de la valeur de isOpen
   //  conditionnant l'affichage du menu burger
-  // const isOpen = useSelector((state) => state.navbar.isOpen);
+  // const isOpen = useSelector((state) => state.user.navbar.isOpen);
   // Gestion des classes CSS
 
   // const className = classnames('header--container', { 'header--container__closed': !isOpen });
 
   // function handleToggleClick() {
-  //   dispatch(toggleBurger());
+  // dispatch(toggleBurger());
   // }
 
   return (

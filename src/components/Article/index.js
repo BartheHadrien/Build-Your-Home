@@ -1,43 +1,69 @@
-// import style
-import './styles.scss';
+// import npm
+import { Navigate, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 // import semantic ui
 
 import { Rating } from 'semantic-ui-react';
 
-// import image
+// import composant
 import user from 'src/assets/images/user.svg';
+import ListArticle from './ListArticle';
 
-import keyboard from 'src/assets/images/keyboard.svg';
+// import image
+
+// import selectors function
+import { findArticle, findFiveArticles } from '../../selectors/article';
+
+// import style
+import './styles.scss';
 
 function Article() {
+  // useParams permet d'extraire les paramètres d'url dynamique
+  // ici on s'en sert pour récupérer l'id de l'article à afficher
+  const { id } = useParams();
+
+  // On passe l'id en argument de l'article à la fonction findRecipes
+  // (codée dans le selectors correspondant) pour récupérer l'article à afficher
+  const articles = useSelector((state) => state.article.list);
+  console.log(articles);
+
+  const article = findArticle(articles, id);
+  console.log(article);
+
+  const listArticle = findFiveArticles(articles, 5);
+  console.log(listArticle);
+
+  // Si l'id rentré dans l'url ne match pas avec un article
+  // en BDD on fait une redirection vers une 404
+  if (!article) {
+    return <Navigate to="/error" replace />;
+  }
+
   return (
     <div className="article">
       {/* Article */}
       <section className="article--container">
         <div className="article--container__img">
-          <img className="article--container__img--art" src={keyboard} alt="illustration souris" />
+          <img className="article--container__img--art" src={article.picture} alt={`illustration ${article.name}`} />
         </div>
         <div className="article--container__details">
           <div className="article--container__details--box">
-            <h2 className="article--container__details--box__title">Title</h2>
+            <h2 className="article--container__details--box__title">{article.name}</h2>
             <div>
               <a className="article--container__details--box__notation" href="#">Notes :</a>
-              <Rating className="article--container__details--box__rate" icon="star" defaultRating={3} maxRating={4} />
+              <Rating className="article--container__details--box__rate" icon="star" defaultRating={article.rating} maxRating={5} size="tiny" />
             </div>
           </div>
 
           <div className="box">
-            <strong> Tag </strong>
-            <strong> Tag </strong>
+            <strong> {article.category.name} </strong>
+            <strong> {article.brand.name} </strong>
           </div>
           <p className="article--container__details--description">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Reiciendis reprehenderit molestiae, consectetur iusto impedit dolore velit natus
-            molestias ab eos tempore eius aliquid, qui possimus, mollitia
-            delectus maxime ex doloremque.
-            <span> Prix : XX € </span>
-            <span> Livraison : XX € </span>
+            {article.description}
+            <span> Prix : {article.price} € </span>
+            <span> Stock : {article.stock} U </span>
           </p>
         </div>
         <div className="article--container__cart">
@@ -105,7 +131,9 @@ function Article() {
 
       {/* Slider */}
       <section className="slider--container">
-        <div className="slider--container__box">
+        {listArticle.map((itemArticle) => <ListArticle key={itemArticle.id} {...itemArticle} />)}
+
+        {/* <div className="slider--container__box">
           <img className="slider--container__box--img" src={keyboard} alt="slider" />
           <h3 className="slider--container__box--title">Title</h3>
           <span className="slider--container__box--description">Description de l'article</span>
@@ -124,12 +152,7 @@ function Article() {
           <img className="slider--container__box--img" src={keyboard} alt="slider" />
           <h3 className="slider--container__box--title">Title</h3>
           <span className="slider--container__box--description">Description de l'article</span>
-        </div>
-        <div className="slider--container__box">
-          <img className="slider--container__box--img" src={keyboard} alt="slider" />
-          <h3 className="slider--container__box--title">Title</h3>
-          <span className="slider--container__box--description">Description de l'article</span>
-        </div>
+        </div> */}
       </section>
 
       {/* Avis */}
