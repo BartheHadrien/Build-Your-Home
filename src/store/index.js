@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { createStore, applyMiddleware, compose } from 'redux';
+import { legacy_createStore as createStore, applyMiddleware, compose } from 'redux';
 
 import reducer from 'src/reducers';
 import apiMiddleWare from '../middlewares/api';
