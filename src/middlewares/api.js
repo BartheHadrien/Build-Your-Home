@@ -34,7 +34,6 @@ const apiMiddleWare = (store) => (next) => (action) => {
             // on demande au store de les enregistrer
             // on dispatche donc une action (de type SAVE_CATEGORIES)
             // avec les catégories à sauver en payload
-            console.log('test de ma requete');
             store.dispatch(saveCategories(response.data));
           },
         )
