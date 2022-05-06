@@ -1,0 +1,59 @@
+@use 'src/styles/vars';
+
+
+// Second part with slider
+
+.slider--container {
+  border: 1px solid grey;
+  border-radius: 10px;
+  margin-top: 2*vars.$gutter;
+  display: flex;
+  justify-content: space-evenly;
+  
+
+  @media (max-width : vars.$pad) {
+          
+    display: none;
+    }
+
+    // box for 1 item
+
+  &__box {
+    padding: vars.$gutter;
+    margin: vars.$gutter;
+    text-align: center;
+    border: 3px solid grey;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #555;
+    width: 20%;
+    height: 20%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    
+
+    &--img {
+      width: 100%;
+      height: auto;
+    }
+
+    &--title {
+      margin: 0;
+      font-size: 2rem;
+      padding: 0.3em 0 0.3em 0;
+      @media (max-width : vars.$middle) {
+          
+        font-size: 1.3rem;
+        }
+
+    }
+    &--description {
+      font-size: 1.3rem;
+      white-space: nowrap;
+      padding: 0.3em 0 0.3em 0;
+      @media (max-width : vars.$middle) {
+          
+        font-size: 1rem;
+        }
+    }
+  }
+}

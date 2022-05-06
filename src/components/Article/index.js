@@ -2,16 +2,17 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-// import selectors function
-
 // import semantic ui
 
 import { Rating } from 'semantic-ui-react';
 
-// import image
+// import composant
 import user from 'src/assets/images/user.svg';
+import ListArticle from './ListArticle';
 
-import keyboard from 'src/assets/images/keyboard.svg';
+// import image
+
+// import selectors function
 import { findArticle, findFiveArticles } from '../../selectors/article';
 
 // import style
@@ -35,9 +36,9 @@ function Article() {
 
   // Si l'id rentré dans l'url ne match pas avec un article
   // en BDD on fait une redirection vers une 404
-  // if (!article) {
-  //   return <Navigate to="/error" replace />;
-  // }
+  if (!article) {
+    return <Navigate to="/error" replace />;
+  }
 
   return (
     <div className="article">
@@ -130,7 +131,9 @@ function Article() {
 
       {/* Slider */}
       <section className="slider--container">
-        <div className="slider--container__box">
+        {listArticle.map((itemArticle) => <ListArticle key={itemArticle.id} {...itemArticle} />)}
+
+        {/* <div className="slider--container__box">
           <img className="slider--container__box--img" src={keyboard} alt="slider" />
           <h3 className="slider--container__box--title">Title</h3>
           <span className="slider--container__box--description">Description de l'article</span>
@@ -149,12 +152,7 @@ function Article() {
           <img className="slider--container__box--img" src={keyboard} alt="slider" />
           <h3 className="slider--container__box--title">Title</h3>
           <span className="slider--container__box--description">Description de l'article</span>
-        </div>
-        <div className="slider--container__box">
-          <img className="slider--container__box--img" src={keyboard} alt="slider" />
-          <h3 className="slider--container__box--title">Title</h3>
-          <span className="slider--container__box--description">Description de l'article</span>
-        </div>
+        </div> */}
       </section>
 
       {/* Avis */}
