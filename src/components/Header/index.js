@@ -18,6 +18,7 @@ import burger from 'src/assets/images/burger.svg';
 
 // Components
 import Navbar from './Navbar';
+import BurgerItems from './BurgerItems';
 
 function Header() {
   // ________________Affichage des catégories____________________//
@@ -119,34 +120,6 @@ function Header() {
             {
               categoriesToDisplay.map((categorie) => (<Navbar key={categorie.id} {...categorie} />))
             }
-
-            {/* <li className="header--nav__item">
-              Catégorie
-            </li>
-            <li className="header--nav__item">
-              Catégorie
-            </li>
-            <li className="header--nav__item">
-              Catégorie
-            </li>
-            <li className="header--nav__item">
-              Catégorie
-            </li>
-            <li className="header--nav__item">
-              Catégorie
-            </li>
-            <li className="header--nav__item">
-              Catégorie
-            </li>
-            <li className="header--nav__item">
-              Catégorie
-            </li>
-            <li className="header--nav__item">
-              Catégorie
-            </li>
-            <li className="header--nav__item">
-              Catégorie
-            </li> */}
           </ul>
 
         </nav>
@@ -155,33 +128,10 @@ function Header() {
       <div className="">
         <div className="header--nav__burgertranslation">
           <ul className="header--nav__burgertranslation--list">
-            <li className="header--nav__burgertranslation--item">
-              Catégorie 1
-            </li>
-            <li className="header--nav__burgertranslation--item">
-              Catégorie 1
-            </li>
-            <li className="header--nav__burgertranslation--item">
-              Catégorie 1
-            </li>
-            <li className="header--nav__burgertranslation--item">
-              Catégorie 1
-            </li>
-            <li className="header--nav__burgertranslation--item">
-              Catégorie 1
-            </li>
-            <li className="header--nav__burgertranslation--item">
-              Catégorie 1
-            </li>
-            <li className="header--nav__burgertranslation--item">
-              Catégorie 1
-            </li>
-            <li className="header--nav__burgertranslation--item">
-              Catégorie 1
-            </li>
-            <li className="header--nav__burgertranslation--item">
-              Catégorie 1
-            </li>
+            {
+              categoriesToDisplay.map((categorie) => (
+                <BurgerItems key={categorie.id} {...categorie} />))
+            }
           </ul>
         </div>
       </div>

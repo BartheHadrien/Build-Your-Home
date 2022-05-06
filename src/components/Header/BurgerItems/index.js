@@ -5,19 +5,19 @@ import { Link } from 'react-router-dom';
 // Styles
 import './styles.scss';
 
-function Navbar({ name, id }) {
+function BurgerItems({ name, id }) {
   return (
     <Link to="">
-      <li className="header--nav__item" key={id}>
+      <li className="header--nav__burgertranslation--item" key={id}>
         {name}
       </li>
     </Link>
   );
 }
 
-Navbar.propTypes = {
+BurgerItems.propTypes = {
   name: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
 };
 
-export default Navbar;
+export default BurgerItems;
