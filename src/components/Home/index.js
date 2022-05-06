@@ -1,7 +1,10 @@
-// npm
+// Import
 import { useSelector } from 'react-redux';
 
+// Styles
 import './styles.scss';
+
+// Components
 import CardArticle from '../CardArticle';
 import CardCategory from '../CardCategory';
 
