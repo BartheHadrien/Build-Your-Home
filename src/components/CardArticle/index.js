@@ -8,8 +8,8 @@ function CardArticle({
   id, name, picture, price,
 }) {
   // On utilise le Hook useParams pour récupérer le slug de l'URL courante
-  const { slug } = useParams();
-  console.log(useParams());
+  // const { slug } = useParams();
+  // console.log(useParams());
   return (
     <Link to={`/article/${id}`}>
       <div className="card--article">
