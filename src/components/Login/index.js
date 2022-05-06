@@ -1,12 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setEmailInLogin, setPasswordInLogin } from '../../actions';
+import { setEmailInLogin, setPasswordInLogin } from '../../actions/user';
 import './styles.scss';
 
 function Login() {
   const dispatch = useDispatch();
-  const email = useSelector((state) => state.login.email);
-  const password = useSelector((state) => state.login.password);
+  const email = useSelector((state) => state.user.login.email);
+  const password = useSelector((state) => state.user.login.password);
 
   function handleEmail(event) {
     dispatch(setEmailInLogin(event.target.value));
@@ -16,12 +16,16 @@ function Login() {
     dispatch(setPasswordInLogin(event.target.value));
   }
 
+  function handleConnect() {
+    console.log('Connexion');
+  }
+
   return (
     <div className="login">
       <section className="login--section">
         <div className="login--container">
           <h1 className="login--title">S'identifier</h1>
-          <form className="login--form">
+          <form className="login--form" onSubmit={handleConnect}>
             <label htmlFor="email">
               <span className="login--field__label">Votre adresse E-mail</span>
               <input
@@ -45,6 +49,7 @@ function Login() {
             <button
               type="submit"
               className="login--button__submit"
+
             >
               S'identifier
             </button>

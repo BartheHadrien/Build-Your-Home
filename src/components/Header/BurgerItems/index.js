@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import './styles.scss';
 
 function BurgerItems({ name, id, slug }) {
+  // URL de la catégorie à afficher
   const link = `/categories/${slug}`;
   return (
     <Link to={link}>

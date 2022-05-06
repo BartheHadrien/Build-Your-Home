@@ -2,11 +2,14 @@ import PropTypes from 'prop-types';
 // styles
 import './styles.scss';
 import { Rating } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function CardArticle({
   id, name, picture, price,
 }) {
+  // On utilise le Hook useParams pour récupérer le slug de l'URL courante
+  // const { slug } = useParams();
+  // console.log(useParams());
   return (
     <Link to={`/article/${id}`}>
       <div className="card--article">

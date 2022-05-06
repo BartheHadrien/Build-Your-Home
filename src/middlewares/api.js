@@ -3,6 +3,13 @@ import { FETCH_ARTICLES, saveArticles } from '../actions/article';
 
 
 import { FETCH_CATEGORIES, saveCategories } from '../actions/categories';
+import { LOGIN } from '../actions/user';
+
+// On utilisera aisinsi cette instance plutôt qu'axios directement
+const axiosInstance = axios.create({
+  // par exemple, on peut définir une url de base !
+  baseURL: 'http://floriannaud-server.eddi.cloud/projet-09-build-your-home-back/public/api/',
+});
 
 
 
@@ -12,8 +19,8 @@ const apiMiddleWare = (store) => (next) => (action) => {
   switch (action.type) {
     case FETCH_ARTICLES:
       // on la traduit par un appel à l'API
-      axios
-        .get('http://floriannaud-server.eddi.cloud/projet-09-build-your-home-back/public/api/articles')
+      axiosInstance
+        .get('articles')
         .then(
           // lorsque l'api nous renvoie les articles
           (response) => {
@@ -31,8 +38,8 @@ const apiMiddleWare = (store) => (next) => (action) => {
 
     case FETCH_CATEGORIES:
       // on la traduit par un appel à l'API
-      axios
-        .get('http://floriannaud-server.eddi.cloud/projet-09-build-your-home-back/public/api/categories')
+      axiosInstance
+        .get('categories')
         .then(
           // lorsque l'api nous renvoie les catégories
           (response) => {
@@ -47,6 +54,43 @@ const apiMiddleWare = (store) => (next) => (action) => {
         );
       next(action);
       break;
+
+    case LOGIN: {
+      // double destructuration
+      const { user: { email, password } } = store.getState();
+
+      axiosInstance
+        .post(
+          'login',
+          {
+            email,
+            password,
+          },
+        )
+        .then((response) => {
+          // on extrait la propriété data de la reponse
+          // que l'on stocke dans une vaiable user
+          const { data: user } = response;
+
+          // j'enregistre mon token sur l'instance d'axios
+          axios.defaults.headers.common.Authorization = `Bearer ${user.token}`;
+
+          // on demande la sauvegarde de ce user
+          store.dispatch(saveUser(user));
+
+          // équivalent à :
+          // store.dispatch(saveUser(response.data));
+
+          // on peut demander la récupération des favoris
+          // immédiatement après s'être loggé
+          store.dispatch(fetchFavorites());
+        })
+        .catch(() => {
+          console.log('oups...');
+        });
+      next(action);
+      break;
+    }
 
     default:
       next(action);
