@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom';
 // Styles
 import './styles.scss';
 
-function Navbar({ name, id }) {
+function Navbar({ name, id, slug }) {
+  // URL de la catégorie à afficher
+  const link = `/categories/${slug}`;
   return (
-    <Link to="">
+    <Link to={link}>
       <li className="header--nav__item" key={id}>
         {name}
       </li>
@@ -18,6 +20,7 @@ function Navbar({ name, id }) {
 Navbar.propTypes = {
   name: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
+  slug: PropTypes.string.isRequired,
 };
 
 export default Navbar;

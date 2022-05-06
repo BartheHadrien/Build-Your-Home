@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 // Styles
 import './styles.scss';
 
-function BurgerItems({ name, id }) {
+function BurgerItems({ name, id, slug }) {
+  const link = `/categories/${slug}`;
   return (
-    <Link to="">
+    <Link to={link}>
       <li className="header--nav__burgertranslation--item" key={id}>
         {name}
       </li>
@@ -18,6 +19,7 @@ function BurgerItems({ name, id }) {
 BurgerItems.propTypes = {
   name: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
+  slug: PropTypes.string.isRequired,
 };
 
 export default BurgerItems;
