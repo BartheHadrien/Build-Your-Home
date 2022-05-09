@@ -83,12 +83,17 @@ function Header() {
             <input className="header--top__submit" type="submit" value=" " />
             <div className="dropdown">
               {articles.filter((article) => {
+                // ici on effectue un filtre sur les articles de la BDD
+                // on applique une correction synthaxique
+                // pour que la recherche corresponde a nos articles en bdd
                 const searchTerm = searchBarValue.toLowerCase();
                 const fullName = article.name.toLowerCase();
 
                 return searchTerm && fullName.startsWith(searchTerm) && fullName !== searchTerm;
               }).slice(0, 10)
                 .map((article) => (
+                  // on vient ensuite mapper sur le filtre précédent
+                  // et on les affiche pour faire le dropdown de la searchbar
                   <div
                     onClick={() => handleOnSearch(article.name)}
                     className="dropdown-row"
