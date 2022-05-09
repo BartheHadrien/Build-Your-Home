@@ -38,30 +38,18 @@ function Header() {
   // _____________________________________________________________//
 
   const dispatch = useDispatch();
-  // const searchBarValue = useSelector((state) => state.navbar.searchBarValue);
 
-  // function handleSearchBar(event) {
-  //   dispatch(setSearchBarValue(event.target.value));
-  // }
+  const searchBarValue = useSelector((state) => state.header.navbar.searchBarValue);
+  const articles = useSelector((state) => state.article.list);
 
-  // function handleSubmitSearchBar(event) {
-  //   event.preventDefault();
-  //   dispatch(sendResearch()); // #TODO a envoyer a l'API
-  // }
+  function handleSearchBar(event) {
+    dispatch(setSearchBarValue(event.target.value));
+  }
 
-  // Fonction qui permet de trier les articles en fonction de la valeur du champs.
-  // function getFilteredArticle() {
-  //   const search = useSelector((state) => state.navbar.searchBarValue);
-  //   let filteredArticles = articlesList; // articlesList a récupérer de l'API
-  //   if (search.length > 0) {
-  //     filteredArticles = articlesList.filter((item) => {
-  //       const nameLowerCase = item.name.toLowerCase();
-  //       const inputSearchLowerCase = search.toLowerCase();
-
-  //       return nameLowerCase.includes(inputSearchLowerCase);
-  //     });
-  //   }
-  // }
+  function handleOnSearch(event, searchTerm) {
+    dispatch(setSearchBarValue(searchTerm));
+  // dispatch(sendResearch(searchTerm)); // #TODO a envoyer a l'API
+  }
 
   //  ______________Gestion du menu burger_____________
   // Recherche dans le state de la valeur de isOpen
@@ -84,16 +72,38 @@ function Header() {
           </Link>
           <form
             className="header--top__form"
-            // onSubmit={handleSubmitSearchBar}
+            onSubmit={handleOnSearch}
           >
             <input
               className="header--top__input"
               type="text"
               placeholder="Rechercher"
-              // value={searchBarValue}
-              // onChange={handleSearchBar}
+              value={searchBarValue}
+              onChange={handleSearchBar}
             />
             <input className="header--top__submit" type="submit" value=" " />
+            <div className="dropdown">
+              {articles.filter((article) => {
+                // ici on effectue un filtre sur les articles de la BDD
+                // on applique une correction synthaxique
+                // pour que la recherche corresponde a nos articles en bdd
+                const searchTerm = searchBarValue.toLowerCase();
+                const fullName = article.name.toLowerCase();
+
+                return searchTerm && fullName.startsWith(searchTerm) && fullName !== searchTerm;
+              }).slice(0, 10)
+                .map((article) => (
+                  // on vient ensuite mapper sur le filtre précédent
+                  // et on les affiche pour faire le dropdown de la searchbar
+                  <div
+                    onClick={() => handleOnSearch(article.name)}
+                    className="dropdown-row"
+                    key={article.id}
+                  >
+                    {article.name}
+                  </div>
+                ))}
+            </div>
           </form>
           <div className="header--top__logo">
             <Link to="/connexion">

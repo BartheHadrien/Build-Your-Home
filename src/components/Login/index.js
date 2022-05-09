@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setEmailInLogin, setPasswordInLogin } from '../../actions/user';
+import { setEmailInLogin, setPasswordInLogin, login } from '../../actions/user';
 import './styles.scss';
 
 function Login() {
@@ -16,8 +16,9 @@ function Login() {
     dispatch(setPasswordInLogin(event.target.value));
   }
 
-  function handleConnect() {
-    console.log('Connexion');
+  function handleConnect(evt) {
+    evt.preventDefault();
+    dispatch(login());
   }
 
   return (

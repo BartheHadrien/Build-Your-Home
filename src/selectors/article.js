@@ -21,9 +21,9 @@ export function findArticle(articles, searchedSlug) {
  * @return {Object} - liste d'article trouvés
  */
 
-export function findFiveArticles(articles, searchedNumberId) {
+export function findFiveArticles(articles) {
   const listArticle = articles.filter((itemArticle) => {
-    return itemArticle.id <= searchedNumberId;
+    return itemArticle.displayOrder < 6 && itemArticle.displayOrder > 0;
   });
   return listArticle;
 }
