@@ -7,9 +7,9 @@
  * @return {Object} - l'article trouvé
  */
 
-export function findArticle(articles, searchedId) {
+export function findArticle(articles, searchedSlug) {
   const article = articles.find((itemArticle) => {
-    return itemArticle.id == searchedId;
+    return itemArticle.slug === searchedSlug;
   });
   return article;
 }

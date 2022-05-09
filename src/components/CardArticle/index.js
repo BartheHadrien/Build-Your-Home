@@ -2,16 +2,16 @@ import PropTypes from 'prop-types';
 // styles
 import './styles.scss';
 import { Rating } from 'semantic-ui-react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function CardArticle({
-  id, name, picture, price,
+  name, picture, price, slug,
 }) {
   // On utilise le Hook useParams pour récupérer le slug de l'URL courante
   // const { slug } = useParams();
   // console.log(useParams());
   return (
-    <Link to={`/article/${id}`}>
+    <Link to={`/article/${slug}`}>
       <div className="card--article">
         <img src={picture} alt="" className="card--article__picture" />
         <h1 className="card--article__title">{name}</h1>
@@ -25,7 +25,7 @@ function CardArticle({
 }
 
 CardArticle.propTypes = {
-  id: PropTypes.number.isRequired,
+  slug: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   picture: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
