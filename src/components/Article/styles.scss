@@ -158,7 +158,7 @@
         justify-content: flex-end;
         margin-bottom: vars.$gutter;
         
-        strong {
+        &__tag {
           background-color: indigo;
           margin-right: vars.$gutter;
           display: block;
@@ -168,7 +168,7 @@
           color: white;
           border-radius: 20px;
         }
-        strong:first-child {
+        &__tag:first-child {
           background-color: #e67b24;
         }
       }

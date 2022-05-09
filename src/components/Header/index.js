@@ -38,6 +38,7 @@ function Header() {
   // _____________________________________________________________//
 
   const dispatch = useDispatch();
+
   const searchBarValue = useSelector((state) => state.header.navbar.searchBarValue);
   const articles = useSelector((state) => state.article.list);
 
@@ -53,14 +54,14 @@ function Header() {
   //  ______________Gestion du menu burger_____________
   // Recherche dans le state de la valeur de isOpen
   //  conditionnant l'affichage du menu burger
-  // const isOpen = useSelector((state) => state.user.navbar.isOpen);
+  const isOpen = useSelector((state) => state.header.navbar.isOpen);
   // Gestion des classes CSS
 
-  // const className = classnames('header--container', { 'header--container__closed': !isOpen });
+  const className = classnames('header--container', { 'header--container__closed': !isOpen });
 
-  // function handleToggleClick() {
-  // dispatch(toggleBurger());
-  // }
+  function handleToggleClick() {
+    dispatch(toggleBurger());
+  }
 
   return (
     <>
@@ -119,7 +120,7 @@ function Header() {
             <button
               type="button"
               className="header--nav__burger--button"
-              // onClick={handleToggleClick}
+              onClick={handleToggleClick}
             >
               <img src={burger} alt={burger} />
             </button>
@@ -134,7 +135,8 @@ function Header() {
         </nav>
 
       </div>
-      <div className="">
+
+      <div className={className}>
         <div className="header--nav__burgertranslation">
           <ul className="header--nav__burgertranslation--list">
             {
