@@ -129,7 +129,7 @@ transform: translate(-30%);
   //   ;
   //   }
     @media (max-width : vars.$phone) {
-      transform: translate(-50%);
+      transform: translate(-100%);
 
       }
 
@@ -144,7 +144,7 @@ transform: translate(-30%);
       background-color: vars.$secondary-color;
       opacity: 0.7;
       width: 30%;
-      
+
       position: absolute;
       // transition: width 0s ease-in;
       
@@ -152,7 +152,7 @@ transform: translate(-30%);
       //   width: 20%;
       //   }
         @media (max-width : vars.$phone) {
-          width: 40%;
+          width: 100%;
           }
       
 
@@ -162,6 +162,10 @@ transform: translate(-30%);
       }
 
       &--item {
+        transition: color 0.1s ease-in;
+        transition: background-color 0.05s linear;
+
+
         color: vars.$text-color;
         padding-top: vars.$gutter;
         text-align: center;

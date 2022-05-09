@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { FETCH_ARTICLES, saveArticles } from '../actions/article';
 
-
 import { FETCH_CATEGORIES, saveCategories } from '../actions/categories';
 import { LOGIN } from '../actions/user';
 
@@ -10,8 +9,6 @@ const axiosInstance = axios.create({
   // par exemple, on peut définir une url de base !
   baseURL: 'http://floriannaud-server.eddi.cloud/projet-09-build-your-home-back/public/api/',
 });
-
-
 
 // pour que ce middleware puisse intercepter les actions,
 // il faut qu'il soit brancher sur le store -> src/store/index.js
