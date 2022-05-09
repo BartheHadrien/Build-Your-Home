@@ -2,6 +2,14 @@
 .card-category {
   background-color: vars.$text-color;
   margin: 10px 0px 10px 0px;
+  border-radius: 15px;
+  
+
+  p {
+    text-align: center;
+    padding: vars.$gutter;
+    
+  }
 
   &__picture {
     max-width:40vw;
