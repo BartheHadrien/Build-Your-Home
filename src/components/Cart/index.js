@@ -1,9 +1,29 @@
+// Import
+import { useSelector } from 'react-redux';
+
+// Actions
+import { findFiveArticles } from '../../selectors/article';
+
+// Styles
 import './styles.scss';
 import desktop from 'src/assets/images/desktop.svg';
 import deleteCart from 'src/assets/images/delete.svg';
 import add from 'src/assets/images/add.svg';
 
+// Components
+import CardArticle from 'src/components/CardArticle';
+
 function Carts() {
+  // ________________________________________________________________ //
+  // __________________________ Articles_____________________________ //
+
+  // Selection des artciles récupérée dans le state
+  const articles = useSelector((state) => state.article.list);
+
+  // Stockage dans une constante de 5 articles à afficher
+  const articlesToDisplay = findFiveArticles(articles);
+
+  // ________________________________________________________________ //
   return (
     <>
       <div className="carts">
@@ -73,30 +93,9 @@ function Carts() {
           <button type="button" className="carts__pay__button">Continuez vos achats</button>
         </section>
       </div>
-
       {/* Content of article to display */}
-      <section className="articles">
-        <div className="articles__article">
-          <p>Article</p>
-          <img src={desktop} alt={desktop} className="articles__article__picture" />
-        </div>
-        <div className="articles__article">
-          <p>Article</p>
-          <img src={desktop} alt={desktop} className="articles__article__picture" />
-        </div>
-        <div className="articles__article">
-          <p>Article</p>
-          <img src={desktop} alt={desktop} className="articles__article__picture" />
-        </div>
-        <div className="articles__article">
-          <p>Article</p>
-          <img src={desktop} alt={desktop} className="articles__article__picture" />
-        </div>
-        <div className="articles__article">
-          <p>Article</p>
-          <img src={desktop} alt={desktop} className="articles__article__picture" />
-        </div>
-      </section>
+      {articlesToDisplay.map((article) => <CardArticle {...article} key={article.id} />)}
+
     </>
   );
 }
