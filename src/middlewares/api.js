@@ -1,17 +1,16 @@
 import axios from 'axios';
 import { FETCH_ARTICLES, saveArticles } from '../actions/article';
-
-
 import { FETCH_CATEGORIES, saveCategories } from '../actions/categories';
-import { LOGIN } from '../actions/user';
+import {
+  fetchUser, FETCH_USER, saveUser, saveUserData, LOGIN, LOGOUT, CREATE_USER,
+} from '../actions/user';
 
 // On utilisera aisinsi cette instance plutôt qu'axios directement
 const axiosInstance = axios.create({
   // par exemple, on peut définir une url de base !
-  baseURL: 'http://floriannaud-server.eddi.cloud/projet-09-build-your-home-back/public/api/',
+  baseURL: 'http://benoitthaon-server.eddi.cloud/projet-09-build-your-home-back/public/api/',
+  // benoitthaon     floriannaud
 });
-
-
 
 // pour que ce middleware puisse intercepter les actions,
 // il faut qu'il soit brancher sur le store -> src/store/index.js
@@ -56,14 +55,13 @@ const apiMiddleWare = (store) => (next) => (action) => {
       break;
 
     case LOGIN: {
-      // double destructuration
-      const { user: { email, password } } = store.getState();
-
+      // Triple destructuration
+      const { user: { login: { email, password } } } = store.getState();
       axiosInstance
         .post(
-          'login',
+          'login_check',
           {
-            email,
+            username: email,
             password,
           },
         )
@@ -71,6 +69,7 @@ const apiMiddleWare = (store) => (next) => (action) => {
           // on extrait la propriété data de la reponse
           // que l'on stocke dans une vaiable user
           const { data: user } = response;
+          console.log(response);
 
           // j'enregistre mon token sur l'instance d'axios
           axios.defaults.headers.common.Authorization = `Bearer ${user.token}`;
@@ -81,17 +80,84 @@ const apiMiddleWare = (store) => (next) => (action) => {
           // équivalent à :
           // store.dispatch(saveUser(response.data));
 
-          // on peut demander la récupération des favoris
+          // on peut demanderhUserécupération des favoris
           // immédiatement après s'être loggé
-          store.dispatch(fetchFavorites());
+          store.dispatch(fetchUser());
         })
         .catch(() => {
-          console.log('oups...');
+          console.log('oups...???');
         });
       next(action);
       break;
     }
+    case LOGOUT:
+      // on nettoie notre instance axios du token
+      axiosInstance.defaults.headers.common.Authorization = null;
+      // syntaxe alternative
+      // delete axiosInstance.defaults.headers.common.Authorization;
 
+      console.log('nettoyage du token');
+
+      next(action);
+      break;
+    case FETCH_USER: {
+      const { user: { user: { token } } } = store.getState();
+
+      axiosInstance
+        .get(
+          'user/profile',
+          // on envoie le token dans un header avec la requête
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        )
+        .then(
+          (response) => {
+            // l'api me répond en me renvoyant les données d'un user
+            // on demande la sauvegarde de nos données
+            store.dispatch(saveUserData(response.data));
+          },
+        )
+        .catch(() => console.log('oups...'));
+      next(action);
+      break;
+    }
+    // case CREATE_USER: {
+    //   const {
+    //     user: {
+    //       signup: {
+    //         firstname, lastname,
+    //         birthdate, phone, adress, email, password, confirmPassword,
+    //       },
+    //     },
+    //   } = store.getState();
+
+    //   axiosInstance
+    //     .post(
+    //       'user/add',
+    //       {
+    //         firstname: firstname,
+    //         lastname: lastname,
+    //         birthdate: birthdate,
+    //         phone: phone,
+    //         adress: adress,
+    //         email: email,
+    //         password: password,
+    //         confirmPassword: confirmPassword,
+    //       },
+
+    //     )
+    //     .then(
+    //       (response) => {
+    //         store.dispatch(saveUserData(response.data));
+    //       },
+    //     )
+    //     .catch(() => console.log('oups...'));
+    //   next(action);
+    //   break;
+    // }
     default:
       next(action);
   }

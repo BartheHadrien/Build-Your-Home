@@ -26,13 +26,13 @@ function Article() {
   // On passe l'id en argument de l'article à la fonction findRecipes
   // (codée dans le selectors correspondant) pour récupérer l'article à afficher
   const articles = useSelector((state) => state.article.list);
-  console.log(articles);
+  // console.log(articles);
 
   const article = findArticle(articles, slug);
-  console.log(article);
+  // console.log(article);
 
   const listArticle = findFiveArticles(articles);
-  console.log(listArticle);
+  // console.log(listArticle);
 
   // Si l'id rentré dans l'url ne match pas avec un article
   // en BDD on fait une redirection vers une 404

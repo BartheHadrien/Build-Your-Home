@@ -1,11 +1,39 @@
 import {
-  SET_EMAIL_IN_LOGIN, SET_PASSWORD_IN_LOGIN,
+  SET_EMAIL_IN_LOGIN, SET_PASSWORD_IN_LOGIN, SAVE_USER, SAVE_USER_DATA,
+  SET_FIRSTNAME_IN_SIGNUP, SET_LASTNAME_IN_SIGNUP, SET_BIRTHDATE_IN_SIGNUP,
+  SET_PHONE_IN_SIGNUP, SET_ADRESS_IN_SIGNUP, SET_EMAIL_IN_SIGNUP,
+  SET_PASSWORD_IN_SIGNUP, SET_CONFIRM_PASSWORD_IN_SIGNUP, LOGOUT,
 } from '../actions/user';
 
 const initialState = {
   login: {
     email: '',
     password: '',
+
+  },
+  signup: {
+    firstname: '',
+    lastname: '',
+    birthdate: '',
+    phone: '',
+    adress: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  },
+  user: {
+    firstname: '',
+    lastname: '',
+    adress: '',
+    birthdate: '',
+    email: '',
+    phone: '',
+    roles: [],
+    orders: [],
+    favorites: [],
+    comments: [],
+    token: '',
+    logged: false,
   },
 };
 
@@ -25,6 +53,121 @@ function userReducer(state = initialState, action = {}) {
         login: {
           ...state.login,
           password: action.value,
+        },
+      };
+    case SAVE_USER:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          logged: true,
+          token: action.user.token,
+        },
+        login: {
+          email: '',
+          password: '',
+        },
+      };
+    case SAVE_USER_DATA:
+      return {
+        ...state,
+        user: {
+          lastname: action.user.lastname,
+          firstname: action.user.firstname,
+          adress: action.user.adress,
+          birthdate: action.user.birthdate,
+          phone: action.user.phone,
+          role: [
+
+          ],
+          orders: [
+          ],
+          favorites: [
+            action.user.favorites,
+          ],
+          comments: [
+          ],
+        },
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        user: {
+          lastname: null,
+          firstname: null,
+          adress: null,
+          birthdate: null,
+          phone: null,
+          role: [
+            null,
+          ],
+          orders: [
+            null,
+          ],
+          favorites: [
+            null,
+          ],
+          comments: [
+            null,
+          ],
+        },
+
+      };
+      // NEW USER
+    case SET_FIRSTNAME_IN_SIGNUP:
+      return {
+        ...state,
+        signup: {
+          firstname: action.firstname,
+        },
+      };
+    case SET_LASTNAME_IN_SIGNUP:
+      return {
+        ...state,
+        signup: {
+          lastname: action.lastname,
+        },
+      };
+    case SET_BIRTHDATE_IN_SIGNUP:
+      return {
+        ...state,
+        signup: {
+          birthdate: action.birthdate,
+        },
+      };
+    case SET_PHONE_IN_SIGNUP:
+      return {
+        ...state,
+        signup: {
+          phone: action.phone,
+        },
+      };
+    case SET_ADRESS_IN_SIGNUP:
+      return {
+        ...state,
+        signup: {
+          addres: action.adress,
+        },
+      };
+    case SET_EMAIL_IN_SIGNUP:
+      return {
+        ...state,
+        signup: {
+          email: action.email,
+        },
+      };
+    case SET_PASSWORD_IN_SIGNUP:
+      return {
+        ...state,
+        signup: {
+          password: action.password,
+        },
+      };
+    case SET_CONFIRM_PASSWORD_IN_SIGNUP:
+      return {
+        ...state,
+        signup: {
+          confirmPassword: action.confirmPassword,
         },
       };
     default:
