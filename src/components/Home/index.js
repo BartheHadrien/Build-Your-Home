@@ -20,7 +20,7 @@ function Home() {
     const filteredCategorie = categories.filter((categorie) => categorie.displayOrder < 10 && categorie.displayOrder > 0);
     return filteredCategorie;
   };
-  // console.log(filteredCategories());
+  console.log(filteredCategories());
 
   // Stockage de la fonction de filtre dans une constante pour pouvoir l'utiliser
   const categoriesToDisplay = filteredCategories();
