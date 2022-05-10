@@ -13,10 +13,21 @@ width: 100vw;
 
   &__categories {
     background: linear-gradient(vars.$third-color,vars.$primary-color);
-    padding: 1rem 1rem 1rem 1rem;
+    padding: 1rem 1rem 2rem 1rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+
+
+    &--title {
+      width: 100%;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 3em;
+      color: vars.$secondary-color;
+      text-shadow: 1px 1px 0px vars.$secondary-color, 0 0 1em vars.$main-color, 0 0 0.2em white;
+    
+    }
     
 
     &__category {
@@ -46,6 +57,18 @@ width: 100vw;
     flex-wrap: wrap;
     justify-content: space-evenly;
     padding: 1rem 1rem 1rem 1rem;
+
+    &--title {
+      width: 100%;
+      border-top: 3px solid vars.$main-color;
+      border-radius: 5px;
+      padding-top: 1em;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 3em;
+      color: vars.$secondary-color;
+      text-shadow: 1px 1px 0px vars.$secondary-color, 0 0 1em vars.$main-color, 0 0 0.2em white;
+    }
 
     &__article {
       background-color: vars.$text-color;

@@ -48,6 +48,7 @@ function Home() {
 
     <div className="home">
       <section className="home__categories">
+        <h2 className="home__categories--title">Catégories</h2>
 
         {
           // Boucle avec la méthode map sur le tableau de catégorie récupéré qui va afficher les
@@ -58,6 +59,7 @@ function Home() {
       </section>
 
       <section className="home__articles">
+        <h2 className="home__articles--title">Articles</h2>
 
         {articlesToDisplay.map((article) => (
           // On map sur la liste des articles récupéré depuis le state.
