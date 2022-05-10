@@ -12,6 +12,7 @@ import {
   setEmailInSignup,
   setPasswordInSignup,
   setConfirmPasswordInSignup,
+  changeValue,
   createUser,
 } from 'src/actions/user';
 
@@ -32,34 +33,40 @@ function NewAccount() {
   const password = useSelector((state) => state.user.signup.password);
   const confirmPassword = useSelector((state) => state.user.signup.confirmPassword);
 
-  // On dispatch les actions vers le reducer user pour controler les valeurs
-  function handleChangeFirstName(event) {
-    dispatch(setFirstNameInSignup(event.target.value));
-  }
+  // // On dispatch les actions vers le reducer user pour controler les valeurs
+  // function handleChangeFirstName(event) {
+  //   dispatch(setFirstNameInSignup(event.target.value));
+  // }
 
-  function handleChangeLastName(event) {
-    dispatch(setLastNameInSignup(event.target.value));
-  }
-  function handleChangeBirthDate(event) {
-    dispatch(setBirthDateInSignup(event.target.value));
-  }
+  // function handleChangeLastName(event) {
+  //   dispatch(setLastNameInSignup(event.target.value));
+  // }
+  // function handleChangeBirthDate(event) {
+  //   dispatch(setBirthDateInSignup(event.target.value));
+  // }
 
-  function handleChangePhone(event) {
-    dispatch(setPhoneInSignup(event.target.value));
-  }
-  function handleChangeAdress(event) {
-    dispatch(setAdressInSignup(event.target.value));
-  }
+  // function handleChangePhone(event) {
+  //   dispatch(setPhoneInSignup(event.target.value));
+  // }
+  // function handleChangeAdress(event) {
+  //   dispatch(setAdressInSignup(event.target.value));
+  // }
 
-  function handleChangeEmail(event) {
-    dispatch(setEmailInSignup(event.target.value));
-  }
-  function handleChangePassword(event) {
-    dispatch(setPasswordInSignup(event.target.value));
-  }
+  // function handleChangeEmail(event) {
+  //   dispatch(setEmailInSignup(event.target.value));
+  // }
+  // function handleChangePassword(event) {
+  //   dispatch(setPasswordInSignup(event.target.value));
+  // }
 
-  function handleChangeConfirmPassword(event) {
-    dispatch(setConfirmPasswordInSignup(event.target.value));
+  // function handleChangeConfirmPassword(event) {
+  //   dispatch(setConfirmPasswordInSignup(event.target.value));
+  // }
+
+  // Fonction qui gère les changements dans le state dynamiquement
+  function handleChange(event) {
+    console.log(event.target.id, event.target.value);
+    dispatch(changeValue(event.target.id, event.target.value));
   }
 
   // A la soumission du formulaire on empêche le rechargement et
@@ -81,7 +88,7 @@ function NewAccount() {
                 className="new-account--field__input"
                 type="text"
                 id="lastname"
-                onChange={handleChangeLastName}
+                onChange={handleChange}
                 value={lastName}
               />
             </label>
@@ -91,7 +98,7 @@ function NewAccount() {
                 className="new-account--field__input"
                 type="text"
                 id="firstname"
-                onChange={handleChangeFirstName}
+                onChange={handleChange}
                 value={firstName}
               />
             </label>
@@ -101,7 +108,7 @@ function NewAccount() {
                 className="new-account--field__input"
                 type="date"
                 id="birthdate"
-                onChange={handleChangeBirthDate}
+                onChange={handleChange}
                 value={birthDate}
               />
             </label>
@@ -111,7 +118,7 @@ function NewAccount() {
                 className="new-account--field__input"
                 type="text"
                 id="phone"
-                onChange={handleChangePhone}
+                onChange={handleChange}
                 value={phone}
               />
             </label>
@@ -121,7 +128,7 @@ function NewAccount() {
                 className="new-account--field__input"
                 type="text"
                 id="adress"
-                onChange={handleChangeAdress}
+                onChange={handleChange}
                 value={adress}
               />
             </label>
@@ -131,7 +138,7 @@ function NewAccount() {
                 className="new-account--field__input"
                 type="email"
                 id="email"
-                onChange={handleChangeEmail}
+                onChange={handleChange}
                 value={email}
               />
             </label>
@@ -141,7 +148,7 @@ function NewAccount() {
                 className="new-account--field__input"
                 type="password"
                 id="password"
-                onChange={handleChangePassword}
+                onChange={handleChange}
                 value={password}
               />
             </label>
@@ -151,7 +158,7 @@ function NewAccount() {
                 className="new-account--field__input"
                 type="password"
                 id="confirm_password"
-                onChange={handleChangeConfirmPassword}
+                onChange={handleChange}
                 value={confirmPassword}
               />
             </label>

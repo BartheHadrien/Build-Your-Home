@@ -70,76 +70,86 @@ export const saveUserData = () => ({
 // ==================NEW USER====================
 // ==============================================
 
-// ACTION TYPE SET_FIRSTNAME_IN_SIGNUP
-export const SET_FIRSTNAME_IN_SIGNUP = 'SET_FIRSTNAME_IN_SIGNUP';
+// // ACTION TYPE SET_FIRSTNAME_IN_SIGNUP
+// export const SET_FIRSTNAME_IN_SIGNUP = 'SET_FIRSTNAME_IN_SIGNUP';
 
-// ACTION CREATOR SET_FIRSTNAME_IN_SIGNUP
-export const setFirstNameInSignup = (firstname) => ({
-  type: SET_FIRSTNAME_IN_SIGNUP,
-  firstname,
-});
+// // ACTION CREATOR SET_FIRSTNAME_IN_SIGNUP
+// export const setFirstNameInSignup = (firstname) => ({
+//   type: SET_FIRSTNAME_IN_SIGNUP,
+//   firstname,
+// });
 
-// ACTION TYPE SET_LASTNAME_IN_SIGNUP
-export const SET_LASTNAME_IN_SIGNUP = 'SET_LASTNAME_IN_SIGNUP';
+// // ACTION TYPE SET_LASTNAME_IN_SIGNUP
+// export const SET_LASTNAME_IN_SIGNUP = 'SET_LASTNAME_IN_SIGNUP';
 
-// ACTION CREATOR SET_LASTNAME_IN_SIGNUP
-export const setLastNameInSignup = (lastname) => ({
-  type: SET_LASTNAME_IN_SIGNUP,
-  lastname,
-});
+// // ACTION CREATOR SET_LASTNAME_IN_SIGNUP
+// export const setLastNameInSignup = (lastname) => ({
+//   type: SET_LASTNAME_IN_SIGNUP,
+//   lastname,
+// });
 
-// ACTION TYPE SET_BIRTHDATE_IN_SIGNUP
-export const SET_BIRTHDATE_IN_SIGNUP = 'SET_BIRTHDATE_IN_SIGNUP';
+// // ACTION TYPE SET_BIRTHDATE_IN_SIGNUP
+// export const SET_BIRTHDATE_IN_SIGNUP = 'SET_BIRTHDATE_IN_SIGNUP';
 
-// ACTION CREATOR SET_BIRTHDATE_IN_SIGNUP
-export const setBirthDateInSignup = (birthdate) => ({
-  type: SET_BIRTHDATE_IN_SIGNUP,
-  birthdate,
-});
+// // ACTION CREATOR SET_BIRTHDATE_IN_SIGNUP
+// export const setBirthDateInSignup = (birthdate) => ({
+//   type: SET_BIRTHDATE_IN_SIGNUP,
+//   birthdate,
+// });
 
-// ACTION TYPE SET_PHONE_IN_SIGNUP
-export const SET_PHONE_IN_SIGNUP = 'SET_PHONE_IN_SIGNUP';
+// // ACTION TYPE SET_PHONE_IN_SIGNUP
+// export const SET_PHONE_IN_SIGNUP = 'SET_PHONE_IN_SIGNUP';
 
-// ACTION CREATOR SET_PHONE_IN_SIGNUP
-export const setPhoneInSignup = (phone) => ({
-  type: SET_PHONE_IN_SIGNUP,
-  phone,
-});
+// // ACTION CREATOR SET_PHONE_IN_SIGNUP
+// export const setPhoneInSignup = (phone) => ({
+//   type: SET_PHONE_IN_SIGNUP,
+//   phone,
+// });
 
-// ACTION TYPE SET_ADRESS_IN_SIGNUP
-export const SET_ADRESS_IN_SIGNUP = 'SET_ADRESS_IN_SIGNUP';
+// // ACTION TYPE SET_ADRESS_IN_SIGNUP
+// export const SET_ADRESS_IN_SIGNUP = 'SET_ADRESS_IN_SIGNUP';
 
-// ACTION CREATOR SET_ADRESS_IN_SIGNUP
-export const setAdressInSignup = (adress) => ({
-  type: SET_ADRESS_IN_SIGNUP,
-  adress,
-});
+// // ACTION CREATOR SET_ADRESS_IN_SIGNUP
+// export const setAdressInSignup = (adress) => ({
+//   type: SET_ADRESS_IN_SIGNUP,
+//   adress,
+// });
 
-// ACTION TYPE SET_EMAIL_IN_SIGNUP
-export const SET_EMAIL_IN_SIGNUP = 'SET_EMAIL_IN_SIGNUP';
+// // ACTION TYPE SET_EMAIL_IN_SIGNUP
+// export const SET_EMAIL_IN_SIGNUP = 'SET_EMAIL_IN_SIGNUP';
 
-// ACTION CREATOR SET_EMAIL_IN_SIGNUP
-export const setEmailInSignup = (email) => ({
-  type: SET_EMAIL_IN_SIGNUP,
-  email,
-});
+// // ACTION CREATOR SET_EMAIL_IN_SIGNUP
+// export const setEmailInSignup = (email) => ({
+//   type: SET_EMAIL_IN_SIGNUP,
+//   email,
+// });
 
-// ACTION TYPE SET_PASSWORD_IN_SIGNUP
-export const SET_PASSWORD_IN_SIGNUP = 'SET_PASSWORD_IN_SIGNUP';
+// // ACTION TYPE SET_PASSWORD_IN_SIGNUP
+// export const SET_PASSWORD_IN_SIGNUP = 'SET_PASSWORD_IN_SIGNUP';
 
-// ACTION CREATOR SET_PASSWORD_IN_SIGNUP
-export const setPasswordInSignup = (password) => ({
-  type: SET_PASSWORD_IN_SIGNUP,
-  password,
-});
+// // ACTION CREATOR SET_PASSWORD_IN_SIGNUP
+// export const setPasswordInSignup = (password) => ({
+//   type: SET_PASSWORD_IN_SIGNUP,
+//   password,
+// });
 
-// ACTION TYPE SET_CONFIRM_PASSWORD_IN_SIGNUP
-export const SET_CONFIRM_PASSWORD_IN_SIGNUP = 'SET_CONFIRM_PASSWORD_IN_SIGNUP';
+// // ACTION TYPE SET_CONFIRM_PASSWORD_IN_SIGNUP
+// export const SET_CONFIRM_PASSWORD_IN_SIGNUP = 'SET_CONFIRM_PASSWORD_IN_SIGNUP';
 
-// ACTION CREATOR SET_CONFIRM_PASSWORD_IN_SIGNUP
-export const setConfirmPasswordInSignup = (confirmPassword) => ({
-  type: SET_CONFIRM_PASSWORD_IN_SIGNUP,
-  confirmPassword,
+// // ACTION CREATOR SET_CONFIRM_PASSWORD_IN_SIGNUP
+// export const setConfirmPasswordInSignup = (confirmPassword) => ({
+//   type: SET_CONFIRM_PASSWORD_IN_SIGNUP,
+//   confirmPassword,
+// });
+
+// ACTION TYPE CHAGNE_VALUE
+export const CHANGE_VALUE = 'CHANGE_VALUE';
+
+// ACTION CREATOR CHAGNE_VALUE
+export const changeValue = (key, value) => ({
+  type: CHANGE_VALUE,
+  key: key,
+  value: value,
 });
 
 // ACTION TYPE CREATE_USER

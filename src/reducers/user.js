@@ -2,7 +2,7 @@ import {
   SET_EMAIL_IN_LOGIN, SET_PASSWORD_IN_LOGIN, SAVE_USER, SAVE_USER_DATA,
   SET_FIRSTNAME_IN_SIGNUP, SET_LASTNAME_IN_SIGNUP, SET_BIRTHDATE_IN_SIGNUP,
   SET_PHONE_IN_SIGNUP, SET_ADRESS_IN_SIGNUP, SET_EMAIL_IN_SIGNUP,
-  SET_PASSWORD_IN_SIGNUP, SET_CONFIRM_PASSWORD_IN_SIGNUP, LOGOUT,
+  SET_PASSWORD_IN_SIGNUP, SET_CONFIRM_PASSWORD_IN_SIGNUP, LOGOUT, CHANGE_VALUE,
 } from '../actions/user';
 
 const initialState = {
@@ -114,62 +114,69 @@ function userReducer(state = initialState, action = {}) {
 
       };
       // NEW USER
-    case SET_FIRSTNAME_IN_SIGNUP:
+    case CHANGE_VALUE:
       return {
         ...state,
         signup: {
-          firstname: action.firstname,
+          [action.id]: action.value,
         },
       };
-    case SET_LASTNAME_IN_SIGNUP:
-      return {
-        ...state,
-        signup: {
-          lastname: action.lastname,
-        },
-      };
-    case SET_BIRTHDATE_IN_SIGNUP:
-      return {
-        ...state,
-        signup: {
-          birthdate: action.birthdate,
-        },
-      };
-    case SET_PHONE_IN_SIGNUP:
-      return {
-        ...state,
-        signup: {
-          phone: action.phone,
-        },
-      };
-    case SET_ADRESS_IN_SIGNUP:
-      return {
-        ...state,
-        signup: {
-          addres: action.adress,
-        },
-      };
-    case SET_EMAIL_IN_SIGNUP:
-      return {
-        ...state,
-        signup: {
-          email: action.email,
-        },
-      };
-    case SET_PASSWORD_IN_SIGNUP:
-      return {
-        ...state,
-        signup: {
-          password: action.password,
-        },
-      };
-    case SET_CONFIRM_PASSWORD_IN_SIGNUP:
-      return {
-        ...state,
-        signup: {
-          confirmPassword: action.confirmPassword,
-        },
-      };
+    // case SET_FIRSTNAME_IN_SIGNUP:
+    //   return {
+    //     ...state,
+    //     signup: {
+    //       firstname: action.firstname,
+    //     },
+    //   };
+    // case SET_LASTNAME_IN_SIGNUP:
+    //   return {
+    //     ...state,
+    //     signup: {
+    //       lastname: action.lastname,
+    //     },
+    //   };
+    // case SET_BIRTHDATE_IN_SIGNUP:
+    //   return {
+    //     ...state,
+    //     signup: {
+    //       birthdate: action.birthdate,
+    //     },
+    //   };
+    // case SET_PHONE_IN_SIGNUP:
+    //   return {
+    //     ...state,
+    //     signup: {
+    //       phone: action.phone,
+    //     },
+    //   };
+    // case SET_ADRESS_IN_SIGNUP:
+    //   return {
+    //     ...state,
+    //     signup: {
+    //       addres: action.adress,
+    //     },
+    //   };
+    // case SET_EMAIL_IN_SIGNUP:
+    //   return {
+    //     ...state,
+    //     signup: {
+    //       email: action.email,
+    //     },
+    //   };
+    // case SET_PASSWORD_IN_SIGNUP:
+    //   return {
+    //     ...state,
+    //     signup: {
+    //       password: action.password,
+    //     },
+    //   };
+    // case SET_CONFIRM_PASSWORD_IN_SIGNUP:
+    //   return {
+    //     ...state,
+    //     signup: {
+    //       confirmPassword: action.confirmPassword,
+    //     },
+    //   };
     default:
       return state;
   }

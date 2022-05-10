@@ -4,6 +4,7 @@ import { setEmailInLogin, setPasswordInLogin, login } from '../../actions/user';
 import './styles.scss';
 
 function Login() {
+  // Récupération du hook useDispatch
   const dispatch = useDispatch();
   // Controle des champs Login
   const email = useSelector((state) => state.user.login.email);
@@ -12,6 +13,7 @@ function Login() {
   const username = useSelector((state) => state.user.user.username);
   const islogged = useSelector((state) => state.user.user.logged);
 
+  // Fonctions qui gèrent le changement dans le state
   function handleEmail(event) {
     dispatch(setEmailInLogin(event.target.value));
   }
@@ -20,6 +22,7 @@ function Login() {
     dispatch(setPasswordInLogin(event.target.value));
   }
 
+  // Fonction qui gère la connexion dans le reducer user
   function handleConnect(evt) {
     evt.preventDefault();
     dispatch(login());
