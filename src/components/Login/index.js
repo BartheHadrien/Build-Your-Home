@@ -27,9 +27,9 @@ function Login() {
     dispatch(login());
   }
 
-  // Si utilisateur connecté, redirection vers la page home
+  // Si utilisateur connecté, redirection vers la page profil
   if (islogged) {
-    return <Navigate to="/" />;
+    return <Navigate to="/profil" />;
   }
 
   return (

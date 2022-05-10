@@ -154,7 +154,9 @@ function Header() {
                     Mes favoris
                   </li>
                 </Link>
-                <li className="header--nav__user">Bienvenue {username}</li>
+                <Link to="/profil">
+                  <li className="header--nav__user">Bienvenue {username}</li>
+                </Link>
               </>
             )}
           </ul>
