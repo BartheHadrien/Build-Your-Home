@@ -5,13 +5,13 @@ import { Rating } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 function CardArticle({
-  name, picture, price, slug, category,
+  name, picture, price, slug,
 }) {
   // On utilise le Hook useParams pour récupérer le slug de l'URL courante
   // const { slug } = useParams();
   // console.log(useParams());
   return (
-    <Link to={`/categories/${category.name}/article/${slug}`}>
+    <Link to={`/article/${slug}`}>
       <div className="card--article">
         <img src={picture} alt="" className="card--article__picture" />
         <h1 className="card--article__title">{name}</h1>
@@ -29,7 +29,6 @@ CardArticle.propTypes = {
   name: PropTypes.string.isRequired,
   picture: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  category: PropTypes.object.isRequired,
 };
 
 export default CardArticle;
