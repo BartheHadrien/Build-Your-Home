@@ -8,7 +8,7 @@ import {
 // On utilisera aisinsi cette instance plutôt qu'axios directement
 const axiosInstance = axios.create({
   // par exemple, on peut définir une url de base !
-  baseURL: 'http://benoitthaon-server.eddi.cloud/projet-09-build-your-home-back/public/api/',
+  baseURL: 'http://floriannaud-server.eddi.cloud/projet-09-build-your-home-back/public/api/',
   // benoitthaon     floriannaud
 });
 
