@@ -1,13 +1,14 @@
 @use 'src/styles/vars';
 
-// .header--nav__item:active {
-// background-color: yellowgreen;
-
-  
-// }
+.header--nav__item:hover {
+background-color: vars.$secondary-color;
+border: 0.1rem solid white;
+}
 
 .header--nav__item::first-letter {
   text-transform: uppercase;
+}
 
-  
+.header--nav__item {
+  padding: 0.6rem 0.6rem;
 }
