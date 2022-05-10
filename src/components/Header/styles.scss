@@ -11,6 +11,10 @@
     &__form{
       width: 60%;
 
+
+      .dropdown {
+        position: absolute;
+      }
     }
     
     &__input{
