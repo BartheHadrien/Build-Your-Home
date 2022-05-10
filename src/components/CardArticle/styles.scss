@@ -3,7 +3,7 @@
   background-color: vars.$text-color;
   width: 100%;
   border-radius: 15px;
-  transition: background-color 0.5s linear
+  transition: all 0.5s linear;
 
   &__title{
     font-size: 1.5em;
@@ -54,7 +54,7 @@
 .card--article:hover {
   background-color: orange;
   opacity: 0.8;
-  &__title {
+  .card--article__title {
     color: white;
   }
 }
