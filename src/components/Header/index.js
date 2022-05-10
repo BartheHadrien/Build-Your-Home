@@ -124,7 +124,9 @@ function Header() {
               </Link>
             )}
             {islogged && (
-              <img className="header--top__user" src={hello} alt="logo user" />
+              <Link to="/profil">
+                <img className="header--top__user" src={hello} alt="logo user" />
+              </Link>
             )}
             <Link to="/panier">
               <img className="header--top__cart" src={cart} alt="logo panier" />
