@@ -1,9 +1,12 @@
+/* eslint-disable quote-props */
 // Import
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import {
+  Link, useNavigate,
+} from 'react-router-dom';
 
 // actions
-import { toggleBurger, setSearchBarValue } from 'src/actions/header';
+import { toggleBurger, setSearchBarValue, setSearchBarClosed } from 'src/actions/header';
 
 // librairies
 import classnames from 'classnames';
@@ -51,6 +54,7 @@ function Header() {
 
   function handleOnSearch(searchTerm) {
     dispatch(setSearchBarValue(searchTerm));
+    dispatch(setSearchBarClosed());
   // dispatch(sendResearch(searchTerm)); // #TODO a envoyer a l'API
   }
   function handleLauchSearch(evt) {
@@ -68,6 +72,15 @@ function Header() {
 
   function handleToggleClick() {
     dispatch(toggleBurger());
+  }
+
+  //  ______________Gestion de la div de la searchbar_____________
+
+  const searchOpen = useSelector((state) => state.header.navbar.searchOpen);
+  let searchClassName = classnames('dropdown', { 'dropdown--closed': !searchOpen });
+
+  if (searchBarValue === '') {
+    searchClassName = 'dropdown--closed';
   }
 
   return (
@@ -89,11 +102,11 @@ function Header() {
               onChange={handleSearchBar}
             />
             <input className="header--top__submit" type="submit" value=" " />
-            <div className="dropdown">
+            <div className={searchClassName}>
               {articles.filter((article) => {
-                // ici on effectue un filtre sur les articles de la BDD
-                // on applique une correction synthaxique
-                // pour que la recherche corresponde a nos articles en bdd
+              // ici on effectue un filtre sur les articles de la BDD
+              // on applique une correction synthaxique
+              // pour que la recherche corresponde a nos articles en bdd
                 const searchTerm = searchBarValue.toLowerCase();
                 const fullName = article.name.toLowerCase();
 

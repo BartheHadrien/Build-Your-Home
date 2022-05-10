@@ -3,6 +3,7 @@
 
 // Second part with slider
 
+
 .slider--container {
   border: 1px solid grey;
   border-radius: 10px;
@@ -16,6 +17,7 @@
     display: none;
     }
 
+  
     // box for 1 item
 
   &__box {
@@ -29,6 +31,9 @@
     height: 20%;
     text-overflow: ellipsis;
     overflow: hidden;
+    transition: background-color 0.5s linear;
+
+
     
 
     &--img {
@@ -42,6 +47,8 @@
       margin: 0;
       font-size: 2rem;
       padding: 0.3em 0 0.3em 0;
+      color: vars.$main-color;
+
       @media (max-width : vars.$middle) {
           
         font-size: 1.3rem;
@@ -52,10 +59,16 @@
       font-size: 1.3rem;
       white-space: nowrap;
       padding: 0.3em 0 0.3em 0;
+      color: vars.$secondary-color;
+
       @media (max-width : vars.$middle) {
           
         font-size: 1rem;
         }
     }
   }
+.slider--container__box:hover {
+  background-color: orange;
+}
+
 }

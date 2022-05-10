@@ -1,6 +1,8 @@
 // import Proptypes
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
+
 // Import style
 import './style.scss';
 
@@ -9,10 +11,14 @@ function ListArticle({
 }) {
   return (
     <div className="slider--container__box">
-      <img className="slider--container__box--img" src={picture} alt="slider" />
-      <h3 className="slider--container__box--title">{name}</h3>
-      <span className="slider--container__box--description">{description}</span>
+      <Link className="slider--container__box--link" to={`/article/${name}`}>
+
+        <img className="slider--container__box--img" src={picture} alt="slider" />
+        <h3 className="slider--container__box--title">{name}</h3>
+        <span className="slider--container__box--description">{description}</span>
+      </Link>
     </div>
+
   );
 }
 
