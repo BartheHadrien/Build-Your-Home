@@ -1,0 +1,14 @@
+@use 'src/styles/vars';
+
+
+.header--nav__burgertranslation--item::first-letter {
+  text-transform: uppercase;
+}
+
+.header--nav__burgertranslation--item:active {
+
+  color: vars.$secondary-color ;
+  background-color: rgba(255, 255, 255, 0.5);
+  
+  
+}

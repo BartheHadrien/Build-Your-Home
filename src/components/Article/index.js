@@ -1,43 +1,123 @@
-// import style
-import './styles.scss';
+// import npm
+import { Navigate, useParams, Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import semantic ui
 
 import { Rating } from 'semantic-ui-react';
 
-// import image
+// import composant
 import user from 'src/assets/images/user.svg';
+import ListArticle from './ListArticle';
 
-import keyboard from 'src/assets/images/keyboard.svg';
+// import image
+
+// import selectors function
+import { findArticle, findFiveArticles } from '../../selectors/article';
+
+// import style
+import './styles.scss';
+import {
+  setAddArticleInCart, setAddArticleToBuy, setLessArticleInCart,
+  setLessArticleToBuy,
+  setNbArticleInCart, setNbArticleToBuy, setNotNull, setNotNullBuy,
+} from '../../actions/article';
 
 function Article() {
+  const dispatch = useDispatch();
+
+  // Récupération des inforamtions issues du state
+  // list des articles
+  const articles = useSelector((state) => state.article.list);
+  // console.log(articles);
+
+  // nombre d'articles à ajouter au panier
+  const counterCart = useSelector((state) => state.article.nbArticleCart);
+  // console.log(counterCart);
+
+  // Nb d'articles à ajouter aux achats
+  const counterBuy = useSelector((state) => state.article.nbArticleBuy);
+
+  // useParams permet d'extraire les paramètres d'url dynamique
+  // ici on s'en sert pour récupérer le slug de l'article à afficher
+  const { slug } = useParams();
+  console.log({ slug });
+
+  // On passe le slug en argument de l'article à la fonction findArticle
+  // (codée dans le selectors correspondant) pour récupérer l'article à afficher
+
+  const article = findArticle(articles, slug);
+  // console.log(article);
+
+  // Fonction permettant d'afficher 5 article en fonction du display order
+
+  const listArticle = findFiveArticles(articles);
+  // console.log(listArticle);
+
+  // Handler champ controlé de l'input cart
+  function handleNbArticleInCart(event) {
+    dispatch(setNbArticleInCart(event.target.value));
+  }
+
+  // Handlers pour incrémenter le compteur du panier & de l'achat immédiat
+  function handleAddCart() {
+    dispatch(setAddArticleInCart());
+  }
+  function handleAddBuy() {
+    dispatch(setAddArticleToBuy());
+  }
+
+  // Handler pour décrémenter le Panier
+  function handleLessCart() {
+    dispatch(setLessArticleInCart());
+  }
+  function handleLessBuy() {
+    dispatch(setLessArticleToBuy());
+  }
+
+  // Handler pour champ controllé d'achat immédiats
+  function handleNbArticleToBuy(event) {
+    dispatch(setNbArticleToBuy(event.target.value));
+  }
+
+  // Si l'id rentré dans l'url ne match pas avec un article
+  // en BDD on fait une redirection vers une 404
+  if (!article) {
+    return <Navigate to="/error" replace />;
+  }
+
+  if (counterCart < 0) {
+    dispatch(setNotNull());
+  }
+
+  if (counterBuy < 0) {
+    dispatch(setNotNullBuy());
+  }
+
   return (
     <div className="article">
       {/* Article */}
       <section className="article--container">
         <div className="article--container__img">
-          <img className="article--container__img--art" src={keyboard} alt="illustration souris" />
+          <img className="article--container__img--art" src={article.picture} alt={`illustration ${article.name}`} />
         </div>
         <div className="article--container__details">
           <div className="article--container__details--box">
-            <h2 className="article--container__details--box__title">Title</h2>
+            <h2 className="article--container__details--box__title">{article.name}</h2>
             <div>
               <a className="article--container__details--box__notation" href="#">Notes :</a>
-              <Rating className="article--container__details--box__rate" icon="star" defaultRating={3} maxRating={4} />
+              <Rating className="article--container__details--box__rate" icon="star" defaultRating={article.rating} maxRating={5} size="tiny" />
             </div>
           </div>
 
           <div className="box">
-            <strong> Tag </strong>
-            <strong> Tag </strong>
+            <Link className="box__tag" to={`/categories/${article.category.name}`}> {article.category.name} </Link>
+            <Link className="box__tag" to="#"> {article.brand.name} </Link>
           </div>
           <p className="article--container__details--description">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Reiciendis reprehenderit molestiae, consectetur iusto impedit dolore velit natus
-            molestias ab eos tempore eius aliquid, qui possimus, mollitia
-            delectus maxime ex doloremque.
-            <span> Prix : XX € </span>
-            <span> Livraison : XX € </span>
+            {article.description}
+            <span> Prix : {article.price} € </span>
+            <span> Stock : {article.stock} U </span>
           </p>
         </div>
         <div className="article--container__cart">
@@ -47,14 +127,22 @@ function Article() {
             <button
               type="button"
               className="article--container__cart--add__click"
+              onClick={handleLessCart}
+
             >
               -
             </button>
-            <input type="number" className="article--container__cart--add__counter" />
+            <input
+              type="number"
+              className="article--container__cart--add__counter"
+              value={counterCart}
+              onChange={handleNbArticleInCart}
+            />
 
             <button
               type="button"
               className="article--container__cart--add__click"
+              onClick={handleAddCart}
             >
               +
             </button>
@@ -72,14 +160,21 @@ function Article() {
             <button
               type="button"
               className="article--container__cart--buy__click"
+              onClick={handleLessBuy}
             >
               -
             </button>
-            <input type="number" className="article--container__cart--buy__counter" />
+            <input
+              type="number"
+              className="article--container__cart--buy__counter"
+              value={counterBuy}
+              onChange={handleNbArticleToBuy}
+            />
 
             <button
               type="button"
               className="article--container__cart--buy__click"
+              onClick={handleAddBuy}
             >
               +
             </button>
@@ -105,31 +200,8 @@ function Article() {
 
       {/* Slider */}
       <section className="slider--container">
-        <div className="slider--container__box">
-          <img className="slider--container__box--img" src={keyboard} alt="slider" />
-          <h3 className="slider--container__box--title">Title</h3>
-          <span className="slider--container__box--description">Description de l'article</span>
-        </div>
-        <div className="slider--container__box">
-          <img className="slider--container__box--img" src={keyboard} alt="slider" />
-          <h3 className="slider--container__box--title">Title</h3>
-          <span className="slider--container__box--description">Description de l'article</span>
-        </div>
-        <div className="slider--container__box">
-          <img className="slider--container__box--img" src={keyboard} alt="slider" />
-          <h3 className="slider--container__box--title">Title</h3>
-          <span className="slider--container__box--description">Description de l'article</span>
-        </div>
-        <div className="slider--container__box">
-          <img className="slider--container__box--img" src={keyboard} alt="slider" />
-          <h3 className="slider--container__box--title">Title</h3>
-          <span className="slider--container__box--description">Description de l'article</span>
-        </div>
-        <div className="slider--container__box">
-          <img className="slider--container__box--img" src={keyboard} alt="slider" />
-          <h3 className="slider--container__box--title">Title</h3>
-          <span className="slider--container__box--description">Description de l'article</span>
-        </div>
+        {listArticle.map((itemArticle) => <ListArticle key={itemArticle.id} {...itemArticle} />)}
+
       </section>
 
       {/* Avis */}

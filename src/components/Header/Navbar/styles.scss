@@ -1,0 +1,13 @@
+@use 'src/styles/vars';
+
+// .header--nav__item:active {
+// background-color: yellowgreen;
+
+  
+// }
+
+.header--nav__item::first-letter {
+  text-transform: uppercase;
+
+  
+}
