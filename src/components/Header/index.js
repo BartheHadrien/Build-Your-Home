@@ -138,11 +138,18 @@ function Header() {
               categoriesToDisplay.map((categorie) => (<Navbar key={categorie.id} {...categorie} />))
             }
             {islogged && (
-            <Link to="/favoris">
-              <li className="header--nav__item">
-                Mes favoris
-              </li>
-            </Link>
+            <>
+              <Link to="/favoris">
+                <li className="header--nav__item">
+                  Mes favoris
+                </li>
+              </Link>
+              <Link to="/panier">
+                <li className="header--nav__item">
+                  Mon Panier
+                </li>
+              </Link>
+            </>
             )}
           </ul>
 

@@ -2,7 +2,8 @@ import {
   SET_EMAIL_IN_LOGIN, SET_PASSWORD_IN_LOGIN, SAVE_USER, SAVE_USER_DATA,
   SET_FIRSTNAME_IN_SIGNUP, SET_LASTNAME_IN_SIGNUP, SET_BIRTHDATE_IN_SIGNUP,
   SET_PHONE_IN_SIGNUP, SET_ADRESS_IN_SIGNUP, SET_EMAIL_IN_SIGNUP,
-  SET_PASSWORD_IN_SIGNUP, SET_CONFIRM_PASSWORD_IN_SIGNUP, LOGOUT, CHANGE_VALUE,
+  SET_PASSWORD_IN_SIGNUP, SET_CONFIRM_PASSWORD_IN_SIGNUP, LOGOUT,
+  CHANGE_VALUE, ADD_ARTICLE_TO_FAVORITE,
 } from '../actions/user';
 
 const initialState = {
@@ -85,6 +86,17 @@ function userReducer(state = initialState, action = {}) {
           comments: action.user.comments,
         },
       };
+    case ADD_ARTICLE_TO_FAVORITE:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          favorites: {
+            ...state.user.favorites,
+            favorites: action.article,
+          },
+        },
+      };
     case LOGOUT:
       return {
         ...state,
@@ -101,7 +113,6 @@ function userReducer(state = initialState, action = {}) {
           favorites: null,
           comments: null,
         },
-
       };
       // NEW USER
     case CHANGE_VALUE:

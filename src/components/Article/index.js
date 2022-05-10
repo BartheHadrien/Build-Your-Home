@@ -22,6 +22,7 @@ import {
   setLessArticleToBuy,
   setNbArticleInCart, setNbArticleToBuy, setNotNull, setNotNullBuy,
 } from '../../actions/article';
+import { addArticleToFavorite } from '../../actions/user';
 
 function Article() {
   const dispatch = useDispatch();
@@ -78,6 +79,11 @@ function Article() {
   // Handler pour champ controllé d'achat immédiats
   function handleNbArticleToBuy(event) {
     dispatch(setNbArticleToBuy(event.target.value));
+  }
+
+  // Handler pour l'ajout d'un article au favoris
+  function handleAddFavorite() {
+    dispatch(addArticleToFavorite(article));
   }
 
   // Si l'id rentré dans l'url ne match pas avec un article
@@ -191,6 +197,7 @@ function Article() {
           <button
             type="submit"
             className="article--container__cart--favorite"
+            onClick={handleAddFavorite}
           >
             Ajouter aux favoris
           </button>

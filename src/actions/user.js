@@ -74,6 +74,18 @@ export const saveUserData = (user) => ({
   type: SAVE_USER_DATA,
   user,
 });
+// ==============================================
+// ==================FAVORITES===================
+// ==============================================
+
+// ACTION TYPE ADD_ARTICLE_TO_FAVORITE
+export const ADD_ARTICLE_TO_FAVORITE = 'ADD_ARTICLE_TO_FAVORITE';
+
+// ACTION CREATOR ADD_ARTICLE_TO_FAVORITE
+export const addArticleToFavorite = (article) => ({
+  type: ADD_ARTICLE_TO_FAVORITE,
+  article,
+});
 
 // ==============================================
 // ==================NEW USER====================

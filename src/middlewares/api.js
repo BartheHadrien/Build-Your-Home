@@ -2,7 +2,8 @@ import axios from 'axios';
 import { FETCH_ARTICLES, saveArticles } from '../actions/article';
 import { FETCH_CATEGORIES, saveCategories } from '../actions/categories';
 import {
-  fetchUser, FETCH_USER, saveUser, saveUserData, LOGIN, LOGOUT, CREATE_USER, DELETE_USER,
+  fetchUser, FETCH_USER, saveUser, saveUserData, LOGIN, LOGOUT,
+  CREATE_USER, DELETE_USER, ADD_ARTICLE_TO_FAVORITE,
 } from '../actions/user';
 
 // On utilisera aisinsi cette instance plutôt qu'axios directement
@@ -128,22 +129,43 @@ const apiMiddleWare = (store) => (next) => (action) => {
     case DELETE_USER: {
       const { user: { user: { id, token } } } = store.getState();
       axiosInstance
-      .delete(
-        `user/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+        .delete(
+          `user/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           },
-        },
-      )
-      .then(
-        (response) => {
-          console.log(response.data);
-        },
-      )
-      .catch(() => console.log('suppression'));
-    next(action);
-    break;
+        )
+        .then(
+          (response) => {
+            console.log(response.data);
+          },
+        )
+        .catch(() => console.log('suppression'));
+      next(action);
+      break;
+    }
+    case ADD_ARTICLE_TO_FAVORITE: {
+      const { user: { user: { favorites, token } } } = store.getState();
+      axiosInstance
+        .post(
+          '',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            favorites,
+          },
+        )
+        .then(
+          (response) => {
+            console.log(response.data);
+          },
+        )
+        .catch(() => console.log('echec lors de l\'ajout de favoris'));
+      next(action);
+      break;
     }
 
     // case CREATE_USER: {
