@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setEmailInLogin, setPasswordInLogin, login } from '../../actions/user';
+import { setEmailInLogin, setPasswordInLogin, login, fetchUser, logout, deleteUser } from '../../actions/user';
 import './styles.scss';
 
 function Login() {
@@ -27,6 +27,17 @@ function Login() {
     evt.preventDefault();
     dispatch(login());
   }
+  // TEST
+  function handleClick(evt) {
+    evt.preventDefault();
+    dispatch(logout());
+  }
+
+  function handleSupp(evt) {
+    evt.preventDefault();
+    dispatch(deleteUser());
+  }
+  
 
   return (
     <div className="login">
@@ -79,6 +90,8 @@ function Login() {
         <section className="login--section">
           <div className="login--container">
             <h1 className="login--title">Bienvenue {username}</h1>
+            <button type="button" onClick={handleClick}>déconnecter</button>
+            <button type="button" onClick={handleSupp}>Supprimer le compte</button>
           </div>
         </section>
       )}

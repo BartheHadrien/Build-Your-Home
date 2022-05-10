@@ -2,7 +2,7 @@ import axios from 'axios';
 import { FETCH_ARTICLES, saveArticles } from '../actions/article';
 import { FETCH_CATEGORIES, saveCategories } from '../actions/categories';
 import {
-  fetchUser, FETCH_USER, saveUser, saveUserData, LOGIN, LOGOUT, CREATE_USER,
+  fetchUser, FETCH_USER, saveUser, saveUserData, LOGIN, LOGOUT, CREATE_USER, DELETE_USER,
 } from '../actions/user';
 
 // On utilisera aisinsi cette instance plutôt qu'axios directement
@@ -80,12 +80,12 @@ const apiMiddleWare = (store) => (next) => (action) => {
           // équivalent à :
           // store.dispatch(saveUser(response.data));
 
-          // on peut demanderhUserécupération des favoris
+          // on peut demander la récupération du user
           // immédiatement après s'être loggé
           store.dispatch(fetchUser());
         })
         .catch(() => {
-          console.log('oups...???');
+          console.log('oups');
         });
       next(action);
       break;
@@ -118,12 +118,34 @@ const apiMiddleWare = (store) => (next) => (action) => {
             // l'api me répond en me renvoyant les données d'un user
             // on demande la sauvegarde de nos données
             store.dispatch(saveUserData(response.data));
+            console.log(response.data);
           },
         )
-        .catch(() => console.log('oups...'));
+        .catch(() => console.log('Je ne récupére pas les info d\'un user'));
       next(action);
       break;
     }
+    case DELETE_USER: {
+      const { user: { user: { id, token } } } = store.getState();
+      axiosInstance
+      .delete(
+        `user/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+      .then(
+        (response) => {
+          console.log(response.data);
+        },
+      )
+      .catch(() => console.log('suppression'));
+    next(action);
+    break;
+    }
+
     // case CREATE_USER: {
     //   const {
     //     user: {

@@ -7,8 +7,8 @@ import {
 
 const initialState = {
   login: {
-    email: '',
-    password: '',
+    email: 'admin@admin.com',
+    password: 'admin',
 
   },
   signup: {
@@ -22,6 +22,7 @@ const initialState = {
     confirmPassword: '',
   },
   user: {
+    id: null,
     firstname: '',
     lastname: '',
     adress: '',
@@ -32,7 +33,6 @@ const initialState = {
     orders: [],
     favorites: [],
     comments: [],
-    token: '',
     logged: false,
   },
 };
@@ -72,44 +72,34 @@ function userReducer(state = initialState, action = {}) {
       return {
         ...state,
         user: {
+          id: action.user.id,
+          logged: true,
           lastname: action.user.lastname,
           firstname: action.user.firstname,
           adress: action.user.adress,
           birthdate: action.user.birthdate,
           phone: action.user.phone,
-          role: [
-
-          ],
-          orders: [
-          ],
-          favorites: [
-            action.user.favorites,
-          ],
-          comments: [
-          ],
+          role: action.user.role,
+          orders: action.user.orders,
+          favorites: action.user.favorites,
+          comments: action.user.comments,
         },
       };
     case LOGOUT:
       return {
         ...state,
         user: {
+          id: null,
+          logged: false,
           lastname: null,
           firstname: null,
           adress: null,
           birthdate: null,
           phone: null,
-          role: [
-            null,
-          ],
-          orders: [
-            null,
-          ],
-          favorites: [
-            null,
-          ],
-          comments: [
-            null,
-          ],
+          role: null,
+          orders: null,
+          favorites: null,
+          comments: null,
         },
 
       };

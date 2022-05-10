@@ -37,6 +37,14 @@ export const logout = () => ({
   type: LOGOUT,
 });
 
+// ACTION TYPE DELETE_USER
+export const DELETE_USER = 'DELETE_USER' ;
+
+// ACTION CREATOR DeleteUser
+export const deleteUser = () => ({
+  type: DELETE_USER,
+});
+
 // ==============================================
 // ==================SIGN UP=====================
 // ==============================================
@@ -62,8 +70,9 @@ export const fetchUser = () => ({
 export const SAVE_USER_DATA = 'SAVE_USER_DATA';
 
 // ACTION CREATOR FETCH_USER_DATA
-export const saveUserData = () => ({
+export const saveUserData = (user) => ({
   type: SAVE_USER_DATA,
+  user,
 });
 
 // ==============================================
