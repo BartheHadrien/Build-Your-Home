@@ -15,6 +15,7 @@ import user from 'src/assets/images/user.svg';
 import cart from 'src/assets/images/cart.svg';
 import logo from 'src/assets/images/logo.svg';
 import burger from 'src/assets/images/burger.svg';
+import hello from 'src/assets/images/hello.svg';
 
 // Components
 import Navbar from './Navbar';
@@ -70,6 +71,10 @@ function Header() {
     dispatch(toggleBurger());
   }
 
+  //  ______________User connecté_____________
+  // Récupération des données utilisateur connecté
+  const username = useSelector((state) => state.user.user.username);
+
   return (
     <>
       <div className="header">
@@ -113,9 +118,14 @@ function Header() {
             </div>
           </form>
           <div className="header--top__logo">
-            <Link to="/connexion">
-              <img className="header--top__user" src={user} alt="logo user" />
-            </Link>
+            {!islogged && (
+              <Link to="/connexion">
+                <img className="header--top__user" src={user} alt="logo user" />
+              </Link>
+            )}
+            {islogged && (
+              <img className="header--top__user" src={hello} alt="logo user" />
+            )}
             <Link to="/panier">
               <img className="header--top__cart" src={cart} alt="logo panier" />
             </Link>
