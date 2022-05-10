@@ -20,7 +20,7 @@ function Home() {
     const filteredCategorie = categories.filter((categorie) => categorie.displayOrder < 10 && categorie.displayOrder > 0);
     return filteredCategorie;
   };
-  console.log(filteredCategories());
+  // console.log(filteredCategories());
 
   // Stockage de la fonction de filtre dans une constante pour pouvoir l'utiliser
   const categoriesToDisplay = filteredCategories();
@@ -30,6 +30,7 @@ function Home() {
 
   // Selection des artciles récupérée dans le state
   const articles = useSelector((state) => state.article.list);
+  console.log(articles);
 
   // Fonction filtrant le nombre de catégorie à afficher
   const filteredArticles = () => {
@@ -47,6 +48,7 @@ function Home() {
 
     <div className="home">
       <section className="home__categories">
+        <h2 className="home__categories--title">Catégories</h2>
 
         {
           // Boucle avec la méthode map sur le tableau de catégorie récupéré qui va afficher les
@@ -57,11 +59,13 @@ function Home() {
       </section>
 
       <section className="home__articles">
+        <h2 className="home__articles--title">Articles</h2>
 
         {articlesToDisplay.map((article) => (
           // On map sur la liste des articles récupéré depuis le state.
           // On passe en props les données nécessaire au composant CardArticle.
           <CardArticle key={article.id} {...article} />
+
         ))}
 
       </section>

@@ -33,7 +33,7 @@
       
       @media (min-width : vars.$large) {
         max-width: 30%;
-
+        
       }
 
       @media (max-width : vars.$middle) {
@@ -58,12 +58,12 @@
         width: 100%;
         margin: auto;
         border-radius: 15px;
-        transition: ease-in all .5s;
+        // transition: ease-in all .5s;
 
         @media (min-width : vars.$large) {
           width: 80%;
           margin:  auto ;
-          transform: rotate(-90deg);
+          // transform: rotate(-90deg);
           
            }
 
@@ -247,6 +247,23 @@
            font-weight: bold;
          }
          &__counter {
+
+          
+            /* Firefox */
+            -moz-appearance: textfield;
+           
+            /* Chrome */
+            &::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin:0;
+            }
+           
+            /* Opéra*/
+            &::-o-inner-spin-button {
+              -o-appearance: none;
+              margin: 0; 
+            }
+          
            width: 35px;
          }
          &__cart{
@@ -271,6 +288,20 @@
 
          &__counter {
            width: 35px;
+           /* Firefox */
+           -moz-appearance: textfield;
+           
+           /* Chrome */
+           &::-webkit-inner-spin-button {
+             -webkit-appearance: none;
+             margin:0;
+           }
+          
+           /* Opéra*/
+           &::-o-inner-spin-button {
+             -o-appearance: none;
+             margin: 0; 
+           }
          }
 
          &__cart {
@@ -293,17 +324,6 @@
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 // third part with avis
 

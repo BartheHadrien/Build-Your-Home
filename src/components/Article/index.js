@@ -1,6 +1,6 @@
 // import npm
 import { Navigate, useParams, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import semantic ui
 
@@ -17,27 +17,81 @@ import { findArticle, findFiveArticles } from '../../selectors/article';
 
 // import style
 import './styles.scss';
+import {
+  setAddArticleInCart, setAddArticleToBuy, setLessArticleInCart,
+  setLessArticleToBuy,
+  setNbArticleInCart, setNbArticleToBuy, setNotNull, setNotNullBuy,
+} from '../../actions/article';
 
 function Article() {
-  // useParams permet d'extraire les paramètres d'url dynamique
-  // ici on s'en sert pour récupérer l'id de l'article à afficher
-  const { slug } = useParams();
+  const dispatch = useDispatch();
 
-  // On passe l'id en argument de l'article à la fonction findRecipes
-  // (codée dans le selectors correspondant) pour récupérer l'article à afficher
+  // Récupération des inforamtions issues du state
+  // list des articles
   const articles = useSelector((state) => state.article.list);
   // console.log(articles);
+
+  // nombre d'articles à ajouter au panier
+  const counterCart = useSelector((state) => state.article.nbArticleCart);
+  // console.log(counterCart);
+
+  // Nb d'articles à ajouter aux achats
+  const counterBuy = useSelector((state) => state.article.nbArticleBuy);
+
+  // useParams permet d'extraire les paramètres d'url dynamique
+  // ici on s'en sert pour récupérer le slug de l'article à afficher
+  const { slug } = useParams();
+  console.log({ slug });
+
+  // On passe le slug en argument de l'article à la fonction findArticle
+  // (codée dans le selectors correspondant) pour récupérer l'article à afficher
 
   const article = findArticle(articles, slug);
   // console.log(article);
 
+  // Fonction permettant d'afficher 5 article en fonction du display order
+
   const listArticle = findFiveArticles(articles);
   // console.log(listArticle);
+
+  // Handler champ controlé de l'input cart
+  function handleNbArticleInCart(event) {
+    dispatch(setNbArticleInCart(event.target.value));
+  }
+
+  // Handlers pour incrémenter le compteur du panier & de l'achat immédiat
+  function handleAddCart() {
+    dispatch(setAddArticleInCart());
+  }
+  function handleAddBuy() {
+    dispatch(setAddArticleToBuy());
+  }
+
+  // Handler pour décrémenter le Panier
+  function handleLessCart() {
+    dispatch(setLessArticleInCart());
+  }
+  function handleLessBuy() {
+    dispatch(setLessArticleToBuy());
+  }
+
+  // Handler pour champ controllé d'achat immédiats
+  function handleNbArticleToBuy(event) {
+    dispatch(setNbArticleToBuy(event.target.value));
+  }
 
   // Si l'id rentré dans l'url ne match pas avec un article
   // en BDD on fait une redirection vers une 404
   if (!article) {
     return <Navigate to="/error" replace />;
+  }
+
+  if (counterCart < 0) {
+    dispatch(setNotNull());
+  }
+
+  if (counterBuy < 0) {
+    dispatch(setNotNullBuy());
   }
 
   return (
@@ -57,9 +111,8 @@ function Article() {
           </div>
 
           <div className="box">
-            {/* <Link className="box__tag" to={`/categories/${}`}> {article.category.name} </Link>
-            <Link className="box__tag" to={`/categories/${}`}> {article.category.brand} </Link> */}
-            <strong> {article.brand.name} </strong>
+            <Link className="box__tag" to={`/categories/${article.category.name}`}> {article.category.name} </Link>
+            <Link className="box__tag" to="#"> {article.brand.name} </Link>
           </div>
           <p className="article--container__details--description">
             {article.description}
@@ -74,14 +127,22 @@ function Article() {
             <button
               type="button"
               className="article--container__cart--add__click"
+              onClick={handleLessCart}
+
             >
               -
             </button>
-            <input type="number" className="article--container__cart--add__counter" />
+            <input
+              type="number"
+              className="article--container__cart--add__counter"
+              value={counterCart}
+              onChange={handleNbArticleInCart}
+            />
 
             <button
               type="button"
               className="article--container__cart--add__click"
+              onClick={handleAddCart}
             >
               +
             </button>
@@ -99,14 +160,21 @@ function Article() {
             <button
               type="button"
               className="article--container__cart--buy__click"
+              onClick={handleLessBuy}
             >
               -
             </button>
-            <input type="number" className="article--container__cart--buy__counter" />
+            <input
+              type="number"
+              className="article--container__cart--buy__counter"
+              value={counterBuy}
+              onChange={handleNbArticleToBuy}
+            />
 
             <button
               type="button"
               className="article--container__cart--buy__click"
+              onClick={handleAddBuy}
             >
               +
             </button>

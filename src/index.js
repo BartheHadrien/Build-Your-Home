@@ -19,5 +19,3 @@ const rootReactElement = (
 
 const target = document.getElementById('root');
 ReactDom.render(rootReactElement, target);
-// const target = document.getElementById('root');
-// render(rootReactElement, target);
