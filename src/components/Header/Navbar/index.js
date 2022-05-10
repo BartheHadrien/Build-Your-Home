@@ -9,6 +9,7 @@ import './styles.scss';
 function Navbar({ name, id, slug }) {
   // URL de la catégorie à afficher
   const link = `/categories/${slug}`;
+
   return (
     <Link to={link}>
       <li className="header--nav__item" key={id}>

@@ -106,6 +106,12 @@
       color: vars.$text-color;
  
     }
+    &__user {
+      display: contents;
+      width: auto;
+      margin: 1rem 1rem;
+      color: vars.$text-color;
+    }
   }
   
 };
