@@ -1,6 +1,6 @@
 // Import
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 // actions
 import { toggleBurger, setSearchBarValue } from 'src/actions/header';
@@ -43,13 +43,19 @@ function Header() {
   const articles = useSelector((state) => state.article.list);
   const islogged = useSelector((state) => state.user.user.logged);
 
+  const navigate = useNavigate();
+  // champs controllé pour la searchBar
   function handleSearchBar(event) {
     dispatch(setSearchBarValue(event.target.value));
   }
 
-  function handleOnSearch(event, searchTerm) {
+  function handleOnSearch(searchTerm) {
     dispatch(setSearchBarValue(searchTerm));
   // dispatch(sendResearch(searchTerm)); // #TODO a envoyer a l'API
+  }
+  function handleLauchSearch(evt) {
+    evt.preventDefault();
+    navigate(`/article/${searchBarValue}`);
   }
 
   //  ______________Gestion du menu burger_____________
@@ -73,7 +79,7 @@ function Header() {
           </Link>
           <form
             className="header--top__form"
-            onSubmit={handleOnSearch}
+            onSubmit={handleLauchSearch}
           >
             <input
               className="header--top__input"
