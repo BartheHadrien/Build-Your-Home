@@ -11,10 +11,35 @@
     &__form{
       width: 60%;
 
+        
 
       .dropdown {
+        display: block;
         position: absolute;
+        background-color: white;
+        opacity: 0.8;
+        width: 59%;
+        margin: auto;
+        padding: 2*vars.$gutter;
+        border-radius: 15px;
+
+        &-row {
+          font-size: 1.5em;
+          font-weight: bold;
+          padding-top: vars.$gutter;
+          color: vars.$main-color;
+
+        }
+
+        
+
+        
       }
+      .dropdown--closed {
+        display: none;
+       }
+
+      
     }
     
     &__input{

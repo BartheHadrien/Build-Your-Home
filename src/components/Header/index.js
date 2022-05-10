@@ -1,6 +1,9 @@
+/* eslint-disable quote-props */
 // Import
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import {
+  Link, Navigate, useNavigate, useSearchParams,
+} from 'react-router-dom';
 
 // actions
 import { toggleBurger, setSearchBarValue } from 'src/actions/header';
@@ -19,6 +22,7 @@ import burger from 'src/assets/images/burger.svg';
 // Components
 import Navbar from './Navbar';
 import BurgerItems from './BurgerItems';
+import { setSearchBarClosed } from '../../actions/header';
 
 function Header() {
   // ________________Affichage des catégories____________________//
@@ -55,6 +59,7 @@ function Header() {
   }
   function handleLauchSearch(evt) {
     evt.preventDefault();
+    dispatch(setSearchBarClosed());
     navigate(`/article/${searchBarValue}`);
   }
 
@@ -69,6 +74,11 @@ function Header() {
   function handleToggleClick() {
     dispatch(toggleBurger());
   }
+
+  //  ______________Gestion de la div de la searchbar_____________
+
+  const searchOpen = useSelector((state) => state.header.navbar.searchOpen);
+  const searchClassName = classnames('dropdown', { 'dropdown--closed': !searchOpen });
 
   return (
     <>
@@ -89,7 +99,7 @@ function Header() {
               onChange={handleSearchBar}
             />
             <input className="header--top__submit" type="submit" value=" " />
-            <div className="dropdown">
+            <div className={searchClassName}>
               {articles.filter((article) => {
                 // ici on effectue un filtre sur les articles de la BDD
                 // on applique une correction synthaxique
