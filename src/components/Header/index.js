@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 // actions
-import { toggleBurger, setSearchBarValue } from 'src/actions/header';
+import { toggleBurger, setSearchBarValue, toggleUserNav } from 'src/actions/header';
 
 // librairies
 import classnames from 'classnames';
@@ -75,6 +75,16 @@ function Header() {
   // Récupération des données utilisateur connecté
   const username = useSelector((state) => state.user.user.username);
 
+  function handleUserNav() {
+    console.log('test');
+    dispatch(toggleUserNav());
+  }
+
+  const userNavIsOpen = useSelector((state) => state.header.userNavbar.isOpen);
+
+  function handleDisconnect() {
+    console.log('Je me déconnecte');
+  }
   return (
     <>
       <div className="header">
@@ -125,8 +135,24 @@ function Header() {
             )}
             {islogged && (
               <Link to="/profil">
-                <img className="header--top__user" src={hello} alt="logo user" />
+                <img className="header--top__user" src={hello} alt="logo user" onMouseOver={handleUserNav} />
               </Link>
+            )}
+            {userNavIsOpen && (
+              <div className="header--top__usernav">
+                <ul>
+                  <Link to="/profil">
+                    <li>Votre compte</li>
+                  </Link>
+                  <Link to="/favoris">
+                    <li>Vos favoris</li>
+                  </Link>
+                  <Link to="historique">
+                    <li>Historique des commandes</li>
+                  </Link>
+                  <button type="button" className="header--top__usernav__disconnect" onClick={handleDisconnect}>Déconnexion</button>
+                </ul>
+              </div>
             )}
             <Link to="/panier">
               <img className="header--top__cart" src={cart} alt="logo panier" />
