@@ -41,6 +41,7 @@ function Header() {
 
   const searchBarValue = useSelector((state) => state.header.navbar.searchBarValue);
   const articles = useSelector((state) => state.article.list);
+  const islogged = useSelector((state) => state.user.user.logged);
 
   function handleSearchBar(event) {
     dispatch(setSearchBarValue(event.target.value));
@@ -130,6 +131,13 @@ function Header() {
             {
               categoriesToDisplay.map((categorie) => (<Navbar key={categorie.id} {...categorie} />))
             }
+            {islogged && (
+            <Link to="/favoris">
+              <li className="header--nav__item">
+                Mes favoris
+              </li>
+            </Link>
+            )}
           </ul>
 
         </nav>
