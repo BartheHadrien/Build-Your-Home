@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 // actions
-import { toggleBurger, setSearchBarValue, toggleUserNav } from 'src/actions/header';
+import {
+  toggleBurger, setSearchBarValue, toggleUserNav,
+} from 'src/actions/header';
 
 // librairies
 import classnames from 'classnames';
@@ -75,13 +77,43 @@ function Header() {
   // Récupération des données utilisateur connecté
   const username = useSelector((state) => state.user.user.username);
 
+  // Fonction qui va appliqué l'action d'ouverture de la nav utilisateur
   function handleUserNav() {
-    console.log('test');
+    // console.log('Ouverture de la nav user');
     dispatch(toggleUserNav());
   }
 
   const userNavIsOpen = useSelector((state) => state.header.userNavbar.isOpen);
 
+  function closeUserNav() {
+    // console.log('je sors de la nav user');
+    setTimeout(
+      handleUserNav,
+      5000,
+    );
+  }
+  function mouseIsOut1() {
+    console.log('1');
+    return mouseIsOut1;
+  }
+  function mouseIsOut2() {
+    console.log('2');
+    return mouseIsOut2;
+  }
+  function mouseIsOut3() {
+    console.log('3');
+    return mouseIsOut3;
+  }
+  function mouseIsOut4() {
+    console.log('4');
+    return mouseIsOut4;
+  }
+
+  if (userNavIsOpen && mouseIsOut1 && mouseIsOut2 && mouseIsOut3 && mouseIsOut4) {
+    closeUserNav();
+  }
+
+  //  ______________User Déconnecté_____________
   function handleDisconnect() {
     console.log('Je me déconnecte');
   }
@@ -135,22 +167,22 @@ function Header() {
             )}
             {islogged && (
               <Link to="/profil">
-                <img className="header--top__user" src={hello} alt="logo user" onMouseOver={handleUserNav} />
+                <img className="header--top__user" src={hello} alt="logo user" onMouseOver={handleUserNav} onMouseOut={mouseIsOut1} />
               </Link>
             )}
             {userNavIsOpen && (
-              <div className="header--top__usernav">
-                <ul>
+              <div className="header--top__usernav" onMouseOut={mouseIsOut2}>
+                <ul onMouseOut={mouseIsOut3}>
                   <Link to="/profil">
-                    <li>Votre compte</li>
+                    <li className="header--top__usernav__item" onMouseOut={mouseIsOut4}>Votre compte</li>
                   </Link>
                   <Link to="/favoris">
-                    <li>Vos favoris</li>
+                    <li className="header--top__usernav__item" onMouseOut={mouseIsOut4}>Vos favoris</li>
                   </Link>
                   <Link to="historique">
-                    <li>Historique des commandes</li>
+                    <li className="header--top__usernav__item" onMouseOut={mouseIsOut4}>Historique des commandes</li>
                   </Link>
-                  <button type="button" className="header--top__usernav__disconnect" onClick={handleDisconnect}>Déconnexion</button>
+                  <button type="button" className="header--top__usernav__disconnect" onClick={handleDisconnect} onMouseOut={mouseIsOut4}>Déconnexion</button>
                 </ul>
               </div>
             )}
