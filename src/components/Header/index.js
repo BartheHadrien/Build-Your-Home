@@ -7,7 +7,9 @@ import {
 
 // actions
 
-import { toggleBurger, setSearchBarValue, setSearchBarClosed, toggleUserNav } from 'src/actions/header';
+import {
+  toggleBurger, setSearchBarValue, setSearchBarClosed, toggleUserNav,
+} from 'src/actions/header';
 
 // librairies
 import classnames from 'classnames';
@@ -76,7 +78,6 @@ function Header() {
     dispatch(toggleBurger());
   }
 
-
   //  ______________User connecté_____________
   // Récupération des données utilisateur connecté
   const username = useSelector((state) => state.user.user.username);
@@ -130,7 +131,6 @@ function Header() {
   if (searchBarValue === '') {
     searchClassName = 'dropdown--closed';
   }
-
 
   return (
     <>
