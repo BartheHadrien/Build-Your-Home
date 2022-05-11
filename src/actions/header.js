@@ -15,6 +15,15 @@ export const sendResearch = () => ({
   type: SEND_RESEARCH,
 });
 
+// ACTION TYPE SET_SEARCH_BAR_CLOSED
+export const SET_SEARCH_BAR_CLOSED = 'SET_SEARCH_BAR_CLOSED';
+
+// ACTION CREATOR setSearchBarClosed
+export const setSearchBarClosed = () => ({
+  type: SET_SEARCH_BAR_CLOSED,
+
+});
+
 // ACTION TYPE TOGGLE_BURGER
 export const TOGGLE_BURGER = 'TOGGLE_BURGER';
 
