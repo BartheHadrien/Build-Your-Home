@@ -37,6 +37,14 @@ export const logout = () => ({
   type: LOGOUT,
 });
 
+// ACTION TYPE DELETE_USER
+export const DELETE_USER = 'DELETE_USER';
+
+// ACTION CREATOR DeleteUser
+export const deleteUser = () => ({
+  type: DELETE_USER,
+});
+
 // ==============================================
 // ==================SIGN UP=====================
 // ==============================================
@@ -62,8 +70,45 @@ export const fetchUser = () => ({
 export const SAVE_USER_DATA = 'SAVE_USER_DATA';
 
 // ACTION CREATOR FETCH_USER_DATA
-export const saveUserData = () => ({
+export const saveUserData = (user) => ({
   type: SAVE_USER_DATA,
+  user,
+});
+// ==============================================
+// ==================FAVORITES===================
+// ==============================================
+
+// ACTION TYPE ADD_ARTICLE_TO_FAVORITE
+export const ADD_ARTICLE_TO_FAVORITE = 'ADD_ARTICLE_TO_FAVORITE';
+
+// ACTION CREATOR ADD_ARTICLE_TO_FAVORITE
+export const addArticleToFavorite = (article) => ({
+  type: ADD_ARTICLE_TO_FAVORITE,
+  article,
+});
+
+export const ADD_ARTICLE_TO_FAVORITE_BDD = 'ADD_ARTICLE_TO_FAVORITE_BDD';
+
+// ACTION CREATOR ADD_ARTICLE_TO_FAVORITE_BDD
+export const addArticleToFavoriteBdd = () => ({
+  type: ADD_ARTICLE_TO_FAVORITE_BDD,
+});
+
+// ACTION TYPE DELETE_ARTICLE_TO_FAVORITE
+export const DELETE_ARTICLE_TO_FAVORITE = 'DELETE_ARTICLE_TO_FAVORITE';
+
+// ACTION CREATOR deleteArticleToFavorite
+export const deleteArticleToFavorite = (favID) => ({
+  type: DELETE_ARTICLE_TO_FAVORITE,
+  favID,
+});
+
+// ACTION TYPE DELETE_ARTICLE_TO_FAVORITE_IN_BDD
+export const DELETE_ARTICLE_TO_FAVORITE_IN_BDD = 'DELETE_ARTICLE_TO_FAVORITE_IN_BDD';
+
+// ACTION CREATOR deleteArticleToFavoriteInBdd
+export const deleteArticleToFavoriteInBdd = () => ({
+  type: DELETE_ARTICLE_TO_FAVORITE_IN_BDD,
 });
 
 // ==============================================

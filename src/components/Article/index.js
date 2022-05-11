@@ -22,6 +22,7 @@ import {
   setLessArticleToBuy,
   setNbArticleInCart, setNbArticleToBuy, setNotNull, setNotNullBuy,
 } from '../../actions/article';
+import { addArticleToFavorite, addArticleToFavoriteBdd } from '../../actions/user';
 
 function Article() {
   const dispatch = useDispatch();
@@ -41,7 +42,6 @@ function Article() {
   // useParams permet d'extraire les paramètres d'url dynamique
   // ici on s'en sert pour récupérer le slug de l'article à afficher
   const { slug } = useParams();
-  console.log({ slug });
 
   // On passe le slug en argument de l'article à la fonction findArticle
   // (codée dans le selectors correspondant) pour récupérer l'article à afficher
@@ -74,10 +74,21 @@ function Article() {
   function handleLessBuy() {
     dispatch(setLessArticleToBuy());
   }
+  const favoriteArticles = useSelector((state) => state.user.user.favorites);
+  const favoriteArray = favoriteArticles.map((favorite) => (favorite.article.id));
+  const isFavorite = favoriteArray.includes(article.id);
 
   // Handler pour champ controllé d'achat immédiats
   function handleNbArticleToBuy(event) {
     dispatch(setNbArticleToBuy(event.target.value));
+  }
+  // Handler pour l'ajout d'un article au favoris
+  function handleAddFavorite() {
+    if (!isFavorite) {
+      dispatch(addArticleToFavorite(article));
+      dispatch(addArticleToFavoriteBdd());
+    }
+    else console.log('Vous avez deja ce favoris');
   }
 
   // Si l'id rentré dans l'url ne match pas avec un article
@@ -191,6 +202,7 @@ function Article() {
           <button
             type="submit"
             className="article--container__cart--favorite"
+            onClick={handleAddFavorite}
           >
             Ajouter aux favoris
           </button>

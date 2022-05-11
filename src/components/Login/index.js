@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
+
+import { setEmailInLogin, setPasswordInLogin, login, logout, deleteUser } from '../../actions/user';
 import { Link, Navigate } from 'react-router-dom';
-import { setEmailInLogin, setPasswordInLogin, login } from '../../actions/user';
+
 import './styles.scss';
 
 function Login() {
@@ -25,6 +27,16 @@ function Login() {
   function handleConnect(evt) {
     evt.preventDefault();
     dispatch(login());
+  }
+  // TEST
+  function handleClick(evt) {
+    evt.preventDefault();
+    dispatch(logout());
+  }
+
+  function handleSupp(evt) {
+    evt.preventDefault();
+    dispatch(deleteUser());
   }
 
   // Si utilisateur connecté, redirection vers la page profil
