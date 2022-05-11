@@ -2,7 +2,8 @@ import axios from 'axios';
 import { FETCH_ARTICLES, saveArticles } from '../actions/article';
 import { FETCH_CATEGORIES, saveCategories } from '../actions/categories';
 import {
-  fetchUser, FETCH_USER, saveUser, saveUserData, LOGIN, LOGOUT, CREATE_USER,
+  fetchUser, FETCH_USER, saveUser, saveUserData, LOGIN, LOGOUT,
+  CREATE_USER, DELETE_USER, ADD_ARTICLE_TO_FAVORITE_BDD, DELETE_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE_IN_BDD,
 } from '../actions/user';
 
 // On utilisera aisinsi cette instance plutôt qu'axios directement
@@ -69,7 +70,6 @@ const apiMiddleWare = (store) => (next) => (action) => {
           // on extrait la propriété data de la reponse
           // que l'on stocke dans une vaiable user
           const { data: user } = response;
-          console.log(response);
 
           // j'enregistre mon token sur l'instance d'axios
           axios.defaults.headers.common.Authorization = `Bearer ${user.token}`;
@@ -80,12 +80,12 @@ const apiMiddleWare = (store) => (next) => (action) => {
           // équivalent à :
           // store.dispatch(saveUser(response.data));
 
-          // on peut demanderhUserécupération des favoris
+          // on peut demander la récupération du user
           // immédiatement après s'être loggé
           store.dispatch(fetchUser());
         })
         .catch(() => {
-          console.log('oups...???');
+          console.log('oups');
         });
       next(action);
       break;
@@ -120,10 +120,62 @@ const apiMiddleWare = (store) => (next) => (action) => {
             store.dispatch(saveUserData(response.data));
           },
         )
-        .catch(() => console.log('oups...'));
+        .catch(() => console.log('Je ne récupére pas les info d\'un user'));
       next(action);
       break;
     }
+    case DELETE_USER: {
+      const { user: { user: { id, token } } } = store.getState();
+      axiosInstance
+        .delete(
+          `user/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+      next(action);
+      break;
+    }
+    case DELETE_ARTICLE_TO_FAVORITE_IN_BDD: {
+      const { user: { user: { token, deletefavorites } } } = store.getState();
+      axiosInstance
+        .delete(
+          `favorite/${deletefavorites}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        )
+        .then(
+          store.dispatch(fetchUser()),
+        );
+      next(action);
+      break;
+    }
+    case ADD_ARTICLE_TO_FAVORITE_BDD: {
+      const { user: { user: { id, token, newfavorites } } } = store.getState();
+      axiosInstance
+        .post(
+          'favorite/add',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            user: id,
+            article: newfavorites.id,
+          },
+        )
+        .then(
+          store.dispatch(fetchUser()),
+        )
+        .catch(() => console.log('Vous l\'avez deja en favoris'));
+      next(action);
+      break;
+    }
+
     // case CREATE_USER: {
     //   const {
     //     user: {

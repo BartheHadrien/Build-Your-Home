@@ -2,7 +2,8 @@ import {
   SET_EMAIL_IN_LOGIN, SET_PASSWORD_IN_LOGIN, SAVE_USER, SAVE_USER_DATA,
   SET_FIRSTNAME_IN_SIGNUP, SET_LASTNAME_IN_SIGNUP, SET_BIRTHDATE_IN_SIGNUP,
   SET_PHONE_IN_SIGNUP, SET_ADRESS_IN_SIGNUP, SET_EMAIL_IN_SIGNUP,
-  SET_PASSWORD_IN_SIGNUP, SET_CONFIRM_PASSWORD_IN_SIGNUP, LOGOUT, CHANGE_VALUE,
+  SET_PASSWORD_IN_SIGNUP, SET_CONFIRM_PASSWORD_IN_SIGNUP, LOGOUT,
+  CHANGE_VALUE, ADD_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE,
 } from '../actions/user';
 
 const initialState = {
@@ -22,6 +23,7 @@ const initialState = {
     confirmPassword: '',
   },
   user: {
+    id: null,
     firstname: '',
     lastname: '',
     adress: '',
@@ -31,6 +33,8 @@ const initialState = {
     roles: [],
     orders: [],
     favorites: [],
+    newfavorites: [],
+    deletefavorites: null,
     comments: [],
     token: '',
     logged: false,
@@ -72,46 +76,53 @@ function userReducer(state = initialState, action = {}) {
       return {
         ...state,
         user: {
+          ...state.user,
+          id: action.user.id,
+          logged: true,
           lastname: action.user.lastname,
           firstname: action.user.firstname,
           adress: action.user.adress,
           birthdate: action.user.birthdate,
           phone: action.user.phone,
-          role: [
-
-          ],
-          orders: [
-          ],
-          favorites: [
-            action.user.favorites,
-          ],
-          comments: [
-          ],
+          role: action.user.role,
+          orders: action.user.orders,
+          favorites: action.user.favorites,
+          comments: action.user.comments,
+        },
+      };
+    case ADD_ARTICLE_TO_FAVORITE:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          newfavorites: action.article,
+        },
+      };
+    case DELETE_ARTICLE_TO_FAVORITE:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          deletefavorites: action.favID,
         },
       };
     case LOGOUT:
       return {
         ...state,
         user: {
+          id: null,
+          logged: false,
           lastname: null,
           firstname: null,
           adress: null,
           birthdate: null,
           phone: null,
-          role: [
-            null,
-          ],
-          orders: [
-            null,
-          ],
-          favorites: [
-            null,
-          ],
-          comments: [
-            null,
-          ],
+          role: null,
+          orders: null,
+          favorites: null,
+          comments: null,
+          token: null,
         },
-
       };
       // NEW USER
     case CHANGE_VALUE:

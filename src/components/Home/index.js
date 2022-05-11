@@ -30,7 +30,6 @@ function Home() {
 
   // Selection des artciles récupérée dans le state
   const articles = useSelector((state) => state.article.list);
-  console.log(articles);
 
   // Fonction filtrant le nombre de catégorie à afficher
   const filteredArticles = () => {
