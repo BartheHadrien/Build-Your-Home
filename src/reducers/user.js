@@ -3,7 +3,7 @@ import {
   SET_FIRSTNAME_IN_SIGNUP, SET_LASTNAME_IN_SIGNUP, SET_BIRTHDATE_IN_SIGNUP,
   SET_PHONE_IN_SIGNUP, SET_ADRESS_IN_SIGNUP, SET_EMAIL_IN_SIGNUP,
   SET_PASSWORD_IN_SIGNUP, SET_CONFIRM_PASSWORD_IN_SIGNUP, LOGOUT,
-  CHANGE_VALUE, ADD_ARTICLE_TO_FAVORITE,
+  CHANGE_VALUE, ADD_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE,
 } from '../actions/user';
 
 const initialState = {
@@ -33,7 +33,10 @@ const initialState = {
     roles: [],
     orders: [],
     favorites: [],
+    newfavorites: [],
+    deletefavorites: null,
     comments: [],
+    token: '',
     logged: false,
   },
 };
@@ -73,6 +76,7 @@ function userReducer(state = initialState, action = {}) {
       return {
         ...state,
         user: {
+          ...state.user,
           id: action.user.id,
           logged: true,
           lastname: action.user.lastname,
@@ -91,10 +95,15 @@ function userReducer(state = initialState, action = {}) {
         ...state,
         user: {
           ...state.user,
-          favorites: {
-            ...state.user.favorites,
-            favorites: action.article,
-          },
+          newfavorites: action.article,
+        },
+      };
+    case DELETE_ARTICLE_TO_FAVORITE:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          deletefavorites: action.favID,
         },
       };
     case LOGOUT:
@@ -112,6 +121,7 @@ function userReducer(state = initialState, action = {}) {
           orders: null,
           favorites: null,
           comments: null,
+          token: null,
         },
       };
       // NEW USER

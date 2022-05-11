@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setEmailInLogin, setPasswordInLogin, login, fetchUser, logout, deleteUser } from '../../actions/user';
+import { setEmailInLogin, setPasswordInLogin, login, logout, deleteUser } from '../../actions/user';
 import './styles.scss';
 
 function Login() {
@@ -37,7 +37,6 @@ function Login() {
     evt.preventDefault();
     dispatch(deleteUser());
   }
-  
 
   return (
     <div className="login">
