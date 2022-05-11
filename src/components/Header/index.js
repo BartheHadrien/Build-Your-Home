@@ -26,6 +26,7 @@ import hello from 'src/assets/images/hello.svg';
 // Components
 import Navbar from './Navbar';
 import BurgerItems from './BurgerItems';
+import { logout } from '../../actions/user';
 
 function Header() {
   // ________________Affichage des catégories____________________//
@@ -80,7 +81,7 @@ function Header() {
 
   //  ______________User connecté_____________
   // Récupération des données utilisateur connecté
-  const username = useSelector((state) => state.user.user.username);
+  const username = useSelector((state) => state.user.user.lastname);
 
   // Fonction qui va appliqué l'action d'ouverture de la nav utilisateur
   function handleUserNav() {
@@ -98,19 +99,15 @@ function Header() {
     );
   }
   function mouseIsOut1() {
-    console.log('1');
     return mouseIsOut1;
   }
   function mouseIsOut2() {
-    console.log('2');
     return mouseIsOut2;
   }
   function mouseIsOut3() {
-    console.log('3');
     return mouseIsOut3;
   }
   function mouseIsOut4() {
-    console.log('4');
     return mouseIsOut4;
   }
 
@@ -120,7 +117,7 @@ function Header() {
 
   //  ______________User Déconnecté_____________
   function handleDisconnect() {
-    console.log('Je me déconnecte');
+    dispatch(logout());
   }
 
   //  ______________Gestion de la div de la searchbar_____________
