@@ -3,8 +3,7 @@
   background-color: vars.$text-color;
   width: 100%;
   border-radius: 15px;
-  transition: all 0.5s ease-in-out;
-
+  transition: all 0.5s linear;
 
   &__title{
     font-size: 1.5em;
@@ -45,12 +44,17 @@
     //   max-height: 20vh;
     // }
   }
+  &__title {
+    color: vars.$secondary-color;
+    text-align: center;
+    font-size: 1.5em;
+  }
 }
 
 .card--article:hover {
   background-color: orange;
   opacity: 0.8;
-  &__title {
+  .card--article__title {
     color: white;
   }
 }

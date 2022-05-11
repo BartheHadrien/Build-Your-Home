@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+
 import { setEmailInLogin, setPasswordInLogin, login, logout, deleteUser } from '../../actions/user';
+import { Link, Navigate } from 'react-router-dom';
+
 import './styles.scss';
 
 function Login() {
@@ -10,7 +12,6 @@ function Login() {
   const email = useSelector((state) => state.user.login.email);
   const password = useSelector((state) => state.user.login.password);
   // Récupération des données utilisateur connecté
-  const username = useSelector((state) => state.user.user.username);
   const islogged = useSelector((state) => state.user.user.logged);
 
   // Fonctions qui gèrent le changement dans le state
@@ -36,6 +37,11 @@ function Login() {
   function handleSupp(evt) {
     evt.preventDefault();
     dispatch(deleteUser());
+  }
+
+  // Si utilisateur connecté, redirection vers la page profil
+  if (islogged) {
+    return <Navigate to="/profil" />;
   }
 
   return (
@@ -83,15 +89,6 @@ function Login() {
               Créer votre compte
             </button>
           </Link>
-        </section>
-      )}
-      {islogged && (
-        <section className="login--section">
-          <div className="login--container">
-            <h1 className="login--title">Bienvenue {username}</h1>
-            <button type="button" onClick={handleClick}>déconnecter</button>
-            <button type="button" onClick={handleSupp}>Supprimer le compte</button>
-          </div>
         </section>
       )}
     </div>

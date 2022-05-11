@@ -1,11 +1,16 @@
 import {
-  SET_SEARCH_BAR_VALUE, TOGGLE_BURGER,
+  SET_SEARCH_BAR_CLOSED,
+  SET_SEARCH_BAR_VALUE, TOGGLE_BURGER, TOGGLE_USER_NAV,
 } from '../actions/header';
 
 const initialState = {
   navbar: {
     isOpen: false,
     searchBarValue: '',
+    searchOpen: false,
+  },
+  userNavbar: {
+    isOpen: false,
   },
 };
 
@@ -17,6 +22,15 @@ function headerReducer(state = initialState, action = {}) {
         navbar: {
           ...state.navbar,
           searchBarValue: action.value,
+          searchOpen: true,
+        },
+      };
+    case SET_SEARCH_BAR_CLOSED:
+      return {
+        ...state,
+        navbar: {
+          ...state.navbar,
+          searchOpen: !state.navbar.searchOpen,
         },
       };
     case TOGGLE_BURGER:
@@ -25,6 +39,14 @@ function headerReducer(state = initialState, action = {}) {
         navbar: {
           ...state.navbar,
           isOpen: !state.navbar.isOpen,
+        },
+      };
+    case TOGGLE_USER_NAV:
+      return {
+        ...state,
+        userNavbar: {
+          ...state.userNavbar,
+          isOpen: !state.userNavbar.isOpen,
         },
       };
     default:
