@@ -7,11 +7,10 @@ import { findFiveArticles } from '../../selectors/article';
 // Styles
 import './styles.scss';
 import desktop from 'src/assets/images/desktop.svg';
-import deleteCart from 'src/assets/images/delete.svg';
-import add from 'src/assets/images/add.svg';
 
 // Components
 import CardArticle from 'src/components/CardArticle';
+import CardCart from './CardCart';
 
 function Carts() {
   // ________________________________________________________________ //
@@ -24,6 +23,19 @@ function Carts() {
   const articlesToDisplay = findFiveArticles(articles);
 
   // ________________________________________________________________ //
+  // ________________________________________________________________ //
+  // __________________________ Panier_____________________________ //
+
+  // getting stored value
+  const cart = useSelector((state) => state.cart.name);
+  const cartsaved = cart.map((item) => localStorage.getItem(item));
+  const initialValue = cartsaved.map((item) => JSON.parse(item));
+
+  console.log(cart);
+  console.log(cartsaved);
+  console.log(initialValue);
+  // console.log(localStorage);
+
   return (
     <>
       <div className="carts">
@@ -36,49 +48,8 @@ function Carts() {
           </div>
 
           {/* Content of article */}
-          <div className="carts__article">
-            <img src={desktop} alt={desktop} className="carts__article__picture" />
-            <p className="carts__article__description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Reiciendis reprehenderit molestiae
-            </p>
-            <span className="carts__article__value">50$</span>
+          {initialValue.map((article) => <CardCart key={article.id} {...article} />)}
 
-            <span className="carts__article__avalaible">En stock</span>
-
-            <div className="carts__article__stock">
-              <span className="carts__article__stock__delete">
-                <img src={deleteCart} alt={deleteCart} className="carts__article__stock__delete__icon" />
-                <p className="carts__article__stock__delete__paragraph">Supprimer</p>
-              </span>
-              <mark className="carts__article__stock__quantity">Quantité : XX</mark>
-              <span className="carts__article__stock__add">
-                <img src={add} alt={add} className="carts__article__stock__add__icon" />
-                <p className="carts__article__stock__add__paragraph">Ajouter</p>
-              </span>
-            </div>
-          </div>
-          {/* Content of article */}
-          <div className="carts__article">
-            <img src={desktop} alt={desktop} className="carts__article__picture" />
-            <p className="carts__article__description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Reiciendis reprehenderit molestiae
-            </p>
-            <span className="carts__article__value">50$</span>
-
-            <span className="carts__article__avalaible">En stock</span>
-
-            <div className="carts__article__stock">
-              <span className="carts__article__stock__delete">
-                <img src={deleteCart} alt={deleteCart} className="carts__article__stock__delete__icon" />
-                <p className="carts__article__stock__delete__paragraph">Supprimer</p>
-              </span>
-              <mark className="carts__article__stock__quantity">Quantité : XX</mark>
-              <span className="carts__article__stock__add">
-                <img src={add} alt={add} className="carts__article__stock__add__icon" />
-                <p className="carts__article__stock__add__paragraph">Ajouter</p>
-              </span>
-            </div>
-          </div>
           <span className="carts__article__total">Sous-total (X article) : XX$</span>
         </section>
 
