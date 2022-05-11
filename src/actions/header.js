@@ -31,3 +31,11 @@ export const TOGGLE_BURGER = 'TOGGLE_BURGER';
 export const toggleBurger = () => ({
   type: TOGGLE_BURGER,
 });
+
+// ACTION TYPE TOGGLE_USER_NAV
+export const TOGGLE_USER_NAV = 'TOGGLE_USER_NAV';
+
+// ACTION CREATOR TOGGLE_USER_NAV
+export const toggleUserNav = () => ({
+  type: TOGGLE_USER_NAV,
+});

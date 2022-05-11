@@ -70,7 +70,7 @@
     }
     
     &__logo{
-    
+      display: flex;
     }
     &__logoSite{
       background-color: whitesmoke;
@@ -92,6 +92,53 @@
           height: 24px;
           }
     }
+    &__usernav {
+      position: absolute;
+      background-color: white;
+      border: 2px solid black;
+      border-radius: 2.5%;
+      top: 6rem;
+      right: 5.1rem;
+      padding: 1rem 1rem;
+
+      @media (max-width : vars.$phone) {
+        top: 4.3rem;
+        right: 3rem;
+      }
+
+      &::before {
+        display: block;
+        position: absolute;
+        background-color: transparent;
+        width: 0;
+        height: 0;
+        content: "";
+        top: -14%;
+        left: 80%;
+        border: solid 10px transparent;
+        border-bottom-color: white;
+        border-right-color: white;
+      }
+
+      &__item {
+        margin: 0.5rem 0rem;
+        color: black;
+      }
+      &__item:hover {
+        color: coral;
+        text-decoration: underline;
+      }
+      &__disconnect {
+        background-color: vars.$primary-color;
+        color: black;
+      }
+      &__disconnect:hover {
+        color: coral;
+        text-decoration: underline;
+        background-color: vars.$secondary-color;
+      }
+    }
+    
     &__cart{
       background-color: whitesmoke;
       border-radius: 1rem;
@@ -123,8 +170,7 @@
       flex-wrap: wrap;
       @media (max-width : vars.$phone) {
         display: none;
-        }
-      
+        }   
      
     }
 
@@ -134,6 +180,12 @@
       margin: 1rem 1rem;
       color: vars.$text-color;
  
+    }
+    &__user {
+      display: contents;
+      width: auto;
+      margin: 1rem 1rem;
+      color: vars.$text-color;
     }
   }
   
