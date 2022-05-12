@@ -3,7 +3,7 @@ import {
   SET_FIRSTNAME_IN_SIGNUP, SET_LASTNAME_IN_SIGNUP, SET_BIRTHDATE_IN_SIGNUP,
   SET_PHONE_IN_SIGNUP, SET_ADRESS_IN_SIGNUP, SET_EMAIL_IN_SIGNUP,
   SET_PASSWORD_IN_SIGNUP, SET_CONFIRM_PASSWORD_IN_SIGNUP, LOGOUT,
-  CHANGE_VALUE, ADD_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE,
+  CHANGE_VALUE, ADD_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE, PASSWORD_ERROR,
 } from '../actions/user';
 
 const initialState = {
@@ -39,6 +39,7 @@ const initialState = {
     token: '',
     logged: false,
   },
+  passwordIsFalse: false,
 };
 
 function userReducer(state = initialState, action = {}) {
@@ -195,6 +196,12 @@ function userReducer(state = initialState, action = {}) {
           ...state.signup,
           confirmPassword: action.confirmPassword,
         },
+      };
+    case PASSWORD_ERROR:
+      return {
+        ...state,
+        passwordIsFalse: !state.user.passwordIsFalse,
+
       };
     default:
       return state;
