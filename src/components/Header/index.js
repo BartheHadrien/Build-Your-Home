@@ -155,7 +155,7 @@ function Header() {
             )}
             {islogged && (
               <Link to="">
-                <img className="header--top__user" src={hello} alt="logo user" onClick={handleUserNav} />
+                <img className="header--top__user" src={user} alt="logo user" onClick={handleUserNav} />
               </Link>
             )}
             {userNavIsOpen && (

@@ -135,11 +135,11 @@ function NewAccount() {
               <span className="new-account--field__label">Téléphone</span>
               <input
                 className="new-account--field__input"
-                type="text"
+                type="tel"
                 id="phone"
                 value={phone}
                 onChange={handleChangePhone}
-                inputMode="numeric"
+                pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                 minLength="10"
                 maxLength="10"
                 required
