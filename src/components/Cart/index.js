@@ -12,14 +12,17 @@ import './styles.scss';
 
 import CardCart from './CardCart';
 import { addCartToOrder, addCartToOrderBdd } from '../../actions/cart';
+import { useNavigate } from 'react-router-dom';
 
 function Carts() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // ________________________________________________________________ //
   // __________________________ Articles_____________________________ //
 
   // Selection des artciles récupérée dans le state
   const articles = useSelector((state) => state.article.list);
+  const isLogged = useSelector((state) => state.user.user.logged);
 
   // Stockage dans une constante de 5 articles à afficher
   const articlesToDisplay = findFiveArticles(articles);
@@ -43,8 +46,13 @@ function Carts() {
   // ____________________Envoie de commande__________________________ //
 
   function handleSendOrder() {
-    dispatch(addCartToOrder(initialValue));
-    dispatch(addCartToOrderBdd());
+    if (isLogged) {
+      dispatch(addCartToOrder(initialValue));
+      dispatch(addCartToOrderBdd());
+    }
+    else {
+      navigate('/connexion');
+    }
   }
 
   return (
