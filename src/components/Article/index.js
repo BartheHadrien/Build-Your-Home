@@ -23,6 +23,7 @@ import {
   setNbArticleInCart, setNbArticleToBuy, setNotNull, setNotNullBuy,
 } from '../../actions/article';
 import { addArticleToFavorite, addArticleToFavoriteBdd } from '../../actions/user';
+import { setArticleInCart } from '../../actions/cart';
 
 function Article() {
   const dispatch = useDispatch();
@@ -105,6 +106,15 @@ function Article() {
     dispatch(setNotNullBuy());
   }
 
+  // ________________________________________________________________ //
+  // ________________________________________________________________ //
+  // __________________________ Panier_______________________________ //
+  function handleAddArticleCart() {
+    localStorage.setItem(article.name, JSON.stringify(article));
+    console.log(article.name);
+    dispatch(setArticleInCart(article.name));
+  }
+
   return (
     <div className="article">
       {/* Article */}
@@ -160,6 +170,7 @@ function Article() {
             <button
               type="submit"
               className="article--container__cart--add__cart"
+              onClick={handleAddArticleCart}
             >
               Ajouter au panier
             </button>
