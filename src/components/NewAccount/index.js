@@ -14,6 +14,8 @@ import {
   setConfirmPasswordInSignup,
   changeValue,
   createUser,
+  setEmailInLogin,
+  setPasswordInLogin,
 } from 'src/actions/user';
 
 // Styles
@@ -54,9 +56,11 @@ function NewAccount() {
 
   function handleChangeEmail(event) {
     dispatch(setEmailInSignup(event.target.value));
+    dispatch(setEmailInLogin(event.target.value));
   }
   function handleChangePassword(event) {
     dispatch(setPasswordInSignup(event.target.value));
+    dispatch(setPasswordInLogin(event.target.value));
   }
 
   function handleChangeConfirmPassword(event) {
