@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { FETCH_ARTICLES, saveArticles } from '../actions/article';
+import { ADD_CART_TO_ORDER_BDD } from '../actions/cart';
 import { FETCH_CATEGORIES, saveCategories } from '../actions/categories';
 import {
   fetchUser, FETCH_USER, saveUser, saveUserData, LOGIN, LOGOUT,
-  CREATE_USER, DELETE_USER, ADD_ARTICLE_TO_FAVORITE_BDD, DELETE_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE_IN_BDD, setEmailInLogin,
+  CREATE_USER, DELETE_USER, ADD_ARTICLE_TO_FAVORITE_BDD, DELETE_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE_IN_BDD, setEmailInLogin, login,
 } from '../actions/user';
 
 // On utilisera aisinsi cette instance plutôt qu'axios directement
@@ -85,7 +86,7 @@ const apiMiddleWare = (store) => (next) => (action) => {
           store.dispatch(fetchUser());
         })
         .catch(() => {
-          console.log('oups');
+          console.log('Pas de login effectué');
         });
       next(action);
       break;
@@ -175,7 +176,36 @@ const apiMiddleWare = (store) => (next) => (action) => {
       next(action);
       break;
     }
+    case ADD_CART_TO_ORDER_BDD: {
+      const { user: { user: { id, token } } } = store.getState();
+      const { cart: { cart: { orderlist } } } = store.getState();
+      const datatoapi = orderlist.map((item) => {
+        let data = {};
+        data = { article: item.articleID, quantity: item.quantity };
+        return data;
+      });
 
+      console.log('datatoapi', datatoapi);
+      axiosInstance
+        .post(
+          'order/add',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            status: 0,
+            user: id,
+            deliveries: 11,
+            orderlists: datatoapi,
+          },
+        )
+        .then(
+          console.log('commande bien envoyé'),
+        )
+        .catch(() => console.log('commande non envoyé'));
+      next(action);
+      break;
+    }
     case CREATE_USER: {
       const {
         user: {
@@ -201,7 +231,8 @@ const apiMiddleWare = (store) => (next) => (action) => {
         )
         .then(
           (response) => {
-            store.dispatch(saveUserData(response.data));
+            // store.dispatch(saveCreateUserData(response.data));
+            store.dispatch(login());
             console.log(response.data);
           },
         )

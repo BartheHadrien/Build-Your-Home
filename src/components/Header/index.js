@@ -84,41 +84,18 @@ function Header() {
   //  ______________User connecté_____________
   // Récupération des données utilisateur connecté
   const username = useSelector((state) => state.user.user.lastname);
-
+  const userNavIsOpen = useSelector((state) => state.header.userNavbar.isOpen);
   // Fonction qui va appliqué l'action d'ouverture de la nav utilisateur
+
   function handleUserNav() {
-    // console.log('Ouverture de la nav user');
     dispatch(toggleUserNav());
   }
 
-  const userNavIsOpen = useSelector((state) => state.header.userNavbar.isOpen);
 
-  function closeUserNav() {
-    // console.log('je sors de la nav user');
-    setTimeout(
-      handleUserNav,
-      1000,
-    );
-  }
-  function mouseIsOut1() {
-    return mouseIsOut1;
-  }
-  function mouseIsOut2() {
-    return mouseIsOut2;
-  }
-  function mouseIsOut3() {
-    return mouseIsOut3;
-  }
-  function mouseIsOut4() {
-    return mouseIsOut4;
-  }
-
-  if (userNavIsOpen && mouseIsOut1 && mouseIsOut2 && mouseIsOut3 && mouseIsOut4) {
-    closeUserNav();
-  }
-
+ 
   //  ______________User Déconnecté_____________
   function handleDisconnect() {
+    dispatch(toggleUserNav());
     dispatch(logout());
     navigate('/connexion');
   }
@@ -181,24 +158,24 @@ function Header() {
               </Link>
             )}
             {islogged && (
-              <Link to="/profil">
-                <img className="header--top__user" src={hello} alt="logo user" onMouseOver={handleUserNav} onMouseOut={mouseIsOut1} />
+              <Link to="">
+                <img className="header--top__user" src={hello} alt="logo user" onClick={handleUserNav} />
               </Link>
             )}
             {userNavIsOpen && (
-              <div className="header--top__usernav" onMouseOut={mouseIsOut2}>
-                <ul onMouseOut={mouseIsOut3}>
+              <div className="header--top__usernav">
+                <ul>
                   <Link to="/profil">
-                    <li className="header--top__usernav__item" onMouseOut={mouseIsOut4}>Votre compte</li>
+                    <li className="header--top__usernav__item" onClick={handleUserNav}>Votre compte</li>
                   </Link>
                   <Link to="/favoris">
-                    <li className="header--top__usernav__item" onMouseOut={mouseIsOut4}>Vos favoris</li>
+                    <li className="header--top__usernav__item" onClick={handleUserNav}>Vos favoris</li>
                   </Link>
                   <Link to="historique">
-                    <li className="header--top__usernav__item" onMouseOut={mouseIsOut4}>Historique des commandes</li>
+                    <li className="header--top__usernav__item" onClick={handleUserNav}>Historique des commandes</li>
                   </Link>
                   <Link to="">
-                    <li className="header--top__usernav__disconnect" onClick={handleDisconnect} onMouseOut={mouseIsOut4}>Déconnexion</li>
+                    <li className="header--top__usernav__disconnect" onClick={handleDisconnect}>Déconnexion</li>
                   </Link>
                 </ul>
               </div>

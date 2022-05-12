@@ -7,3 +7,18 @@ export const setArticleInCart = (name, quantity) => ({
   name,
   quantity,
 });
+
+export const ADD_CART_TO_ORDER = 'ADD_CART_TO_ORDER';
+
+// ACTION CREATOR ADD_CART_TO_ORDER
+export const addCartToOrder = (cart) => ({
+  type: ADD_CART_TO_ORDER,
+  cart,
+});
+
+export const ADD_CART_TO_ORDER_BDD = 'ADD_CART_TO_ORDER_BDD';
+
+// ACTION CREATOR ADD_CART_TO_ORDER
+export const addCartToOrderBdd = () => ({
+  type: ADD_CART_TO_ORDER_BDD,
+});
