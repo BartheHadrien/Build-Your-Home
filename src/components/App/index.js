@@ -18,7 +18,7 @@ import Error from '../Error';
 
 import './styles.scss';
 import NewAccount from '../NewAccount';
-import { fetchArticles } from '../../actions/article';
+import { fetchArticles, setClearQuantity } from '../../actions/article';
 import { fetchCategories } from '../../actions/categories';
 
 function App() {
@@ -40,6 +40,7 @@ function App() {
       // dans cet effet, on interragit avec le
       // dom réel pour scroller en haut de page
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      dispatch(setClearQuantity());
     },
     [location],
   );
