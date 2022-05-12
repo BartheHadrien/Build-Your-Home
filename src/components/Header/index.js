@@ -118,6 +118,7 @@ function Header() {
   //  ______________User Déconnecté_____________
   function handleDisconnect() {
     dispatch(logout());
+    navigate('/connexion');
   }
 
   //  ______________Gestion de la div de la searchbar_____________

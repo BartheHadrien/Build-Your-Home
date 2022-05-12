@@ -1,13 +1,14 @@
 import { useSelector, useDispatch } from 'react-redux';
 
 import { setEmailInLogin, setPasswordInLogin, login, logout, deleteUser } from '../../actions/user';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import './styles.scss';
 
 function Login() {
   // Récupération du hook useDispatch
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // Controle des champs Login
   const email = useSelector((state) => state.user.login.email);
   const password = useSelector((state) => state.user.login.password);
@@ -27,6 +28,7 @@ function Login() {
   function handleConnect(evt) {
     evt.preventDefault();
     dispatch(login());
+    navigate('/');
   }
   // TEST
   function handleClick(evt) {
@@ -37,11 +39,6 @@ function Login() {
   function handleSupp(evt) {
     evt.preventDefault();
     dispatch(deleteUser());
-  }
-
-  // Si utilisateur connecté, redirection vers la page profil
-  if (islogged) {
-    return <Navigate to="/profil" />;
   }
 
   return (
