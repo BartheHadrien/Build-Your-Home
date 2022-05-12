@@ -23,7 +23,6 @@ import {
   setNbArticleInCart, setNbArticleToBuy, setNotNull, setNotNullBuy,
 } from '../../actions/article';
 import { addArticleToFavorite, addArticleToFavoriteBdd } from '../../actions/user';
-import { setArticleInCart } from '../../actions/cart';
 
 function Article() {
   const dispatch = useDispatch();
@@ -44,9 +43,6 @@ function Article() {
   // Nb d'articles à ajouter aux achats
   const counterBuy = useSelector((state) => state.article.nbArticleBuy);
 
-  // Quantité à ajouter au panier
-
-  const nbArticleAddInCart = useSelector((state) => state.article.nbArticleCart);
   // console.log(nbArticleAddInCart);
 
   // nom et quantité de l'objet à save

@@ -32,31 +32,40 @@ function Carts() {
   // __________________________ Panier_____________________________ //
 
   // getting stored value
+  // console.log(localStorage);
+  // const arrayLocalStorage = [];
+  // arrayLocalStorage.push(JSON.parse(localStorage));
+  // console.log(arrayLocalStorage);
 
-  for (let i = 0, len = localStorage.length; i < len; ++i) {
-    const localStorageList = (localStorage.getItem(localStorage.key(i)));
-    const testdatalocal = [];
-    testdatalocal.push(JSON.parse(localStorageList));
-    console.log('testdata', testdatalocal);
+  // for (let i = 0, len = localStorage.length; i < len; ++i) {
+  //   const localStorageList = (localStorage.getItem(localStorage.key(i)));
+  //   const testdatalocal = [];
+  //   testdatalocal.push(JSON.parse(localStorageList));
+  //   console.log('testdata', testdatalocal);
 
-    const purified = testdatalocal.map((item) => {
-      let data = [];
-      data = item.article.name;
-      console.log('data', data);
-      return data;
-    });
+  //   const purified = testdatalocal.map((item) => {
+  //     let data = [];
+  //     data = item.article.name;
+  //     console.log('data', data);
+  //     return data;
+  //   });
 
-    dispatch(setArticleInCart(purified));
-  }
+  //   dispatch(setArticleInCart(purified));
+  // }
 
-  const cart = useSelector((state) => state.cart.name);
+  const cart = useSelector((state) => state.article.list);
 
-  const cartsaved = cart.map((item) => localStorage.getItem(item));
-  const initialValue = cartsaved.map((item) => JSON.parse(item));
+  const cartsaved = cart.filter((item) => localStorage.getItem(item.name));
 
-  // console.log(initialValue);
+  const value = cartsaved.map((item) => localStorage.getItem(item.name));
+
+  console.log(value);
+
+  const initialValue = value.map((item) => JSON.parse(item));
+
+  console.log(initialValue);
   console.log('cart saved', cartsaved);
-  console.log('initial value', initialValue);
+  // console.log('initial value', initialValue);
   // console.log(localStorage);
 
   // ________________________________________________________________ //
