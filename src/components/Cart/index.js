@@ -1,23 +1,28 @@
 // Import
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import CardArticle from 'src/components/CardArticle';
 // Actions
 import { findFiveArticles } from '../../selectors/article';
 
 // Styles
 import './styles.scss';
-import desktop from 'src/assets/images/desktop.svg';
 
 // Components
-import CardArticle from 'src/components/CardArticle';
+
 import CardCart from './CardCart';
+import { addCartToOrder, addCartToOrderBdd } from '../../actions/cart';
+import { useNavigate } from 'react-router-dom';
 
 function Carts() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   // ________________________________________________________________ //
   // __________________________ Articles_____________________________ //
 
   // Selection des artciles récupérée dans le state
   const articles = useSelector((state) => state.article.list);
+  const isLogged = useSelector((state) => state.user.user.logged);
 
   // Stockage dans une constante de 5 articles à afficher
   const articlesToDisplay = findFiveArticles(articles);
@@ -31,10 +36,24 @@ function Carts() {
   const cartsaved = cart.map((item) => localStorage.getItem(item));
   const initialValue = cartsaved.map((item) => JSON.parse(item));
 
-  console.log(cart);
-  console.log(cartsaved);
-  console.log(initialValue);
+  // console.log(cart);
+  console.log('cart saved', cartsaved);
+  console.log('initial value', initialValue);
   // console.log(localStorage);
+
+  // ________________________________________________________________ //
+  // ________________________________________________________________ //
+  // ____________________Envoie de commande__________________________ //
+
+  function handleSendOrder() {
+    if (isLogged) {
+      dispatch(addCartToOrder(initialValue));
+      dispatch(addCartToOrderBdd());
+    }
+    else {
+      navigate('/connexion');
+    }
+  }
 
   return (
     <>
@@ -48,7 +67,13 @@ function Carts() {
           </div>
 
           {/* Content of article */}
-          {initialValue.map((article) => <CardCart key={article.id} {...article} />)}
+          {initialValue.map((article) => (
+            <CardCart
+              key={article.article.id}
+              quantity={article.quantity}
+              {...article.article}
+            />
+          ))}
 
           <span className="carts__article__total">Sous-total (X article) : XX$</span>
         </section>
@@ -60,7 +85,7 @@ function Carts() {
             delectus maxime ex doloremque.
           </p>
           <p className="carts__pay__total">Sous-total (X article) : XX$</p>
-          <button type="button" className="carts__pay__button">Passer la commande</button>
+          <button type="button" className="carts__pay__button" onClick={handleSendOrder}>Passer la commande</button>
           <button type="button" className="carts__pay__button">Continuez vos achats</button>
         </section>
       </div>

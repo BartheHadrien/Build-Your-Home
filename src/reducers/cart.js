@@ -1,7 +1,10 @@
-import { SET_ARTICLE_IN_CART } from '../actions/cart';
+import { ADD_CART_TO_ORDER, SET_ARTICLE_IN_CART } from '../actions/cart';
 
 const initialState = {
   name: [],
+  cart: {
+    orderlist: [],
+  },
 };
 
 function cartReducer(state = initialState, action = {}) {
@@ -12,6 +15,14 @@ function cartReducer(state = initialState, action = {}) {
         name: [
           ...state.name,
           action.name],
+      };
+    case ADD_CART_TO_ORDER:
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          orderlist: action.cart,
+        },
       };
     default:
       return state;
