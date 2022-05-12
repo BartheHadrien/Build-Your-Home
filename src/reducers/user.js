@@ -8,8 +8,8 @@ import {
 
 const initialState = {
   login: {
-    email: '',
-    password: '',
+    email: 'admin@admin.com',
+    password: 'admin',
 
   },
   signup: {

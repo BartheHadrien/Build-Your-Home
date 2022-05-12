@@ -163,12 +163,15 @@ function NewAccount() {
                 onChange={handleChangeConfirmPassword}
               />
             </label>
+            {/* <Link to="/"> */}
             <button
               type="submit"
               className="new-account--button__submit"
             >
+
               Créer mon compte
             </button>
+            {/* </Link> */}
           </form>
         </div>
         <p>Vous possédez déjà un compte ?</p>

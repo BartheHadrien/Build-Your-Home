@@ -194,7 +194,9 @@ function Header() {
                   <Link to="historique">
                     <li className="header--top__usernav__item" onMouseOut={mouseIsOut4}>Historique des commandes</li>
                   </Link>
-                  <button type="button" className="header--top__usernav__disconnect" onClick={handleDisconnect} onMouseOut={mouseIsOut4}>Déconnexion</button>
+                  <Link to="">
+                    <li className="header--top__usernav__disconnect" onClick={handleDisconnect} onMouseOut={mouseIsOut4}>Déconnexion</li>
+                  </Link>
                 </ul>
               </div>
             )}
