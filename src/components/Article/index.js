@@ -29,6 +29,10 @@ function Article() {
   const dispatch = useDispatch();
 
   // Récupération des inforamtions issues du state
+
+  // Utilisatuer connecté
+
+  const isLogged = useSelector((state) => state.user.user.logged);
   // list des articles
   const articles = useSelector((state) => state.article.list);
   // console.log(articles);
@@ -217,6 +221,7 @@ function Article() {
           </div>
 
           {/* Button add Favorite */}
+          {isLogged && (
           <button
             type="submit"
             className="article--container__cart--favorite"
@@ -224,6 +229,7 @@ function Article() {
           >
             Ajouter aux favoris
           </button>
+          )}
 
         </div>
       </section>
