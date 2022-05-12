@@ -85,7 +85,7 @@ const apiMiddleWare = (store) => (next) => (action) => {
           store.dispatch(fetchUser());
         })
         .catch(() => {
-          console.log('oups');
+          console.log('Pas de login effectué');
         });
       next(action);
       break;
