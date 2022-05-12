@@ -9,6 +9,7 @@ function CardCart({
   description,
   price,
   stock,
+  quantity,
 }) {
   return (
     <div className="carts__article">
@@ -24,7 +25,7 @@ function CardCart({
           <img src={deleteCart} alt={deleteCart} className="carts__article__stock__delete__icon" />
           <p className="carts__article__stock__delete__paragraph">Supprimer</p>
         </span>
-        <mark className="carts__article__stock__quantity">Quantité : XX</mark>
+        <mark className="carts__article__stock__quantity">Quantité : {quantity}</mark>
         <span className="carts__article__stock__add">
           <img src={add} alt={add} className="carts__article__stock__add__icon" />
           <p className="carts__article__stock__add__paragraph">Ajouter</p>
@@ -40,6 +41,7 @@ CardCart.propTypes = {
   picture: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   stock: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
 };
 
 export default CardCart;

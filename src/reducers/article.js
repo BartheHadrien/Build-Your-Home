@@ -6,8 +6,8 @@ import {
 
 export const initialState = {
   list: [],
-  nbArticleCart: 0,
-  nbArticleBuy: 0,
+  nbArticleCart: 1,
+  nbArticleBuy: 1,
 };
 
 const articleReducer = (state = initialState, action = {}) => {
