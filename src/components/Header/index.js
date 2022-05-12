@@ -9,6 +9,7 @@ import {
 
 import {
   toggleBurger, setSearchBarValue, setSearchBarClosed, toggleUserNav,
+  setSearchBarEmptyString,
 } from 'src/actions/header';
 
 // librairies
@@ -26,6 +27,7 @@ import hello from 'src/assets/images/hello.svg';
 // Components
 import Navbar from './Navbar';
 import BurgerItems from './BurgerItems';
+import { logout } from '../../actions/user';
 
 function Header() {
   // ________________Affichage des catégories____________________//
@@ -64,6 +66,7 @@ function Header() {
   function handleLauchSearch(evt) {
     evt.preventDefault();
     navigate(`/article/${searchBarValue}`);
+    dispatch(setSearchBarEmptyString());
   }
 
   //  ______________Gestion du menu burger_____________
