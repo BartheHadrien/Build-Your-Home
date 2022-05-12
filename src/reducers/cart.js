@@ -3,8 +3,6 @@ import { ADD_CART_TO_ORDER, SET_ARTICLE_IN_CART } from '../actions/cart';
 const initialState = {
   name: [],
 
-  nbArticleAddInCart: 0,
-
   cart: {
     orderlist: [],
   },
@@ -20,7 +18,7 @@ function cartReducer(state = initialState, action = {}) {
           ...state.name,
           action.name,
         ],
-        nbArticleAddInCart: action.quantity,
+
       };
     case ADD_CART_TO_ORDER:
       return {
