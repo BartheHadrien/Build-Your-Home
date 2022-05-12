@@ -16,6 +16,7 @@ import {
   createUser,
   setEmailInLogin,
   setPasswordInLogin,
+  passwordError,
 } from 'src/actions/user';
 
 // Styles
@@ -35,6 +36,7 @@ function NewAccount() {
   const email = useSelector((state) => state.user.signup.email);
   const password = useSelector((state) => state.user.signup.password);
   const confirmPassword = useSelector((state) => state.user.signup.confirmPassword);
+  const Error = useSelector((state) => state.user.passwordIsFalse);
 
   // On dispatch les actions vers le reducer user pour controler les valeurs
   function handleChangeFirstName(event) {
@@ -78,8 +80,15 @@ function NewAccount() {
   // dispatch l'action createUser vers le reducer user
   function handleCreate(event) {
     event.preventDefault();
-    dispatch(createUser());
-    navigate('/');
+
+    if (password === confirmPassword) {
+      dispatch(createUser());
+      navigate('/');
+    }
+    else {
+      // console.log('les mots de passes ne sont pas identiques');
+      dispatch(passwordError());
+    }
   }
 
   return (
@@ -97,6 +106,7 @@ function NewAccount() {
                 id="lastname"
                 value={lastname}
                 onChange={handleChangeLastName}
+                required
               />
             </label>
             <label htmlFor="firstname">
@@ -107,6 +117,7 @@ function NewAccount() {
                 id="firstname"
                 value={firstname}
                 onChange={handleChangeFirstName}
+                required
               />
             </label>
             <label htmlFor="birthdate">
@@ -117,16 +128,21 @@ function NewAccount() {
                 id="birthdate"
                 value={birthdate}
                 onChange={handleChangeBirthDate}
+                required
               />
             </label>
             <label htmlFor="phone">
               <span className="new-account--field__label">Téléphone</span>
               <input
                 className="new-account--field__input"
-                type="text"
+                type="tel"
                 id="phone"
                 value={phone}
                 onChange={handleChangePhone}
+                pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                minLength="10"
+                maxLength="10"
+                required
               />
             </label>
             <label htmlFor="adress">
@@ -137,6 +153,7 @@ function NewAccount() {
                 id="adress"
                 value={adress}
                 onChange={handleChangeAdress}
+                required
               />
             </label>
             <label htmlFor="email">
@@ -147,6 +164,7 @@ function NewAccount() {
                 id="email"
                 value={email}
                 onChange={handleChangeEmail}
+                required
               />
             </label>
             <label htmlFor="password">
@@ -157,26 +175,30 @@ function NewAccount() {
                 id="password"
                 value={password}
                 onChange={handleChangePassword}
+                minLength="8"
+                maxLength="14"
+                required
               />
             </label>
             <label htmlFor="confirm_password">
               <span className="new-account--field__label">Entrez le mot de passe à nouveau</span>
               <input
-                className="new-account--field__input"
+                className={!Error ? 'new-account--field__input' : 'new-account--field__inputFalse'}
                 type="password"
                 id="confirm_password"
                 value={confirmPassword}
                 onChange={handleChangeConfirmPassword}
+                minLength="8"
+                maxLength="14"
+                required
               />
             </label>
-            {/* <Link to="/"> */}
             <button
               type="submit"
               className="new-account--button__submit"
             >
               Créer mon compte
             </button>
-            {/* </Link> */}
           </form>
         </div>
         <p>Vous possédez déjà un compte ?</p>

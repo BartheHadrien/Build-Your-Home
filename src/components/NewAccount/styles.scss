@@ -9,6 +9,15 @@
     border-radius: 4px;
     border: 1px solid grey;
   }
+  &--field__inputFalse {
+    display: block;
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border-radius: 4px;
+    border: 1px solid grey;
+    background-color: rgb(242, 159, 159);
+  }
 
   &--container {
     border: 1px solid grey;

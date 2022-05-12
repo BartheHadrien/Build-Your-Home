@@ -197,6 +197,14 @@ export const setConfirmPasswordInSignup = (confirmPassword) => ({
 //   value: value,
 // });
 
+// ACTION TYPE PASSWORD_ERROR
+export const PASSWORD_ERROR = 'PASSWORD_ERROR';
+
+// ACTION CREATOR PASSWORD_ERROR
+export const passwordError = () => ({
+  type: PASSWORD_ERROR,
+});
+
 // ACTION TYPE CREATE_USER
 export const CREATE_USER = 'CREATE_USER';
 
