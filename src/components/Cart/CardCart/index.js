@@ -1,7 +1,6 @@
-import deleteCart from 'src/assets/images/delete.svg';
 import PropTypes from 'prop-types';
 
-import add from 'src/assets/images/add.svg';
+import deleteimg from 'src/assets/images/delete.svg';
 
 function CardCart({
   name,
@@ -11,6 +10,9 @@ function CardCart({
   stock,
   quantity,
 }) {
+  function handleDeleteArticle() {
+    localStorage.removeItem(name);
+  }
   return (
     <div className="carts__article">
       <img src={picture} alt={name} className="carts__article__picture" />
@@ -22,13 +24,35 @@ function CardCart({
 
       <div className="carts__article__stock">
         <span className="carts__article__stock__delete">
-          <img src={deleteCart} alt={deleteCart} className="carts__article__stock__delete__icon" />
-          <p className="carts__article__stock__delete__paragraph">Supprimer</p>
+          <button
+            type="button"
+            className="carts__article__stock__delete__icon"
+            // onClick={handleLessCart}
+          >
+            -
+          </button>
         </span>
-        <mark className="carts__article__stock__quantity">Quantité : {quantity}</mark>
+        <input
+          type="number"
+          className="carts__article__stock__quantity"
+          value={quantity}
+          // onChange={handleNbArticleInCart}
+        />
         <span className="carts__article__stock__add">
-          <img src={add} alt={add} className="carts__article__stock__add__icon" />
-          <p className="carts__article__stock__add__paragraph">Ajouter</p>
+          <button
+            type="button"
+            className="carts__article__stock__add__icon"
+            // onClick={handleAddCart}
+          >
+            +
+          </button>
+          <button
+            type="button"
+            className="carts__article__stock__add__icon"
+            onClick={handleDeleteArticle}
+          >
+            <img src={deleteimg} alt={deleteimg} />
+          </button>
         </span>
       </div>
     </div>

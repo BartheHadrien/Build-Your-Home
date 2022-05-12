@@ -11,7 +11,7 @@ import './styles.scss';
 // Components
 
 import CardCart from './CardCart';
-import { addCartToOrder, addCartToOrderBdd } from '../../actions/cart';
+import { addCartToOrder, addCartToOrderBdd, setArticleInCart } from '../../actions/cart';
 import { useNavigate } from 'react-router-dom';
 
 function Carts() {
@@ -32,11 +32,29 @@ function Carts() {
   // __________________________ Panier_____________________________ //
 
   // getting stored value
+
+  for (let i = 0, len = localStorage.length; i < len; ++i) {
+    const localStorageList = (localStorage.getItem(localStorage.key(i)));
+    const testdatalocal = [];
+    testdatalocal.push(JSON.parse(localStorageList));
+    console.log('testdata', testdatalocal);
+
+    const purified = testdatalocal.map((item) => {
+      let data = [];
+      data = item.article.name;
+      console.log('data', data);
+      return data;
+    });
+
+    dispatch(setArticleInCart(purified));
+  }
+
   const cart = useSelector((state) => state.cart.name);
+
   const cartsaved = cart.map((item) => localStorage.getItem(item));
   const initialValue = cartsaved.map((item) => JSON.parse(item));
 
-  // console.log(cart);
+  // console.log(initialValue);
   console.log('cart saved', cartsaved);
   console.log('initial value', initialValue);
   // console.log(localStorage);

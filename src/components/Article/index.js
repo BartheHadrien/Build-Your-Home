@@ -122,10 +122,9 @@ function Article() {
   // __________________________ Panier_______________________________ //
   function handleAddArticleCart() {
     const test = { quantity: counterCart, article: article, articleID: article.id };
-    console.log('test', test);
     localStorage.setItem(article.name, JSON.stringify(test));
-    console.log(article.name);
-    dispatch(setArticleInCart(article.name, nbArticleAddInCart));
+
+    // dispatch(setArticleInCart(article.name, nbArticleAddInCart));
   }
 
   return (
