@@ -26,7 +26,6 @@ import hello from 'src/assets/images/hello.svg';
 // Components
 import Navbar from './Navbar';
 import BurgerItems from './BurgerItems';
-import { logout } from '../../actions/user';
 
 function Header() {
   // ________________Affichage des catégories____________________//
