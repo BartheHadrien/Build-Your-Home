@@ -1,5 +1,6 @@
 import {
   SET_SEARCH_BAR_CLOSED,
+  SET_SEARCH_BAR_EMPTY_STRING,
   SET_SEARCH_BAR_VALUE, TOGGLE_BURGER, TOGGLE_USER_NAV,
 } from '../actions/header';
 
@@ -31,6 +32,14 @@ function headerReducer(state = initialState, action = {}) {
         navbar: {
           ...state.navbar,
           searchOpen: !state.navbar.searchOpen,
+        },
+      };
+    case SET_SEARCH_BAR_EMPTY_STRING:
+      return {
+        ...state,
+        navbar: {
+          ...state.navbar,
+          searchBarValue: '',
         },
       };
     case TOGGLE_BURGER:

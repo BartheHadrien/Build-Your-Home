@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { FETCH_ARTICLES, saveArticles } from '../actions/article';
+import { ADD_CART_TO_ORDER_BDD } from '../actions/cart';
 import { FETCH_CATEGORIES, saveCategories } from '../actions/categories';
 import {
   fetchUser, FETCH_USER, saveUser, saveUserData, LOGIN, LOGOUT,
@@ -175,7 +176,36 @@ const apiMiddleWare = (store) => (next) => (action) => {
       next(action);
       break;
     }
+    case ADD_CART_TO_ORDER_BDD: {
+      const { user: { user: { id, token } } } = store.getState();
+      const { cart: { cart: { orderlist } } } = store.getState();
+      const datatoapi = orderlist.map((item) => {
+        let data = {};
+        data = { article: item.articleID, quantity: item.quantity };
+        return data;
+      });
 
+      console.log('datatoapi', datatoapi);
+      axiosInstance
+        .post(
+          'order/add',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            status: 0,
+            user: id,
+            deliveries: 11,
+            orderlists: datatoapi,
+          },
+        )
+        .then(
+          console.log('commande bien envoyé'),
+        )
+        .catch(() => console.log('commande non envoyé'));
+      next(action);
+      break;
+    }
     case CREATE_USER: {
       const {
         user: {
