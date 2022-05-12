@@ -40,6 +40,13 @@ function Article() {
   // Nb d'articles à ajouter aux achats
   const counterBuy = useSelector((state) => state.article.nbArticleBuy);
 
+  // Quantité à ajouter au panier
+
+  const nbArticleAddInCart = useSelector((state) => state.article.nbArticleCart);
+  // console.log(nbArticleAddInCart);
+
+  // nom et quantité de l'objet à save
+
   // useParams permet d'extraire les paramètres d'url dynamique
   // ici on s'en sert pour récupérer le slug de l'article à afficher
   const { slug } = useParams();
@@ -98,11 +105,11 @@ function Article() {
     return <Navigate to="/error" replace />;
   }
 
-  if (counterCart < 0) {
+  if (counterCart < 1) {
     dispatch(setNotNull());
   }
 
-  if (counterBuy < 0) {
+  if (counterBuy < 1) {
     dispatch(setNotNullBuy());
   }
 
@@ -112,7 +119,7 @@ function Article() {
   function handleAddArticleCart() {
     localStorage.setItem(article.name, JSON.stringify(article));
     console.log(article.name);
-    dispatch(setArticleInCart(article.name));
+    dispatch(setArticleInCart(article.name, nbArticleAddInCart));
   }
 
   return (

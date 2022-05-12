@@ -1,5 +1,6 @@
 import {
-  SAVE_ARTICLES, SET_ADD_ARTICLE_IN_CART, SET_ADD_ARTICLE_TO_BUY, SET_CLEAR_QUANTITY, SET_LESS_ARTICLE_IN_CART,
+  SAVE_ARTICLES, SET_ADD_ARTICLE_IN_CART, SET_ADD_ARTICLE_TO_BUY,
+  SET_CLEAR_QUANTITY, SET_LESS_ARTICLE_IN_CART,
   SET_LESS_ARTICLE_TO_BUY,
   SET_NB_ARTICLE_IN_CART, SET_NB_ARTICLE_TO_BUY, SET_NOT_NULL, SET_NOT_NULL_BUY,
 } from '../actions/article';
@@ -8,7 +9,6 @@ export const initialState = {
   list: [],
   nbArticleCart: 1,
   nbArticleBuy: 1,
-  nbAddInCart: 1,
 };
 
 const articleReducer = (state = initialState, action = {}) => {
@@ -36,7 +36,7 @@ const articleReducer = (state = initialState, action = {}) => {
     case SET_NOT_NULL:
       return {
         ...state,
-        nbArticleCart: 0,
+        nbArticleCart: 1,
       };
     case SET_NB_ARTICLE_TO_BUY:
       return {
@@ -56,7 +56,7 @@ const articleReducer = (state = initialState, action = {}) => {
     case SET_NOT_NULL_BUY:
       return {
         ...state,
-        nbArticleBuy: 0,
+        nbArticleBuy: 1,
       };
     case SET_CLEAR_QUANTITY:
       return {
