@@ -124,6 +124,17 @@ function userReducer(state = initialState, action = {}) {
           comments: null,
           token: null,
         },
+        signup: {
+          firstname: '',
+          lastname: '',
+          birthdate: '',
+          phone: '',
+          adress: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+        },
+        passwordIsFalse: false,
       };
       // NEW USER
     // case CHANGE_VALUE:
