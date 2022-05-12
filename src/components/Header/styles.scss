@@ -129,13 +129,12 @@
         text-decoration: underline;
       }
       &__disconnect {
-        background-color: vars.$primary-color;
+        margin: 0.5rem 0rem;
         color: black;
       }
       &__disconnect:hover {
         color: coral;
         text-decoration: underline;
-        background-color: vars.$secondary-color;
       }
     }
     

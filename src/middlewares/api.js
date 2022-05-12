@@ -3,7 +3,7 @@ import { FETCH_ARTICLES, saveArticles } from '../actions/article';
 import { FETCH_CATEGORIES, saveCategories } from '../actions/categories';
 import {
   fetchUser, FETCH_USER, saveUser, saveUserData, LOGIN, LOGOUT,
-  CREATE_USER, DELETE_USER, ADD_ARTICLE_TO_FAVORITE_BDD, DELETE_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE_IN_BDD,
+  CREATE_USER, DELETE_USER, ADD_ARTICLE_TO_FAVORITE_BDD, DELETE_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE_IN_BDD, setEmailInLogin,
 } from '../actions/user';
 
 // On utilisera aisinsi cette instance plutôt qu'axios directement
@@ -176,40 +176,39 @@ const apiMiddleWare = (store) => (next) => (action) => {
       break;
     }
 
-    // case CREATE_USER: {
-    //   const {
-    //     user: {
-    //       signup: {
-    //         firstname, lastname,
-    //         birthdate, phone, adress, email, password, confirmPassword,
-    //       },
-    //     },
-    //   } = store.getState();
+    case CREATE_USER: {
+      const {
+        user: {
+          signup: {
+            firstname, lastname, birthdate, phone, adress, email, password,
+          },
+        },
+      } = store.getState();
 
-    //   axiosInstance
-    //     .post(
-    //       'user/add',
-    //       {
-    //         firstname: firstname,
-    //         lastname: lastname,
-    //         birthdate: birthdate,
-    //         phone: phone,
-    //         adress: adress,
-    //         email: email,
-    //         password: password,
-    //         confirmPassword: confirmPassword,
-    //       },
+      axiosInstance
+        .post(
+          'user/add',
+          {
+            lastname: lastname,
+            firstname: firstname,
+            adress: adress,
+            birthdate: '2022-05-11T13:36:19.797Z',
+            email: email,
+            password: password,
+            phone: phone,
+          },
 
-    //     )
-    //     .then(
-    //       (response) => {
-    //         store.dispatch(saveUserData(response.data));
-    //       },
-    //     )
-    //     .catch(() => console.log('oups...'));
-    //   next(action);
-    //   break;
-    // }
+        )
+        .then(
+          (response) => {
+            store.dispatch(saveUserData(response.data));
+            console.log(response.data);
+          },
+        )
+        .catch(() => console.log('Utilisateur non créé'));
+      next(action);
+      break;
+    }
     default:
       next(action);
   }
