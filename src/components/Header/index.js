@@ -97,7 +97,7 @@ function Header() {
     // console.log('je sors de la nav user');
     setTimeout(
       handleUserNav,
-      5000,
+      1000,
     );
   }
   function mouseIsOut1() {

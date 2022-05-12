@@ -86,3 +86,13 @@ export const setNbArticleToBuy = (value) => ({
   type: SET_NB_ARTICLE_TO_BUY,
   value,
 });
+
+// _______________ Gestion Quantity _____________________
+
+// ACTION TYPE SET_CLEAR_QUANTITY
+export const SET_CLEAR_QUANTITY = 'SET_CLEAR_QUANTITY';
+
+// ACTION CREATOR setClearQuantity
+export const setClearQuantity = () => ({
+  type: SET_CLEAR_QUANTITY,
+});
