@@ -24,6 +24,14 @@ export const setSearchBarClosed = () => ({
 
 });
 
+// ACTION TYPE SET_SEARCH_BAR_EMPTY_STRING
+export const SET_SEARCH_BAR_EMPTY_STRING = 'SET_SEARCH_BAR_EMPTY_STRING';
+
+// ACTION CREATOR setSearchBarEmptyString
+export const setSearchBarEmptyString = () => ({
+  type: SET_SEARCH_BAR_EMPTY_STRING,
+});
+
 // ACTION TYPE TOGGLE_BURGER
 export const TOGGLE_BURGER = 'TOGGLE_BURGER';
 

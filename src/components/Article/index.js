@@ -29,6 +29,10 @@ function Article() {
   const dispatch = useDispatch();
 
   // Récupération des inforamtions issues du state
+
+  // Utilisatuer connecté
+
+  const isLogged = useSelector((state) => state.user.user.logged);
   // list des articles
   const articles = useSelector((state) => state.article.list);
   // console.log(articles);
@@ -39,6 +43,13 @@ function Article() {
 
   // Nb d'articles à ajouter aux achats
   const counterBuy = useSelector((state) => state.article.nbArticleBuy);
+
+  // Quantité à ajouter au panier
+
+  const nbArticleAddInCart = useSelector((state) => state.article.nbArticleCart);
+  // console.log(nbArticleAddInCart);
+
+  // nom et quantité de l'objet à save
 
   // useParams permet d'extraire les paramètres d'url dynamique
   // ici on s'en sert pour récupérer le slug de l'article à afficher
@@ -114,7 +125,7 @@ function Article() {
     console.log('test', test);
     localStorage.setItem(article.name, JSON.stringify(test));
     console.log(article.name);
-    dispatch(setArticleInCart(article.name));
+    dispatch(setArticleInCart(article.name, nbArticleAddInCart));
   }
 
   return (
@@ -212,6 +223,7 @@ function Article() {
           </div>
 
           {/* Button add Favorite */}
+          {isLogged && (
           <button
             type="submit"
             className="article--container__cart--favorite"
@@ -219,6 +231,7 @@ function Article() {
           >
             Ajouter aux favoris
           </button>
+          )}
 
         </div>
       </section>

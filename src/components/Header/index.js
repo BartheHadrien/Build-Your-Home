@@ -9,6 +9,7 @@ import {
 
 import {
   toggleBurger, setSearchBarValue, setSearchBarClosed, toggleUserNav,
+  setSearchBarEmptyString,
 } from 'src/actions/header';
 
 // librairies
@@ -65,6 +66,7 @@ function Header() {
   function handleLauchSearch(evt) {
     evt.preventDefault();
     navigate(`/article/${searchBarValue}`);
+    dispatch(setSearchBarEmptyString());
   }
 
   //  ______________Gestion du menu burger_____________
@@ -89,6 +91,8 @@ function Header() {
     dispatch(toggleUserNav());
   }
 
+
+ 
   //  ______________User Déconnecté_____________
   function handleDisconnect() {
     dispatch(toggleUserNav());
