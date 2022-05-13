@@ -1,4 +1,4 @@
-import { ADD_CART_TO_ORDER, SET_ARTICLE_IN_CART } from '../actions/cart';
+import { ADD_CART_TO_ORDER, LESS_QUANTITY_CART, SET_ARTICLE_IN_CART } from '../actions/cart';
 
 const initialState = {
   name: [],
@@ -14,10 +14,8 @@ function cartReducer(state = initialState, action = {}) {
     case SET_ARTICLE_IN_CART:
       return {
         ...state,
-        name: [
-          ...state.name,
+        name:
           action.name,
-        ],
 
       };
     case ADD_CART_TO_ORDER:
@@ -27,6 +25,17 @@ function cartReducer(state = initialState, action = {}) {
           ...state.cart,
           orderlist: action.cart,
         },
+      };
+    case LESS_QUANTITY_CART:
+      return {
+        ...state,
+        name: [
+          ...state.name,
+          {
+            quantity: action.quantity,
+          },
+        ],
+
       };
     default:
       return state;

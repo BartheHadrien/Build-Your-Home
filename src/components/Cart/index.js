@@ -12,11 +12,13 @@ import './styles.scss';
 
 import CardCart from './CardCart';
 import { addCartToOrder, addCartToOrderBdd, setArticleInCart } from '../../actions/cart';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function Carts() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   // ________________________________________________________________ //
   // __________________________ Articles_____________________________ //
 
@@ -52,6 +54,7 @@ function Carts() {
 
   //   dispatch(setArticleInCart(purified));
   // }
+  // Récupération des objets stockés dans le localStorage
 
   const cart = useSelector((state) => state.article.list);
 
@@ -59,14 +62,19 @@ function Carts() {
 
   const value = cartsaved.map((item) => localStorage.getItem(item.name));
 
-  console.log(value);
-
   const initialValue = value.map((item) => JSON.parse(item));
+  // const purifiedInitialValue = initialValue.map((item) => item.article, item.quantity);
+  // console.log(purifiedInitialValue);
+  console.log('initial value', initialValue);
 
-  console.log(initialValue);
-  console.log('cart saved', cartsaved);
-  // console.log('initial value', initialValue);
-  // console.log(localStorage);
+  useEffect(
+    () => {
+      dispatch(setArticleInCart(initialValue));
+    },
+    [location],
+  );
+
+  const listArticleInCart = useSelector((state) => state.cart.name);
 
   // ________________________________________________________________ //
   // ________________________________________________________________ //
@@ -94,7 +102,7 @@ function Carts() {
           </div>
 
           {/* Content of article */}
-          {initialValue.map((article) => (
+          {listArticleInCart.map((article) => (
             <CardCart
               key={article.article.id}
               quantity={article.quantity}

@@ -21,3 +21,12 @@ export const ADD_CART_TO_ORDER_BDD = 'ADD_CART_TO_ORDER_BDD';
 export const addCartToOrderBdd = () => ({
   type: ADD_CART_TO_ORDER_BDD,
 });
+
+// ACTION TYPE LESS_QUANTITY_CART
+export const LESS_QUANTITY_CART = 'LESS_QUANTITY_CART';
+
+// ACTION CREATOR lessQuantityCart
+export const lessQuantityCart = (quantity) => ({
+  type: LESS_QUANTITY_CART,
+  quantity,
+});

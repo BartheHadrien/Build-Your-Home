@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-
+import { useDispatch, useSelector } from 'react-redux';
 import deleteimg from 'src/assets/images/delete.svg';
+import { lessQuantityCart, setArticleInCart } from '../../../actions/cart';
 
 function CardCart({
   name,
@@ -10,9 +11,29 @@ function CardCart({
   stock,
   quantity,
 }) {
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.article.list);
+
   function handleDeleteArticle() {
     localStorage.removeItem(name);
+
+    const cartsaved = cart.filter((item) => localStorage.getItem(item.name));
+
+    const value = cartsaved.map((item) => localStorage.getItem(item.name));
+
+    const initialValue = value.map((item) => JSON.parse(item));
+
+    dispatch(setArticleInCart(initialValue));
   }
+
+  // function handleLessCart() {
+  //   // dispatch(lessQuantityCart(quantity - 1));
+  //   const mySCI = JSON.parse(localStorage.name);
+  //   console.log('mySCI', mySCI);
+  //   mySCI.quantity = quantity - 1;
+  //   localStorage.name = JSON.stringify(mySCI);
+  // }
+
   return (
     <div className="carts__article">
       <img src={picture} alt={name} className="carts__article__picture" />
@@ -27,7 +48,7 @@ function CardCart({
           <button
             type="button"
             className="carts__article__stock__delete__icon"
-            // onClick={handleLessCart}
+            onClick={handleLessCart}
           >
             -
           </button>
