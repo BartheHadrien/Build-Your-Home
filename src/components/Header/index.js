@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom';
 
 // actions
-
 import {
   toggleBurger, setSearchBarValue, setSearchBarClosed, toggleUserNav,
   setSearchBarEmptyString,
@@ -91,8 +90,6 @@ function Header() {
     dispatch(toggleUserNav());
   }
 
-
- 
   //  ______________User Déconnecté_____________
   function handleDisconnect() {
     dispatch(toggleUserNav());
