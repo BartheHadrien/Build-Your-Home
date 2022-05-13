@@ -23,7 +23,6 @@ import {
   setNbArticleInCart, setNbArticleToBuy, setNotNull, setNotNullBuy,
 } from '../../actions/article';
 import { addArticleToFavorite, addArticleToFavoriteBdd } from '../../actions/user';
-import { setArticleInCart } from '../../actions/cart';
 
 function Article() {
   const dispatch = useDispatch();
@@ -44,9 +43,6 @@ function Article() {
   // Nb d'articles à ajouter aux achats
   const counterBuy = useSelector((state) => state.article.nbArticleBuy);
 
-  // Quantité à ajouter au panier
-
-  const nbArticleAddInCart = useSelector((state) => state.article.nbArticleCart);
   // console.log(nbArticleAddInCart);
 
   // nom et quantité de l'objet à save
@@ -122,10 +118,9 @@ function Article() {
   // __________________________ Panier_______________________________ //
   function handleAddArticleCart() {
     const test = { quantity: counterCart, article: article, articleID: article.id };
-    console.log('test', test);
     localStorage.setItem(article.name, JSON.stringify(test));
-    console.log(article.name);
-    dispatch(setArticleInCart(article.name, nbArticleAddInCart));
+
+    // dispatch(setArticleInCart(article.name, nbArticleAddInCart));
   }
 
   return (

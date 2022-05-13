@@ -1,7 +1,8 @@
-import deleteCart from 'src/assets/images/delete.svg';
 import PropTypes from 'prop-types';
-
-import add from 'src/assets/images/add.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import deleteimg from 'src/assets/images/delete.svg';
+import { lessQuantityCart, setArticleInCart } from '../../../actions/cart';
 
 function CardCart({
   name,
@@ -11,6 +12,42 @@ function CardCart({
   stock,
   quantity,
 }) {
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.article.list);
+  const navigate = useNavigate();
+
+  function handleDeleteArticle() {
+    localStorage.removeItem(name);
+
+    const cartsaved = cart.filter((item) => localStorage.getItem(item.name));
+
+    const value = cartsaved.map((item) => localStorage.getItem(item.name));
+
+    const initialValue = value.map((item) => JSON.parse(item));
+
+    dispatch(setArticleInCart(initialValue));
+  }
+
+  function handleLessCart() {
+    const localStorageArticle = localStorage.getItem(name);
+    const parsed = JSON.parse(localStorageArticle);
+    parsed.quantity = quantity - 1;
+    navigate('/panier');
+    // dispatch(lessQuantityCart(quantity - 1));
+    localStorage.setItem(name, JSON.stringify(parsed));
+
+    // console.log(parsed);
+  }
+
+  // const localStorageValue = localStorage.getItem(name);
+  // const localStorageToJSX = JSON.parse(localStorageValue);
+
+  // dispatch(lessQuantityCart(quantity - 1));
+  const mySCI = JSON.parse(localStorage.name);
+  console.log('mySCI', mySCI);
+  mySCI.quantity = quantity - 1;
+  localStorage.name = JSON.stringify(mySCI);
+
   return (
     <div className="carts__article">
       <img src={picture} alt={name} className="carts__article__picture" />
@@ -22,13 +59,35 @@ function CardCart({
 
       <div className="carts__article__stock">
         <span className="carts__article__stock__delete">
-          <img src={deleteCart} alt={deleteCart} className="carts__article__stock__delete__icon" />
-          <p className="carts__article__stock__delete__paragraph">Supprimer</p>
+          <button
+            type="button"
+            className="carts__article__stock__delete__icon"
+            onClick={handleLessCart}
+          >
+            -
+          </button>
         </span>
-        <mark className="carts__article__stock__quantity">Quantité : {quantity}</mark>
+        <input
+          type="number"
+          className="carts__article__stock__quantity"
+          value={quantity}
+          // onChange={handleNbArticleInCart}
+        />
         <span className="carts__article__stock__add">
-          <img src={add} alt={add} className="carts__article__stock__add__icon" />
-          <p className="carts__article__stock__add__paragraph">Ajouter</p>
+          <button
+            type="button"
+            className="carts__article__stock__add__icon"
+            // onClick={handleAddCart}
+          >
+            +
+          </button>
+          <button
+            type="button"
+            className="carts__article__stock__add__icon"
+            onClick={handleDeleteArticle}
+          >
+            <img src={deleteimg} alt={deleteimg} />
+          </button>
         </span>
       </div>
     </div>
