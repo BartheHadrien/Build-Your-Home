@@ -15,7 +15,7 @@ function Login() {
   // Récupération des données utilisateur connecté
   const islogged = useSelector((state) => state.user.user.logged);
 
-  // Fonctions qui gèrent le changement dans le state
+  // Fonction qui gèrent le changement dans le state
   function handleEmail(event) {
     dispatch(setEmailInLogin(event.target.value));
   }
