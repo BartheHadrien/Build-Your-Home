@@ -8,6 +8,7 @@ import Footer from '../Footer';
 import Article from '../Article';
 import Articles from '../Articles';
 import Login from '../Login';
+import Profile from '../Profile';
 
 import Cart from '../Cart';
 import Favorites from '../Favorites';
@@ -58,6 +59,7 @@ function App() {
         <Route path="/favoris" element={<Favorites />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/mentions-legales" element={<LegalMentions />} />
+        <Route path="/profil" element={<Profile />} />
 
         <Route path="/*" element={<Error />} />
 
