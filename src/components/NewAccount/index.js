@@ -139,14 +139,15 @@ function NewAccount() {
                 id="phone"
                 value={phone}
                 onChange={handleChangePhone}
-                pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                pattern="0[1-9][0-9]{8}"
+                placeholder="ex : 0153322327"
                 minLength="10"
                 maxLength="10"
                 required
               />
             </label>
             <label htmlFor="adress">
-              <span className="new-account--field__label">Adresse compléte</span>
+              <span className="new-account--field__label">Adresse complète</span>
               <input
                 className="new-account--field__input"
                 type="text"
@@ -214,16 +215,5 @@ function NewAccount() {
     </div>
   );
 }
-
-// NewAccount.defaultProps = {
-//   firstname: '',
-//   lastname: '',
-//   birthdate: '',
-//   phone: '',
-//   adress: '',
-//   email: '',
-//   password: '',
-//   confirmPassword: '',
-// };
 
 export default NewAccount;
