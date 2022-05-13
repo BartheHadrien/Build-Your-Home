@@ -26,13 +26,13 @@ function CardCart({
     dispatch(setArticleInCart(initialValue));
   }
 
-  // function handleLessCart() {
-  //   // dispatch(lessQuantityCart(quantity - 1));
-  //   const mySCI = JSON.parse(localStorage.name);
-  //   console.log('mySCI', mySCI);
-  //   mySCI.quantity = quantity - 1;
-  //   localStorage.name = JSON.stringify(mySCI);
-  // }
+  function handleLessCart() {
+    // dispatch(lessQuantityCart(quantity - 1));
+    const mySCI = JSON.parse(localStorage.name);
+    console.log('mySCI', mySCI);
+    mySCI.quantity = quantity - 1;
+    localStorage.name = JSON.stringify(mySCI);
+  }
 
   return (
     <div className="carts__article">
