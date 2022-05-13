@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import deleteimg from 'src/assets/images/delete.svg';
 import { lessQuantityCart, setArticleInCart } from '../../../actions/cart';
 
@@ -13,6 +14,7 @@ function CardCart({
 }) {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.article.list);
+  const navigate = useNavigate();
 
   function handleDeleteArticle() {
     localStorage.removeItem(name);
@@ -26,13 +28,19 @@ function CardCart({
     dispatch(setArticleInCart(initialValue));
   }
 
-  // function handleLessCart() {
-  //   // dispatch(lessQuantityCart(quantity - 1));
-  //   const mySCI = JSON.parse(localStorage.name);
-  //   console.log('mySCI', mySCI);
-  //   mySCI.quantity = quantity - 1;
-  //   localStorage.name = JSON.stringify(mySCI);
-  // }
+  function handleLessCart() {
+    const localStorageArticle = localStorage.getItem(name);
+    const parsed = JSON.parse(localStorageArticle);
+    parsed.quantity = quantity - 1;
+    navigate('/panier');
+    // dispatch(lessQuantityCart(quantity - 1));
+    localStorage.setItem(name, JSON.stringify(parsed));
+
+    // console.log(parsed);
+  }
+
+  // const localStorageValue = localStorage.getItem(name);
+  // const localStorageToJSX = JSON.parse(localStorageValue);
 
   return (
     <div className="carts__article">

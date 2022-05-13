@@ -16,7 +16,6 @@ function cartReducer(state = initialState, action = {}) {
         ...state,
         name:
           action.name,
-
       };
     case ADD_CART_TO_ORDER:
       return {
@@ -26,17 +25,17 @@ function cartReducer(state = initialState, action = {}) {
           orderlist: action.cart,
         },
       };
-    case LESS_QUANTITY_CART:
-      return {
-        ...state,
-        name: [
-          ...state.name,
-          {
-            quantity: action.quantity,
-          },
-        ],
+      // case LESS_QUANTITY_CART:
+      //   return {
+      //     ...state,
+      //     name: [
+      //       ...state.name
 
-      };
+      //         quantity: action.quantity,
+      //       ,
+      //     ],
+
+    //   };
     default:
       return state;
   }

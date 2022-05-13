@@ -23,10 +23,10 @@ export const addCartToOrderBdd = () => ({
 });
 
 // ACTION TYPE LESS_QUANTITY_CART
-export const LESS_QUANTITY_CART = 'LESS_QUANTITY_CART';
+// export const LESS_QUANTITY_CART = 'LESS_QUANTITY_CART';
 
 // ACTION CREATOR lessQuantityCart
-export const lessQuantityCart = (quantity) => ({
-  type: LESS_QUANTITY_CART,
-  quantity,
-});
+// export const lessQuantityCart = (quantity) => ({
+//   type: LESS_QUANTITY_CART,
+//   quantity,
+// });
