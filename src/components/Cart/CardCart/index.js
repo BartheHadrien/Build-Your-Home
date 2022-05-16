@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import deleteimg from 'src/assets/images/delete.svg';
-import { lessQuantityCart, setArticleInCart } from '../../../actions/cart';
+import { setArticleInCart } from '../../../actions/cart';
 
 function CardCart({
   name,
@@ -13,40 +12,46 @@ function CardCart({
   quantity,
 }) {
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.article.list);
-  const navigate = useNavigate();
+  // const cart = useSelector((state) => state.cart.name);
+  // const cartMapped = cart.map((item) => item.article);
+  // console.log(cart);
 
   function handleDeleteArticle() {
-    localStorage.removeItem(name);
-
-    const cartsaved = cart.filter((item) => localStorage.getItem(item.name));
-
-    const value = cartsaved.map((item) => localStorage.getItem(item.name));
-
-    const initialValue = value.map((item) => JSON.parse(item));
-
+    const value = localStorage.getItem('allCart');
+    const initialValue = JSON.parse(value);
+    const findValue = initialValue.find((item) => item.article.name === name);
+    const indexInitialValue = initialValue.indexOf(findValue);
+    initialValue.splice(indexInitialValue, 1);
+    localStorage.setItem('allCart', JSON.stringify(initialValue));
     dispatch(setArticleInCart(initialValue));
   }
 
   function handleLessCart() {
-    const localStorageArticle = localStorage.getItem(name);
-    const parsed = JSON.parse(localStorageArticle);
-    parsed.quantity = quantity - 1;
-    navigate('/panier');
-    // dispatch(lessQuantityCart(quantity - 1));
-    localStorage.setItem(name, JSON.stringify(parsed));
-
-    // console.log(parsed);
+    if (quantity === 1) {
+      handleDeleteArticle();
+    }
+    const value = localStorage.getItem('allCart');
+    const initialValue = JSON.parse(value);
+    const findValue = initialValue.find((item) => item.article.name === name);
+    findValue.quantity = quantity - 1;
+    const indexInitialValue = initialValue.indexOf(findValue);
+    initialValue.splice(indexInitialValue, 1, findValue);
+    localStorage.setItem('allCart', JSON.stringify(initialValue));
+    dispatch(setArticleInCart(initialValue));
   }
-
-  // const localStorageValue = localStorage.getItem(name);
-  // const localStorageToJSX = JSON.parse(localStorageValue);
-
-  // dispatch(lessQuantityCart(quantity - 1));
-  const mySCI = JSON.parse(localStorage.name);
-  console.log('mySCI', mySCI);
-  mySCI.quantity = quantity - 1;
-  localStorage.name = JSON.stringify(mySCI);
+  function handleMoreCart() {
+    if (quantity >= stock) {
+      console.log('ce produit n\'est plus en stock des délais de livraisons supplémentaires sont à prévoir');
+    }
+    const value = localStorage.getItem('allCart');
+    const initialValue = JSON.parse(value);
+    const findValue = initialValue.find((item) => item.article.name === name);
+    findValue.quantity = quantity + 1;
+    const indexInitialValue = initialValue.indexOf(findValue);
+    initialValue.splice(indexInitialValue, 1, findValue);
+    localStorage.setItem('allCart', JSON.stringify(initialValue));
+    dispatch(setArticleInCart(initialValue));
+  }
 
   return (
     <div className="carts__article">
@@ -67,17 +72,14 @@ function CardCart({
             -
           </button>
         </span>
-        <input
-          type="number"
-          className="carts__article__stock__quantity"
-          value={quantity}
-          // onChange={handleNbArticleInCart}
-        />
+        <span className="carts__article__stock__quantity">
+          {quantity}
+        </span>
         <span className="carts__article__stock__add">
           <button
             type="button"
             className="carts__article__stock__add__icon"
-            // onClick={handleAddCart}
+            onClick={handleMoreCart}
           >
             +
           </button>

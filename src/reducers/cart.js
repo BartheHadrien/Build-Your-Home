@@ -25,17 +25,6 @@ function cartReducer(state = initialState, action = {}) {
           orderlist: action.cart,
         },
       };
-      // case LESS_QUANTITY_CART:
-      //   return {
-      //     ...state,
-      //     name: [
-      //       ...state.name
-
-      //         quantity: action.quantity,
-      //       ,
-      //     ],
-
-    //   };
     default:
       return state;
   }

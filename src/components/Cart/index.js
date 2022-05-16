@@ -1,7 +1,9 @@
 // Import
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import CardArticle from 'src/components/CardArticle';
+
 // Actions
 import { findFiveArticles } from '../../selectors/article';
 
@@ -12,13 +14,13 @@ import './styles.scss';
 
 import CardCart from './CardCart';
 import { addCartToOrder, addCartToOrderBdd, setArticleInCart } from '../../actions/cart';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 
 function Carts() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+
   // ________________________________________________________________ //
   // __________________________ Articles_____________________________ //
 
@@ -32,40 +34,10 @@ function Carts() {
   // ________________________________________________________________ //
   // ________________________________________________________________ //
   // __________________________ Panier_____________________________ //
-
-  // getting stored value
-  // console.log(localStorage);
-  // const arrayLocalStorage = [];
-  // arrayLocalStorage.push(JSON.parse(localStorage));
-  // console.log(arrayLocalStorage);
-
-  // for (let i = 0, len = localStorage.length; i < len; ++i) {
-  //   const localStorageList = (localStorage.getItem(localStorage.key(i)));
-  //   const testdatalocal = [];
-  //   testdatalocal.push(JSON.parse(localStorageList));
-  //   console.log('testdata', testdatalocal);
-
-  //   const purified = testdatalocal.map((item) => {
-  //     let data = [];
-  //     data = item.article.name;
-  //     console.log('data', data);
-  //     return data;
-  //   });
-
-  //   dispatch(setArticleInCart(purified));
-  // }
-  // Récupération des objets stockés dans le localStorage
-
-  const cart = useSelector((state) => state.article.list);
-
-  const cartsaved = cart.filter((item) => localStorage.getItem(item.name));
-
-  const value = cartsaved.map((item) => localStorage.getItem(item.name));
-
-  const initialValue = value.map((item) => JSON.parse(item));
-  // const purifiedInitialValue = initialValue.map((item) => item.article, item.quantity);
-  // console.log(purifiedInitialValue);
-  console.log('initial value', initialValue);
+  const initialValue = useMemo(() => {
+    const value = localStorage.getItem('allCart');
+    return JSON.parse(value);
+  }, [localStorage]);
 
   useEffect(
     () => {
@@ -75,6 +47,25 @@ function Carts() {
   );
 
   const listArticleInCart = useSelector((state) => state.cart.name);
+  // const counterArticleInCart = listArticleInCart.length;
+  // console.log(listArticleInCart.length);
+  const quantityListArticle = listArticleInCart.map((item) => item.quantity);
+
+  let nbArticle = 0;
+
+  for (let i = 0; i < quantityListArticle.length; i++) {
+    nbArticle += quantityListArticle[i];
+  }
+
+  const priceListArticle = listArticleInCart.map((item) => item.article.price * item.quantity);
+  console.log(priceListArticle);
+
+  let sum = 0;
+
+  for (let i = 0; i < priceListArticle.length; i++) {
+    sum += priceListArticle[i];
+  }
+  console.log(sum);
 
   // ________________________________________________________________ //
   // ________________________________________________________________ //
@@ -102,15 +93,15 @@ function Carts() {
           </div>
 
           {/* Content of article */}
-          {listArticleInCart.map((article) => (
+          {listArticleInCart.map((item) => (
             <CardCart
-              key={article.article.id}
-              quantity={article.quantity}
-              {...article.article}
+              key={item.article.id}
+              quantity={item.quantity}
+              {...item.article}
             />
           ))}
 
-          <span className="carts__article__total">Sous-total (X article) : XX$</span>
+          <span className="carts__article__total">Sous-total ({nbArticle} article) : {sum}$</span>
         </section>
 
         {/* Content of payment section */}
@@ -119,7 +110,7 @@ function Carts() {
             Reiciendis reprehenderit molestiae, qui possimus, mollitia
             delectus maxime ex doloremque.
           </p>
-          <p className="carts__pay__total">Sous-total (X article) : XX$</p>
+          <p className="carts__pay__total">Sous-total ({nbArticle} article) : {sum}$</p>
           <button type="button" className="carts__pay__button" onClick={handleSendOrder}>Passer la commande</button>
           <button type="button" className="carts__pay__button">Continuez vos achats</button>
         </section>
