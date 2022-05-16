@@ -34,7 +34,7 @@ function Carts() {
   // __________________________ Panier_____________________________ //
   const value = localStorage.getItem('allCart');
   const initialValue = JSON.parse(value);
-  dispatch(setArticleInCart(initialValue));
+  // dispatch(setArticleInCart(initialValue));
 
   // ________________________________________________________________ //
   // ________________________________________________________________ //
@@ -66,7 +66,7 @@ function Carts() {
             <CardCart
               key={item.article.id}
               quantity={item.quantity}
-              // {...item.article}
+              {...item.article}
             />
           ))}
 

@@ -15,9 +15,9 @@ function CardCart({
 }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const cart = useSelector((state) => state.cart.name);
-  const cartMapped = cart.map((item) => item.article);
-  console.log(cart);
+  // const cart = useSelector((state) => state.cart.name);
+  // const cartMapped = cart.map((item) => item.article);
+  // console.log(cart);
 
   function handleDeleteArticle() {
     const value = localStorage.getItem('allCart');
@@ -38,12 +38,12 @@ function CardCart({
 
   return (
     <div className="carts__article">
-      <img src={cartMapped.picture} alt={cartMapped.name} className="carts__article__picture" />
-      <p className="carts__article__description">{cartMapped.description}
+      <img src={picture} alt={name} className="carts__article__picture" />
+      <p className="carts__article__description">{description}
       </p>
-      <span className="carts__article__value">{cartMapped.price}</span>
+      <span className="carts__article__value">{price}</span>
 
-      <span className="carts__article__avalaible">{cartMapped.stock}</span>
+      <span className="carts__article__avalaible">{stock}</span>
 
       <div className="carts__article__stock">
         <span className="carts__article__stock__delete">
