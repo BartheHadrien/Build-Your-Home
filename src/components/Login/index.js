@@ -30,16 +30,6 @@ function Login() {
     dispatch(login());
     navigate('/');
   }
-  // TEST
-  function handleClick(evt) {
-    evt.preventDefault();
-    dispatch(logout());
-  }
-
-  function handleSupp(evt) {
-    evt.preventDefault();
-    dispatch(deleteUser());
-  }
 
   return (
     <div className="login">
