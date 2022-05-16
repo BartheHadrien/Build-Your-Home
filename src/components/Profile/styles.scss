@@ -1,4 +1,11 @@
 .profile {
+
+  &--form {
+    display: flex;
+    flex-direction: column;
+    margin: 2em;
+    padding: 2em;
+  }
   width: auto;
   height: 100vh;
   margin: auto;
