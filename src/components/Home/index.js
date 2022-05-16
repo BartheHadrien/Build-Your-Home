@@ -17,7 +17,8 @@ function Home() {
 
   // Fonction filtrant le nombre de catégorie à afficher
   const filteredCategories = () => {
-    const filteredCategorie = categories.filter((categorie) => categorie.displayOrder < 10 && categorie.displayOrder > 0);
+    const filteredCategorie = categories.filter((categorie) => categorie.displayOrder < 10
+    && categorie.displayOrder > 0);
     return filteredCategorie;
   };
   // console.log(filteredCategories());
@@ -33,7 +34,8 @@ function Home() {
 
   // Fonction filtrant le nombre de catégorie à afficher
   const filteredArticles = () => {
-    const filteredArticle = articles.filter((article) => article.displayOrder < 6 && article.displayOrder > 0);
+    const filteredArticle = articles.filter((article) => article.displayOrder < 6
+    && article.displayOrder > 0);
     return filteredArticle;
   };
   // console.log(filteredArticles());

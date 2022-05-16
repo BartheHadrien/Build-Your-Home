@@ -224,6 +224,7 @@ export const VALIDATE_CAPTCHA = 'VALIDATE_CAPTCHA';
 // ACTION CREATOR VALIDATE_CAPTCHA
 export const validateCaptcha = () => ({
   type: VALIDATE_CAPTCHA,
+});
 
 // ==================Profile=====================
 // ==============================================

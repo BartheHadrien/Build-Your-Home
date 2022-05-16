@@ -4,7 +4,8 @@ import { ADD_CART_TO_ORDER_BDD } from '../actions/cart';
 import { FETCH_CATEGORIES, saveCategories } from '../actions/categories';
 import {
   fetchUser, FETCH_USER, saveUser, saveUserData, LOGIN, LOGOUT,
-  CREATE_USER, DELETE_USER, ADD_ARTICLE_TO_FAVORITE_BDD, DELETE_ARTICLE_TO_FAVORITE_IN_BDD, login, MODIFY_PROFILE,
+  CREATE_USER, DELETE_USER, ADD_ARTICLE_TO_FAVORITE_BDD,
+  DELETE_ARTICLE_TO_FAVORITE_IN_BDD, login, MODIFY_PROFILE,
 } from '../actions/user';
 
 // On utilisera aisinsi cette instance plutôt qu'axios directement

@@ -1,6 +1,6 @@
 // import npm
 import {
-  Navigate, useParams, Link, useLocation,
+  Navigate, useParams, Link,
 } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import CardArticle from 'src/components/CardArticle';
+import { useEffect, useMemo } from 'react';
 
 // Actions
 import { findFiveArticles } from '../../selectors/article';
@@ -14,7 +15,6 @@ import './styles.scss';
 
 import CardCart from './CardCart';
 import { addCartToOrder, addCartToOrderBdd, setArticleInCart } from '../../actions/cart';
-import { useEffect, useMemo } from 'react';
 
 function Carts() {
   const dispatch = useDispatch();

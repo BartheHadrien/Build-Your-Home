@@ -21,7 +21,6 @@ import user from 'src/assets/images/user.svg';
 import cart from 'src/assets/images/cart.svg';
 import logo from 'src/assets/images/logo.svg';
 import burger from 'src/assets/images/burger.svg';
-import hello from 'src/assets/images/hello.svg';
 
 // Components
 import Navbar from './Navbar';

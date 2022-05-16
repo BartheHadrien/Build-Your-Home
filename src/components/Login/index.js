@@ -1,7 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { setEmailInLogin, setPasswordInLogin, login, logout, deleteUser, validateCaptcha } from '../../actions/user';
 import { Link, useNavigate } from 'react-router-dom';
+import {
+  setEmailInLogin, setPasswordInLogin, login, validateCaptcha,
+} from '../../actions/user';
 
 import './styles.scss';
 
@@ -32,7 +34,7 @@ function Login() {
     dispatch(login());
     navigate('/');
   }
-  
+
   function handleCaptcha(value) {
     console.log('Captcha value:', value);
     dispatch(validateCaptcha());
