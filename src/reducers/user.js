@@ -3,14 +3,14 @@ import {
   SET_FIRSTNAME_IN_SIGNUP, SET_LASTNAME_IN_SIGNUP, SET_BIRTHDATE_IN_SIGNUP,
   SET_PHONE_IN_SIGNUP, SET_ADRESS_IN_SIGNUP, SET_EMAIL_IN_SIGNUP,
   SET_PASSWORD_IN_SIGNUP, SET_CONFIRM_PASSWORD_IN_SIGNUP, LOGOUT,
-  CHANGE_VALUE, ADD_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE, SET_FAVORITES_EMPTY, PASSWORD_ERROR,
+  CHANGE_VALUE, ADD_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE, SET_FAVORITES_EMPTY, PASSWORD_ERROR, VALIDATE_CAPTCHA,
 } from '../actions/user';
 
 const initialState = {
   login: {
     email: 'admin@admin.com',
     password: 'admin',
-
+    isVerified: false,
   },
   signup: {
     firstname: '',
@@ -213,6 +213,14 @@ function userReducer(state = initialState, action = {}) {
         ...state,
         passwordIsFalse: !state.user.passwordIsFalse,
 
+      };
+    case VALIDATE_CAPTCHA:
+      return {
+        ...state,
+        login: {
+          ...state.login,
+          isVerified: true,
+        },
       };
     default:
       return state;
