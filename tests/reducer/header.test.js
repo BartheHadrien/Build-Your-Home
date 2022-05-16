@@ -1,3 +1,4 @@
+// Import du reducer header
 import headerReducer from 'src/reducers/header';
 
 describe('Reducers - Recipes', () => {

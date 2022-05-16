@@ -1,3 +1,4 @@
+// Import du reducer categories
 import categoriesReducer from 'src/reducers/categories';
 
 describe('Reducers - Recipes', () => {

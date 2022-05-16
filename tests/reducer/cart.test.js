@@ -1,3 +1,4 @@
+// Import du reducer cart
 import cartReducer from 'src/reducers/cart';
 
 describe('Reducers - Recipes', () => {
