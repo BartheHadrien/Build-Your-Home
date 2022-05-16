@@ -1,5 +1,5 @@
 {
-  "name": "react-modele",
+  "name": "BuildYourHome",
   "jest": {
     "modulePaths": [
       "./"
@@ -71,5 +71,11 @@
     "redux": "^4.2.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.1.2"
-  }
+  },
+  "version": "1.0.0",
+  "description": "Projet d'apothéose site E-commerce",
+  "main": "index.js",
+  "repository": "git@github.com:O-clock-apollo/projet-09-build-your-home-front.git",
+  "author": "BartheHadrien <hadrien.barthe@hotmail.fr>",
+  "license": "MIT"
 }
