@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
-
+import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { LabelDetail } from 'semantic-ui-react';
 import {
   setEmailInLogin, setPasswordInLogin, login, logout, deleteUser,
 } from '../../actions/user';
@@ -32,16 +31,21 @@ function Login() {
   // Fonction qui gère la connexion dans le reducer user
   function handleConnect(evt) {
     evt.preventDefault();
-    dispatch(login());
 
-    if (userUnknown) {
-      navigate('/connexion');
+    async function first() {
+      dispatch(login());
     }
-    else {
-      navigate('/');
+    async function second() {
+      await first();
+      if (userUnknown) {
+        navigate('/connexion');
+      }
+      else {
+        navigate('/');
+      }
     }
+    second();
   }
-  console.log(userUnknown);
 
   // TEST
   function handleClick(evt) {
@@ -61,7 +65,10 @@ function Login() {
           <div className="login--container">
             <p className={userUnknown ? 'login--message__display' : 'login--message__hidden'}>Vous devez créer un compte utilisateur pour pouvoir vous connecté</p>
             <h1 className="login--title">S'identifier</h1>
-            <form className="login--form" onSubmit={handleConnect}>
+            <form
+              className="login--form"
+              onSubmit={handleConnect}
+            >
               <label htmlFor="email">
                 <span className="login--field__label">Votre adresse E-mail</span>
                 <input
@@ -85,6 +92,7 @@ function Login() {
               <button
                 type="submit"
                 className="login--button__submit"
+
               >
                 S'identifier
               </button>

@@ -1,7 +1,7 @@
 // Import des selecteurs findArticles et findFiveArticles
 import { findArticle, findFiveArticles } from 'src/selectors/article.js';
 // Import du state articles
-import { initialState } from 'src/reducers/article';
+import { initialState } from 'src/reducers/article.js';
 
 describe('Selectors - Article', () => {
   // tester findRecipe
