@@ -54,6 +54,16 @@ function Article() {
   // (codée dans le selectors correspondant) pour récupérer l'article à afficher
   const article = findArticle(articles, slug);
 
+  // let articleLocalStorage = JSON.parse(localStorage.getItem('article'));
+  // if (articleLocalStorage == null) articleLocalStorage = [];
+  localStorage.setItem('article', JSON.stringify(article));
+  let articleLocalStorage = JSON.parse(localStorage.getItem('article'));
+  console.log(articleLocalStorage);
+
+
+}
+
+
   // console.log(article);
 
   // Fonction permettant d'afficher 5 article en fonction du display order
