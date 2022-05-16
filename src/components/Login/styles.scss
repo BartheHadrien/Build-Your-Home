@@ -42,6 +42,17 @@
     text-align: center;
     width: 20vw;
   }
+  &--message__display {
+    display: block;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border: 0.1rem solid rgb(242, 159, 159);
+    background-color: rgb(242, 159, 159);;
+    padding: 0.5rem 0.5rem;
+  }
+  &--message__hidden {
+    display: none;
+  }
 }
 
 @media (max-width : vars.$pad) {

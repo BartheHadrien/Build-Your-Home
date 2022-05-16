@@ -3,7 +3,8 @@ import {
   SET_FIRSTNAME_IN_SIGNUP, SET_LASTNAME_IN_SIGNUP, SET_BIRTHDATE_IN_SIGNUP,
   SET_PHONE_IN_SIGNUP, SET_ADRESS_IN_SIGNUP, SET_EMAIL_IN_SIGNUP,
   SET_PASSWORD_IN_SIGNUP, SET_CONFIRM_PASSWORD_IN_SIGNUP, LOGOUT,
-  CHANGE_VALUE, ADD_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE, SET_FAVORITES_EMPTY, PASSWORD_ERROR,
+  CHANGE_VALUE, ADD_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE,
+  SET_FAVORITES_EMPTY, PASSWORD_ERROR, SET_LOGIN_UNKNOWN, RESET_LOGIN_UNKNOWN,
 } from '../actions/user';
 
 const initialState = {
@@ -40,6 +41,7 @@ const initialState = {
     logged: false,
   },
   passwordIsFalse: false,
+  userUnknown: false,
 };
 
 function userReducer(state = initialState, action = {}) {
@@ -90,6 +92,16 @@ function userReducer(state = initialState, action = {}) {
           favorites: action.user.favorites,
           comments: action.user.comments,
         },
+      };
+    case SET_LOGIN_UNKNOWN:
+      return {
+        ...state,
+        userUnknown: true,
+      };
+    case RESET_LOGIN_UNKNOWN:
+      return {
+        ...state,
+        userUnknown: false,
       };
     case ADD_ARTICLE_TO_FAVORITE:
       return {

@@ -1,7 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setEmailInLogin, setPasswordInLogin, login, logout, deleteUser } from '../../actions/user';
 import { Link, useNavigate } from 'react-router-dom';
+import { LabelDetail } from 'semantic-ui-react';
+import {
+  setEmailInLogin, setPasswordInLogin, login, logout, deleteUser,
+} from '../../actions/user';
 
 import './styles.scss';
 
@@ -14,6 +17,8 @@ function Login() {
   const password = useSelector((state) => state.user.login.password);
   // Récupération des données utilisateur connecté
   const islogged = useSelector((state) => state.user.user.logged);
+  // Récupération des données utilisateur en BDD ou non
+  const userUnknown = useSelector((state) => state.user.userUnknown);
 
   // Fonction qui gèrent le changement dans le state
   function handleEmail(event) {
@@ -28,8 +33,16 @@ function Login() {
   function handleConnect(evt) {
     evt.preventDefault();
     dispatch(login());
-    navigate('/');
+
+    if (userUnknown) {
+      navigate('/connexion');
+    }
+    else {
+      navigate('/');
+    }
   }
+  console.log(userUnknown);
+
   // TEST
   function handleClick(evt) {
     evt.preventDefault();
@@ -46,6 +59,7 @@ function Login() {
       {!islogged && (
         <section className="login--section">
           <div className="login--container">
+            <p className={userUnknown ? 'login--message__display' : 'login--message__hidden'}>Vous devez créer un compte utilisateur pour pouvoir vous connecté</p>
             <h1 className="login--title">S'identifier</h1>
             <form className="login--form" onSubmit={handleConnect}>
               <label htmlFor="email">
@@ -71,7 +85,6 @@ function Login() {
               <button
                 type="submit"
                 className="login--button__submit"
-
               >
                 S'identifier
               </button>
