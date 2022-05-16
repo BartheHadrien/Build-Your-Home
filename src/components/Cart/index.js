@@ -47,6 +47,25 @@ function Carts() {
   );
 
   const listArticleInCart = useSelector((state) => state.cart.name);
+  // const counterArticleInCart = listArticleInCart.length;
+  // console.log(listArticleInCart.length);
+  const quantityListArticle = listArticleInCart.map((item) => item.quantity);
+
+  let nbArticle = 0;
+
+  for (let i = 0; i < quantityListArticle.length; i++) {
+    nbArticle += quantityListArticle[i];
+  }
+
+  const priceListArticle = listArticleInCart.map((item) => item.article.price * item.quantity);
+  console.log(priceListArticle);
+
+  let sum = 0;
+
+  for (let i = 0; i < priceListArticle.length; i++) {
+    sum += priceListArticle[i];
+  }
+  console.log(sum);
 
   // ________________________________________________________________ //
   // ________________________________________________________________ //
@@ -82,7 +101,7 @@ function Carts() {
             />
           ))}
 
-          <span className="carts__article__total">Sous-total (X article) : XX$</span>
+          <span className="carts__article__total">Sous-total ({nbArticle} article) : {sum}$</span>
         </section>
 
         {/* Content of payment section */}
@@ -91,7 +110,7 @@ function Carts() {
             Reiciendis reprehenderit molestiae, qui possimus, mollitia
             delectus maxime ex doloremque.
           </p>
-          <p className="carts__pay__total">Sous-total (X article) : XX$</p>
+          <p className="carts__pay__total">Sous-total ({nbArticle} article) : {sum}$</p>
           <button type="button" className="carts__pay__button" onClick={handleSendOrder}>Passer la commande</button>
           <button type="button" className="carts__pay__button">Continuez vos achats</button>
         </section>

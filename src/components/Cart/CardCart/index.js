@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import deleteimg from 'src/assets/images/delete.svg';
 import { setArticleInCart } from '../../../actions/cart';
 
@@ -14,7 +12,6 @@ function CardCart({
   quantity,
 }) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   // const cart = useSelector((state) => state.cart.name);
   // const cartMapped = cart.map((item) => item.article);
   // console.log(cart);
@@ -30,11 +27,30 @@ function CardCart({
   }
 
   function handleLessCart() {
-    const localStorageArticle = localStorage.getItem(name);
-    const parsed = JSON.parse(localStorageArticle);
-    parsed.quantity = quantity - 1;
-    navigate('/panier');
-    localStorage.setItem(name, JSON.stringify(parsed));
+    if (quantity === 1) {
+      handleDeleteArticle();
+    }
+    const value = localStorage.getItem('allCart');
+    const initialValue = JSON.parse(value);
+    const findValue = initialValue.find((item) => item.article.name === name);
+    findValue.quantity = quantity - 1;
+    const indexInitialValue = initialValue.indexOf(findValue);
+    initialValue.splice(indexInitialValue, 1, findValue);
+    localStorage.setItem('allCart', JSON.stringify(initialValue));
+    dispatch(setArticleInCart(initialValue));
+  }
+  function handleMoreCart() {
+    if (quantity >= stock) {
+      console.log('ce produit n\'est plus en stock des délais de livraisons supplémentaires sont à prévoir');
+    }
+    const value = localStorage.getItem('allCart');
+    const initialValue = JSON.parse(value);
+    const findValue = initialValue.find((item) => item.article.name === name);
+    findValue.quantity = quantity + 1;
+    const indexInitialValue = initialValue.indexOf(findValue);
+    initialValue.splice(indexInitialValue, 1, findValue);
+    localStorage.setItem('allCart', JSON.stringify(initialValue));
+    dispatch(setArticleInCart(initialValue));
   }
 
   return (
@@ -56,17 +72,14 @@ function CardCart({
             -
           </button>
         </span>
-        <input
-          type="number"
-          className="carts__article__stock__quantity"
-          value={quantity}
-          // onChange={handleNbArticleInCart}
-        />
+        <span className="carts__article__stock__quantity">
+          {quantity}
+        </span>
         <span className="carts__article__stock__add">
           <button
             type="button"
             className="carts__article__stock__add__icon"
-            // onClick={handleAddCart}
+            onClick={handleMoreCart}
           >
             +
           </button>
