@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
-
-import { setEmailInLogin, setPasswordInLogin, login, logout, deleteUser } from '../../actions/user';
+import ReCAPTCHA from 'react-google-recaptcha';
+import { setEmailInLogin, setPasswordInLogin, login, logout, deleteUser, validateCaptcha } from '../../actions/user';
 import { Link, useNavigate } from 'react-router-dom';
 
 import './styles.scss';
@@ -14,6 +14,8 @@ function Login() {
   const password = useSelector((state) => state.user.login.password);
   // Récupération des données utilisateur connecté
   const islogged = useSelector((state) => state.user.user.logged);
+
+  const isVerified = useSelector((state) => state.user.login.isVerified);
 
   // Fonction qui gèrent le changement dans le state
   function handleEmail(event) {
@@ -29,6 +31,11 @@ function Login() {
     evt.preventDefault();
     dispatch(login());
     navigate('/');
+  }
+  
+  function handleCaptcha(value) {
+    console.log('Captcha value:', value);
+    dispatch(validateCaptcha());
   }
 
   return (
@@ -61,10 +68,14 @@ function Login() {
               <button
                 type="submit"
                 className="login--button__submit"
-
+                disabled={!isVerified}
               >
                 S'identifier
               </button>
+              <ReCAPTCHA
+                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                onChange={handleCaptcha}
+              />
             </form>
           </div>
           <p>Nouveau ?</p>
