@@ -26,6 +26,7 @@ function CardCart({
     const indexInitialValue = initialValue.indexOf(findValue);
     initialValue.splice(indexInitialValue, 1);
     localStorage.setItem('allCart', JSON.stringify(initialValue));
+    dispatch(setArticleInCart(initialValue));
   }
 
   function handleLessCart() {
@@ -83,11 +84,11 @@ function CardCart({
 }
 
 CardCart.propTypes = {
-  // description: PropTypes.string.isRequired,
-  // name: PropTypes.string.isRequired,
-  // picture: PropTypes.string.isRequired,
-  // price: PropTypes.number.isRequired,
-  // stock: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  stock: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
 };
 

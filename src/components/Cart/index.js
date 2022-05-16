@@ -1,6 +1,6 @@
 // Import
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import CardArticle from 'src/components/CardArticle';
 
@@ -14,10 +14,12 @@ import './styles.scss';
 
 import CardCart from './CardCart';
 import { addCartToOrder, addCartToOrderBdd, setArticleInCart } from '../../actions/cart';
+import { useEffect, useMemo } from 'react';
 
 function Carts() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   // ________________________________________________________________ //
   // __________________________ Articles_____________________________ //
@@ -32,9 +34,19 @@ function Carts() {
   // ________________________________________________________________ //
   // ________________________________________________________________ //
   // __________________________ Panier_____________________________ //
-  const value = localStorage.getItem('allCart');
-  const initialValue = JSON.parse(value);
-  // dispatch(setArticleInCart(initialValue));
+  const initialValue = useMemo(() => {
+    const value = localStorage.getItem('allCart');
+    return JSON.parse(value);
+  }, [localStorage]);
+
+  useEffect(
+    () => {
+      dispatch(setArticleInCart(initialValue));
+    },
+    [location],
+  );
+
+  const listArticleInCart = useSelector((state) => state.cart.name);
 
   // ________________________________________________________________ //
   // ________________________________________________________________ //
@@ -62,7 +74,7 @@ function Carts() {
           </div>
 
           {/* Content of article */}
-          {initialValue.map((item) => (
+          {listArticleInCart.map((item) => (
             <CardCart
               key={item.article.id}
               quantity={item.quantity}
