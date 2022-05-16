@@ -32,10 +32,12 @@ function Login() {
     dispatch(login());
     navigate('/');
   }
+  
   function handleCaptcha(value) {
     console.log('Captcha value:', value);
     dispatch(validateCaptcha());
   }
+
   return (
     <div className="login">
       {!islogged && (

@@ -224,4 +224,59 @@ export const VALIDATE_CAPTCHA = 'VALIDATE_CAPTCHA';
 // ACTION CREATOR VALIDATE_CAPTCHA
 export const validateCaptcha = () => ({
   type: VALIDATE_CAPTCHA,
+
+// ==================Profile=====================
+// ==============================================
+
+// ACTION TYPE MODIFY_PROFILE
+export const MODIFY_PROFILE = 'MODIFY_PROFILE';
+
+// ACTION CREATOR MODIFY_PROFILE
+export const modifyProfile = () => ({
+  type: MODIFY_PROFILE,
+});
+
+// ACTION TYPE SET_FIRSTNAME_IN_PROFILE
+export const SET_FIRSTNAME_IN_PROFILE = 'SET_FIRSTNAME_IN_PROFILE';
+
+// ACTION CREATOR SET_FIRSTNAME_IN_PROFILE
+export const setFirstNameInProfile = (firstname) => ({
+  type: SET_FIRSTNAME_IN_PROFILE,
+  firstname,
+});
+
+// ACTION TYPE SET_LASTNAME_IN_PROFILE
+export const SET_LASTNAME_IN_PROFILE = 'SET_LASTNAME_IN_PROFILE';
+
+// ACTION CREATOR SET_LASTNAME_IN_PROFILE
+export const setLastNameInProfile = (lastname) => ({
+  type: SET_LASTNAME_IN_PROFILE,
+  lastname,
+});
+
+// ACTION TYPE SET_BIRTHDATE_IN_PROFILE
+export const SET_BIRTHDATE_IN_PROFILE = 'SET_BIRTHDATE_IN_PROFILE';
+
+// ACTION CREATOR SET_BIRTHDATE_IN_PROFILE
+export const setBirthDateInProfile = (birthdate) => ({
+  type: SET_BIRTHDATE_IN_PROFILE,
+  birthdate,
+});
+
+// ACTION TYPE SET_PHONE_IN_PROFILE
+export const SET_PHONE_IN_PROFILE = 'SET_PHONE_IN_PROFILE';
+
+// ACTION CREATOR SET_PHONE_IN_PROFILE
+export const setPhoneInProfile = (phone) => ({
+  type: SET_PHONE_IN_PROFILE,
+  phone,
+});
+
+// ACTION TYPE SET_ADRESS_IN_PROFILE
+export const SET_ADRESS_IN_PROFILE = 'SET_ADRESS_IN_PROFILE';
+
+// ACTION CREATOR SET_ADRESS_IN_PROFILE
+export const setAdressInProfile = (adress) => ({
+  type: SET_ADRESS_IN_PROFILE,
+  adress,
 });
