@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import deleteimg from 'src/assets/images/delete.svg';
-import { lessQuantityCart, setArticleInCart } from '../../../actions/cart';
+import { setArticleInCart } from '../../../actions/cart';
 
 function CardCart({
   name,
@@ -13,19 +14,18 @@ function CardCart({
   quantity,
 }) {
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.article.list);
   const navigate = useNavigate();
+  const cart = useSelector((state) => state.cart.name);
+  const cartMapped = cart.map((item) => item.article);
+  console.log(cart);
 
   function handleDeleteArticle() {
-    localStorage.removeItem(name);
-
-    const cartsaved = cart.filter((item) => localStorage.getItem(item.name));
-
-    const value = cartsaved.map((item) => localStorage.getItem(item.name));
-
-    const initialValue = value.map((item) => JSON.parse(item));
-
-    dispatch(setArticleInCart(initialValue));
+    const value = localStorage.getItem('allCart');
+    const initialValue = JSON.parse(value);
+    const findValue = initialValue.find((item) => item.article.name === name);
+    const indexInitialValue = initialValue.indexOf(findValue);
+    initialValue.splice(indexInitialValue, 1);
+    localStorage.setItem('allCart', JSON.stringify(initialValue));
   }
 
   function handleLessCart() {
@@ -33,29 +33,17 @@ function CardCart({
     const parsed = JSON.parse(localStorageArticle);
     parsed.quantity = quantity - 1;
     navigate('/panier');
-    // dispatch(lessQuantityCart(quantity - 1));
     localStorage.setItem(name, JSON.stringify(parsed));
-
-    // console.log(parsed);
   }
-
-  // const localStorageValue = localStorage.getItem(name);
-  // const localStorageToJSX = JSON.parse(localStorageValue);
-
-  // dispatch(lessQuantityCart(quantity - 1));
-  const mySCI = JSON.parse(localStorage.name);
-  console.log('mySCI', mySCI);
-  mySCI.quantity = quantity - 1;
-  localStorage.name = JSON.stringify(mySCI);
 
   return (
     <div className="carts__article">
-      <img src={picture} alt={name} className="carts__article__picture" />
-      <p className="carts__article__description">{description}
+      <img src={cartMapped.picture} alt={cartMapped.name} className="carts__article__picture" />
+      <p className="carts__article__description">{cartMapped.description}
       </p>
-      <span className="carts__article__value">{price}</span>
+      <span className="carts__article__value">{cartMapped.price}</span>
 
-      <span className="carts__article__avalaible">{stock}</span>
+      <span className="carts__article__avalaible">{cartMapped.stock}</span>
 
       <div className="carts__article__stock">
         <span className="carts__article__stock__delete">
@@ -95,11 +83,11 @@ function CardCart({
 }
 
 CardCart.propTypes = {
-  description: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  picture: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  stock: PropTypes.number.isRequired,
+  // description: PropTypes.string.isRequired,
+  // name: PropTypes.string.isRequired,
+  // picture: PropTypes.string.isRequired,
+  // price: PropTypes.number.isRequired,
+  // stock: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
 };
 

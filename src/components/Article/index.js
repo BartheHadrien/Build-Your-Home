@@ -30,7 +30,6 @@ function Article() {
   // Récupération des inforamtions issues du state
 
   // Utilisatuer connecté
-
   const isLogged = useSelector((state) => state.user.user.logged);
   // list des articles
   const articles = useSelector((state) => state.article.list);
@@ -42,8 +41,6 @@ function Article() {
 
   // Nb d'articles à ajouter aux achats
   const counterBuy = useSelector((state) => state.article.nbArticleBuy);
-
-  // console.log(nbArticleAddInCart);
 
   // nom et quantité de l'objet à save
 
@@ -117,10 +114,12 @@ function Article() {
   // ________________________________________________________________ //
   // __________________________ Panier_______________________________ //
   function handleAddArticleCart() {
-    const test = { quantity: counterCart, article: article, articleID: article.id };
-    localStorage.setItem(article.name, JSON.stringify(test));
-
-    // dispatch(setArticleInCart(article.name, nbArticleAddInCart));
+    const addArticle = { quantity: counterCart, article: article, articleID: article.id };
+    let allCart = JSON.parse(localStorage.getItem('allCart'));
+    if (allCart == null) allCart = [];
+    localStorage.setItem('cart', JSON.stringify(addArticle));
+    allCart.push(addArticle);
+    localStorage.setItem('allCart', JSON.stringify(allCart));
   }
 
   return (

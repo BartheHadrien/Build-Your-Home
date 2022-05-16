@@ -1,7 +1,9 @@
 // Import
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import CardArticle from 'src/components/CardArticle';
+
 // Actions
 import { findFiveArticles } from '../../selectors/article';
 
@@ -12,13 +14,11 @@ import './styles.scss';
 
 import CardCart from './CardCart';
 import { addCartToOrder, addCartToOrderBdd, setArticleInCart } from '../../actions/cart';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
 function Carts() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
+
   // ________________________________________________________________ //
   // __________________________ Articles_____________________________ //
 
@@ -32,49 +32,9 @@ function Carts() {
   // ________________________________________________________________ //
   // ________________________________________________________________ //
   // __________________________ Panier_____________________________ //
-
-  // getting stored value
-  // console.log(localStorage);
-  // const arrayLocalStorage = [];
-  // arrayLocalStorage.push(JSON.parse(localStorage));
-  // console.log(arrayLocalStorage);
-
-  // for (let i = 0, len = localStorage.length; i < len; ++i) {
-  //   const localStorageList = (localStorage.getItem(localStorage.key(i)));
-  //   const testdatalocal = [];
-  //   testdatalocal.push(JSON.parse(localStorageList));
-  //   console.log('testdata', testdatalocal);
-
-  //   const purified = testdatalocal.map((item) => {
-  //     let data = [];
-  //     data = item.article.name;
-  //     console.log('data', data);
-  //     return data;
-  //   });
-
-  //   dispatch(setArticleInCart(purified));
-  // }
-  // Récupération des objets stockés dans le localStorage
-
-  const cart = useSelector((state) => state.article.list);
-
-  const cartsaved = cart.filter((item) => localStorage.getItem(item.name));
-
-  const value = cartsaved.map((item) => localStorage.getItem(item.name));
-
-  const initialValue = value.map((item) => JSON.parse(item));
-  // const purifiedInitialValue = initialValue.map((item) => item.article, item.quantity);
-  // console.log(purifiedInitialValue);
-  console.log('initial value', initialValue);
-
-  useEffect(
-    () => {
-      dispatch(setArticleInCart(initialValue));
-    },
-    [location],
-  );
-
-  const listArticleInCart = useSelector((state) => state.cart.name);
+  const value = localStorage.getItem('allCart');
+  const initialValue = JSON.parse(value);
+  dispatch(setArticleInCart(initialValue));
 
   // ________________________________________________________________ //
   // ________________________________________________________________ //
@@ -102,11 +62,11 @@ function Carts() {
           </div>
 
           {/* Content of article */}
-          {listArticleInCart.map((article) => (
+          {initialValue.map((item) => (
             <CardCart
-              key={article.article.id}
-              quantity={article.quantity}
-              {...article.article}
+              key={item.article.id}
+              quantity={item.quantity}
+              // {...item.article}
             />
           ))}
 
