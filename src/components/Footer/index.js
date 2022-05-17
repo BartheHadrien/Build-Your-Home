@@ -13,7 +13,6 @@ function Footer() {
       <div className="footer__icons">
         <img src={facebook} alt="facebook logo" className="footer__icons__icon" />
         <img src={twitter} alt="twitter logo" className="footer__icons__icon" />
-        {/* <img src={closeImage} alt={closeImage} className="footer__icons__icon" /> */}
         <img src={share} alt="share logo" className="footer__icons__icon" />
       </div>
       <div className="footer__cgv">

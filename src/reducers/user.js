@@ -3,15 +3,19 @@ import {
   SET_FIRSTNAME_IN_SIGNUP, SET_LASTNAME_IN_SIGNUP, SET_BIRTHDATE_IN_SIGNUP,
   SET_PHONE_IN_SIGNUP, SET_ADRESS_IN_SIGNUP, SET_EMAIL_IN_SIGNUP,
   SET_PASSWORD_IN_SIGNUP, SET_CONFIRM_PASSWORD_IN_SIGNUP, LOGOUT,
+  PASSWORD_ERROR, VALIDATE_CAPTCHA,
   CHANGE_VALUE, ADD_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE,
+  SET_FIRSTNAME_IN_PROFILE, SET_LASTNAME_IN_PROFILE,
+  SET_BIRTHDATE_IN_PROFILE, SET_PHONE_IN_PROFILE, SET_ADRESS_IN_PROFILE,
   SET_FAVORITES_EMPTY, PASSWORD_ERROR, SET_LOGIN_UNKNOWN, RESET_LOGIN_UNKNOWN,
+
 } from '../actions/user';
 
 const initialState = {
   login: {
     email: 'admin@admin.com',
     password: 'admin',
-
+    isVerified: false,
   },
   signup: {
     firstname: '',
@@ -39,6 +43,13 @@ const initialState = {
     comments: [],
     token: '',
     logged: false,
+  },
+  profile: {
+    firstname: '',
+    lastname: '',
+    adress: '',
+    birthdate: '',
+    phone: '',
   },
   passwordIsFalse: false,
   userUnknown: false,
@@ -225,6 +236,54 @@ function userReducer(state = initialState, action = {}) {
         ...state,
         passwordIsFalse: !state.user.passwordIsFalse,
 
+      };
+    case VALIDATE_CAPTCHA:
+      return {
+        ...state,
+        login: {
+          ...state.login,
+          isVerified: true,
+        },
+      };
+    case SET_FIRSTNAME_IN_PROFILE:
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          firstname: action.firstname,
+        },
+      };
+    case SET_LASTNAME_IN_PROFILE:
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          lastname: action.lastname,
+        },
+      };
+    case SET_BIRTHDATE_IN_PROFILE:
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          birthdate: action.birthdate,
+        },
+      };
+    case SET_PHONE_IN_PROFILE:
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          phone: action.phone,
+        },
+      };
+    case SET_ADRESS_IN_PROFILE:
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          adress: action.adress,
+        },
       };
     default:
       return state;

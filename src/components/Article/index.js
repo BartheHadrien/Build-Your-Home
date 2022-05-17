@@ -1,5 +1,7 @@
 // import npm
-import { Navigate, useParams, Link } from 'react-router-dom';
+import {
+  Navigate, useParams, Link,
+} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // import semantic ui
@@ -27,10 +29,9 @@ import { addArticleToFavorite, addArticleToFavoriteBdd } from '../../actions/use
 function Article() {
   const dispatch = useDispatch();
 
-  // Récupération des inforamtions issues du state
+  // Récupération des informations issues du state
 
   // Utilisatuer connecté
-
   const isLogged = useSelector((state) => state.user.user.logged);
   // list des articles
   const articles = useSelector((state) => state.article.list);
@@ -43,8 +44,6 @@ function Article() {
   // Nb d'articles à ajouter aux achats
   const counterBuy = useSelector((state) => state.article.nbArticleBuy);
 
-  // console.log(nbArticleAddInCart);
-
   // nom et quantité de l'objet à save
 
   // useParams permet d'extraire les paramètres d'url dynamique
@@ -53,8 +52,8 @@ function Article() {
 
   // On passe le slug en argument de l'article à la fonction findArticle
   // (codée dans le selectors correspondant) pour récupérer l'article à afficher
-
   const article = findArticle(articles, slug);
+
   // console.log(article);
 
   // Fonction permettant d'afficher 5 article en fonction du display order
@@ -82,16 +81,18 @@ function Article() {
   function handleLessBuy() {
     dispatch(setLessArticleToBuy());
   }
-  const favoriteArticles = useSelector((state) => state.user.user.favorites);
-  const favoriteArray = favoriteArticles.map((favorite) => (favorite.article.id));
-  const isFavorite = favoriteArray.includes(article.id);
 
   // Handler pour champ controllé d'achat immédiats
   function handleNbArticleToBuy(event) {
     dispatch(setNbArticleToBuy(event.target.value));
   }
   // Handler pour l'ajout d'un article au favoris
+  const favoriteArticles = useSelector((state) => state.user.user.favorites);
+  const favoriteArray = favoriteArticles.map((favorite) => (favorite.article.id));
+
   function handleAddFavorite() {
+    const isFavorite = favoriteArray.includes(article.id);
+
     if (!isFavorite) {
       dispatch(addArticleToFavorite(article));
       dispatch(addArticleToFavoriteBdd());
@@ -117,10 +118,12 @@ function Article() {
   // ________________________________________________________________ //
   // __________________________ Panier_______________________________ //
   function handleAddArticleCart() {
-    const test = { quantity: counterCart, article: article, articleID: article.id };
-    localStorage.setItem(article.name, JSON.stringify(test));
-
-    // dispatch(setArticleInCart(article.name, nbArticleAddInCart));
+    const addArticle = { quantity: counterCart, article: article, articleID: article.id };
+    let allCart = JSON.parse(localStorage.getItem('allCart'));
+    if (allCart == null) allCart = [];
+    localStorage.setItem('cart', JSON.stringify(addArticle));
+    allCart.push(addArticle);
+    localStorage.setItem('allCart', JSON.stringify(allCart));
   }
 
   return (

@@ -4,8 +4,10 @@ import { ADD_CART_TO_ORDER_BDD } from '../actions/cart';
 import { FETCH_CATEGORIES, saveCategories } from '../actions/categories';
 import {
   fetchUser, FETCH_USER, saveUser, saveUserData, LOGIN, LOGOUT,
+
   CREATE_USER, DELETE_USER, ADD_ARTICLE_TO_FAVORITE_BDD, DELETE_ARTICLE_TO_FAVORITE,
-  DELETE_ARTICLE_TO_FAVORITE_IN_BDD, setEmailInLogin, login, setLoginUnknown, resetLoginUnknown,
+  DELETE_ARTICLE_TO_FAVORITE_IN_BDD, login, MODIFY_PROFILE, setEmailInLogin, login, setLoginUnknown, resetLoginUnknown,
+
 } from '../actions/user';
 
 // On utilisera aisinsi cette instance plutôt qu'axios directement
@@ -246,6 +248,42 @@ const apiMiddleWare = (store) => (next) => (action) => {
           },
         )
         .catch(() => console.log('Utilisateur non créé'));
+      next(action);
+      break;
+    }
+    case MODIFY_PROFILE: {
+      const { user: { user: { id, token, email } } } = store.getState();
+      const {
+        user: {
+          profile: {
+            lastname,
+            firstname,
+            adress,
+            // birthdate,
+            phone,
+          },
+        },
+      } = store.getState();
+
+      axiosInstance
+        .patch(
+          `user/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            lastname: lastname,
+            firstname: firstname,
+            adress: adress,
+            birthdate: '2022-05-16T13:33:25.251Z', // birthdate, // "2022-05-16T13:33:25.251Z",
+            email: email,
+            phone: phone,
+          },
+        )
+        .then(
+          console.log('Utilisateur bien modifié'),
+        )
+        .catch(() => console.log('commande non envoyé'));
       next(action);
       break;
     }
