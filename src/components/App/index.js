@@ -1,4 +1,10 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import {
+  Routes, Route, useLocation,
+} from 'react-router-dom';
+
+// import {
+//   Redirect,
+// } from 'react-router';
 
 import Home from 'src/components/Home';
 import { useDispatch, useSelector } from 'react-redux';
@@ -72,7 +78,10 @@ function App() {
         <Route path="/mentions-legales" element={<LegalMentions />} />
         <Route path="/profil" element={<Profile />} />
 
-        <Route path="/*" element={<Error />} />
+        {/* <Route path="/*" element={<Error />} /> */}
+        <Route path="/error" component={<Error />} />
+        {/* use redirect to  change the Url */}
+        {/* <Redirect from="*" to="/error" /> */}
 
       </Routes>
 
