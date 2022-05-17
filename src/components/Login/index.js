@@ -38,17 +38,16 @@ function Login() {
   function handleConnect(evt) {
     evt.preventDefault();
 
-    async function first() {
+    function first() {
       dispatch(login());
-      alert.success('Vous etes bien connecté !');
     }
     async function second() {
-      await first();
-      if (userUnknown) {
+      if (await first() && userUnknown) {
         navigate('/connexion');
       }
       else {
         navigate('/');
+        alert.success('Vous etes bien connecté !');
       }
     }
     second();
