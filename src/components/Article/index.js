@@ -18,7 +18,7 @@ import {
   setLessArticleToBuy,
   setNbArticleInCart, setNbArticleToBuy, setNotNull, setNotNullBuy,
 } from '../../actions/article';
-import { addArticleToFavorite, addArticleToFavoriteBdd } from '../../actions/user';
+import { addArticleToFavorite, addArticleToFavoriteBdd, fetchUser } from '../../actions/user';
 
 function Article() {
   const dispatch = useDispatch();
@@ -89,6 +89,7 @@ function Article() {
     const isFavorite = favoriteArray.includes(article.id);
 
     if (!isFavorite) {
+      dispatch(fetchUser());
       dispatch(addArticleToFavorite(article));
       dispatch(addArticleToFavoriteBdd());
       alert.success("L'article a bien était ajouté a vos favoris");
