@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   Link, useNavigate,
 } from 'react-router-dom';
+import { useAlert } from 'react-alert';
 
 // actions
 import {
@@ -28,8 +29,8 @@ import BurgerItems from './BurgerItems';
 import { logout } from '../../actions/user';
 
 function Header() {
-  // ________________Affichage des catégories____________________//
-
+  const alert = useAlert();
+  // ________________Affichage des catégories____________________ //
   // Selection des catégorie récupérée dans le state
   const categories = useSelector((state) => state.categories.list);
 
@@ -94,6 +95,7 @@ function Header() {
     dispatch(toggleUserNav());
     dispatch(logout());
     navigate('/connexion');
+    alert.error('Vous etes bien déconnecté');
   }
 
   //  ______________Gestion de la div de la searchbar_____________

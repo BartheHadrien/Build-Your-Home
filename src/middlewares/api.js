@@ -264,7 +264,7 @@ const apiMiddleWare = (store) => (next) => (action) => {
           },
         },
       } = store.getState();
-
+      console.log(token);
       axiosInstance
         .patch(
           `user/${id}`,
@@ -272,12 +272,12 @@ const apiMiddleWare = (store) => (next) => (action) => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-            lastname: lastname,
-            firstname: firstname,
-            adress: adress,
+            lastname: 'lastname',
+            firstname: 'firstname',
+            adress: 'adress',
             birthdate: '2022-05-16T13:33:25.251Z', // birthdate, // "2022-05-16T13:33:25.251Z",
-            email: email,
-            phone: phone,
+            email: 'test60@test.com',
+            phone: 'phone',
           },
         )
         .then(
