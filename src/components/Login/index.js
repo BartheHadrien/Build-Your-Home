@@ -40,7 +40,6 @@ function Login() {
 
     async function first() {
       dispatch(login());
-      alert.success('Vous etes bien connecté !');
     }
     async function second() {
       await first();
@@ -49,6 +48,7 @@ function Login() {
       }
       else {
         navigate('/');
+        alert.success('Vous etes bien connecté !');
       }
     }
     second();
