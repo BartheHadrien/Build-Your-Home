@@ -1,6 +1,6 @@
 // import npm
 import {
-  Navigate, useParams, Link, useLocation,
+  Navigate, useParams, Link,
 } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -54,15 +54,13 @@ function Article() {
   // (codée dans le selectors correspondant) pour récupérer l'article à afficher
   const article = findArticle(articles, slug);
 
-  // let articleLocalStorage = JSON.parse(localStorage.getItem('article'));
-  // if (articleLocalStorage == null) articleLocalStorage = [];
-  localStorage.setItem('article', JSON.stringify(article));
   let articleLocalStorage = JSON.parse(localStorage.getItem('article'));
+  // if (articleLocalStorage == null) articleLocalStorage = [];
+  if (articleLocalStorage.name !== slug) {
+    localStorage.setItem('article', JSON.stringify(article));
+  }
+  articleLocalStorage = JSON.parse(localStorage.getItem('article'));
   console.log(articleLocalStorage);
-
-
-}
-
 
   // console.log(article);
 
@@ -112,9 +110,9 @@ function Article() {
 
   // Si l'id rentré dans l'url ne match pas avec un article
   // en BDD on fait une redirection vers une 404
-  if (!article) {
-    return <Navigate to="/error" replace />;
-  }
+  // if (!article) {
+  //   return <Navigate to="/error" replace />;
+  // }
 
   if (counterCart < 1) {
     dispatch(setNotNull());
@@ -141,25 +139,25 @@ function Article() {
       {/* Article */}
       <section className="article--container">
         <div className="article--container__img">
-          <img className="article--container__img--art" src={article.picture} alt={`illustration ${article.name}`} />
+          <img className="article--container__img--art" src={articleLocalStorage.picture} alt={`illustration ${articleLocalStorage.name}`} />
         </div>
         <div className="article--container__details">
           <div className="article--container__details--box">
-            <h2 className="article--container__details--box__title">{article.name}</h2>
+            <h2 className="article--container__details--box__title">{articleLocalStorage.name}</h2>
             <div>
               <a className="article--container__details--box__notation" href="#">Notes :</a>
-              <Rating className="article--container__details--box__rate" icon="star" defaultRating={article.rating} maxRating={5} size="tiny" />
+              <Rating className="article--container__details--box__rate" icon="star" defaultRating={articleLocalStorage.rating} maxRating={5} size="tiny" />
             </div>
           </div>
 
           <div className="box">
-            <Link className="box__tag" to={`/categories/${article.category.name}`}> {article.category.name} </Link>
-            <Link className="box__tag" to="#"> {article.brand.name} </Link>
+            <Link className="box__tag" to={`/categories/${articleLocalStorage.category.name}`}> {articleLocalStorage.category.name} </Link>
+            <Link className="box__tag" to="#"> {articleLocalStorage.brand.name} </Link>
           </div>
           <p className="article--container__details--description">
-            {article.description}
-            <span> Prix : {article.price} € </span>
-            <span> Stock : {article.stock} U </span>
+            {articleLocalStorage.description}
+            <span> Prix : {articleLocalStorage.price} € </span>
+            <span> Stock : {articleLocalStorage.stock} U </span>
           </p>
         </div>
         <div className="article--container__cart">
