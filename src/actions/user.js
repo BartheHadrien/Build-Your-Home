@@ -45,6 +45,22 @@ export const deleteUser = () => ({
   type: DELETE_USER,
 });
 
+// ACTION TYPE LOGIN_UNKNOWN
+export const SET_LOGIN_UNKNOWN = 'SET_LOGIN_UNKNOWN';
+
+// ACTION CREATOR LOGIN_UNKNOWN
+export const setLoginUnknown = () => ({
+  type: SET_LOGIN_UNKNOWN,
+});
+
+// ACTION TYPE RESET_LOGIN_UNKNOWN
+export const RESET_LOGIN_UNKNOWN = 'RESET_LOGIN_UNKNOWN';
+
+// ACTION CREATOR RESET_LOGIN_UNKNOWN
+export const resetLoginUnknown = () => ({
+  type: RESET_LOGIN_UNKNOWN,
+});
+
 // ==============================================
 // ==================SIGN UP=====================
 // ==============================================

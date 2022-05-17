@@ -171,7 +171,7 @@ function NewAccount() {
             <label htmlFor="password">
               <span className="new-account--field__label">Mot de passe</span>
               <input
-                className="new-account--field__input"
+                className={!Error ? 'new-account--field__input' : 'new-account--field__inputFalse'}
                 type="password"
                 id="password"
                 value={password}

@@ -4,8 +4,10 @@ import { ADD_CART_TO_ORDER_BDD } from '../actions/cart';
 import { FETCH_CATEGORIES, saveCategories } from '../actions/categories';
 import {
   fetchUser, FETCH_USER, saveUser, saveUserData, LOGIN, LOGOUT,
-  CREATE_USER, DELETE_USER, ADD_ARTICLE_TO_FAVORITE_BDD,
-  DELETE_ARTICLE_TO_FAVORITE_IN_BDD, login, MODIFY_PROFILE,
+
+  CREATE_USER, DELETE_USER, ADD_ARTICLE_TO_FAVORITE_BDD, DELETE_ARTICLE_TO_FAVORITE,
+  DELETE_ARTICLE_TO_FAVORITE_IN_BDD, login, MODIFY_PROFILE, setEmailInLogin, login, setLoginUnknown, resetLoginUnknown,
+
 } from '../actions/user';
 
 // On utilisera aisinsi cette instance plutôt qu'axios directement
@@ -88,6 +90,10 @@ const apiMiddleWare = (store) => (next) => (action) => {
         })
         .catch(() => {
           console.log('Pas de login effectué');
+
+          // Si l'utilisateur n'est pas en BDD, alors on passe la propriété
+          // userUnknown à true
+          store.dispatch(setLoginUnknown());
         });
       next(action);
       break;
@@ -99,6 +105,10 @@ const apiMiddleWare = (store) => (next) => (action) => {
       // delete axiosInstance.defaults.headers.common.Authorization;
 
       console.log('nettoyage du token');
+
+      // A la déconnexion on passe la propriété
+      // userUnknown à false
+      store.dispatch(resetLoginUnknown());
 
       next(action);
       break;

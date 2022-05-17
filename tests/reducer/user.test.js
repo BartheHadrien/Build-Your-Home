@@ -1,3 +1,4 @@
+// Import du reducer user
 import userReducer from 'src/reducers/user';
 
 describe('Reducers - Recipes', () => {

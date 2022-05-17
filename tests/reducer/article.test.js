@@ -1,3 +1,4 @@
+// Import du reducer articles
 import articleReducer from 'src/reducers/article';
 
 describe('Reducers - Recipes', () => {

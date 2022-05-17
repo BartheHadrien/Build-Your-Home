@@ -7,6 +7,7 @@ import {
   CHANGE_VALUE, ADD_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE,
   SET_FIRSTNAME_IN_PROFILE, SET_LASTNAME_IN_PROFILE,
   SET_BIRTHDATE_IN_PROFILE, SET_PHONE_IN_PROFILE, SET_ADRESS_IN_PROFILE,
+  SET_FAVORITES_EMPTY, PASSWORD_ERROR, SET_LOGIN_UNKNOWN, RESET_LOGIN_UNKNOWN,
 
 } from '../actions/user';
 
@@ -51,6 +52,7 @@ const initialState = {
     phone: '',
   },
   passwordIsFalse: false,
+  userUnknown: false,
 };
 
 function userReducer(state = initialState, action = {}) {
@@ -101,6 +103,16 @@ function userReducer(state = initialState, action = {}) {
           favorites: action.user.favorites,
           comments: action.user.comments,
         },
+      };
+    case SET_LOGIN_UNKNOWN:
+      return {
+        ...state,
+        userUnknown: true,
+      };
+    case RESET_LOGIN_UNKNOWN:
+      return {
+        ...state,
+        userUnknown: false,
       };
     case ADD_ARTICLE_TO_FAVORITE:
       return {
