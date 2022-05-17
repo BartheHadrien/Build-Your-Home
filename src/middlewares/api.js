@@ -6,7 +6,7 @@ import {
   fetchUser, FETCH_USER, saveUser, saveUserData, LOGIN, LOGOUT,
 
   CREATE_USER, DELETE_USER, ADD_ARTICLE_TO_FAVORITE_BDD, DELETE_ARTICLE_TO_FAVORITE,
-  DELETE_ARTICLE_TO_FAVORITE_IN_BDD, login, MODIFY_PROFILE, setEmailInLogin, login, setLoginUnknown, resetLoginUnknown,
+  DELETE_ARTICLE_TO_FAVORITE_IN_BDD, login, MODIFY_PROFILE, setEmailInLogin, setLoginUnknown, resetLoginUnknown,
 
 } from '../actions/user';
 
