@@ -14,10 +14,11 @@ function Articles() {
   // On filtre le articles correspondant au slug de l'URL
   const articlesToDisplay = articles.filter((article) => article.category.name === slug);
   console.log(articlesToDisplay);
-  if (articlesToDisplay === []) {
-    return <Navigate to="/error" />;
+
+  if (articlesToDisplay.map((item) => item.slug) == !slug) {
+    return <Navigate to="/error" replace />;
   }
-  // console.log(articlesToDisplay);
+
   return (
     <div className="articles">
       <h1 className="articles--title">{slug}</h1>

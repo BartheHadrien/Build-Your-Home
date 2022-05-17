@@ -63,16 +63,13 @@ function Article() {
 
   const listArticlesInLocalStorage = JSON.parse(localStorage.getItem('articles'));
 
-  // const redirectTo404 = listArticlesInLocalStorage.find((item) => item.slug === slug);
-
-  // if (!redirectTo404) {
-  //   return <Navigate to="/error" replace />;
-  // }
-
-  // console.log(article);
   console.log(listArticlesInLocalStorage);
   const articleToLocalStorage = listArticlesInLocalStorage.find((item) => item.slug === slug);
   console.log(articleToLocalStorage);
+
+  // if (listArticlesInLocalStorage.find((item) => item.slug == !slug)) {
+  //   return <Navigate to="/error" replace />;
+  // }
 
   let articleInLocalStorage = JSON.parse(localStorage.getItem('article'));
   console.log(articleInLocalStorage);
