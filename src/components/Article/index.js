@@ -10,8 +10,6 @@ import { Rating } from 'semantic-ui-react';
 
 // import composant
 import user from 'src/assets/images/user.svg';
-import { list } from 'postcss';
-import { useMemo } from 'react';
 import ListArticle from './ListArticle';
 
 // import image
@@ -63,23 +61,23 @@ function Article() {
 
   const listArticlesInLocalStorage = JSON.parse(localStorage.getItem('articles'));
 
-  console.log(listArticlesInLocalStorage);
+  // console.log(listArticlesInLocalStorage);
   const articleToLocalStorage = listArticlesInLocalStorage.find((item) => item.slug === slug);
-  console.log(articleToLocalStorage);
+  // console.log(articleToLocalStorage);
 
-  // if (listArticlesInLocalStorage.find((item) => item.slug == !slug)) {
-  //   return <Navigate to="/error" replace />;
-  // }
+  if (listArticlesInLocalStorage.find((item) => item.slug == !slug)) {
+    return <Navigate to="/error" replace />;
+  }
 
   let articleInLocalStorage = JSON.parse(localStorage.getItem('article'));
-  console.log(articleInLocalStorage);
+  // console.log(articleInLocalStorage);
   if (articleInLocalStorage == null) articleInLocalStorage = [{ slug: null }];
   if (articleInLocalStorage.slug !== slug) {
     localStorage.setItem('article', JSON.stringify(articleToLocalStorage));
   }
 
   articleInLocalStorage = JSON.parse(localStorage.getItem('article'));
-  console.log(articleInLocalStorage);
+  // console.log(articleInLocalStorage);
 
   // console.log(article);
   // Si l'id rentré dans l'url ne match pas avec un article
