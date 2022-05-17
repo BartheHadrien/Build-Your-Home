@@ -25,6 +25,7 @@ import {
   setNbArticleInCart, setNbArticleToBuy, setNotNull, setNotNullBuy,
 } from '../../actions/article';
 import { addArticleToFavorite, addArticleToFavoriteBdd } from '../../actions/user';
+import { useMemo } from 'react';
 
 function Article() {
   const dispatch = useDispatch();
@@ -53,17 +54,28 @@ function Article() {
   // On passe le slug en argument de l'article à la fonction findArticle
   // (codée dans le selectors correspondant) pour récupérer l'article à afficher
   const article = findArticle(articles, slug);
-  // console.log(article);
 
-  let articleLocalStorage = JSON.parse(localStorage.getItem('article'));
-  // console.log(articleLocalStorage);
-  if (articleLocalStorage == null) articleLocalStorage = [{ name: null }];
-  if (articleLocalStorage.name !== slug) {
-    localStorage.setItem('article', JSON.stringify(article));
+  // const listArticlesInLocalStorage = useMemo(() => {
+  //   const value = localStorage.getItem('articles');
+  //   return JSON.parse(value);
+  // }, []);
+
+  const listArticlesInLocalStorage = JSON.parse(localStorage.getItem('articles'));
+
+  // console.log(article);
+  console.log(listArticlesInLocalStorage);
+  const articleToLocalStorage = listArticlesInLocalStorage.find((item) => item.slug === slug);
+  console.log(articleToLocalStorage);
+
+  let articleInLocalStorage = JSON.parse(localStorage.getItem('article'));
+  console.log(articleInLocalStorage);
+  if (articleInLocalStorage == null) articleInLocalStorage = [{ slug: null }];
+  if (articleInLocalStorage.slug !== slug) {
+    localStorage.setItem('article', JSON.stringify(articleToLocalStorage));
   }
 
-  articleLocalStorage = JSON.parse(localStorage.getItem('article'));
-  console.log(articleLocalStorage);
+  articleInLocalStorage = JSON.parse(localStorage.getItem('article'));
+  console.log(articleInLocalStorage);
 
   // console.log(article);
   // Si l'id rentré dans l'url ne match pas avec un article
@@ -142,25 +154,25 @@ function Article() {
       {/* Article */}
       <section className="article--container">
         <div className="article--container__img">
-          <img className="article--container__img--art" src={articleLocalStorage.picture} alt={`illustration ${articleLocalStorage.name}`} />
+          <img className="article--container__img--art" src={articleInLocalStorage.picture} alt={`illustration ${articleInLocalStorage.name}`} />
         </div>
         <div className="article--container__details">
           <div className="article--container__details--box">
-            <h2 className="article--container__details--box__title">{articleLocalStorage.name}</h2>
+            <h2 className="article--container__details--box__title">{articleInLocalStorage.name}</h2>
             <div>
               <a className="article--container__details--box__notation" href="#">Notes :</a>
-              <Rating className="article--container__details--box__rate" icon="star" defaultRating={articleLocalStorage.rating} maxRating={5} size="tiny" />
+              <Rating className="article--container__details--box__rate" icon="star" defaultRating={articleInLocalStorage.rating} maxRating={5} size="tiny" />
             </div>
           </div>
 
           <div className="box">
-            <Link className="box__tag" to={`/categories/${articleLocalStorage.category.name}`}> {articleLocalStorage.category.name} </Link>
-            <Link className="box__tag" to="#"> {articleLocalStorage.brand.name} </Link>
+            <Link className="box__tag" to={`/categories/${articleInLocalStorage.category.name}`}> {articleInLocalStorage.category.name} </Link>
+            <Link className="box__tag" to="#"> {articleInLocalStorage.brand.name} </Link>
           </div>
           <p className="article--container__details--description">
-            {articleLocalStorage.description}
-            <span> Prix : {articleLocalStorage.price} € </span>
-            <span> Stock : {articleLocalStorage.stock} U </span>
+            {articleInLocalStorage.description}
+            <span> Prix : {articleInLocalStorage.price} € </span>
+            <span> Stock : {articleInLocalStorage.stock} U </span>
           </p>
         </div>
         <div className="article--container__cart">
