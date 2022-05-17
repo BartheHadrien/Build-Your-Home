@@ -10,6 +10,8 @@ import { Rating } from 'semantic-ui-react';
 
 // import composant
 import user from 'src/assets/images/user.svg';
+import { list } from 'postcss';
+import { useMemo } from 'react';
 import ListArticle from './ListArticle';
 
 // import image
@@ -25,7 +27,6 @@ import {
   setNbArticleInCart, setNbArticleToBuy, setNotNull, setNotNullBuy,
 } from '../../actions/article';
 import { addArticleToFavorite, addArticleToFavoriteBdd } from '../../actions/user';
-import { useMemo } from 'react';
 
 function Article() {
   const dispatch = useDispatch();
@@ -61,6 +62,12 @@ function Article() {
   // }, []);
 
   const listArticlesInLocalStorage = JSON.parse(localStorage.getItem('articles'));
+
+  // const redirectTo404 = listArticlesInLocalStorage.find((item) => item.slug === slug);
+
+  // if (!redirectTo404) {
+  //   return <Navigate to="/error" replace />;
+  // }
 
   // console.log(article);
   console.log(listArticlesInLocalStorage);
