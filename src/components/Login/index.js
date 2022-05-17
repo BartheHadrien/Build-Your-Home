@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux';
 
 import { useEffect } from 'react';
+import { useAlert } from 'react-alert';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { Link, useNavigate } from 'react-router-dom';
 import {
-  setEmailInLogin, setPasswordInLogin, login, logout, deleteUser, validateCaptcha
-
+  setEmailInLogin, setPasswordInLogin, login, logout, deleteUser, validateCaptcha,
 } from '../../actions/user';
 
 import './styles.scss';
@@ -14,6 +14,7 @@ function Login() {
   // Récupération du hook useDispatch
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const alert = useAlert();
   // Controle des champs Login
   const email = useSelector((state) => state.user.login.email);
   const password = useSelector((state) => state.user.login.password);
@@ -39,6 +40,7 @@ function Login() {
 
     async function first() {
       dispatch(login());
+      alert.success('Vous etes bien connecté !');
     }
     async function second() {
       await first();
