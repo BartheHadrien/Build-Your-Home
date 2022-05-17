@@ -53,17 +53,26 @@ function Article() {
   // On passe le slug en argument de l'article à la fonction findArticle
   // (codée dans le selectors correspondant) pour récupérer l'article à afficher
   const article = findArticle(articles, slug);
+  // console.log(article);
 
   let articleLocalStorage = JSON.parse(localStorage.getItem('article'));
-  // if (articleLocalStorage == null) articleLocalStorage = [];
+  // console.log(articleLocalStorage);
+  if (articleLocalStorage == null) articleLocalStorage = [{ name: null }];
   if (articleLocalStorage.name !== slug) {
     localStorage.setItem('article', JSON.stringify(article));
   }
+
   articleLocalStorage = JSON.parse(localStorage.getItem('article'));
   console.log(articleLocalStorage);
 
   // console.log(article);
+  // Si l'id rentré dans l'url ne match pas avec un article
+  // en BDD on fait une redirection vers une 404
 
+  // if (!articleLocalStorage) {
+  //   localStorage.removeItem('article');
+  //   return <Navigate to="/error" replace />;
+  // }
   // Fonction permettant d'afficher 5 article en fonction du display order
 
   const listArticle = findFiveArticles(articles);
@@ -107,12 +116,6 @@ function Article() {
     }
     else console.log('Vous avez deja ce favoris');
   }
-
-  // Si l'id rentré dans l'url ne match pas avec un article
-  // en BDD on fait une redirection vers une 404
-  // if (!article) {
-  //   return <Navigate to="/error" replace />;
-  // }
 
   if (counterCart < 1) {
     dispatch(setNotNull());
