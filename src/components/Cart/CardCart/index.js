@@ -1,7 +1,16 @@
-import PropTypes from 'prop-types';
+// ==============================================
+// ==================Import======================
+// ==============================================
+
+// ==================Dépendance==================
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+
+// ==================Action======================
+import { setArticleInCart } from 'src/actions/cart';
+
+// ==================Style&IMG===================
 import deleteimg from 'src/assets/images/delete.svg';
-import { setArticleInCart } from '../../../actions/cart';
 
 function CardCart({
   name,
@@ -11,11 +20,11 @@ function CardCart({
   stock,
   quantity,
 }) {
+  // ==================HOOK===================
   const dispatch = useDispatch();
-  // const cart = useSelector((state) => state.cart.name);
-  // const cartMapped = cart.map((item) => item.article);
-  // console.log(cart);
 
+  // =================HANDLER==================
+  // supprimer un article du panier
   function handleDeleteArticle() {
     const value = localStorage.getItem('allCart');
     const initialValue = JSON.parse(value);
@@ -26,6 +35,7 @@ function CardCart({
     dispatch(setArticleInCart(initialValue));
   }
 
+  // baisser la quantité du panier
   function handleLessCart() {
     if (quantity === 1) {
       handleDeleteArticle();
@@ -39,6 +49,8 @@ function CardCart({
     localStorage.setItem('allCart', JSON.stringify(initialValue));
     dispatch(setArticleInCart(initialValue));
   }
+
+  // Augmenter la quantité du panier
   function handleMoreCart() {
     if (quantity >= stock) {
       console.log('ce produit n\'est plus en stock des délais de livraisons supplémentaires sont à prévoir');
@@ -59,9 +71,7 @@ function CardCart({
       <p className="carts__article__description">{description}
       </p>
       <span className="carts__article__value">{price}</span>
-
       <span className="carts__article__avalaible">{stock}</span>
-
       <div className="carts__article__stock">
         <span className="carts__article__stock__delete">
           <button
@@ -96,6 +106,7 @@ function CardCart({
   );
 }
 
+// ==================PropTypes====================
 CardCart.propTypes = {
   description: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

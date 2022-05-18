@@ -1,8 +1,12 @@
-// Import
+// ==============================================
+// ==================Import======================
+// ==============================================
+
+// ==================Dépendance==================
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-// Styles
+// ==================Style&IMG===================
 import './styles.scss';
 
 function BurgerItems({ name, id, slug }) {

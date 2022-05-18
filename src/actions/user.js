@@ -203,16 +203,6 @@ export const setConfirmPasswordInSignup = (confirmPassword) => ({
   confirmPassword,
 });
 
-// // ACTION TYPE CHAGNE_VALUE
-// export const CHANGE_VALUE = 'CHANGE_VALUE';
-
-// // ACTION CREATOR CHAGNE_VALUE
-// export const changeValue = (key, value) => ({
-//   type: CHANGE_VALUE,
-//   key: key,
-//   value: value,
-// });
-
 // ACTION TYPE PASSWORD_ERROR
 export const PASSWORD_ERROR = 'PASSWORD_ERROR';
 
@@ -242,7 +232,8 @@ export const validateCaptcha = () => ({
   type: VALIDATE_CAPTCHA,
 });
 
-// ==================Profile=====================
+// ==============================================
+// ==================PROFILE=====================
 // ==============================================
 
 // ACTION TYPE MODIFY_PROFILE

@@ -1,4 +1,11 @@
+// ==============================================
+// ==================Import======================
+// ==============================================
+
+// ================Dépendances===================
 import axios from 'axios';
+
+// ===================Actions====================
 import { FETCH_ARTICLES, saveArticles } from '../actions/article';
 import { ADD_CART_TO_ORDER_BDD } from '../actions/cart';
 import { FETCH_CATEGORIES, saveCategories } from '../actions/categories';
@@ -9,38 +16,37 @@ import {
   setLoginUnknown, resetLoginUnknown,
 } from '../actions/user';
 
-// On utilisera aisinsi cette instance plutôt qu'axios directement
+// On défini une instance
 const axiosInstance = axios.create({
-  // par exemple, on peut définir une url de base !
+  // URL de base :
   baseURL: 'http://floriannaud-server.eddi.cloud/projet-09-build-your-home-back/public/api/',
-  // benoitthaon     floriannaud
+
 });
 
-// pour que ce middleware puisse intercepter les actions,
-// il faut qu'il soit brancher sur le store -> src/store/index.js
+// On défini notre MiddleWare qui va intercepter nos actions
+// Pour cela, on l'a branché sur le store (src/store/index.js)
 const apiMiddleWare = (store) => (next) => (action) => {
   switch (action.type) {
+    // Action qui va récupérer nos articles depuis l'API avec axios
     case FETCH_ARTICLES:
-      // on la traduit par un appel à l'API
+      // on la traduit par un appel en GET à l'API
       axiosInstance
         .get('articles')
         .then(
-          // lorsque l'api nous renvoie les articles
+          // Lorsque l'api nous renvoie les articles
           (response) => {
             // on demande au store de les enregistrer
             // on dispatche donc une action (de type SAVE_ARTICLES)
             // avec les articles à sauver en payload
             store.dispatch(saveArticles(response.data));
           },
-        )
-        .catch(
-          () => console.log('error api'),
         );
       next(action);
       break;
 
+    // Action qui va récupérer les catégories
     case FETCH_CATEGORIES:
-      // on la traduit par un appel à l'API
+      // on la traduit par un appel en GET à l'API
       axiosInstance
         .get('categories')
         .then(
@@ -51,16 +57,16 @@ const apiMiddleWare = (store) => (next) => (action) => {
             // avec les catégories à sauver en payload
             store.dispatch(saveCategories(response.data));
           },
-        )
-        .catch(
-          () => console.log('Erreur lors de la requete FETCH_CATEGORIES'),
         );
       next(action);
       break;
 
+    // Action qui va férer la connexion utilisateur
     case LOGIN: {
-      // Triple destructuration
+      // Triple destructuration pour récupérer l'email et le password rentrés par l'utilisateur
+      // depuis notre store
       const { user: { login: { email, password } } } = store.getState();
+      // on la traduit par un appel en POST à l'API
       axiosInstance
         .post(
           'login_check',
@@ -79,7 +85,6 @@ const apiMiddleWare = (store) => (next) => (action) => {
 
           // on demande la sauvegarde de ce user
           store.dispatch(saveUser(user));
-
           // équivalent à :
           // store.dispatch(saveUser(response.data));
 
@@ -88,8 +93,6 @@ const apiMiddleWare = (store) => (next) => (action) => {
           store.dispatch(fetchUser());
         })
         .catch(() => {
-          console.log('Pas de login effectué');
-
           // Si l'utilisateur n'est pas en BDD, alors on passe la propriété
           // userUnknown à true
           store.dispatch(setLoginUnknown());
@@ -97,6 +100,7 @@ const apiMiddleWare = (store) => (next) => (action) => {
       next(action);
       break;
     }
+    // Action qui va gérer la déconnexion d'un utilisateur
     case LOGOUT:
       // on nettoie notre instance axios du token
       axiosInstance.defaults.headers.common.Authorization = null;

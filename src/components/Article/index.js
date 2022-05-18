@@ -1,103 +1,110 @@
-// import npm
-import {
-  Navigate, useParams, Link,
-} from 'react-router-dom';
+// ==============================================
+// ==================Import======================
+// ==============================================
+
+// ==================Dépendance==================
+import { Navigate, useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAlert } from 'react-alert';
-// import semantic ui
-import { Rating } from 'semantic-ui-react';
-// import composant
-import user from 'src/assets/images/user.svg';
 import { useMemo } from 'react';
-import ListArticle from './ListArticle';
-// import selectors function
+import { Rating } from 'semantic-ui-react';
 
-import { findArticle, findFiveArticles } from '../../selectors/article';
-// import style
-import './styles.scss';
+// ==================Action======================
 import {
   setAddArticleInCart, setAddArticleToBuy, setLessArticleInCart,
   setLessArticleToBuy,
   setNbArticleInCart, setNbArticleToBuy, setNotNull, setNotNullBuy,
-} from '../../actions/article';
+} from 'src/actions/article';
+import { addArticleToFavorite, addArticleToFavoriteBdd, fetchUser } from 'src/actions/user';
 
-import { addArticleToFavorite, addArticleToFavoriteBdd, fetchUser } from '../../actions/user';
+// ==================Style&IMG===================
+import './styles.scss';
+import user from 'src/assets/images/user.svg';
+
+// ==================Fonction====================
+import { findArticle, findFiveArticles } from '../../selectors/article';
+
+// ==================Composant===================
+import ListArticle from './ListArticle';
 
 function Article() {
+// ====================HOOK======================
+
   const dispatch = useDispatch();
   const alert = useAlert();
-
-  // Récupération des informations issues du state
-
-  // Utilisatuer connecté
-  const isLogged = useSelector((state) => state.user.user.logged);
-  // list des articles
-  const articles = useSelector((state) => state.article.list);
-  // console.log(articles);
-
-  // nombre d'articles à ajouter au panier
-  const counterCart = useSelector((state) => state.article.nbArticleCart);
-  // console.log(counterCart);
-
-  // Nb d'articles à ajouter aux achats
-  const counterBuy = useSelector((state) => state.article.nbArticleBuy);
-
-  // nom et quantité de l'objet à save
-
   // useParams permet d'extraire les paramètres d'url dynamique
   // ici on s'en sert pour récupérer le slug de l'article à afficher
   const { slug } = useParams();
+
+  // ========Récupération des informations issues du state=========
+
+  // Utilisateur connecté
+  const isLogged = useSelector((state) => state.user.user.logged);
+
+  // liste de tous les articles
+  const articles = useSelector((state) => state.article.list);
+
+  // quantité d'articles à ajouter au panier
+  const counterCart = useSelector((state) => state.article.nbArticleCart);
+
+  // quantité d'articles à ajouter aux achats
+  const counterBuy = useSelector((state) => state.article.nbArticleBuy);
+
+  // Favoris de l'user connecté
+  const favoriteArticles = useSelector((state) => state.user.user.favorites);
+
+  // ========================Fonctions filtres=========================
 
   // On passe le slug en argument de l'article à la fonction findArticle
   // (codée dans le selectors correspondant) pour récupérer l'article à afficher
   const article = findArticle(articles, slug);
 
+  // Fonction permettant d'afficher 5 article en fonction du display order
+
+  const listArticle = findFiveArticles(articles);
+
+  // Boucle pour extraire tous les id d'articles des favoris de l'user.
+  // Pour comparer dans le handler AddFavorite si l'article n'a pas été déjà ajouté en favoris
+  const favoriteArray = favoriteArticles.map((favorite) => (favorite.article.id));
+
+  // ==========================LocalSorage==========================
+
+  // Récupération de la liste de tout les articles depuis le localStorage
   const listArticlesInLocalStorage = useMemo(() => {
     const value = localStorage.getItem('articles');
     return JSON.parse(value);
   }, []);
 
-  // const listArticlesInLocalStorage = JSON.parse(localStorage.getItem('articles'));
-
-  // console.log(listArticlesInLocalStorage);
-
-  // useEffect(
-  //   () => {
+  // Filtre sur le tableau de tout les articles pour récupérer l'article visé
+  // (comparaison avec le slug issus de l'url => useParams)
   const articleToLocalStorage = listArticlesInLocalStorage.find((item) => item.slug === slug);
-  //   },
-  //   [],
-  // );
+
+  // Si le slug entré dans l'url ne correspond à aucun articles extrait du loclaStorage
+  // redirection vers page 404
 
   if (articleToLocalStorage === undefined) {
     return <Navigate to="/error" replace />;
   }
 
+  // Extraction de l'article visé depuis le localStorage
   let articleInLocalStorage = JSON.parse(localStorage.getItem('article'));
+
+  // Si article localStorage vide ou article null création ajout d'un slug null
   if (articleInLocalStorage == null) articleInLocalStorage = [{ slug: null }];
+
+  // Si le slug correspondant à l'article visé ne correspond pas à celui de l'url
+  // on le remplace (key article) par l'article filtré dans le tableau de tout les articles
   if (articleInLocalStorage.slug !== slug) {
     localStorage.setItem('article', JSON.stringify(articleToLocalStorage));
   }
 
+  // On extrait l'entrée mis à jour du localStorage
   articleInLocalStorage = JSON.parse(localStorage.getItem('article'));
-  // console.log(articleInLocalStorage);
 
-  // console.log(article);
-  // Si l'id rentré dans l'url ne match pas avec un article
-  // en BDD on fait une redirection vers une 404
+  // ==========================================
+  // ==================Handler=================
 
-  // if (!articleLocalStorage) {
-  //   localStorage.removeItem('article');
-  //   return <Navigate to="/error" replace />;
-  // }
-  // Fonction permettant d'afficher 5 article en fonction du display order
-
-  const listArticle = findFiveArticles(articles);
-  // console.log(listArticle);
-
-  // Handler champ controlé de l'input cart
-  function handleNbArticleInCart(event) {
-    dispatch(setNbArticleInCart(event.target.value));
-  }
+  // ========Compteurs========
 
   // Handlers pour incrémenter le compteur du panier & de l'achat immédiat
   function handleAddCart() {
@@ -107,7 +114,7 @@ function Article() {
     dispatch(setAddArticleToBuy());
   }
 
-  // Handler pour décrémenter le Panier
+  // Handler pour décrémenter le Panier & achat immédiat
   function handleLessCart() {
     dispatch(setLessArticleInCart());
   }
@@ -115,46 +122,70 @@ function Article() {
     dispatch(setLessArticleToBuy());
   }
 
-  // Handler pour champ controllé d'achat immédiats
-  function handleNbArticleToBuy(event) {
-    dispatch(setNbArticleToBuy(event.target.value));
-  }
+  // ========Favoris========
+
   // Handler pour l'ajout d'un article au favoris
-  const favoriteArticles = useSelector((state) => state.user.user.favorites);
-  const favoriteArray = favoriteArticles.map((favorite) => (favorite.article.id));
 
   function handleAddFavorite() {
+    // Comparaison entre les id des articles favoris et de l'article courant pour savoir
+    // si ce dernier n'a pas déjà été ajouté  en favoris
     const isFavorite = favoriteArray.includes(article.id);
-
+    // Si l'article n'est pas déjà dans les favoris de l'utilisateur connecté alors:
     if (!isFavorite) {
       dispatch(fetchUser());
+      // J'ajoute l'article dans ces favoris => state
       dispatch(addArticleToFavorite(article));
+      // Je l'ajoute également en BDD
       dispatch(addArticleToFavoriteBdd());
       alert.success("L'article a bien était ajouté a vos favoris");
     }
     else alert.error('Vous avez deja cet article en favoris');
   }
 
+  // ========Panier========
+
+  // Handler pour ajout de l'article au panier
+
+  function handleAddArticleCart() {
+    // création de l'objet à stocker dans le local storage contenant toute les informations
+    // nécessaire => quantité et données de l'article concerné
+    const addArticle = { quantity: counterCart, article: article, articleID: article.id };
+    // Récupération (création) des données stockées dans le localStorage à la key allCart
+    let allCart = JSON.parse(localStorage.getItem('allCart'));
+    // Si localStorage vide (null) attribution d'une valeur par défaut étant un tableau vide
+    if (allCart == null) allCart = [];
+    // mise à jour de la key cart dans le local Storage avec les données souhaitées
+    localStorage.setItem('cart', JSON.stringify(addArticle));
+    // Injection de l'objet à stocker dans le tableau extrait du localStorage
+    allCart.push(addArticle);
+    // Réinjection de ce même tableau à la key allCart dans le localstorage
+    localStorage.setItem('allCart', JSON.stringify(allCart));
+    // alerte confirmant l'ajout de l'article au panier
+    alert.success("L'article a bien était ajouté a votre panier");
+  }
+  // ==================Champs Controllés==========
+
+  // Handler champ controlé de l'input panier
+  function handleNbArticleInCart(event) {
+    dispatch(setNbArticleInCart(event.target.value));
+  }
+
+  // Handler pour champ controllé d'achat immédiats
+  function handleNbArticleToBuy(event) {
+    dispatch(setNbArticleToBuy(event.target.value));
+  }
+
+  // ================ Conditions ===============
+  // Si le compteur panier est inférieur à 1 je le réinitialise
   if (counterCart < 1) {
     dispatch(setNotNull());
   }
+  // Si le compteur achat immédiat est inférieur à 1 je le réinitialise
 
   if (counterBuy < 1) {
     dispatch(setNotNullBuy());
   }
 
-  // ________________________________________________________________ //
-  // ________________________________________________________________ //
-  // __________________________ Panier_______________________________ //
-  function handleAddArticleCart() {
-    const addArticle = { quantity: counterCart, article: article, articleID: article.id };
-    let allCart = JSON.parse(localStorage.getItem('allCart'));
-    if (allCart == null) allCart = [];
-    localStorage.setItem('cart', JSON.stringify(addArticle));
-    allCart.push(addArticle);
-    localStorage.setItem('allCart', JSON.stringify(allCart));
-    alert.success("L'article a bien était ajouté a votre panier");
-  }
   return (
     <div className="article">
       {/* Article */}
@@ -183,6 +214,7 @@ function Article() {
         </div>
         <div className="article--container__cart">
           <h2 className="article--container__cart--title">Ajouter au panier</h2>
+
           {/* Counter Cart */}
           <div className="article--container__cart--add">
             <button
@@ -262,7 +294,7 @@ function Article() {
         </div>
       </section>
 
-      {/* Slider */}
+      {/* Selection of five article */}
       <section className="slider--container">
         {listArticle.map((itemArticle) => <ListArticle key={itemArticle.id} {...itemArticle} />)}
 

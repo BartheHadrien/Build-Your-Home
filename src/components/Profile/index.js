@@ -1,19 +1,31 @@
-import './styles.scss';
+// ==============================================
+// ==================Import======================
+// ==============================================
+
+// ==================Dépendance==================
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useAlert } from 'react-alert';
+
+// ==================Action======================
 import {
   deleteUser, logout, modifyProfile, setAdressInProfile,
   setBirthDateInProfile, setFirstNameInProfile,
   setLastNameInProfile, setPhoneInProfile,
 } from '../../actions/user';
 
+// ==================Style&IMG===================
+import './styles.scss';
+
 function Profile() {
+  // ==================HOOK===================
   const dispatch = useDispatch();
   const alert = useAlert();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
 
+  // ==================Handler=================
+  // Suppresion d'un utilisateur
   function handleDeleteUser(evt) {
     evt.preventDefault();
     dispatch(deleteUser());
@@ -21,24 +33,22 @@ function Profile() {
     navigate('/');
     alert.success('Vous avez bien supprimé votre compte');
   }
-
+  // Modification du profil
   function handleModifyProfile(evt) {
     evt.preventDefault();
     dispatch(modifyProfile());
   }
 
-  // On dispatch les actions vers le reducer user pour controler les valeurs
+  // ==================Champs Controllés==========
   function handleChangeFirstName(event) {
     dispatch(setFirstNameInProfile(event.target.value));
   }
-
   function handleChangeLastName(event) {
     dispatch(setLastNameInProfile(event.target.value));
   }
   function handleChangeBirthDate(event) {
     dispatch(setBirthDateInProfile(event.target.value));
   }
-
   function handleChangePhone(event) {
     dispatch(setPhoneInProfile(event.target.value));
   }

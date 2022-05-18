@@ -1,10 +1,19 @@
-import './styles.scss';
-import CardArticle from 'src/components/CardArticle';
+// ==============================================
+// ==================Import======================
+// ==============================================
 
+// ==================Dépendance==================
 import { useSelector } from 'react-redux';
 import { Navigate, useParams } from 'react-router-dom';
 
+// ==================Composant===================
+import CardArticle from 'src/components/CardArticle';
+
+// ==================Style&IMG===================
+import './styles.scss';
+
 function Articles() {
+  // ==================HOOK===================
   // On utilise le Hook useParams pour récupérer le slug de l'URL courante
   const { slug } = useParams();
 
@@ -13,9 +22,9 @@ function Articles() {
 
   // On filtre le articles correspondant au slug de l'URL
   const articlesToDisplay = articles.filter((article) => article.category.name === slug);
-  console.log(articlesToDisplay);
 
-  if (articlesToDisplay.map((item) => item.slug) == !slug) {
+  // Si l'article n'est pas trouvé alors on redirige vers la page erreur
+  if (articlesToDisplay.map((item) => item.slug) === !slug) {
     return <Navigate to="/error" replace />;
   }
 

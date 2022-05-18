@@ -1,8 +1,15 @@
+// ==============================================
+// ================Import Actions================
+// ==============================================
 import {
   SET_SEARCH_BAR_CLOSED,
   SET_SEARCH_BAR_EMPTY_STRING,
   SET_SEARCH_BAR_VALUE, TOGGLE_BURGER, TOGGLE_USER_NAV,
 } from '../actions/header';
+
+// ==============================================
+// ================InitialState================
+// ==============================================
 
 const initialState = {
   navbar: {
@@ -15,17 +22,12 @@ const initialState = {
   },
 };
 
+// ==============================================
+// =================Reducer================
+// ==============================================
+
 function headerReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case SET_SEARCH_BAR_VALUE:
-      return {
-        ...state,
-        navbar: {
-          ...state.navbar,
-          searchBarValue: action.value,
-          searchOpen: true,
-        },
-      };
     case SET_SEARCH_BAR_CLOSED:
       return {
         ...state,
@@ -56,6 +58,16 @@ function headerReducer(state = initialState, action = {}) {
         userNavbar: {
           ...state.userNavbar,
           isOpen: !state.userNavbar.isOpen,
+        },
+      };
+      // ================Champs controllé================
+    case SET_SEARCH_BAR_VALUE:
+      return {
+        ...state,
+        navbar: {
+          ...state.navbar,
+          searchBarValue: action.value,
+          searchOpen: true,
         },
       };
     default:

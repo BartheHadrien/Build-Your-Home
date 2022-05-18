@@ -87,8 +87,6 @@ export const setNbArticleToBuy = (value) => ({
   value,
 });
 
-// _______________ Gestion Quantity _____________________
-
 // ACTION TYPE SET_CLEAR_QUANTITY
 export const SET_CLEAR_QUANTITY = 'SET_CLEAR_QUANTITY';
 

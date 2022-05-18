@@ -1,15 +1,21 @@
+// ==============================================
+// ================Import Actions================
+// ==============================================
 import {
   SET_EMAIL_IN_LOGIN, SET_PASSWORD_IN_LOGIN, SAVE_USER, SAVE_USER_DATA,
   SET_FIRSTNAME_IN_SIGNUP, SET_LASTNAME_IN_SIGNUP, SET_BIRTHDATE_IN_SIGNUP,
   SET_PHONE_IN_SIGNUP, SET_ADRESS_IN_SIGNUP, SET_EMAIL_IN_SIGNUP,
   SET_PASSWORD_IN_SIGNUP, SET_CONFIRM_PASSWORD_IN_SIGNUP, LOGOUT,
   PASSWORD_ERROR, VALIDATE_CAPTCHA,
-  CHANGE_VALUE, ADD_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE,
+  ADD_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE,
   SET_FIRSTNAME_IN_PROFILE, SET_LASTNAME_IN_PROFILE,
   SET_BIRTHDATE_IN_PROFILE, SET_PHONE_IN_PROFILE, SET_ADRESS_IN_PROFILE,
-  SET_FAVORITES_EMPTY, SET_LOGIN_UNKNOWN, RESET_LOGIN_UNKNOWN,
+  SET_LOGIN_UNKNOWN, RESET_LOGIN_UNKNOWN,
 
 } from '../actions/user';
+
+// ===============================================
+// ===================InitialState================
 
 const initialState = {
   login: {
@@ -55,24 +61,12 @@ const initialState = {
   userUnknown: false,
 };
 
+// ==========================================
+// ==================Reducer=================
+// ==========================================
+
 function userReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case SET_EMAIL_IN_LOGIN:
-      return {
-        ...state,
-        login: {
-          ...state.login,
-          email: action.value,
-        },
-      };
-    case SET_PASSWORD_IN_LOGIN:
-      return {
-        ...state,
-        login: {
-          ...state.login,
-          password: action.value,
-        },
-      };
     case SAVE_USER:
       return {
         ...state,
@@ -167,14 +161,6 @@ function userReducer(state = initialState, action = {}) {
         },
         passwordIsFalse: false,
       };
-      // NEW USER
-    // case CHANGE_VALUE:
-    //   return {
-    //     ...state,
-    //     signup: {
-    //       [action.id]: action.value,
-    //     },
-    //   };
     case SET_FIRSTNAME_IN_SIGNUP:
       return {
         ...state,
@@ -291,6 +277,23 @@ function userReducer(state = initialState, action = {}) {
         profile: {
           ...state.profile,
           adress: action.adress,
+        },
+      };
+      // ========Champs Controllés========
+    case SET_EMAIL_IN_LOGIN:
+      return {
+        ...state,
+        login: {
+          ...state.login,
+          email: action.value,
+        },
+      };
+    case SET_PASSWORD_IN_LOGIN:
+      return {
+        ...state,
+        login: {
+          ...state.login,
+          password: action.value,
         },
       };
     default:

@@ -1,63 +1,66 @@
-import {
-  Routes, Route, useLocation,
-} from 'react-router-dom';
+// ==============================================
+// ==================Import======================
+// ==============================================
 
-import Home from 'src/components/Home';
+// ==================Dépendance==================
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+
+// ==================Composant===================
+import Home from 'src/components/Home';
 import Header from '../Header';
 import Footer from '../Footer';
 import Article from '../Article';
 import Articles from '../Articles';
 import Login from '../Login';
 import Profile from '../Profile';
-
 import Cart from '../Cart';
 import Favorites from '../Favorites';
 import Contact from '../Contact';
 import LegalMentions from '../LegalMentions';
-
 import Error from '../Error';
-
-import './styles.scss';
 import NewAccount from '../NewAccount';
+
+// ==================Action======================
 import { fetchArticles, setClearQuantity } from '../../actions/article';
 import { fetchCategories } from '../../actions/categories';
 
+// ==================Style&IMG===================
+import './styles.scss';
+
 function App() {
+  // ==================HOOK===================
   const dispatch = useDispatch();
   const location = useLocation();
   const listArticles = useSelector((state) => state.article.list);
-  console.log(listArticles);
+
+  // ==================UseEffect===============
   // Au montage du composant principal
   useEffect(
     () => {
-      // Récupération des articles
+      // Récupération des articles et catégories
       dispatch(fetchArticles());
-      // Récupération des catégories
       dispatch(fetchCategories());
     },
     [],
   );
-  // Conditionne un effet au changement d'url
+  // Au changement d'url
   useEffect(
     () => {
-      // dans cet effet, on interragit avec le
-      // dom réel pour scroller en haut de page
-
+      // Scroll en haut de page
       window.scrollTo({ top: 0, behavior: 'smooth' });
       dispatch(setClearQuantity());
     },
     [location],
   );
-
+  // A chaque rendu
   useEffect(
     () => {
+      // Met tout les articles dans le localstorage
       localStorage.setItem('articles', JSON.stringify(listArticles));
     },
   );
-
-  // console.log(localStorage);
 
   return (
     <div className="app">
@@ -74,9 +77,7 @@ function App() {
         <Route path="/mentions-legales" element={<LegalMentions />} />
         <Route path="/profil" element={<Profile />} />
         <Route path="/*" element={<Error />} />
-
       </Routes>
-
       <Footer />
     </div>
   );

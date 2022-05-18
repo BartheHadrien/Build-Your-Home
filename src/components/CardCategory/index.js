@@ -1,8 +1,12 @@
-// import
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// ==============================================
+// ==================Import======================
+// ==============================================
 
-// styles
+// ==================Dépendance==================
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+// ==================Style&IMG===================
 import './styles.scss';
 
 function CardCategory({ name, picture, slug }) {
@@ -16,6 +20,7 @@ function CardCategory({ name, picture, slug }) {
   );
 }
 
+// ==================PropTypes====================
 CardCategory.propTypes = {
   name: PropTypes.string.isRequired,
   picture: PropTypes.string.isRequired,

@@ -1,9 +1,12 @@
-// import Proptypes
-import PropTypes from 'prop-types';
+// ==============================================
+// ==================Import======================
+// ==============================================
 
+// ==================Dépendance==================
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-// Import style
+// ==================Style&IMG===================
 import './style.scss';
 
 function ListArticle({

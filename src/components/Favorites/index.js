@@ -1,8 +1,18 @@
+// ==============================================
+// ==================Import======================
+// ==============================================
+
+// ==================Dépendance==================
 import { useSelector } from 'react-redux';
+
+// ==================Composant===================
 import CardFavorite from './CardFavorite';
+
+// ==================Style&IMG===================
 import './styles.scss';
 
 function Favorites() {
+  // On récupère les articles favoris de l'utilisateur
   const favorites = useSelector((state) => state.user.user.favorites);
 
   return (

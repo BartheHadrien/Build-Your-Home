@@ -1,8 +1,12 @@
-// Import
+// ==============================================
+// ==================Import======================
+// ==============================================
+
+// ==================Dépendance==================
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
-// Actions
+// ==================Action======================
 import {
   setFirstNameInSignup,
   setLastNameInSignup,
@@ -12,22 +16,19 @@ import {
   setEmailInSignup,
   setPasswordInSignup,
   setConfirmPasswordInSignup,
-  changeValue,
   createUser,
   setEmailInLogin,
   setPasswordInLogin,
   passwordError,
 } from 'src/actions/user';
 
-// Styles
+// ==================Style&IMG===================
 import './styles.scss';
-// import { from } from 'core-js/core/array';
 
 function NewAccount() {
+  // ==================HOOK===================
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  // On lit les valeurs du state
   const firstname = useSelector((state) => state.user.signup.firstname);
   const lastname = useSelector((state) => state.user.signup.lastname);
   const birthdate = useSelector((state) => state.user.signup.birthdate);
@@ -38,46 +39,8 @@ function NewAccount() {
   const confirmPassword = useSelector((state) => state.user.signup.confirmPassword);
   const Error = useSelector((state) => state.user.passwordIsFalse);
 
-  // On dispatch les actions vers le reducer user pour controler les valeurs
-  function handleChangeFirstName(event) {
-    dispatch(setFirstNameInSignup(event.target.value));
-  }
-
-  function handleChangeLastName(event) {
-    dispatch(setLastNameInSignup(event.target.value));
-  }
-  function handleChangeBirthDate(event) {
-    dispatch(setBirthDateInSignup(event.target.value));
-  }
-
-  function handleChangePhone(event) {
-    dispatch(setPhoneInSignup(event.target.value));
-  }
-  function handleChangeAdress(event) {
-    dispatch(setAdressInSignup(event.target.value));
-  }
-
-  function handleChangeEmail(event) {
-    dispatch(setEmailInSignup(event.target.value));
-    dispatch(setEmailInLogin(event.target.value));
-  }
-  function handleChangePassword(event) {
-    dispatch(setPasswordInSignup(event.target.value));
-    dispatch(setPasswordInLogin(event.target.value));
-  }
-
-  function handleChangeConfirmPassword(event) {
-    dispatch(setConfirmPasswordInSignup(event.target.value));
-  }
-
-  // // Fonction qui gère les changements dans le state dynamiquement
-  // function handleChange(event) {
-  //   console.log(event.target.id, event.target.value);
-  //   dispatch(changeValue(event.target.id, event.target.value));
-  // }
-
-  // A la soumission du formulaire on empêche le rechargement et
-  // dispatch l'action createUser vers le reducer user
+  // ==================Handler=================
+  // Création d'un compte
   function handleCreate(event) {
     event.preventDefault();
 
@@ -86,9 +49,36 @@ function NewAccount() {
       navigate('/');
     }
     else {
-      // console.log('les mots de passes ne sont pas identiques');
       dispatch(passwordError());
     }
+  }
+
+  // ==================Champs Controllés==========
+  function handleChangeFirstName(event) {
+    dispatch(setFirstNameInSignup(event.target.value));
+  }
+  function handleChangeLastName(event) {
+    dispatch(setLastNameInSignup(event.target.value));
+  }
+  function handleChangeBirthDate(event) {
+    dispatch(setBirthDateInSignup(event.target.value));
+  }
+  function handleChangePhone(event) {
+    dispatch(setPhoneInSignup(event.target.value));
+  }
+  function handleChangeAdress(event) {
+    dispatch(setAdressInSignup(event.target.value));
+  }
+  function handleChangeEmail(event) {
+    dispatch(setEmailInSignup(event.target.value));
+    dispatch(setEmailInLogin(event.target.value));
+  }
+  function handleChangePassword(event) {
+    dispatch(setPasswordInSignup(event.target.value));
+    dispatch(setPasswordInLogin(event.target.value));
+  }
+  function handleChangeConfirmPassword(event) {
+    dispatch(setConfirmPasswordInSignup(event.target.value));
   }
 
   return (

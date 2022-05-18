@@ -1,7 +1,11 @@
-// Import
+// ==============================================
+// ==================Import======================
+// ==============================================
+
+// ==================Dépendance==================
 import { Link } from 'react-router-dom';
 
-// Import Styles
+// ==================Style&IMG===================
 import './styles.scss';
 import facebook from 'src/assets/images/facebook.svg';
 import twitter from 'src/assets/images/twitter.svg';

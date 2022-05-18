@@ -1,44 +1,64 @@
-// Import
+// ==============================================
+// ==================Import======================
+// ==============================================
+
+// ==================Dépendance==================
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-
-import CardArticle from 'src/components/CardArticle';
 import { useEffect, useMemo } from 'react';
 
-// Actions
-import { findFiveArticles } from '../../selectors/article';
+// ==================Action======================
+import { findFiveArticles } from 'src/selectors/article';
+import { addCartToOrder, addCartToOrderBdd, setArticleInCart } from 'src/actions/cart';
 
-// Styles
+// ==================Style&IMG===================
 import './styles.scss';
 
-// Components
-
+// ==================Composant===================
+import CardArticle from 'src/components/CardArticle';
 import CardCart from './CardCart';
-import { addCartToOrder, addCartToOrderBdd, setArticleInCart } from '../../actions/cart';
 
 function Carts() {
+  // ==================HOOK===================
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-
-  // ________________________________________________________________ //
-  // __________________________ Articles_____________________________ //
-
-  // Selection des artciles récupérée dans le state
   const articles = useSelector((state) => state.article.list);
   const isLogged = useSelector((state) => state.user.user.logged);
+  const listArticleInCart = useSelector((state) => state.cart.name);
 
+  // ==================Fonctions================
   // Stockage dans une constante de 5 articles à afficher
   const articlesToDisplay = findFiveArticles(articles);
 
-  // ________________________________________________________________ //
-  // ________________________________________________________________ //
-  // __________________________ Panier_____________________________ //
+  // Gestion du panier a chaque changement de celui-ci
   const initialValue = useMemo(() => {
     const value = localStorage.getItem('allCart');
     return JSON.parse(value);
   }, [localStorage]);
 
+  // Pour chaque item on récupère la quantité d'articles
+  const quantityListArticle = listArticleInCart.map((item) => item.quantity);
+
+  // On déclare une variable nbArticle à 0
+  let nbArticle = 0;
+  // On boucle sur la liste pour récupérer le nombre d'articles
+  for (let i = 0; i < quantityListArticle.length; i++) {
+    nbArticle += quantityListArticle[i];
+  }
+
+  // On calcul le prix de chaque articles * par la quantité
+  const priceListArticle = listArticleInCart.map((item) => item.article.price * item.quantity);
+
+  // On déclare une variable sum à 0
+  let sum = 0;
+  // On boucle pour trouver le prix en fonction du nombre
+  for (let i = 0; i < priceListArticle.length; i++) {
+    sum += priceListArticle[i];
+  }
+
+  // ==================UseEffect===============
+  // A chaque changement d'URL
   useEffect(
     () => {
       dispatch(setArticleInCart(initialValue));
@@ -46,41 +66,24 @@ function Carts() {
     [location],
   );
 
-  const listArticleInCart = useSelector((state) => state.cart.name);
-  // const counterArticleInCart = listArticleInCart.length;
-  // console.log(listArticleInCart.length);
-  const quantityListArticle = listArticleInCart.map((item) => item.quantity);
-
-  let nbArticle = 0;
-
-  for (let i = 0; i < quantityListArticle.length; i++) {
-    nbArticle += quantityListArticle[i];
-  }
-
-  const priceListArticle = listArticleInCart.map((item) => item.article.price * item.quantity);
-  console.log(priceListArticle);
-
-  let sum = 0;
-
-  for (let i = 0; i < priceListArticle.length; i++) {
-    sum += priceListArticle[i];
-  }
-  console.log(sum);
-
-  // ________________________________________________________________ //
-  // ________________________________________________________________ //
-  // ____________________Envoie de commande__________________________ //
-
+  // =================HANDLER==================
+  // Valider la commande
   function handleSendOrder() {
+    // Si l'utlisateur est connecté
     if (isLogged) {
+      // On dispatch l'action d'ajout de commande en
+      // lui passant en payload la valeur de initialValue défini ligne 42
       dispatch(addCartToOrder(initialValue));
+      // On dispatch l'action d'ajout de commande en BDD
       dispatch(addCartToOrderBdd());
     }
     else {
+      // Si l'utilisateur n'est pas connecté, il est redirigé vers la page de connexion
       navigate('/connexion');
     }
   }
 
+  // Redirection vers la page d'acceuil
   function handleContinueShopping() {
     navigate('/');
   }

@@ -1,97 +1,80 @@
-/* eslint-disable quote-props */
-// Import
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  Link, useNavigate, useParams,
-} from 'react-router-dom';
-import { useAlert } from 'react-alert';
+// ==============================================
+// ==================Import======================
+// ==============================================
 
-// actions
+// ==================Dépendance==================
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAlert } from 'react-alert';
+import classnames from 'classnames';
+
+// ==================Action======================
 import {
   toggleBurger, setSearchBarValue, setSearchBarClosed, toggleUserNav,
   setSearchBarEmptyString,
 } from 'src/actions/header';
+import { logout } from 'src/actions/user';
 
-// librairies
-import classnames from 'classnames';
-
-// Styles
+// ==================Style&IMG===================
 import './styles.scss';
-// Images
 import user from 'src/assets/images/user.svg';
 import cart from 'src/assets/images/cart.svg';
 import logo from 'src/assets/images/logo.svg';
 import burger from 'src/assets/images/burger.svg';
 
-// Components
+// ==================Composant===================
 import Navbar from './Navbar';
 import BurgerItems from './BurgerItems';
-import { logout } from '../../actions/user';
 
 function Header() {
+  // ==================HOOK===================
   const alert = useAlert();
-  const { slug } = useParams();
-  // ________________Affichage des catégories____________________ //
-  // Selection des catégorie récupérée dans le state
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const categories = useSelector((state) => state.categories.list);
+  const searchBarValue = useSelector((state) => state.header.navbar.searchBarValue);
+  const articles = useSelector((state) => state.article.list);
+  const islogged = useSelector((state) => state.user.user.logged);
+  const isOpen = useSelector((state) => state.header.navbar.isOpen);
+  const searchOpen = useSelector((state) => state.header.navbar.searchOpen);
+  const username = useSelector((state) => state.user.user.lastname);
+  const userNavIsOpen = useSelector((state) => state.header.userNavbar.isOpen);
+
+  // ==================Fonctions================
+  const className = classnames('header--container', { 'header--container__closed': !isOpen });
 
   // Fonction filtrant le nombre de catégorie à afficher
   const filteredCategories = () => {
     const filteredCategorie = categories.filter((categorie) => categorie.displayOrder < 10);
     return filteredCategorie;
   };
-
-  // Stockage de la fonction de filtre dans une constante pour pouvoir l'utiliser
   const categoriesToDisplay = filteredCategories();
 
-  // _____________________________________________________________//
-
-  const dispatch = useDispatch();
-
-  const searchBarValue = useSelector((state) => state.header.navbar.searchBarValue);
-  const articles = useSelector((state) => state.article.list);
-  const islogged = useSelector((state) => state.user.user.logged);
-
-  const navigate = useNavigate();
-  // champs controllé pour la searchBar
-  function handleSearchBar(event) {
-    dispatch(setSearchBarValue(event.target.value));
+  // Fonction qui va appliqué l'action d'ouverture de la nav utilisateur
+  function handleUserNav() {
+    dispatch(toggleUserNav());
   }
 
-  function handleOnSearch(searchTerm) {
-    dispatch(setSearchBarValue(searchTerm));
-    dispatch(setSearchBarClosed());
-  // dispatch(sendResearch(searchTerm)); // #TODO a envoyer a l'API
+  // Gestion de la div de la searchbar
+  let searchClassName = classnames('dropdown', { 'dropdown--closed': !searchOpen });
+  if (searchBarValue === '') {
+    searchClassName = 'dropdown--closed';
   }
+
+  // ==================Handler=================
+  // Recherche de la searchBar
   function handleLauchSearch(evt) {
     evt.preventDefault();
     navigate(`/article/${searchBarValue}`);
     dispatch(setSearchBarEmptyString());
   }
 
-  //  ______________Gestion du menu burger_____________
-  // Recherche dans le state de la valeur de isOpen
-  //  conditionnant l'affichage du menu burger
-  const isOpen = useSelector((state) => state.header.navbar.isOpen);
-  // Gestion des classes CSS
-
-  const className = classnames('header--container', { 'header--container__closed': !isOpen });
-
+  // Gestion du menu déroulant
   function handleToggleClick() {
     dispatch(toggleBurger());
   }
 
-  //  ______________User connecté_____________
-  // Récupération des données utilisateur connecté
-  const username = useSelector((state) => state.user.user.lastname);
-  const userNavIsOpen = useSelector((state) => state.header.userNavbar.isOpen);
-  // Fonction qui va appliqué l'action d'ouverture de la nav utilisateur
-
-  function handleUserNav() {
-    dispatch(toggleUserNav());
-  }
-
-  //  ______________User Déconnecté_____________
+  // deconnexion d'un utilisateur
   function handleDisconnect() {
     dispatch(toggleUserNav());
     dispatch(logout());
@@ -99,13 +82,13 @@ function Header() {
     alert.error('Vous etes bien déconnecté');
   }
 
-  //  ______________Gestion de la div de la searchbar_____________
-
-  const searchOpen = useSelector((state) => state.header.navbar.searchOpen);
-  let searchClassName = classnames('dropdown', { 'dropdown--closed': !searchOpen });
-
-  if (searchBarValue === '') {
-    searchClassName = 'dropdown--closed';
+  // ==================Champs Controllés==========
+  function handleSearchBar(event) {
+    dispatch(setSearchBarValue(event.target.value));
+  }
+  function handleOnSearch(searchTerm) {
+    dispatch(setSearchBarValue(searchTerm));
+    dispatch(setSearchBarClosed());
   }
 
   return (
@@ -181,7 +164,6 @@ function Header() {
               <img className="header--top__cart" src={cart} alt="logo panier" />
             </Link>
           </div>
-
         </div>
         <nav className="header--nav">
           <div className="header--nav__burger">
@@ -212,9 +194,7 @@ function Header() {
             )}
           </ul>
         </nav>
-
       </div>
-
       <div className={className}>
         <div className="header--nav__burgertranslation">
           <ul className="header--nav__burgertranslation--list">

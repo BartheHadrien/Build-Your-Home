@@ -1,10 +1,18 @@
-import PropTypes from 'prop-types';
-// styles
-import './styles.scss';
+// ==============================================
+// ==================Import======================
+// ==============================================
+
+// ==================Dépendance==================
 import { Rating } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+
+// ==================Action======================
 import { deleteArticleToFavorite, deleteArticleToFavoriteInBdd, fetchUser } from '../../../actions/user';
+
+// ==================Style&IMG===================
+import './styles.scss';
 
 function CardFavorite({
   name,
@@ -13,11 +21,18 @@ function CardFavorite({
   slug,
   favID,
 }) {
+  // ==================HOOK===================
   const dispatch = useDispatch();
 
+  // ==================Handler=================
+  // suppression d'un article en favoris
   function handleDelete() {
+    // On dispatch l'action de récupération d'un utilisateur
     dispatch(fetchUser());
+    // On dispatch l'action de suppression des favoris en lui
+    // passant en argument l'ID des favoris
     dispatch(deleteArticleToFavorite(favID));
+    // On dispatch l'action de suppression d'un article en BDD
     dispatch(deleteArticleToFavoriteInBdd());
   }
 
@@ -38,6 +53,7 @@ function CardFavorite({
   );
 }
 
+// ==================PropTypes====================
 CardFavorite.propTypes = {
   slug: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

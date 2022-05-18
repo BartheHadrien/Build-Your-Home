@@ -1,52 +1,49 @@
-import { useSelector, useDispatch } from 'react-redux';
+// ==============================================
+// ==================Import======================
+// ==============================================
 
+// ==================Dépendance==================
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useAlert } from 'react-alert';
-import ReCAPTCHA from 'react-google-recaptcha';
 import { Link, useNavigate } from 'react-router-dom';
+import ReCAPTCHA from 'react-google-recaptcha';
+
+// ==================Action======================
 import {
-  setEmailInLogin, setPasswordInLogin, login, logout, deleteUser, validateCaptcha,
+  setEmailInLogin, setPasswordInLogin, login, validateCaptcha,
 } from '../../actions/user';
 
+// ==================Style&IMG===================
 import './styles.scss';
 
 function Login() {
-  // Récupération du hook useDispatch
+  // ==================HOOK===================
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const alert = useAlert();
-  // Controle des champs Login
   const email = useSelector((state) => state.user.login.email);
   const password = useSelector((state) => state.user.login.password);
-  // Récupération des données utilisateur connecté
   const islogged = useSelector((state) => state.user.user.logged);
-  // Récupération des données utilisateur en BDD ou non
   const userUnknown = useSelector((state) => state.user.userUnknown);
-
   const isVerified = useSelector((state) => state.user.login.isVerified);
-
   const resetPassword = 'http://floriannaud-server.eddi.cloud/projet-09-build-your-home-back/public/reset-password';
 
-  // Fonction qui gèrent le changement dans le state
-  function handleEmail(event) {
-    dispatch(setEmailInLogin(event.target.value));
-  }
-
-  function handlePassword(event) {
-    dispatch(setPasswordInLogin(event.target.value));
-  }
-
-  // Fonction qui gère la connexion dans le reducer user
+  // ==================Handler=================
+  // Connexion d'un utilisateur
   function handleConnect(evt) {
     evt.preventDefault();
     dispatch(login());
   }
 
+  // Résolution du captcha
   function handleCaptcha(value) {
     console.log('Captcha value:', value);
     dispatch(validateCaptcha());
   }
 
+  // ==================UseEffect===============
+  // Si on est connecté alors nous sommes redirigé vers la Home
   useEffect(() => {
     if (islogged) {
       navigate('/');
@@ -54,9 +51,13 @@ function Login() {
     }
   });
 
-  // function handleResetPassword() {
-  //   navigate(resetPassword);
-  // }
+  // ==================Champs Controllés==========
+  function handleEmail(event) {
+    dispatch(setEmailInLogin(event.target.value));
+  }
+  function handlePassword(event) {
+    dispatch(setPasswordInLogin(event.target.value));
+  }
 
   return (
     <div className="login">
