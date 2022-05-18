@@ -37,27 +37,20 @@ function Login() {
   // Fonction qui gère la connexion dans le reducer user
   function handleConnect(evt) {
     evt.preventDefault();
-
-    async function first() {
-      dispatch(login());
-    }
-    async function second() {
-      await first();
-      if (userUnknown) {
-        navigate('/connexion');
-      }
-      else {
-        navigate('/');
-        alert.success('Vous etes bien connecté !');
-      }
-    }
-    second();
+    dispatch(login());
   }
 
   function handleCaptcha(value) {
     console.log('Captcha value:', value);
     dispatch(validateCaptcha());
   }
+
+  useEffect(() => {
+    if (islogged) {
+      navigate('/');
+      alert.success('Vous etes bien connecté !');
+    }
+  });
 
   return (
     <div className="login">
