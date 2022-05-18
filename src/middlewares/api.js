@@ -6,7 +6,7 @@ import {
   fetchUser, FETCH_USER, saveUser, saveUserData, LOGIN, LOGOUT,
   CREATE_USER, DELETE_USER, ADD_ARTICLE_TO_FAVORITE_BDD,
   DELETE_ARTICLE_TO_FAVORITE_IN_BDD, login, MODIFY_PROFILE,
-  setLoginUnknown, resetLoginUnknown, RESET_PASSWORD,
+  setLoginUnknown, resetLoginUnknown,
 } from '../actions/user';
 
 // On utilisera aisinsi cette instance plutôt qu'axios directement
@@ -284,16 +284,6 @@ const apiMiddleWare = (store) => (next) => (action) => {
       next(action);
       break;
     }
-    // case RESET_PASSWORD: {
-    //   const { user: { user: { id, token } } } = store.getState();
-    //   axiosInstance
-    //     .post(
-    //       'reset/password',
-
-    //     );
-    //   next(action);
-    //   break;
-    // }
     default:
       next(action);
   }

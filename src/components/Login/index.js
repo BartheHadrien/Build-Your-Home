@@ -25,6 +25,8 @@ function Login() {
 
   const isVerified = useSelector((state) => state.user.login.isVerified);
 
+  const resetPassword = 'http://floriannaud-server.eddi.cloud/projet-09-build-your-home-back/public/reset-password';
+
   // Fonction qui gèrent le changement dans le state
   function handleEmail(event) {
     dispatch(setEmailInLogin(event.target.value));
@@ -52,10 +54,9 @@ function Login() {
     }
   });
 
-  function handleClickPassword() {
-    // console.log('handleClickPassword');
-    dispatch(resetPassword());
-  }
+  // function handleResetPassword() {
+  //   navigate(resetPassword);
+  // }
 
   return (
     <div className="login">
@@ -88,7 +89,7 @@ function Login() {
                   onChange={handlePassword}
                 />
               </label>
-              <p className="login--button__mdp" onClick={handleClickPassword}>Mot de passe oublié ?</p>
+              <a className="login--button__mdp" href={resetPassword}>Mot de passe oublié ?</a>
               <button
                 type="submit"
                 className="login--button__submit"

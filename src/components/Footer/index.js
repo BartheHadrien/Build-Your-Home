@@ -5,19 +5,17 @@ import { Link } from 'react-router-dom';
 import './styles.scss';
 import facebook from 'src/assets/images/facebook.svg';
 import twitter from 'src/assets/images/twitter.svg';
-import share from 'src/assets/images/share.svg';
 
 function Footer() {
   return (
     <div className="footer">
       <div className="footer__icons">
-        <Link to="https://fr-fr.facebook.com/">
+        <a href="https://fr-fr.facebook.com/">
           <img src={facebook} alt="facebook logo" className="footer__icons__icon" />
-        </Link>
-        <Link to="https://twitter.com/">
+        </a>
+        <a href="https://twitter.com/">
           <img src={twitter} alt="twitter logo" className="footer__icons__icon" />
-        </Link>
-        <img src={share} alt="share logo" className="footer__icons__icon" />
+        </a>
       </div>
       <div className="footer__cgv">
         <Link to="/mentions-legales">
