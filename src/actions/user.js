@@ -61,6 +61,14 @@ export const resetLoginUnknown = () => ({
   type: RESET_LOGIN_UNKNOWN,
 });
 
+// ACTION TYPE RESET_PASSWORD
+export const RESET_PASSWORD = 'RESET_PASSWORD';
+
+// ACTION CREATOR RESET_PASSWORD
+export const resetPassword = () => ({
+  type: RESET_PASSWORD,
+});
+
 // ==============================================
 // ==================SIGN UP=====================
 // ==============================================

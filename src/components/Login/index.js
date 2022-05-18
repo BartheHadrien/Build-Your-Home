@@ -52,6 +52,11 @@ function Login() {
     }
   });
 
+  function handleClickPassword() {
+    // console.log('handleClickPassword');
+    dispatch(resetPassword());
+  }
+
   return (
     <div className="login">
       {!islogged && (
@@ -83,6 +88,7 @@ function Login() {
                   onChange={handlePassword}
                 />
               </label>
+              <p className="login--button__mdp" onClick={handleClickPassword}>Mot de passe oublié ?</p>
               <button
                 type="submit"
                 className="login--button__submit"

@@ -20,6 +20,12 @@
     margin-bottom: 2em;
   }
 
+  &--button__mdp {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
   &--button__submit{
     width: 100%;
     background-color: #F0C24F;
