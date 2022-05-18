@@ -231,7 +231,7 @@ const apiMiddleWare = (store) => (next) => (action) => {
             lastname: lastname,
             firstname: firstname,
             adress: adress,
-            birthdate: '2022-05-11T13:36:19.797Z',
+            birthdate: birthdate,
             email: email,
             password: password,
             phone: phone,
@@ -255,7 +255,7 @@ const apiMiddleWare = (store) => (next) => (action) => {
             lastname,
             firstname,
             adress,
-            // birthdate,
+            birthdate,
             phone,
           },
         },
@@ -266,12 +266,12 @@ const apiMiddleWare = (store) => (next) => (action) => {
           `user/${id}`,
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${token}`, // `Bearer ${token}`
             },
             lastname: 'hadrien',
             firstname: 'hadrien',
             adress: 'adress',
-            birthdate: '2022-05-16', // birthdate, // "2022-05-16T13:33:25.251Z",
+            birthdate: '2022-05-18', // birthdate, // "2022-05-16T13:33:25.251Z",
             email: 'user@user.com',
             phone: '0629778282',
           },
