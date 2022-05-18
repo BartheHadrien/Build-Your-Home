@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import CardArticle from 'src/components/CardArticle';
+import { useEffect, useMemo } from 'react';
 
 // Actions
 import { findFiveArticles } from '../../selectors/article';
@@ -14,7 +15,6 @@ import './styles.scss';
 
 import CardCart from './CardCart';
 import { addCartToOrder, addCartToOrderBdd, setArticleInCart } from '../../actions/cart';
-import { useEffect, useMemo } from 'react';
 
 function Carts() {
   const dispatch = useDispatch();
@@ -81,6 +81,10 @@ function Carts() {
     }
   }
 
+  function handleContinueShopping() {
+    navigate('/');
+  }
+
   return (
     <>
       <div className="carts">
@@ -112,7 +116,7 @@ function Carts() {
           </p>
           <p className="carts__pay__total">Sous-total ({nbArticle} article) : {sum}$</p>
           <button type="button" className="carts__pay__button" onClick={handleSendOrder}>Passer la commande</button>
-          <button type="button" className="carts__pay__button">Continuez vos achats</button>
+          <button type="button" className="carts__pay__button" onClick={handleContinueShopping}>Continuez vos achats</button>
         </section>
       </div>
       {/* Content of article to display */}

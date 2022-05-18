@@ -4,7 +4,8 @@ import { ADD_CART_TO_ORDER_BDD } from '../actions/cart';
 import { FETCH_CATEGORIES, saveCategories } from '../actions/categories';
 import {
   fetchUser, FETCH_USER, saveUser, saveUserData, LOGIN, LOGOUT,
-  CREATE_USER, DELETE_USER, ADD_ARTICLE_TO_FAVORITE_BDD, DELETE_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE_IN_BDD, setEmailInLogin, login,
+  CREATE_USER, DELETE_USER, ADD_ARTICLE_TO_FAVORITE_BDD,
+  DELETE_ARTICLE_TO_FAVORITE_IN_BDD, login, MODIFY_PROFILE, setLoginUnknown, resetLoginUnknown,
 } from '../actions/user';
 
 // On utilisera aisinsi cette instance plutôt qu'axios directement
@@ -87,6 +88,10 @@ const apiMiddleWare = (store) => (next) => (action) => {
         })
         .catch(() => {
           console.log('Pas de login effectué');
+
+          // Si l'utilisateur n'est pas en BDD, alors on passe la propriété
+          // userUnknown à true
+          store.dispatch(setLoginUnknown());
         });
       next(action);
       break;
@@ -98,6 +103,10 @@ const apiMiddleWare = (store) => (next) => (action) => {
       // delete axiosInstance.defaults.headers.common.Authorization;
 
       console.log('nettoyage du token');
+
+      // A la déconnexion on passe la propriété
+      // userUnknown à false
+      store.dispatch(resetLoginUnknown());
 
       next(action);
       break;
@@ -200,7 +209,7 @@ const apiMiddleWare = (store) => (next) => (action) => {
           },
         )
         .then(
-          console.log('commande bien envoyé'),
+          store.dispatch(fetchUser()),
         )
         .catch(() => console.log('commande non envoyé'));
       next(action);
@@ -222,7 +231,7 @@ const apiMiddleWare = (store) => (next) => (action) => {
             lastname: lastname,
             firstname: firstname,
             adress: adress,
-            birthdate: '2022-05-11T13:36:19.797Z',
+            birthdate: birthdate,
             email: email,
             password: password,
             phone: phone,
@@ -230,13 +239,46 @@ const apiMiddleWare = (store) => (next) => (action) => {
 
         )
         .then(
-          (response) => {
-            // store.dispatch(saveCreateUserData(response.data));
+          () => {
             store.dispatch(login());
-            console.log(response.data);
           },
         )
         .catch(() => console.log('Utilisateur non créé'));
+      next(action);
+      break;
+    }
+    case MODIFY_PROFILE: {
+      const { user: { user: { id, token, email } } } = store.getState();
+      const {
+        user: {
+          profile: {
+            lastname, firstname, adress, birthdate, phone,
+          },
+        },
+      } = store.getState();
+      axiosInstance
+        .patch(
+          `user/${id}`,
+          {
+            lastname: lastname,
+            firstname: firstname,
+            adress: adress,
+            birthdate: birthdate,
+            email: email,
+            phone: phone,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // `Bearer ${token}`
+            },
+          },
+        )
+        .then(
+          (response) => {
+            store.dispatch(saveUserData(response.data));
+          },
+        )
+        .catch(() => console.log('echec lors de la modification'));
       next(action);
       break;
     }

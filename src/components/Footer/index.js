@@ -11,9 +11,12 @@ function Footer() {
   return (
     <div className="footer">
       <div className="footer__icons">
-        <img src={facebook} alt="facebook logo" className="footer__icons__icon" />
-        <img src={twitter} alt="twitter logo" className="footer__icons__icon" />
-        {/* <img src={closeImage} alt={closeImage} className="footer__icons__icon" /> */}
+        <Link to="https://fr-fr.facebook.com/">
+          <img src={facebook} alt="facebook logo" className="footer__icons__icon" />
+        </Link>
+        <Link to="https://twitter.com/">
+          <img src={twitter} alt="twitter logo" className="footer__icons__icon" />
+        </Link>
         <img src={share} alt="share logo" className="footer__icons__icon" />
       </div>
       <div className="footer__cgv">

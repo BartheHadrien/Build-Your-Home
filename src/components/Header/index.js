@@ -2,8 +2,9 @@
 // Import
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  Link, useNavigate,
+  Link, useNavigate, useParams,
 } from 'react-router-dom';
+import { useAlert } from 'react-alert';
 
 // actions
 import {
@@ -21,7 +22,6 @@ import user from 'src/assets/images/user.svg';
 import cart from 'src/assets/images/cart.svg';
 import logo from 'src/assets/images/logo.svg';
 import burger from 'src/assets/images/burger.svg';
-import hello from 'src/assets/images/hello.svg';
 
 // Components
 import Navbar from './Navbar';
@@ -29,8 +29,9 @@ import BurgerItems from './BurgerItems';
 import { logout } from '../../actions/user';
 
 function Header() {
-  // ________________Affichage des catégories____________________//
-
+  const alert = useAlert();
+  const { slug } = useParams();
+  // ________________Affichage des catégories____________________ //
   // Selection des catégorie récupérée dans le state
   const categories = useSelector((state) => state.categories.list);
 
@@ -95,6 +96,7 @@ function Header() {
     dispatch(toggleUserNav());
     dispatch(logout());
     navigate('/connexion');
+    alert.error('Vous etes bien déconnecté');
   }
 
   //  ______________Gestion de la div de la searchbar_____________
@@ -155,9 +157,7 @@ function Header() {
               </Link>
             )}
             {islogged && (
-              <Link to="">
-                <img className="header--top__user" src={user} alt="logo user" onClick={handleUserNav} />
-              </Link>
+            <img className="header--top__user" src={user} alt="logo user" onClick={handleUserNav} />
             )}
             {userNavIsOpen && (
               <div className="header--top__usernav">

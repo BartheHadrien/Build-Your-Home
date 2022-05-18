@@ -3,20 +3,14 @@ import {
   Navigate, useParams, Link,
 } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { useAlert } from 'react-alert';
 // import semantic ui
-
 import { Rating } from 'semantic-ui-react';
-
 // import composant
 import user from 'src/assets/images/user.svg';
 import ListArticle from './ListArticle';
-
-// import image
-
 // import selectors function
 import { findArticle, findFiveArticles } from '../../selectors/article';
-
 // import style
 import './styles.scss';
 import {
@@ -24,11 +18,14 @@ import {
   setLessArticleToBuy,
   setNbArticleInCart, setNbArticleToBuy, setNotNull, setNotNullBuy,
 } from '../../actions/article';
+
 import { addArticleToFavorite, addArticleToFavoriteBdd } from '../../actions/user';
 import { useEffect, useMemo } from 'react';
 
+
 function Article() {
   const dispatch = useDispatch();
+  const alert = useAlert();
 
   // Récupération des informations issues du state
 
@@ -133,10 +130,12 @@ function Article() {
     const isFavorite = favoriteArray.includes(article.id);
 
     if (!isFavorite) {
+      dispatch(fetchUser());
       dispatch(addArticleToFavorite(article));
       dispatch(addArticleToFavoriteBdd());
+      alert.success("L'article a bien était ajouté a vos favoris");
     }
-    else console.log('Vous avez deja ce favoris');
+    else alert.error('Vous avez deja cet article en favoris');
   }
 
   if (counterCart < 1) {
@@ -157,8 +156,8 @@ function Article() {
     localStorage.setItem('cart', JSON.stringify(addArticle));
     allCart.push(addArticle);
     localStorage.setItem('allCart', JSON.stringify(allCart));
+    alert.success("L'article a bien était ajouté a votre panier");
   }
-
   return (
     <div className="article">
       {/* Article */}
@@ -218,7 +217,6 @@ function Article() {
             >
               Ajouter au panier
             </button>
-
           </div>
 
           {/* Counter Buy */}
