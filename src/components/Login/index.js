@@ -37,20 +37,6 @@ function Login() {
   // Fonction qui gère la connexion dans le reducer user
   function handleConnect(evt) {
     evt.preventDefault();
-
-    function first() {
-      dispatch(login());
-    }
-    async function second() {
-      if (await first() && userUnknown) {
-        navigate('/connexion');
-      }
-      else {
-        navigate('/');
-        alert.success('Vous etes bien connecté !');
-      }
-    }
-    second();
   }
 
   function handleCaptcha(value) {
