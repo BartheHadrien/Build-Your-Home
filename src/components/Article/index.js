@@ -67,7 +67,7 @@ function Article() {
   // Pour comparer dans le handler AddFavorite si l'article n'a pas été déjà ajouté en favoris
   const favoriteArray = favoriteArticles.map((favorite) => (favorite.article.id));
 
-  // ==========================LocalSorage==========================
+  // ==========================LocalSorage Article ==========================
 
   // Récupération de la liste de tout les articles depuis le localStorage
   const listArticlesInLocalStorage = useMemo(() => {

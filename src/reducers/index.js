@@ -13,7 +13,7 @@ import headerReducer from './header';
 // ==============================================
 // ===================Reducer====================
 // ==============================================
-
+// Reducer principal contenant l'ensemble des reducers
 const rootReducer = combineReducers({
   user: userReducer,
   article: articleReducer,

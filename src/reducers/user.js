@@ -67,11 +67,14 @@ const initialState = {
 
 function userReducer(state = initialState, action = {}) {
   switch (action.type) {
+    // Sauvegarde des utilisateurs dans le state
     case SAVE_USER:
       return {
+        // Copie du state
         ...state,
         user: {
           ...state.user,
+          // Passage de logged à true et sauvegarde du token
           logged: true,
           token: action.user.token,
         },
@@ -80,6 +83,7 @@ function userReducer(state = initialState, action = {}) {
           password: '',
         },
       };
+    // Sauvegarde des donneés utilisateur
     case SAVE_USER_DATA:
       return {
         ...state,
@@ -106,16 +110,19 @@ function userReducer(state = initialState, action = {}) {
           phone: action.user.phone,
         },
       };
+    // Set d'une propriété boolean de login
     case SET_LOGIN_UNKNOWN:
       return {
         ...state,
         userUnknown: true,
       };
+    // Reset d'une propiété boolean de login
     case RESET_LOGIN_UNKNOWN:
       return {
         ...state,
         userUnknown: false,
       };
+    // Ajout des articles en favoris
     case ADD_ARTICLE_TO_FAVORITE:
       return {
         ...state,
@@ -124,6 +131,7 @@ function userReducer(state = initialState, action = {}) {
           newfavorites: action.article,
         },
       };
+    // Suppression des aricles des favoris
     case DELETE_ARTICLE_TO_FAVORITE:
       return {
         ...state,
@@ -132,6 +140,7 @@ function userReducer(state = initialState, action = {}) {
           deletefavorites: action.favID,
         },
       };
+    // Déconnexion
     case LOGOUT:
       return {
         ...state,
@@ -161,6 +170,7 @@ function userReducer(state = initialState, action = {}) {
         },
         passwordIsFalse: false,
       };
+    // Données du prénom dans un champ controllé création de compte
     case SET_FIRSTNAME_IN_SIGNUP:
       return {
         ...state,
@@ -169,6 +179,7 @@ function userReducer(state = initialState, action = {}) {
           firstname: action.firstname,
         },
       };
+    // Données du nom dans un champ controllé création de compte
     case SET_LASTNAME_IN_SIGNUP:
       return {
         ...state,
@@ -177,6 +188,7 @@ function userReducer(state = initialState, action = {}) {
           lastname: action.lastname,
         },
       };
+    // Données de la date d'anniversaire dans un champ controllé création de compte
     case SET_BIRTHDATE_IN_SIGNUP:
       return {
         ...state,
@@ -185,6 +197,7 @@ function userReducer(state = initialState, action = {}) {
           birthdate: action.birthdate,
         },
       };
+    // Données du téléphone dans un champ controllé création de compte
     case SET_PHONE_IN_SIGNUP:
       return {
         ...state,
@@ -193,6 +206,7 @@ function userReducer(state = initialState, action = {}) {
           phone: action.phone,
         },
       };
+      // Données de l'adresse dans un champ controllé création de compte
     case SET_ADRESS_IN_SIGNUP:
       return {
         ...state,
@@ -201,6 +215,7 @@ function userReducer(state = initialState, action = {}) {
           adress: action.adress,
         },
       };
+    // Données de l'email dans un champ controllé création de compte
     case SET_EMAIL_IN_SIGNUP:
       return {
         ...state,
@@ -209,6 +224,7 @@ function userReducer(state = initialState, action = {}) {
           email: action.email,
         },
       };
+    // Données du mot de passe dans un champ controllé création de compte
     case SET_PASSWORD_IN_SIGNUP:
       return {
         ...state,
@@ -217,6 +233,7 @@ function userReducer(state = initialState, action = {}) {
           password: action.password,
         },
       };
+    // Données de la confirmation de mot de passe dans un champ controllé création de compte
     case SET_CONFIRM_PASSWORD_IN_SIGNUP:
       return {
         ...state,
@@ -225,12 +242,14 @@ function userReducer(state = initialState, action = {}) {
           confirmPassword: action.confirmPassword,
         },
       };
+    // Erreur lors de la rentrée des mots de passe dans la création de compte
     case PASSWORD_ERROR:
       return {
         ...state,
         passwordIsFalse: !state.user.passwordIsFalse,
 
       };
+    // Validation du captcha
     case VALIDATE_CAPTCHA:
       return {
         ...state,
@@ -239,6 +258,7 @@ function userReducer(state = initialState, action = {}) {
           isVerified: true,
         },
       };
+    // Données du prénom dans le profil
     case SET_FIRSTNAME_IN_PROFILE:
       return {
         ...state,
@@ -247,6 +267,7 @@ function userReducer(state = initialState, action = {}) {
           firstname: action.firstname,
         },
       };
+    // Données du nom dans le profil
     case SET_LASTNAME_IN_PROFILE:
       return {
         ...state,
@@ -255,6 +276,7 @@ function userReducer(state = initialState, action = {}) {
           lastname: action.lastname,
         },
       };
+    // Données de la date d'anniversaire dans le profil
     case SET_BIRTHDATE_IN_PROFILE:
       return {
         ...state,
@@ -263,6 +285,7 @@ function userReducer(state = initialState, action = {}) {
           birthdate: action.birthdate,
         },
       };
+    // Données du téléphone dans le profil
     case SET_PHONE_IN_PROFILE:
       return {
         ...state,
@@ -271,6 +294,7 @@ function userReducer(state = initialState, action = {}) {
           phone: action.phone,
         },
       };
+    // Données de l'adresse dans le profil
     case SET_ADRESS_IN_PROFILE:
       return {
         ...state,
@@ -279,7 +303,7 @@ function userReducer(state = initialState, action = {}) {
           adress: action.adress,
         },
       };
-      // ========Champs Controllés========
+    // Données de l'email dans le login
     case SET_EMAIL_IN_LOGIN:
       return {
         ...state,
@@ -288,6 +312,7 @@ function userReducer(state = initialState, action = {}) {
           email: action.value,
         },
       };
+    // Données du mot de passe dans le login
     case SET_PASSWORD_IN_LOGIN:
       return {
         ...state,
