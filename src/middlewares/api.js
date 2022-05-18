@@ -231,7 +231,7 @@ const apiMiddleWare = (store) => (next) => (action) => {
             lastname: lastname,
             firstname: firstname,
             adress: adress,
-            birthdate: '2022-05-11T13:36:19.797Z',
+            birthdate: birthdate,
             email: email,
             password: password,
             phone: phone,
@@ -255,7 +255,7 @@ const apiMiddleWare = (store) => (next) => (action) => {
             lastname,
             firstname,
             adress,
-            // birthdate,
+            birthdate,
             phone,
           },
         },
@@ -266,14 +266,14 @@ const apiMiddleWare = (store) => (next) => (action) => {
           `user/${id}`,
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${token}`, // `Bearer ${token}`
             },
             lastname: 'lastname',
             firstname: 'firstname',
             adress: 'adress',
-            birthdate: '2022-05-16T13:33:25.251Z', // birthdate, // "2022-05-16T13:33:25.251Z",
-            email: 'test60@test.com',
-            phone: 'phone',
+            birthdate: '2022-05-18', // birthdate, // "2022-05-16T13:33:25.251Z",
+            email: 'testencore60@test.com',
+            phone: '0684848484',
           },
         )
         .then(
