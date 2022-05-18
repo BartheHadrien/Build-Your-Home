@@ -268,12 +268,12 @@ const apiMiddleWare = (store) => (next) => (action) => {
             headers: {
               Authorization: `Bearer ${token}`, // `Bearer ${token}`
             },
-            lastname: 'lastname',
-            firstname: 'firstname',
+            lastname: 'hadrien',
+            firstname: 'hadrien',
             adress: 'adress',
             birthdate: '2022-05-18', // birthdate, // "2022-05-16T13:33:25.251Z",
-            email: 'testencore60@test.com',
-            phone: '0684848484',
+            email: 'user@user.com',
+            phone: '0629778282',
           },
         )
         .then(
