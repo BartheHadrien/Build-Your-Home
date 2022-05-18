@@ -255,7 +255,7 @@ const apiMiddleWare = (store) => (next) => (action) => {
             lastname,
             firstname,
             adress,
-            // birthdate,
+            birthdate,
             phone,
           },
         },
@@ -268,18 +268,18 @@ const apiMiddleWare = (store) => (next) => (action) => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-            lastname: 'hadrien',
-            firstname: 'hadrien',
+            lastname: 'zerzer',
+            firstname: 'zertzer',
             adress: 'adress',
-            birthdate: '2022-05-16', // birthdate, // "2022-05-16T13:33:25.251Z",
-            email: 'user@user.com',
-            phone: '0629778282',
+            birthdate: '2022-05-16',
+            email: 'email@email.com',
+            phone: 'phone',
           },
         )
         .then(
           console.log('Utilisateur bien modifié'),
         )
-        .catch(() => console.log('commande non envoyé'));
+        .catch(() => console.log('echec lors de la modification'));
       next(action);
       break;
     }
