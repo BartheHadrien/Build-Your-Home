@@ -231,7 +231,7 @@ const apiMiddleWare = (store) => (next) => (action) => {
             lastname: lastname,
             firstname: firstname,
             adress: adress,
-            birthdate: '2022-05-11T13:36:19.797Z',
+            birthdate: birthdate,
             email: email,
             password: password,
             phone: phone,
@@ -269,7 +269,7 @@ const apiMiddleWare = (store) => (next) => (action) => {
           },
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${token}`, // `Bearer ${token}`
             },
           },
         )
