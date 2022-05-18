@@ -2,7 +2,7 @@
 // Import
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  Link, useNavigate,
+  Link, useNavigate, useParams,
 } from 'react-router-dom';
 import { useAlert } from 'react-alert';
 
@@ -30,6 +30,7 @@ import { logout } from '../../actions/user';
 
 function Header() {
   const alert = useAlert();
+  const { slug } = useParams();
   // ________________Affichage des catégories____________________ //
   // Selection des catégorie récupérée dans le state
   const categories = useSelector((state) => state.categories.list);
@@ -156,9 +157,7 @@ function Header() {
               </Link>
             )}
             {islogged && (
-              <Link to="">
-                <img className="header--top__user" src={user} alt="logo user" onClick={handleUserNav} />
-              </Link>
+            <img className="header--top__user" src={user} alt="logo user" onClick={handleUserNav} />
             )}
             {userNavIsOpen && (
               <div className="header--top__usernav">
