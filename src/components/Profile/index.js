@@ -77,7 +77,7 @@ function Profile() {
             <span className="profile--field__label">Date de Naissance</span>
             <input
               className="profile--field__input"
-              type="date"
+              type="text"
               id="birthdate"
               onChange={handleChangeBirthDate}
               defaultValue={user.birthdate}
@@ -89,7 +89,6 @@ function Profile() {
               className="profile--field__input"
               type="tel"
               id="phone"
-              placeholder="ex : 0153322327"
               onChange={handleChangePhone}
               defaultValue={user.phone}
               minLength="10"
