@@ -18,7 +18,10 @@ import {
   setLessArticleToBuy,
   setNbArticleInCart, setNbArticleToBuy, setNotNull, setNotNullBuy,
 } from '../../actions/article';
-import { addArticleToFavorite, addArticleToFavoriteBdd, fetchUser } from '../../actions/user';
+
+import { addArticleToFavorite, addArticleToFavoriteBdd } from '../../actions/user';
+import { useEffect, useMemo } from 'react';
+
 
 function Article() {
   const dispatch = useDispatch();
@@ -49,8 +52,46 @@ function Article() {
   // (codée dans le selectors correspondant) pour récupérer l'article à afficher
   const article = findArticle(articles, slug);
 
-  // console.log(article);
+  const listArticlesInLocalStorage = useMemo(() => {
+    const value = localStorage.getItem('articles');
+    return JSON.parse(value);
+  }, []);
 
+  // const listArticlesInLocalStorage = JSON.parse(localStorage.getItem('articles'));
+
+  // console.log(listArticlesInLocalStorage);
+
+  // useEffect(
+  //   () => {
+  const articleToLocalStorage = listArticlesInLocalStorage.find((item) => item.slug === slug);
+  //   },
+  //   [],
+  // );
+
+  if (articleToLocalStorage === undefined) {
+    return <Navigate to="/error" replace />;
+  }
+
+  // console.log(articleToLocalStorage);
+
+  let articleInLocalStorage = JSON.parse(localStorage.getItem('article'));
+  // console.log(articleInLocalStorage);
+  if (articleInLocalStorage == null) articleInLocalStorage = [{ slug: null }];
+  if (articleInLocalStorage.slug !== slug) {
+    localStorage.setItem('article', JSON.stringify(articleToLocalStorage));
+  }
+
+  articleInLocalStorage = JSON.parse(localStorage.getItem('article'));
+  // console.log(articleInLocalStorage);
+
+  // console.log(article);
+  // Si l'id rentré dans l'url ne match pas avec un article
+  // en BDD on fait une redirection vers une 404
+
+  // if (!articleLocalStorage) {
+  //   localStorage.removeItem('article');
+  //   return <Navigate to="/error" replace />;
+  // }
   // Fonction permettant d'afficher 5 article en fonction du display order
 
   const listArticle = findFiveArticles(articles);
@@ -97,12 +138,6 @@ function Article() {
     else alert.error('Vous avez deja cet article en favoris');
   }
 
-  // Si l'id rentré dans l'url ne match pas avec un article
-  // en BDD on fait une redirection vers une 404
-  if (!article) {
-    return <Navigate to="/error" replace />;
-  }
-
   if (counterCart < 1) {
     dispatch(setNotNull());
   }
@@ -128,25 +163,25 @@ function Article() {
       {/* Article */}
       <section className="article--container">
         <div className="article--container__img">
-          <img className="article--container__img--art" src={article.picture} alt={`illustration ${article.name}`} />
+          <img className="article--container__img--art" src={articleInLocalStorage.picture} alt={`illustration ${articleInLocalStorage.name}`} />
         </div>
         <div className="article--container__details">
           <div className="article--container__details--box">
-            <h2 className="article--container__details--box__title">{article.name}</h2>
+            <h2 className="article--container__details--box__title">{articleInLocalStorage.name}</h2>
             <div>
               <a className="article--container__details--box__notation" href="#">Notes :</a>
-              <Rating className="article--container__details--box__rate" icon="star" defaultRating={article.rating} maxRating={5} size="tiny" />
+              <Rating className="article--container__details--box__rate" icon="star" defaultRating={articleInLocalStorage.rating} maxRating={5} size="tiny" />
             </div>
           </div>
 
           <div className="box">
-            <Link className="box__tag" to={`/categories/${article.category.name}`}> {article.category.name} </Link>
-            <Link className="box__tag" to="#"> {article.brand.name} </Link>
+            <Link className="box__tag" to={`/categories/${articleInLocalStorage.category.name}`}> {articleInLocalStorage.category.name} </Link>
+            <Link className="box__tag" to="#"> {articleInLocalStorage.brand.name} </Link>
           </div>
           <p className="article--container__details--description">
-            {article.description}
-            <span> Prix : {article.price} € </span>
-            <span> Stock : {article.stock} U </span>
+            {articleInLocalStorage.description}
+            <span> Prix : {articleInLocalStorage.price} € </span>
+            <span> Stock : {articleInLocalStorage.stock} U </span>
           </p>
         </div>
         <div className="article--container__cart">

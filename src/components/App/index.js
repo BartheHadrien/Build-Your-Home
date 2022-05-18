@@ -1,7 +1,9 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import {
+  Routes, Route, useLocation,
+} from 'react-router-dom';
 
 import Home from 'src/components/Home';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
@@ -25,6 +27,8 @@ import { fetchCategories } from '../../actions/categories';
 function App() {
   const dispatch = useDispatch();
   const location = useLocation();
+  const listArticles = useSelector((state) => state.article.list);
+  console.log(listArticles);
   // Au montage du composant principal
   useEffect(
     () => {
@@ -40,18 +44,27 @@ function App() {
     () => {
       // dans cet effet, on interragit avec le
       // dom réel pour scroller en haut de page
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
       dispatch(setClearQuantity());
     },
     [location],
   );
 
+  useEffect(
+    () => {
+      localStorage.setItem('articles', JSON.stringify(listArticles));
+    },
+  );
+
+  // console.log(localStorage);
+
   return (
     <div className="app">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/article/:slug" element={<Article />} />
+        <Route exact path="/article/:slug" element={<Article />} />
         <Route path="/categories/:slug" element={<Articles />} />
         <Route path="/panier" element={<Cart />} />
         <Route path="/connexion" element={<Login />} />
@@ -60,7 +73,6 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/mentions-legales" element={<LegalMentions />} />
         <Route path="/profil" element={<Profile />} />
-
         <Route path="/*" element={<Error />} />
 
       </Routes>
