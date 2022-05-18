@@ -8,8 +8,10 @@ import { useAlert } from 'react-alert';
 import { Rating } from 'semantic-ui-react';
 // import composant
 import user from 'src/assets/images/user.svg';
+import { useMemo } from 'react';
 import ListArticle from './ListArticle';
 // import selectors function
+
 import { findArticle, findFiveArticles } from '../../selectors/article';
 // import style
 import './styles.scss';
@@ -19,9 +21,7 @@ import {
   setNbArticleInCart, setNbArticleToBuy, setNotNull, setNotNullBuy,
 } from '../../actions/article';
 
-import { addArticleToFavorite, addArticleToFavoriteBdd } from '../../actions/user';
-import { useEffect, useMemo } from 'react';
-
+import { addArticleToFavorite, addArticleToFavoriteBdd, fetchUser } from '../../actions/user';
 
 function Article() {
   const dispatch = useDispatch();
@@ -72,10 +72,7 @@ function Article() {
     return <Navigate to="/error" replace />;
   }
 
-  // console.log(articleToLocalStorage);
-
   let articleInLocalStorage = JSON.parse(localStorage.getItem('article'));
-  // console.log(articleInLocalStorage);
   if (articleInLocalStorage == null) articleInLocalStorage = [{ slug: null }];
   if (articleInLocalStorage.slug !== slug) {
     localStorage.setItem('article', JSON.stringify(articleToLocalStorage));
