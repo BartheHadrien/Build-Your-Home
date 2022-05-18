@@ -25,6 +25,7 @@ import {
   setNbArticleInCart, setNbArticleToBuy, setNotNull, setNotNullBuy,
 } from '../../actions/article';
 import { addArticleToFavorite, addArticleToFavoriteBdd } from '../../actions/user';
+import { useEffect, useMemo } from 'react';
 
 function Article() {
   const dispatch = useDispatch();
@@ -54,20 +55,27 @@ function Article() {
   // (codée dans le selectors correspondant) pour récupérer l'article à afficher
   const article = findArticle(articles, slug);
 
-  // const listArticlesInLocalStorage = useMemo(() => {
-  //   const value = localStorage.getItem('articles');
-  //   return JSON.parse(value);
-  // }, []);
+  const listArticlesInLocalStorage = useMemo(() => {
+    const value = localStorage.getItem('articles');
+    return JSON.parse(value);
+  }, []);
 
-  const listArticlesInLocalStorage = JSON.parse(localStorage.getItem('articles'));
+  // const listArticlesInLocalStorage = JSON.parse(localStorage.getItem('articles'));
 
   // console.log(listArticlesInLocalStorage);
-  const articleToLocalStorage = listArticlesInLocalStorage.find((item) => item.slug === slug);
-  // console.log(articleToLocalStorage);
 
-  if (listArticlesInLocalStorage.find((item) => item.slug == !slug)) {
+  // useEffect(
+  //   () => {
+  const articleToLocalStorage = listArticlesInLocalStorage.find((item) => item.slug === slug);
+  //   },
+  //   [],
+  // );
+
+  if (articleToLocalStorage === undefined) {
     return <Navigate to="/error" replace />;
   }
+
+  // console.log(articleToLocalStorage);
 
   let articleInLocalStorage = JSON.parse(localStorage.getItem('article'));
   // console.log(articleInLocalStorage);
