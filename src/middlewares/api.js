@@ -209,7 +209,7 @@ const apiMiddleWare = (store) => (next) => (action) => {
           },
         )
         .then(
-          console.log('commande bien envoyé'),
+          store.dispatch(fetchUser()),
         )
         .catch(() => console.log('commande non envoyé'));
       next(action);
@@ -252,32 +252,31 @@ const apiMiddleWare = (store) => (next) => (action) => {
       const {
         user: {
           profile: {
-            lastname,
-            firstname,
-            adress,
-            birthdate,
-            phone,
+            lastname, firstname, adress, birthdate, phone,
           },
         },
       } = store.getState();
-      console.log(token);
       axiosInstance
         .patch(
           `user/${id}`,
           {
+            lastname: lastname,
+            firstname: firstname,
+            adress: adress,
+            birthdate: birthdate,
+            email: email,
+            phone: phone,
+          },
+          {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-            lastname: 'zerzer',
-            firstname: 'zertzer',
-            adress: 'adress',
-            birthdate: '2022-05-16',
-            email: 'email@email.com',
-            phone: 'phone',
           },
         )
         .then(
-          console.log('Utilisateur bien modifié'),
+          (response) => {
+            store.dispatch(saveUserData(response.data));
+          },
         )
         .catch(() => console.log('echec lors de la modification'));
       next(action);

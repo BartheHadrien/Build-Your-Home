@@ -102,6 +102,14 @@ function userReducer(state = initialState, action = {}) {
           orders: action.user.orders,
           favorites: action.user.favorites,
           comments: action.user.comments,
+          email: action.user.email,
+        },
+        profile: {
+          firstname: action.user.firstname,
+          lastname: action.user.lastname,
+          adress: action.user.adress,
+          birthdate: action.user.birthdate,
+          phone: action.user.phone,
         },
       };
     case SET_LOGIN_UNKNOWN:
