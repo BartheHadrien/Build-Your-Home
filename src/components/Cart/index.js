@@ -81,6 +81,10 @@ function Carts() {
     }
   }
 
+  function handleContinueShopping() {
+    navigate('/');
+  }
+
   return (
     <>
       <div className="carts">
@@ -112,7 +116,7 @@ function Carts() {
           </p>
           <p className="carts__pay__total">Sous-total ({nbArticle} article) : {sum}$</p>
           <button type="button" className="carts__pay__button" onClick={handleSendOrder}>Passer la commande</button>
-          <button type="button" className="carts__pay__button">Continuez vos achats</button>
+          <button type="button" className="carts__pay__button" onClick={handleContinueShopping}>Continuez vos achats</button>
         </section>
       </div>
       {/* Content of article to display */}

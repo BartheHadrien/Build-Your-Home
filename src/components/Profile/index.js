@@ -1,18 +1,25 @@
 import './styles.scss';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useAlert } from 'react-alert';
 import {
-  deleteUser, modifyProfile, setAdressInProfile,
+  deleteUser, logout, modifyProfile, setAdressInProfile,
   setBirthDateInProfile, setFirstNameInProfile,
   setLastNameInProfile, setPhoneInProfile,
 } from '../../actions/user';
 
 function Profile() {
   const dispatch = useDispatch();
+  const alert = useAlert();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
 
   function handleDeleteUser(evt) {
     evt.preventDefault();
     dispatch(deleteUser());
+    dispatch(logout());
+    navigate('/');
+    alert.success('Vous avez bien supprimé votre compte');
   }
 
   function handleModifyProfile(evt) {

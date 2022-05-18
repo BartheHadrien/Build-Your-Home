@@ -4,7 +4,7 @@ import './styles.scss';
 import { Rating } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { deleteArticleToFavorite, deleteArticleToFavoriteInBdd } from '../../../actions/user';
+import { deleteArticleToFavorite, deleteArticleToFavoriteInBdd, fetchUser } from '../../../actions/user';
 
 function CardFavorite({
   name,
@@ -16,6 +16,7 @@ function CardFavorite({
   const dispatch = useDispatch();
 
   function handleDelete() {
+    dispatch(fetchUser());
     dispatch(deleteArticleToFavorite(favID));
     dispatch(deleteArticleToFavoriteInBdd());
   }
