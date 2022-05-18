@@ -1,3 +1,4 @@
+/* eslint-disable no-else-return */
 // ==============================================
 // ==================Import======================
 // ==============================================
@@ -20,11 +21,22 @@ function Articles() {
   // On sélectionne les articles dans le state
   const articles = useSelector((state) => state.article.list);
 
+  const categories = useSelector((state) => state.categories.list);
+
+  const existCategory = categories.map((item) => item.name);
+
+  const existCategoryContain = existCategory.includes(slug);
+  console.log(existCategoryContain);
+
   // On filtre le articles correspondant au slug de l'URL
   const articlesToDisplay = articles.filter((article) => article.category.name === slug);
+  console.log(articlesToDisplay);
 
   // Si l'article n'est pas trouvé alors on redirige vers la page erreur
-  if (articlesToDisplay.map((item) => item.slug) === !slug) {
+  if (existCategoryContain === true && articlesToDisplay.length === 0) {
+    return <Navigate to="/not-found" replace />;
+  }
+  if (articlesToDisplay.map((item) => item.slug) == !slug) {
     return <Navigate to="/error" replace />;
   }
 

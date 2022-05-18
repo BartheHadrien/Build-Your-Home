@@ -21,6 +21,7 @@ import Contact from '../Contact';
 import LegalMentions from '../LegalMentions';
 import Error from '../Error';
 import NewAccount from '../NewAccount';
+import NotFound from '../NotFound';
 
 // ==================Action======================
 import { fetchArticles, setClearQuantity } from '../../actions/article';
@@ -76,6 +77,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/mentions-legales" element={<LegalMentions />} />
         <Route path="/profil" element={<Profile />} />
+        <Route path="/not-found" element={<NotFound />} />
         <Route path="/*" element={<Error />} />
       </Routes>
       <Footer />
