@@ -176,11 +176,14 @@ const apiMiddleWare = (store) => (next) => (action) => {
         .post(
           'favorite/add',
           {
+
+            user: id,
+            article: newfavorites.id,
+          },
+          {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-            user: id,
-            article: newfavorites.id,
           },
         )
         .then(
