@@ -28,7 +28,6 @@
           font-weight: bold;
           padding-top: vars.$gutter;
           color: vars.$main-color;
-
         }
 
         
@@ -179,6 +178,7 @@
       width: auto;
       margin: 1rem 1rem;
       color: vars.$text-color;
+      text-transform: capitalize;
  
     }
     &__user {

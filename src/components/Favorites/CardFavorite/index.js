@@ -8,11 +8,11 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-// ==================Action======================
-import { deleteArticleToFavorite, deleteArticleToFavoriteInBdd, fetchUser } from '../../../actions/user';
-
 // ==================Style&IMG===================
 import './styles.scss';
+
+// ==================Action======================
+import { deleteArticleToFavorite, deleteArticleToFavoriteInBdd, fetchUser } from '../../../actions/user';
 
 function CardFavorite({
   name,
@@ -37,7 +37,7 @@ function CardFavorite({
   }
 
   return (
-    <>
+    <div className="card">
       <Link to={`/article/${slug}`}>
         <div className="card--article">
           <img src={picture} alt="" className="card--article__picture" />
@@ -48,8 +48,8 @@ function CardFavorite({
           </div>
         </div>
       </Link>
-      <button type="button" onClick={handleDelete}>Supprimer</button>
-    </>
+      <button type="button" className="card--button" onClick={handleDelete}>-</button>
+    </div>
   );
 }
 
