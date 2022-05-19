@@ -1,61 +1,58 @@
 @use 'src/styles/vars';
-.card--article {
-  background-color: vars.$text-color;
-  width: 100%;
-  border-radius: 15px;
-  transition: all 0.5s linear;
 
-  &__title{
-    font-size: 1.5em;
-    text-align: center;
-    padding: vars.$gutter;
-    color: vars.$secondary-color;
-    font-weight: bold;
-    margin: 0;
+.card {
+  margin: 1em;
+
+  &--article {
+    background-color: vars.$text-color;
+    width: 100%;
+    border-radius: 15px;
+    transition: all 0.5s linear;
+    // margin: 1em;
+
+    &__title{
+      font-size: 1.5em;
+      text-align: center;
+      padding: vars.$gutter;
+      color: vars.$secondary-color;
+      font-weight: bold;
+      margin: 0;
     
-  }
-
-  &--container {  
-    display: flex;
-    justify-content: space-between;
-
-    &__rate {
-      padding: 1em;
     }
 
-    &__price {
-      padding: 1em;
+    &--container {  
+      display: flex;
+      justify-content: space-between;
+
+      &__rate {
+        padding: 1em;
+      }
+
+      &__price {
+        padding: 1em;
+      }
+    }
+
+
+    &__picture {
+    
+      padding: 1rem;
+      border-radius: 25px;
+
+    }
+    &__title {
+      color: vars.$secondary-color;
+      text-align: center;
+      font-size: 1.5em;
     }
   }
 
-
-  &__picture {
-    // max-width: 40vw;
-    // max-height: 40vh;
-    padding: 1rem;
-    border-radius: 25px;
-
-    // @media (min-width : vars.$pad) {
-    //   max-width:30vw;
-    //   max-height: 30vh;
-    //   }
-    // @media (min-width: vars.$desktop){
-    //   max-width:20vw;
-    //   max-height: 20vh;
-    // }
-  }
-  &__title {
-    color: vars.$secondary-color;
-    text-align: center;
-    font-size: 1.5em;
-  }
-}
-
-.card--article:hover {
-  background-color: orange;
-  opacity: 0.8;
-  .card--article__title {
-    color: white;
+  .card--article:hover {
+    background-color: orange;
+    opacity: 0.8;
+    .card--article__title {
+      color: white;
+    }
   }
 }
 

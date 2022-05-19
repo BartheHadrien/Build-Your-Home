@@ -16,7 +16,7 @@ function CardArticle({
   name, picture, price, slug,
 }) {
   return (
-    <Link to={`/article/${slug}`}>
+    <Link className="card" to={`/article/${slug}`}>
       <div className="card--article">
         <img src={picture} alt="" className="card--article__picture" />
         <h1 className="card--article__title">{name}</h1>
