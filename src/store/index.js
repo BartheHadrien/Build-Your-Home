@@ -11,6 +11,7 @@ const enhancers = composeEnhancers(
   applyMiddleware(apiMiddleWare),
 );
 
+// On crée le store comprenant les reducers ainsi que middleware.
 const store = createStore(reducer, enhancers);
 
 export default store;

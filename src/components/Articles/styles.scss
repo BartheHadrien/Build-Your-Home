@@ -1,32 +1,53 @@
 @use 'src/styles/vars';
 
 .articles {
+  margin-top: 2rem;
+  width: 80%;
+  margin: 2rem auto 2rem;
+  @media (max-width : vars.$pad) {
+    width: 100%;
+    }
+
+
+  
+  &--title {
+    text-transform: uppercase;
+    width: 30%;
+    margin: auto;
+    text-align: center;
+    font-size: 4rem;
+    padding: 1.2rem;
+    @media (max-width : vars.$large) {
+      width: 40%;
+      font-size: 3rem;
+      }
+    @media (max-width : vars.$desktop) {
+      width: 50%;
+      font-size: 2.5rem
+      }
+    @media (max-width : vars.$pad) {
+      width: 100%;
+      font-size: 2rem
+      }
+  
+  }
   &--articles {
     border:1px solid grey;
+    border-radius: 15px;
     margin: vars.$gutter;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     padding: 1rem;
-  }
 
-  &--article {
-    background-color: vars.$text-color;
-    margin: 1rem 0.5rem 1rem 0.5rem;
-
-    &__picture {
-      max-width: 40vw;
-      max-height: 40vh;
-      padding: 1rem 1rem 1rem 1rem;
-
-      @media (min-width : vars.$pad) {
-        max-width:30vw;
-        max-height: 30vh;
-        }
-      @media (min-width: vars.$desktop){
-        max-width:20vw;
-        max-height: 20vh;
+      a {
+        margin: 1rem;
+        
       }
-    }
+      
   }
+
+  
+ 
 }
+
