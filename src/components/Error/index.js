@@ -11,9 +11,43 @@ import './styles.scss';
 function Error() {
   return (
     <div className="error">
-      <h1>Error 404</h1>
-      <p>Cette page n'existe pas.</p>
-      <p>Reformulez votre recherche ou allez sur <Link to="/">la page d'acceuil de Build Your Home</Link>.</p>
+      <div className="box">
+        <div className="box__ghost">
+          <div className="symbol" />
+          <div className="symbol" />
+          <div className="symbol" />
+          <div className="symbol" />
+          <div className="symbol" />
+          <div className="symbol" />
+
+          <div className="box__ghost-container">
+            <div className="box__ghost-eyes">
+              <div className="box__eye-left" />
+              <div className="box__eye-right" />
+            </div>
+            <div className="box__ghost-bottom">
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+            </div>
+          </div>
+          <div className="box__ghost-shadow" />
+        </div>
+
+        <div className="box__description">
+          <div className="box__description-container">
+            <div className="box__description-title">Whoops!</div>
+            <div className="box__description-text">La page demandée n'existe pas</div>
+          </div>
+          <Link to="/" target="_blank">
+            <p className="box__button">Go home</p>
+          </Link>
+
+        </div>
+
+      </div>
     </div>
   );
 }
