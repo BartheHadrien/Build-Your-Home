@@ -11,7 +11,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 
 // ==================Action======================
 import {
-  setEmailInLogin, setPasswordInLogin, login, validateCaptcha,
+  setEmailInLogin, setPasswordInLogin, login, saveCaptchaToken, sendToGoogle,
 } from '../../actions/user';
 
 // ==================Style&IMG===================
@@ -38,8 +38,8 @@ function Login() {
 
   // Résolution du captcha
   function handleCaptcha(value) {
-    console.log('Captcha value:', value);
-    dispatch(validateCaptcha());
+    dispatch(saveCaptchaToken(value));
+    dispatch(sendToGoogle());
   }
 
   // ==================UseEffect===============
@@ -99,7 +99,7 @@ function Login() {
                 S'identifier
               </button>
               <ReCAPTCHA
-                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                sitekey="6LeTdAEgAAAAAI4e2uy1SXK4Y4qP4ifEDxlDlsKv"
                 onChange={handleCaptcha}
               />
             </form>

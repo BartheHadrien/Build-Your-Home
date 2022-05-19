@@ -228,8 +228,26 @@ export const createUser = (value) => ({
 export const VALIDATE_CAPTCHA = 'VALIDATE_CAPTCHA';
 
 // ACTION CREATOR VALIDATE_CAPTCHA
-export const validateCaptcha = () => ({
+export const validateCaptcha = (response) => ({
   type: VALIDATE_CAPTCHA,
+  response,
+});
+
+// ACTION TYPE SAVE_CAPTCHA_TOKEN
+export const SAVE_CAPTCHA_TOKEN = 'SAVE_CAPTCHA_TOKEN';
+
+// ACTION CREATOR SAVE_CAPTCHA_TOKEN
+export const saveCaptchaToken = (value) => ({
+  type: SAVE_CAPTCHA_TOKEN,
+  value,
+});
+
+// ACTION TYPE SEND_TO_GOOGLE
+export const SEND_TO_GOOGLE = 'SEND_TO_GOOGLE';
+
+// ACTION CREATOR SEND_TO_GOOGLE
+export const sendToGoogle = () => ({
+  type: SEND_TO_GOOGLE,
 });
 
 // ==============================================

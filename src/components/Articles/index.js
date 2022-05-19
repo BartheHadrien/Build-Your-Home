@@ -26,11 +26,9 @@ function Articles() {
   const existCategory = categories.map((item) => item.name);
 
   const existCategoryContain = existCategory.includes(slug);
-  console.log(existCategoryContain);
 
   // On filtre le articles correspondant au slug de l'URL
   const articlesToDisplay = articles.filter((article) => article.category.name === slug);
-  console.log(articlesToDisplay);
 
   // Si l'article n'est pas trouvé alors on redirige vers la page erreur
   if (existCategoryContain === true && articlesToDisplay.length === 0) {
