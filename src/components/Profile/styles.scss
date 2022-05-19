@@ -1,12 +1,35 @@
+@use 'src/styles/vars';
+
 .profile {
 
+  width: auto;
+  height: 100vh;
+  margin: auto;
+
+  &--title {
+    padding: vars.$gutter;
+  }
+  &--container {
+    border:1px solid grey;
+    border-radius: 2rem;
+    margin: vars.$gutter;
+    display: flex;
+  }
   &--form {
     display: flex;
     flex-direction: column;
     margin: 2em;
     padding: 2em;
+  } 
+
+  &--button__submit {
+    
   }
-  width: auto;
-  height: 100vh;
-  margin: auto;
+}
+
+label {
+  display: block;
+  width: 12.5rem;
+  float: left;
+  margin: 0.5rem 0.5rem;
 }

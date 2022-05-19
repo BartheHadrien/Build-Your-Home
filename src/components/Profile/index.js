@@ -58,7 +58,7 @@ function Profile() {
 
   return (
     <div className="profile">
-      <h1>Mes informations personnelles</h1>
+      <h1 className="profile--title">Mes informations personnelles</h1>
       <div className="profile--container">
         <form className="profile--form" onSubmit={handleModifyProfile}>
           <label htmlFor="lastname">
@@ -123,14 +123,15 @@ function Profile() {
           >
             Modifier mes informations
           </button>
+          <button
+            type="submit"
+            className="profile--button__submit"
+            onClick={handleDeleteUser}
+          >
+            Supprimer mon compte
+          </button>
         </form>
-        <button
-          type="submit"
-          className="profile--button__submit"
-          onClick={handleDeleteUser}
-        >
-          Supprimer mon compte
-        </button>
+
       </div>
     </div>
   );
