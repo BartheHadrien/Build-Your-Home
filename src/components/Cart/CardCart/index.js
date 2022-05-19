@@ -11,6 +11,7 @@ import { setArticleInCart } from 'src/actions/cart';
 
 // ==================Style&IMG===================
 import deleteimg from 'src/assets/images/delete.svg';
+import './style.scss';
 
 function CardCart({
   name,

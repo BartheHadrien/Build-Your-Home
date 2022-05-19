@@ -1,0 +1,35 @@
+.carts__article {
+  &__picture {
+    border-radius: 15px;
+
+  }
+  &__description {
+
+  }
+  &__value {
+
+  }
+  &__available {
+
+  }
+  &__stock {
+   
+    &__delete {
+      &__icon {
+
+      }
+    }
+
+    &__quantity {
+
+    }
+    &__add {
+      &__icon {
+        img{
+          
+        }
+
+      }
+    }
+  }
+}
