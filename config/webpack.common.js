@@ -17,7 +17,7 @@ module.exports = {
   ],
   output: {
     path: paths.build,
-    publicPath: 'auto',
+    publicPath: 'http://martin-mickael-server.eddi.cloud/',
     filename: 'js/[name].[contenthash].js',
   },
   resolve: {
