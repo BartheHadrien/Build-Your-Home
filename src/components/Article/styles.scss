@@ -207,143 +207,145 @@
 
 // Cart with purshase option
 
-    &__cart {
-      width: 25%;
-      border: 1px solid grey;
-      border-radius: 15px;
-      // margin: 0 0 0 2*vars.$gutter;
-      padding: 0.5*vars.$gutter;
-      text-align: center;
-      max-height: 300px;
-      transition: width 0.3s linear;
+&__cart {
+  width: 25%;
+  border: 1px solid grey;
+  border-radius: 15px;
+  // margin: 0 0 0 2*vars.$gutter;
+  padding: 0.5*vars.$gutter;
+  text-align: center;
+  max-height: 300px;
+  transition: width 0.3s linear;
 
 
-      @media (min-width : vars.$large) {
-        width: 30%;
-        
-      }
-
-
-      @media (max-width : vars.$middle) {
-        width: 32%;
-        margin-top: 6*vars.$gutter;
-        
-        }
-
-      @media (max-width : vars.$pad) {
-          
-        width: 80%;
-        margin: 3*vars.$gutter auto 0;
-        transition: width 0.5s linear;
-
-            
-      }
-
-      @media (max-width : vars.$phone) {
-        width: 90%;
-      }
-      
-
-      &--title{
-        padding-top: 2*vars.$gutter;
-        text-align: center;
-        font-weight: bold;
-        font-size: 1.8em;
-      }
-
-      &--add {
-
-       margin-bottom: vars.$gutter;
-       margin-top: 2*vars.$gutter;
-        
-   
-         &__click {
-           width: 25px;
-           font-weight: bold;
-         }
-         &__counter {
-
-          
-            /* Firefox */
-            -moz-appearance: textfield;
-           
-            /* Chrome */
-            &::-webkit-inner-spin-button {
-              -webkit-appearance: none;
-              margin:0;
-            }
-           
-            /* Opéra*/
-            &::-o-inner-spin-button {
-              -o-appearance: none;
-              margin: 0; 
-            }
-          
-           width: 35px;
-         }
-         &__cart{
-           margin-left: 0.7em;
-           background-color: #F0C24F;
-           width: 50%;
-           padding: 0.5em;
-           border: 1px solid grey;
-           border-radius: 4px;
-       
-
-         }
-        
-       }
-       
-       &--buy {
-        margin-bottom: vars.$gutter;
-        text-align: center;
-
-         &__click {
-           width: 25px;
-           font-weight: bold;
-         }
-
-         &__counter {
-           width: 35px;
-           /* Firefox */
-           -moz-appearance: textfield;
-           
-           /* Chrome */
-           &::-webkit-inner-spin-button {
-             -webkit-appearance: none;
-             margin:0;
-           }
-          
-           /* Opéra*/
-           &::-o-inner-spin-button {
-             -o-appearance: none;
-             margin: 0; 
-           }
-         }
-
-         &__cart {
-          background-color: #e78c03;
-          margin-left: 0.7em;
-          width: 50%;
-          padding: 0.5em;
-          border: 1px solid grey;
-          border-radius: 4px;
-         }
-       }
-
-       &--favorite {
-        width: 100%;
-        text-align: center;
-        margin: 2em auto 0;
-        background-color: #e6d924;
-        padding: 0.5em;
-        border: 1px solid grey;
-        border-radius: 4px;
-       }
-    }
+  @media (min-width : vars.$large) {
+    width: 30%;
+    
   }
-}
 
+
+  @media (max-width : vars.$middle) {
+    width: 32%;
+    margin-top: 6*vars.$gutter;
+    
+    }
+
+  @media (max-width : vars.$pad) {
+      
+    width: 80%;
+    margin: 3*vars.$gutter auto 0;
+    transition: width 0.5s linear;
+
+        
+  }
+
+  @media (max-width : vars.$phone) {
+    width: 90%;
+  }
+  
+
+  &--title{
+    padding-top: 2*vars.$gutter;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.8em;
+  }
+
+  &--add {
+
+   margin-bottom: vars.$gutter;
+   margin-top: 2*vars.$gutter;
+   background-color: red;
+   display: flex;
+   justify-content: space-evenly;
+    
+
+     &__click {
+       width: 25px;
+       font-weight: bold;
+     }
+     &__counter {
+
+      
+        /* Firefox */
+        -moz-appearance: textfield;
+       
+        /* Chrome */
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin:0;
+        }
+       
+        /* Opéra*/
+        &::-o-inner-spin-button {
+          -o-appearance: none;
+          margin: 0; 
+        }
+      
+       width: 35px;
+     }
+     &__cart{
+       margin-left: 0.7em;
+       background-color: #F0C24F;
+       width: 50%;
+       padding: 0.5em;
+       border: 1px solid grey;
+       border-radius: 4px;
+   
+
+     }
+    
+   }
+   
+   &--buy {
+    margin-bottom: vars.$gutter;
+    text-align: center;
+
+     &__click {
+       width: 25px;
+       font-weight: bold;
+     }
+
+     &__counter {
+       width: 35px;
+       /* Firefox */
+       -moz-appearance: textfield;
+       
+       /* Chrome */
+       &::-webkit-inner-spin-button {
+         -webkit-appearance: none;
+         margin:0;
+       }
+      
+       /* Opéra*/
+       &::-o-inner-spin-button {
+         -o-appearance: none;
+         margin: 0; 
+       }
+     }
+
+     &__cart {
+      background-color: #e78c03;
+      margin-left: 0.7em;
+      width: 50%;
+      padding: 0.5em;
+      border: 1px solid grey;
+      border-radius: 4px;
+     }
+   }
+
+   &--favorite {
+    width: 100%;
+    text-align: center;
+    margin: 2em auto 0;
+    background-color: #e6d924;
+    padding: 0.5em;
+    border: 1px solid grey;
+    border-radius: 4px;
+   }
+}
+}
+}
 // third part with avis
 
 .avis--container {
