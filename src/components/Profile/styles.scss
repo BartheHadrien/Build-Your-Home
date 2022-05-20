@@ -1,15 +1,14 @@
 @use 'src/styles/vars';
 
 .profile {
-
-  height: 80vh;
+  min-height: 100%;
   margin: auto;
 
   &--title {
-    margin-top: 1rem;
+    margin-top: 2rem;
     padding: vars.$gutter;
 
-    @media (min-width: vars.$pad) { 
+    @media (min-width: vars.$phone) { 
       text-align: center;
       margin-top: 2rem;
      }
@@ -17,13 +16,19 @@
   &--container {
     border:1px solid grey;
     border-radius: 2rem;
-    margin: auto;
+    margin: 0 auto 2em;
     margin-top: 2rem;
     display: flex;
-    width: 20rem;
+    width: 30rem;
 
-    @media (min-width: vars.$pad) { 
-      margin-top: 5rem;
+    @media (max-width: vars.$pad) { 
+      margin-top: 2rem;
+      width: 25rem;
+     }
+
+     @media (max-width: vars.$phone) { 
+      margin-top: 2rem;
+      width: 20rem;
      }
   }
   &--form {
@@ -31,20 +36,31 @@
     flex-direction: column;
     margin: auto;
     padding: 1rem 0rem; 
-  } 
 
+    @media (min-width: vars.$pad) { 
+      width: 20rem;
+     }
+  } 
+  &--field__input {
+    width: 100%;
+    padding: 0.5em;
+    border-radius: 4px;
+    border: 1px solid grey;
+  }
   &--button__info {
-    background-color: #EFBE43;
-    border-radius: 1rem;
-    margin-top: 1rem;
+    background-color: #F0C24F;
+    padding: 0.5em;
+    border: 1px solid grey;
+    border-radius: 4px;
+    margin: 1rem 0rem;
   }
   &--button__delete {
-    background-color: #e44f22;
-    border-radius: 1rem;
-    margin-top: 1rem;
-  }
-  &--button__delete:hover {
-    color: #EFBE43;
+    background-color: #c22;
+    color: white;
+    padding: 0.5em;
+    border: 1px solid grey;
+    border-radius: 4px;
+    margin: 1rem 0rem;
   }
   &--field__label {
     display: flex;

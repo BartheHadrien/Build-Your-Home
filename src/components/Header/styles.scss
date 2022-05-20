@@ -197,7 +197,7 @@
 .header--container {
   position: relative;
   transition: transform 0.2s ease-in;
-  z-index: 1;
+  z-index: 2;
   @media (max-width : vars.$pad) {
     transition: transform 0s ease-in
 
@@ -225,7 +225,8 @@ transform: translate(-40%);
   .header--nav__burgertranslation{
 
     
-      background-color: rgb(35, 47, 62, 0.9);
+      background-color: rgb(35, 47, 62);
+      
       width: 40%;
       border-bottom-right-radius: 15px;
 
