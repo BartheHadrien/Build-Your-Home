@@ -2,34 +2,59 @@
 
 .profile {
 
-  width: auto;
-  height: 100vh;
+  height: 80vh;
   margin: auto;
 
   &--title {
+    margin-top: 1rem;
     padding: vars.$gutter;
+
+    @media (min-width: vars.$pad) { 
+      text-align: center;
+      margin-top: 2rem;
+     }
   }
   &--container {
     border:1px solid grey;
     border-radius: 2rem;
-    margin: vars.$gutter;
+    margin: auto;
+    margin-top: 2rem;
     display: flex;
+    width: 20rem;
+
+    @media (min-width: vars.$pad) { 
+      margin-top: 5rem;
+     }
   }
   &--form {
     display: flex;
     flex-direction: column;
-    margin: 2em;
-    padding: 2em;
+    margin: auto;
+    padding: 1rem 0rem; 
   } 
 
-  &--button__submit {
-    
+  &--button__info {
+    background-color: #EFBE43;
+    border-radius: 1rem;
+    display: flow-root;
+  }
+  &--button__delete {
+    border: none;
+  }
+  &--button__delete:hover {
+    color: #EFBE43;
   }
 }
 
 label {
-  display: block;
-  width: 12.5rem;
+  display: flex;
+  flex-direction: column;
+  // width: 12.5rem;
   float: left;
   margin: 0.5rem 0.5rem;
+}
+
+button {
+  display: flex;
+  margin-top: 1rem;
 }

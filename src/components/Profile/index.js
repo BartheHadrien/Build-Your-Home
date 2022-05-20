@@ -119,13 +119,13 @@ function Profile() {
           </label>
           <button
             type="submit"
-            className="profile--button__submit"
+            className="profile--button__info"
           >
             Modifier mes informations
           </button>
           <button
             type="submit"
-            className="profile--button__submit"
+            className="profile--button__delete"
             onClick={handleDeleteUser}
           >
             Supprimer mon compte
