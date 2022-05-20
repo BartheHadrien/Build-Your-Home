@@ -5,6 +5,8 @@
   border-radius: 15px;
   max-width: 100%;
   transition: all 0.5s linear;
+  box-shadow: 1px 1px 15px black;
+
 
   
 
@@ -39,7 +41,7 @@
 
 .card-category:hover {
   background-color: vars.$main-color;
-  opacity: 0.8;
+  
   p {
     color: white;
   }

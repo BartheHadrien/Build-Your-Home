@@ -28,7 +28,7 @@ function Home() {
 
   // Fonction filtrant le nombre de catégorie à afficher
   const filteredArticles = () => {
-    const filteredArticle = articles.filter((article) => article.displayOrder < 6
+    const filteredArticle = articles.filter((article) => article.displayOrder < 10
     && article.displayOrder > 0);
     return filteredArticle;
   };

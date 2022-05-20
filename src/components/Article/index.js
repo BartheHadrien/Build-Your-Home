@@ -196,19 +196,19 @@ function Article() {
         <div className="article--container__details">
           <div className="article--container__details--box">
             <h2 className="article--container__details--box__title">{articleInLocalStorage.name}</h2>
-            <div>
+            {/* <div>
               <a className="article--container__details--box__notation" href="#">Notes :</a>
               <Rating className="article--container__details--box__rate" icon="star" defaultRating={articleInLocalStorage.rating} maxRating={5} size="tiny" />
-            </div>
+            </div> */}
           </div>
 
-          <div className="box">
+          {/* <div className="box">
             <Link className="box__tag" to={`/categories/${articleInLocalStorage.category.name}`}> {articleInLocalStorage.category.name} </Link>
             <Link className="box__tag" to="#"> {articleInLocalStorage.brand.name} </Link>
-          </div>
+          </div> */}
           <p className="article--container__details--description">
             {articleInLocalStorage.description}
-            <span> Prix : {articleInLocalStorage.price} € </span>
+            <span> Prix : <span>{articleInLocalStorage.price} €</span> </span>
             <span> Stock : {articleInLocalStorage.stock} U </span>
           </p>
         </div>
@@ -302,7 +302,7 @@ function Article() {
 
       {/* Avis */}
 
-      <section className="avis--container">
+      {/* <section className="avis--container">
         <h2 className="avis--container__title">Avis</h2>
         <div className="avis--container__box">
           <img className="avis--container__img" src={user} alt="user" />
@@ -320,7 +320,7 @@ function Article() {
             Reiciendis reprehenderit molestiae, consectetur iusto impedit dolore velit natus
           </p>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
