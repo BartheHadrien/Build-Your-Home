@@ -18,6 +18,10 @@
     padding: vars.$gutter;
     text-align: left;
     margin-bottom: 2em;
+
+    @media (min-width : vars.$phone) {
+      width: 45vh;
+    }
   }
 
   &--button__mdp {
@@ -42,12 +46,15 @@
     border-radius: 4px;
     margin-bottom: 5em;
     width: 100%;
+
+    @media (min-width : vars.$phone) {
+      width: 45vh;
+    }
   }
 
   &--section{
     margin: auto;
     text-align: center;
-    width: 20vw;
   }
   &--message__display {
     display: block;
@@ -61,26 +68,6 @@
     display: none;
   }
 }
-
-@media (min-width : vars.$middle) {
-  .login--section{
-    width: 40vw;
-  }
-
-  .login--container {
-    width: 40vw;
-  }
-}
-@media (min-width : vars.$phone) {
-  .login--section{
-    width: 45vw;
-  }
-
-  .login--container {
-    width: 45vw;
-  }
-}
-
 
 
 

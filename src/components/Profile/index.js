@@ -131,7 +131,6 @@ function Profile() {
             Supprimer mon compte
           </button>
         </form>
-
       </div>
     </div>
   );

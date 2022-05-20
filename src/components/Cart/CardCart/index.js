@@ -71,12 +71,41 @@ function CardCart({
   return (
     <div className="carts__article">
       <img src={picture} alt={name} className="carts__article__picture" />
-      <p className="carts__article__description">{description}
-      </p>
-      <span className="carts__article__value">{price}</span>
-      <span className="carts__article__avalaible">{stock}</span>
-      <div className="carts__article__stock">
-        <span className="carts__article__stock__delete">
+      <div className="carts__article__container">
+        <h3 className="carts__article__title">{name}</h3>
+        <p className="carts__article__description">{description}</p>
+
+        {/* <div className="carts__article__stock">
+          <span className="carts__article__stock__delete">
+            <button
+              type="button"
+              className="carts__article__stock__delete__icon"
+              onClick={handleLessCart}
+            >
+              -
+            </button>
+          </span>
+          <span className="carts__article__stock__quantity">
+            {quantity}
+          </span>
+          <span className="carts__article__stock__add">
+            <button
+              type="button"
+              className="carts__article__stock__add__icon"
+              onClick={handleMoreCart}
+            >
+              +
+            </button>
+            <button
+              type="button"
+              className="carts__article__stock__add__icon"
+              onClick={handleDeleteArticle}
+            >
+              <img src={deleteimg} alt={deleteimg} />
+            </button>
+          </span>
+        </div> */}
+        <div className="carts__article__stock">
           <button
             type="button"
             className="carts__article__stock__delete__icon"
@@ -84,27 +113,23 @@ function CardCart({
           >
             -
           </button>
-        </span>
-        <span className="carts__article__stock__quantity">
-          {quantity}
-        </span>
-        <span className="carts__article__stock__add">
+          <span className="carts__article__stock__quantity">
+            {quantity}
+          </span>
+
           <button
             type="button"
-            className="carts__article__stock__add__icon"
+            className="carts__article__stock__add"
             onClick={handleMoreCart}
           >
             +
           </button>
-          <button
-            type="button"
-            className="carts__article__stock__add__icon"
-            onClick={handleDeleteArticle}
-          >
-            <img src={deleteimg} alt={deleteimg} />
-          </button>
-        </span>
+          <button type="button" className="carts__article__stock__delete" onClick={handleDeleteArticle}> </button>
+        </div>
       </div>
+      <span className="carts__article__value">Prix : {price} €</span>
+      {/* <span className="carts__article__avalaible">{stock}</span> */}
+
     </div>
   );
 }

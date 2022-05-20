@@ -65,21 +65,22 @@ function App() {
 
   return (
     <div className="app">
-
+      <Header />
       <Routes>
-        <Route path="/" element={<><Header /> <Home /> <Footer /></>} />
-        <Route exact path="/article/:slug" element={<><Header /> <Article /> <Footer /></>} />
-        <Route path="/categories/:slug" element={<><Header /> <Articles /> <Footer /></>} />
-        <Route path="/panier" element={<><Header /> <Cart /> <Footer /></>} />
-        <Route path="/connexion" element={<><Header /> <Login /> <Footer /></>} />
-        <Route path="/inscription" element={<><Header /> <Home /> <NewAccount /></>} />
-        <Route path="/favoris" element={<><Header /> <Favorites /> <Footer /></>} />
-        <Route path="/contact" element={<><Header /> <Contact /> <Footer /></>} />
-        <Route path="/mentions-legales" element={<><Header /><LegalMentions /> <Footer /></>} />
-        <Route path="/profil" element={<><Header /> <Profile /> <Footer /></>} />
-        <Route path="/not-found" element={<><Header /> <NotFound /> <Footer /></>} />
+        <Route path="/" element={<Home />} />
+        <Route exact path="/article/:slug" element={<Article />} />
+        <Route path="/categories/:slug" element={<Articles />} />
+        <Route path="/panier" element={<Cart />} />
+        <Route path="/connexion" element={<Login />} />
+        <Route path="/inscription" element={<NewAccount />} />
+        <Route path="/favoris" element={<Favorites />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/mentions-legales" element={<LegalMentions />} />
+        <Route path="/profil" element={<Profile />} />
+        <Route path="/not-found" element={<NotFound />} />
         <Route path="/*" element={<Error />} />
       </Routes>
+      <Footer />
 
     </div>
   );

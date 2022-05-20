@@ -113,18 +113,15 @@ function Carts() {
 
         {/* Content of payment section */}
         <section className="carts__pay">
-          <p className="carts__pay__description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Reiciendis reprehenderit molestiae, qui possimus, mollitia
-            delectus maxime ex doloremque.
-          </p>
           <p className="carts__pay__total">Sous-total ({nbArticle} article) : {sum}$</p>
           <button type="button" className="carts__pay__button" onClick={handleSendOrder}>Passer la commande</button>
           <button type="button" className="carts__pay__button" onClick={handleContinueShopping}>Continuez vos achats</button>
         </section>
       </div>
       {/* Content of article to display */}
-      {articlesToDisplay.map((article) => <CardArticle {...article} key={article.id} />)}
-
+      <section className="slider--container">
+        {articlesToDisplay.map((article) => <CardArticle {...article} key={article.id} />)}
+      </section>
     </>
   );
 }
