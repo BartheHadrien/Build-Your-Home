@@ -36,25 +36,21 @@
   &--button__info {
     background-color: #EFBE43;
     border-radius: 1rem;
-    display: flow-root;
+    margin-top: 1rem;
   }
   &--button__delete {
-    border: none;
+    background-color: #e44f22;
+    border-radius: 1rem;
+    margin-top: 1rem;
   }
   &--button__delete:hover {
     color: #EFBE43;
   }
+  &--field__label {
+    display: flex;
+    flex-direction: column;
+    float: left;
+    margin: 0.5rem 0.5rem;
+  }
 }
 
-label {
-  display: flex;
-  flex-direction: column;
-  // width: 12.5rem;
-  float: left;
-  margin: 0.5rem 0.5rem;
-}
-
-button {
-  display: flex;
-  margin-top: 1rem;
-}

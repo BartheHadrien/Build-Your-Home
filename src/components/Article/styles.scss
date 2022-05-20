@@ -233,7 +233,7 @@
   @media (max-width : vars.$pad) {
       
     width: 80%;
-    margin: 3*vars.$gutter auto 0;
+    margin: 2*vars.$gutter auto 1em;
     transition: width 0.5s linear;
 
         
@@ -255,9 +255,6 @@
 
    margin-bottom: vars.$gutter;
    margin-top: 2*vars.$gutter;
-   background-color: red;
-   display: flex;
-   justify-content: space-evenly;
     
 
      &__click {

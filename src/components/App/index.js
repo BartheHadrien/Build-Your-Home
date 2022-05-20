@@ -75,7 +75,7 @@ function App() {
         <Route path="/inscription" element={<><Header /> <Home /> <NewAccount /></>} />
         <Route path="/favoris" element={<><Header /> <Favorites /> <Footer /></>} />
         <Route path="/contact" element={<><Header /> <Contact /> <Footer /></>} />
-        <Route path="/mentions-legales" element={<><Header /> <Home /> <LegalMentions /></>} />
+        <Route path="/mentions-legales" element={<><Header /><LegalMentions /> <Footer /></>} />
         <Route path="/profil" element={<><Header /> <Profile /> <Footer /></>} />
         <Route path="/not-found" element={<><Header /> <NotFound /> <Footer /></>} />
         <Route path="/*" element={<Error />} />

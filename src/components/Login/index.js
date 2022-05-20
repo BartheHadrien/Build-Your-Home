@@ -90,7 +90,12 @@ function Login() {
                   onChange={handlePassword}
                 />
               </label>
-              <a className="login--button__mdp" href={resetPassword}>Mot de passe oublié ?</a>
+              <ReCAPTCHA
+                sitekey="6LeTdAEgAAAAAI4e2uy1SXK4Y4qP4ifEDxlDlsKv"
+                onChange={handleCaptcha}
+                theme="light"
+                size="compact"
+              />
               <button
                 type="submit"
                 className="login--button__submit"
@@ -98,10 +103,7 @@ function Login() {
               >
                 S'identifier
               </button>
-              <ReCAPTCHA
-                sitekey="6LeTdAEgAAAAAI4e2uy1SXK4Y4qP4ifEDxlDlsKv"
-                onChange={handleCaptcha}
-              />
+              <a className="login--button__mdp" href={resetPassword}>Mot de passe oublié ?</a>
             </form>
           </div>
           <p>Nouveau ?</p>

@@ -1,21 +1,6 @@
 @use 'src/styles/vars';
 
-.card--article {
-  background-color: vars.$text-color;
-  width: 100%;
-  border-radius: 15px;
-  transition: all 0.5s linear;
 
-  &__title{
-    font-size: 1.5em;
-    text-align: center;
-    padding: vars.$gutter;
-    color: vars.$secondary-color;
-    font-weight: bold;
-    margin: 0;
-    text-transform: capitalize;
-    
-  }
 
 
 .card {
@@ -82,4 +67,4 @@
   }
 }
 
-}
+

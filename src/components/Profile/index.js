@@ -61,8 +61,8 @@ function Profile() {
       <h1 className="profile--title">Mes informations personnelles</h1>
       <div className="profile--container">
         <form className="profile--form" onSubmit={handleModifyProfile}>
-          <label htmlFor="lastname">
-            <span className="profile--field__label">Nom</span>
+          <label htmlFor="lastname" className="profile--field__label">
+            <span className="profile--field__name">Nom</span>
             <input
               className="profile--field__input"
               type="text"
@@ -72,8 +72,8 @@ function Profile() {
               required
             />
           </label>
-          <label htmlFor="firstname">
-            <span className="profile--field__label">Prénom</span>
+          <label htmlFor="firstname" className="profile--field__label">
+            <span className="profile--field__firstname">Prénom</span>
             <input
               className="profile--field__input"
               type="text"
@@ -83,8 +83,8 @@ function Profile() {
               required
             />
           </label>
-          <label htmlFor="birthdate">
-            <span className="profile--field__label">Date de Naissance</span>
+          <label htmlFor="birthdate" className="profile--field__label">
+            <span className="profile--field__birthdate">Date de Naissance</span>
             <input
               className="profile--field__input"
               type="text"
@@ -93,8 +93,8 @@ function Profile() {
               defaultValue={user.birthdate}
             />
           </label>
-          <label htmlFor="phone">
-            <span className="profile--field__label">Téléphone</span>
+          <label htmlFor="phone" className="profile--field__label">
+            <span className="profile--field__phone">Téléphone</span>
             <input
               className="profile--field__input"
               type="tel"
@@ -106,8 +106,8 @@ function Profile() {
               required
             />
           </label>
-          <label htmlFor="adress">
-            <span className="profile--field__label">Adresse complète</span>
+          <label htmlFor="adress" className="profile--field__label">
+            <span className="profile--field__adress">Adresse complète</span>
             <input
               className="profile--field__input"
               type="text"

@@ -22,6 +22,8 @@
 
   &--button__mdp {
     color: blue;
+    margin-top: 1rem;
+    text-decoration: underline;
   }
 
   &--button__submit{
@@ -30,6 +32,7 @@
     padding: 0.5em;
     border: 1px solid grey;
     border-radius: 4px;
+    margin: 1rem 0rem;
   }
 
   &--button__create{
@@ -59,21 +62,25 @@
   }
 }
 
-@media (max-width : vars.$pad) {
+@media (min-width : vars.$middle) {
   .login--section{
-    width: 80vw;
+    width: 40vw;
   }
 
   .login--container {
-    width: 80vw;
+    width: 40vw;
   }
 }
-@media (max-width : vars.$phone) {
+@media (min-width : vars.$phone) {
   .login--section{
-    width: 80vw;
+    width: 45vw;
   }
 
   .login--container {
-    width: 80vw;
+    width: 45vw;
   }
 }
+
+
+
+
