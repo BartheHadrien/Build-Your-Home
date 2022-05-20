@@ -12,7 +12,7 @@ width: 100vw;
 }
 
   &__categories {
-    background: linear-gradient(vars.$third-color,vars.$primary-color);
+    background: white;
     padding: 1rem 1rem 2rem 1rem;
     display: flex;
     flex-wrap: wrap;
@@ -22,37 +22,18 @@ width: 100vw;
     &--title {
       width: 100%;
       text-align: center;
-      text-transform: uppercase;
-      font-size: 3em;
+      text-transform: capitalize;
+      font-size: 2.5em;
       color: vars.$secondary-color;
-      text-shadow: 1px 1px 0px vars.$secondary-color, 0 0 1em vars.$main-color, 0 0 0.2em white;
     
     }
     
 
-    // &__category {
-    //   background-color: vars.$text-color;
-    //   margin: 10px 0px 10px 0px;
-
-      // &__picture {
-      //   max-width:40vw;
-      //   max-height: 40vh;
-      //   padding: 1rem 1rem 1rem 1rem;
-
-      //   @media (min-width : vars.$pad) {
-      //     max-width:30vw;
-      //     max-height: 30vh;
-      //     }
-      //   @media (min-width: vars.$desktop){
-      //     max-width:25vw;
-      //     max-height: 25vh;
-      //   }
-      // }
-    // }
+    
   }
 
   &__articles {
-    background-color: vars.$primary-color;
+    background-color: white;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -61,33 +42,13 @@ width: 100vw;
     &--title {
       width: 100%;
       border-top: 3px solid vars.$main-color;
-      border-radius: 5px;
       padding-top: 1em;
       text-align: center;
-      text-transform: uppercase;
-      font-size: 3em;
+      text-transform: capitalize;
+      font-size: 2.5em;
       color: vars.$secondary-color;
-      text-shadow: 1px 1px 0px vars.$secondary-color, 0 0 1em vars.$main-color, 0 0 0.2em white;
     }
 
-    // &__article {
-    //   background-color: vars.$text-color;
-    //   margin: 1rem 0.5rem 1rem 0.5rem;
-
-    //   &__picture {
-    //     max-width: 40vw;
-    //     max-height: 40vh;
-    //     padding: 1rem 1rem 1rem 1rem;
-
-    //     @media (min-width : vars.$pad) {
-    //       max-width:30vw;
-    //       max-height: 30vh;
-    //       }
-    //     @media (min-width: vars.$desktop){
-    //       max-width:20vw;
-    //       max-height: 20vh;
-    //     }
-    //   }
-    // }
+    
   }
 }

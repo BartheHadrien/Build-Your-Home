@@ -5,6 +5,7 @@ width: 96vw;
 margin: auto;
 display: flex;
 flex-wrap: wrap;
+background-color: vars.$purple;
 
 @media (min-width: vars.$desktop){
     width: 80vw;
@@ -12,9 +13,9 @@ flex-wrap: wrap;
 }
 
   &__content {
-    background-color: vars.$primary-color;
+    background-color: vars.$purple;;
     margin: 1rem 1rem 1rem 1rem;
-    border: 0.1rem solid vars.$secondary-color;
+    border: 0.1rem solid vars.$white;
     border-radius: 1%;
 
       @media (min-width: vars.$desktop){
@@ -27,15 +28,18 @@ flex-wrap: wrap;
       align-items: baseline;
       border-bottom: 0.1rem solid vars.$secondary-color;
       margin: 1rem 1rem 1rem 1rem;
-      }
-
       &__title {
         font-size: 1.5rem;
+        color: white;
       }
-
       &__price {
-
+        color: white;
       }
+      }
+
+      
+
+      
   }
 
   &__article {

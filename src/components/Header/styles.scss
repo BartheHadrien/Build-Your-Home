@@ -184,10 +184,11 @@
     }
 
     &__user {
-      display: contents;
-      width: auto;
-      margin: 1rem 1rem;
-      color: vars.$text-color;
+  padding: 0.5rem;
+  display: inline-block;
+  width: auto;
+  margin: 0.5rem;
+  color: vars.$text-color;
     }
   }
   
@@ -251,7 +252,7 @@ transform: translate(-40%);
         font-size: 1.7em;
         font-weight: bold;
         padding: 2*vars.$gutter 0;
-        
+
           @media (max-width : vars.$middle) {
             font-size: 1.5em;
         }

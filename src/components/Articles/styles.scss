@@ -13,17 +13,17 @@
   &--title {
     text-transform: uppercase;
     width: 30%;
-    margin: auto;
-    text-align: center;
-    font-size: 4rem;
-    padding: 1.2rem;
+    // margin: auto;
+    // text-align: center;
+    font-size: 2rem;
+    padding: 1.2rem 0.6em;
     @media (max-width : vars.$large) {
       width: 40%;
-      font-size: 3rem;
+      font-size: 2rem;
       }
     @media (max-width : vars.$desktop) {
       width: 50%;
-      font-size: 2.5rem
+      font-size: 2rem
       }
     @media (max-width : vars.$pad) {
       width: 100%;
@@ -32,13 +32,14 @@
   
   }
   &--articles {
-    border:1px solid grey;
-    border-radius: 15px;
+    // border:1px solid grey;
+    // border-radius: 15px;
     margin: vars.$gutter;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     padding: 1rem;
+    // background-color: rgb(35, 47, 62, 0.9);
 
       a {
         margin: 1rem;

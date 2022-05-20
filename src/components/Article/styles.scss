@@ -13,7 +13,7 @@
 
   &--container{
     display: flex;
-    align-items: center;
+    // align-items: center;
     justify-content: space-evenly;
 
     @media (max-width : vars.$pad) {
@@ -42,7 +42,7 @@
       }
 
       @media (max-width : vars.$pad) {
-        width: 100%;
+        width: 90%;
         margin: 0 auto 1em;
         transition: width 0.5s linear;
 
@@ -110,12 +110,13 @@
          justify-content: space-between;
 
         &__title {
-        
-          text-align: center;
+          text-transform: capitalize;
           font-weight: bold;
-          font-size: 4em;
+          font-size: 5em;
           display: inline-block;
-          // width: auto;
+          padding-bottom: 2rem;
+
+          
 
           @media (max-width : vars.$middle) {
             font-size: 3em;
@@ -174,12 +175,26 @@
       }
 
       &--description {
-        border: 1px solid grey;
-        border-radius: 15px;
+        // border: 1px solid grey;
+        // border-radius: 15px;
         padding: vars.$gutter;
-        font-size: 1.2em;
+        font-size: 2em;
+
+        @media (max-width : vars.$desktop) {
+          font-size: 1.5em;
+           }
+           @media (max-width : vars.$pad) {
+            font-size: 1em;
+             }
+
+
 
         & span {
+          span{
+            display: inline-block;
+            color: #C42704;
+          }
+          font-size: 1.5rem;
           display: block;
           padding-top: vars.$gutter;
         }
@@ -194,7 +209,7 @@
 
     &__cart {
       width: 25%;
-      border: 3px solid grey;
+      border: 1px solid grey;
       border-radius: 15px;
       // margin: 0 0 0 2*vars.$gutter;
       padding: 0.5*vars.$gutter;
@@ -268,10 +283,12 @@
          }
          &__cart{
            margin-left: 0.7em;
-           padding: 0.4em;
-           border-radius: 10px;
            background-color: #F0C24F;
            width: 50%;
+           padding: 0.5em;
+           border: 1px solid grey;
+           border-radius: 4px;
+       
 
          }
         
@@ -305,11 +322,12 @@
          }
 
          &__cart {
-          margin-left: 0.7em;
-          padding: 0.4em;
-          border-radius: 10px;
           background-color: #e78c03;
+          margin-left: 0.7em;
           width: 50%;
+          padding: 0.5em;
+          border: 1px solid grey;
+          border-radius: 4px;
          }
        }
 
@@ -317,9 +335,10 @@
         width: 100%;
         text-align: center;
         margin: 2em auto 0;
-        padding: 0.6em;
-        border-radius: 10px;
         background-color: #e6d924;
+        padding: 0.5em;
+        border: 1px solid grey;
+        border-radius: 4px;
        }
     }
   }
