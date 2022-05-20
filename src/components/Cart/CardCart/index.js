@@ -5,6 +5,7 @@
 // ==================Dépendance==================
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useAlert } from 'react-alert';
 
 // ==================Action======================
 import { setArticleInCart } from 'src/actions/cart';
@@ -23,6 +24,7 @@ function CardCart({
 }) {
   // ==================HOOK===================
   const dispatch = useDispatch();
+  const alert = useAlert();
 
   // =================HANDLER==================
   // supprimer un article du panier
@@ -54,7 +56,7 @@ function CardCart({
   // Augmenter la quantité du panier
   function handleMoreCart() {
     if (quantity >= stock) {
-      console.log('ce produit n\'est plus en stock des délais de livraisons supplémentaires sont à prévoir');
+      alert.info('ce produit n\'est plus en stock des délais de livraisons supplémentaires sont à prévoir');
     }
     const value = localStorage.getItem('allCart');
     const initialValue = JSON.parse(value);

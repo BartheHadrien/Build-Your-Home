@@ -13,7 +13,7 @@ import {
   fetchUser, FETCH_USER, saveUser, saveUserData, LOGIN, LOGOUT,
   CREATE_USER, DELETE_USER, ADD_ARTICLE_TO_FAVORITE_BDD,
   DELETE_ARTICLE_TO_FAVORITE_IN_BDD, login, MODIFY_PROFILE,
-  setLoginUnknown, resetLoginUnknown,
+  setLoginUnknown, resetLoginUnknown, SEND_TO_GOOGLE, validateCaptcha,
 } from '../actions/user';
 
 // On défini une instance
@@ -237,7 +237,6 @@ const apiMiddleWare = (store) => (next) => (action) => {
         .post(
           'favorite/add',
           {
-
             user: id,
             article: newfavorites.id,
           },
@@ -322,18 +321,46 @@ const apiMiddleWare = (store) => (next) => (action) => {
         .post(
           'order/add',
           {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
             status: 0,
             user: id,
             deliveries: 11,
             orderlists: datatoapi,
           },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
         )
         .then(
           // On réexécute l'action fetchUser
           store.dispatch(fetchUser()),
+        );
+      next(action);
+      break;
+    }
+
+    // =============================================================
+    // ======================== Captcha ============================
+    case SEND_TO_GOOGLE: {
+      // On déstructure pour récupérer le token du captcha
+      const { user: { login: { captchaToken } } } = store.getState();
+      const secret = '6LeTdAEgAAAAABVSYsyL2v-9lYxCTH6roLhvsR8_';
+
+      // on la traduit par un appel en POST à l'API de GOOGLE
+      axiosInstance
+        .post(
+          'captcha',
+          {
+            secret: secret,
+            response: captchaToken,
+          },
+
+        )
+        .then(
+          (response) => {
+            store.dispatch(validateCaptcha(response.data));
+          },
         );
       next(action);
       break;
