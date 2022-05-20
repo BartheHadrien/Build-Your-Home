@@ -10,7 +10,7 @@ import {
   ADD_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE,
   SET_FIRSTNAME_IN_PROFILE, SET_LASTNAME_IN_PROFILE,
   SET_BIRTHDATE_IN_PROFILE, SET_PHONE_IN_PROFILE, SET_ADRESS_IN_PROFILE,
-  SET_LOGIN_UNKNOWN, RESET_LOGIN_UNKNOWN,
+  SET_LOGIN_UNKNOWN, RESET_LOGIN_UNKNOWN, SAVE_CAPTCHA_TOKEN,
 
 } from '../actions/user';
 
@@ -22,6 +22,7 @@ const initialState = {
     email: 'admin@admin.com',
     password: 'admin',
     isVerified: false,
+    captchaToken: '',
   },
   signup: {
     firstname: '',
@@ -255,7 +256,16 @@ function userReducer(state = initialState, action = {}) {
         ...state,
         login: {
           ...state.login,
-          isVerified: true,
+          isVerified: action.response,
+        },
+      };
+    // Sauvegarde du token du captcha
+    case SAVE_CAPTCHA_TOKEN:
+      return {
+        ...state,
+        login: {
+          ...state.login,
+          captchaToken: action.value,
         },
       };
     // Données du prénom dans le profil

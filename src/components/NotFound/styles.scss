@@ -1,0 +1,40 @@
+@use 'src/styles/vars';
+
+@import url('https://fonts.googleapis.com/css2?family=Calligraffitti&display=swap');
+
+.enter {
+  
+  
+
+
+.notfound {
+font-family: 'Calligraffitti', cursive;
+ &--title {
+  font-family: 'Calligraffitti', cursive;
+  font-size: 3em;
+text-align: center;
+padding: 2em 0;
+ }
+ &--img {
+  display: block;
+  margin: auto;
+  border-radius: 50em;
+  opacity: 0.8;
+  max-height: 40%;
+  max-width: 40%;
+  @media (max-width : vars.$pad) {
+    max-height: 80%;
+    max-width: 80%;
+
+  }
+  
+
+ }
+ &--description {
+   text-align: center;
+   padding: 2em;
+   font-size: 1.2em;
+   
+ }
+}
+}
