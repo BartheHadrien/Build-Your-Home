@@ -8,6 +8,7 @@
   &--articles {
     background-color: vars.$primary-color;
     border:1px solid grey;
+    border-radius: 2rem;
     margin: vars.$gutter;
     display: flex;
     flex-wrap: wrap;
