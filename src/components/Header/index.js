@@ -39,6 +39,7 @@ function Header() {
   const searchOpen = useSelector((state) => state.header.navbar.searchOpen);
   const username = useSelector((state) => state.user.user.lastname);
   const userNavIsOpen = useSelector((state) => state.header.userNavbar.isOpen);
+  const role = useSelector((state) => state.user.user.roles);
 
   // ==================Fonctions================
   const className = classnames('header--container', { 'header--container__closed': !isOpen });
@@ -191,6 +192,9 @@ function Header() {
                   <li className="header--nav__user">Bienvenue {username}</li>
                 </Link>
               </>
+            )}
+            {role.includes('ROLE_ADMIN') && (
+              <a className="header--nav__item" href="http://floriannaud-server.eddi.cloud/projet-09-build-your-home-back/public/login">BackOffice</a>
             )}
           </ul>
         </nav>
