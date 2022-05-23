@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import './style.scss';
 
 function ListArticle({
-  name, picture, description,
+  name, picture, price,
 }) {
   return (
     <div className="slider--container__box">
@@ -18,7 +18,7 @@ function ListArticle({
 
         <img className="slider--container__box--img" src={picture} alt="slider" />
         <h3 className="slider--container__box--title">{name}</h3>
-        <p className="slider--container__box--description">{description}</p>
+        <p className="slider--container__box--price">{price}€</p>
       </Link>
     </div>
 
@@ -28,6 +28,6 @@ function ListArticle({
 ListArticle.propTypes = {
   name: PropTypes.string.isRequired,
   picture: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
 };
 export default ListArticle;

@@ -46,7 +46,6 @@ function CardFavorite({
             <h1 className="card--article__title">{name}</h1>
             <div className="card--article--container">
               <p className="card--article--container__price">{price}€</p>
-              <Rating className="card--article--container__rate" icon="star" defaultRating={3} maxRating={4} />
             </div>
           </div>
         </Link>
