@@ -2,6 +2,7 @@
 import { findArticle, findFiveArticles } from 'src/selectors/article.js';
 // Import du state articles
 import { initialState } from 'src/reducers/article.js';
+import { FETCH_ARTICLES } from 'src/middlewares/api.js';
 
 describe('Selectors - Article', () => {
   // tester findRecipe
