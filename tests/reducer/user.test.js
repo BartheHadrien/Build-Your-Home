@@ -18,7 +18,8 @@ describe('Reducers - Recipes', () => {
         login: {
           email: 'admin@admin.com',
           password: 'admin',
-      
+          isVerified: false,
+          captchaToken: '',
         },
         signup: {
           firstname: '',
@@ -47,7 +48,15 @@ describe('Reducers - Recipes', () => {
           token: '',
           logged: false,
         },
+        profile: {
+          firstname: '',
+          lastname: '',
+          adress: '',
+          birthdate: '',
+          phone: '',
+        },
         passwordIsFalse: false,
+        userUnknown: false,
       };
       expect(userReducer()).toEqual(expectedInitialState);
     });

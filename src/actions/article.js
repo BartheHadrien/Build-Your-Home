@@ -30,7 +30,6 @@ export const SET_ADD_ARTICLE_TO_BUY = 'SET_ADD_ARTICLE_TO_BUY';
 // ACTION CREATOR setAddArticleToBuy
 export const setAddArticleToBuy = () => ({
   type: SET_ADD_ARTICLE_TO_BUY,
-
 });
 
 // ACTION TYPE SET_NB_ARTICLE_IN_CART
