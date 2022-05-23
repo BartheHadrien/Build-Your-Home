@@ -1,7 +1,10 @@
 @use 'src/styles/vars';
 
-.new-account{
+.new-account {
   min-height: 200vh;
+
+  
+
   &--title {
     margin: 0;
     font-size: 2.5em;
@@ -29,7 +32,7 @@
   &--container {
     border: 1px solid grey;
     border-radius: 4px;
-    width: 20vw;
+    width: 40vw;
     margin: 5em auto;
     padding: vars.$gutter;
     text-align: left;
@@ -61,25 +64,16 @@
   &--section{
     margin: auto;
     text-align: center;
-    width: 20vw;
+    width: 40vw;
   }
 }
 
 @media (max-width : vars.$pad) {
-  .login--section{
+  .new-account--section{
     width: 80vw;
   }
 
-  .login--container {
-    width: 80vw;
-  }
-}
-@media (max-width : vars.$phone) {
-  .login--section{
-    width: 80vw;
-  }
-
-  .login--container {
+  .new-account--container {
     width: 80vw;
   }
 }
