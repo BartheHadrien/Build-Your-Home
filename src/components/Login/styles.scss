@@ -2,6 +2,12 @@
 
 .login{
   min-height: 200vh;
+  &--title {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: bold;
+    padding-bottom: 1.5em;
+  }
   &--field__input {
     display: block;
     width: 100%;
