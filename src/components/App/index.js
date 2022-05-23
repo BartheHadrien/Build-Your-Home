@@ -43,6 +43,7 @@ function App() {
       // Récupération des articles et catégories
       dispatch(fetchArticles());
       dispatch(fetchCategories());
+      localStorage.setItem('allCart', JSON.stringify([]));
     },
     [],
   );
