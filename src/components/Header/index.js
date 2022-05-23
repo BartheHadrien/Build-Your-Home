@@ -153,9 +153,6 @@ function Header() {
                   <Link to="/favoris">
                     <li className="header--top__usernav__item" onClick={handleUserNav}>Vos favoris</li>
                   </Link>
-                  <Link to="historique">
-                    <li className="header--top__usernav__item" onClick={handleUserNav}>Historique des commandes</li>
-                  </Link>
                   <Link to="">
                     <li className="header--top__usernav__disconnect" onClick={handleDisconnect}>Déconnexion</li>
                   </Link>

@@ -156,12 +156,20 @@ function Article() {
     if (allCart == null) allCart = [];
     // mise à jour de la key cart dans le local Storage avec les données souhaitées
     localStorage.setItem('cart', JSON.stringify(addArticle));
+    const cart = JSON.parse(localStorage.getItem('cart'));
     // Injection de l'objet à stocker dans le tableau extrait du localStorage
-    allCart.push(addArticle);
-    // Réinjection de ce même tableau à la key allCart dans le localstorage
-    localStorage.setItem('allCart', JSON.stringify(allCart));
-    // alerte confirmant l'ajout de l'article au panier
-    alert.success("L'article a bien était ajouté a votre panier");
+    const allCartMapped = allCart.map((item) => item.articleID);
+
+    if (allCartMapped.includes(cart.articleID)) {
+      alert.error("L'article est déja dans votre panier");
+    }
+    else {
+      allCart.push(addArticle);
+      // Réinjection de ce même tableau à la key allCart dans le localstorage
+      localStorage.setItem('allCart', JSON.stringify(allCart));
+      // alerte confirmant l'ajout de l'article au panier
+      alert.success("L'article a bien était ajouté a votre panier");
+    }
   }
   // ==================Champs Controllés==========
 

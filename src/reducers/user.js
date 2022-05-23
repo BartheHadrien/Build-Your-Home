@@ -9,7 +9,7 @@ import {
   PASSWORD_ERROR, VALIDATE_CAPTCHA,
   ADD_ARTICLE_TO_FAVORITE, DELETE_ARTICLE_TO_FAVORITE,
   SET_FIRSTNAME_IN_PROFILE, SET_LASTNAME_IN_PROFILE,
-  SET_BIRTHDATE_IN_PROFILE, SET_PHONE_IN_PROFILE, SET_ADRESS_IN_PROFILE,
+  SET_PHONE_IN_PROFILE, SET_ADRESS_IN_PROFILE,
   SET_LOGIN_UNKNOWN, RESET_LOGIN_UNKNOWN, SAVE_CAPTCHA_TOKEN,
 
 } from '../actions/user';
@@ -284,15 +284,6 @@ function userReducer(state = initialState, action = {}) {
         profile: {
           ...state.profile,
           lastname: action.lastname,
-        },
-      };
-    // Données de la date d'anniversaire dans le profil
-    case SET_BIRTHDATE_IN_PROFILE:
-      return {
-        ...state,
-        profile: {
-          ...state.profile,
-          birthdate: action.birthdate,
         },
       };
     // Données du téléphone dans le profil
