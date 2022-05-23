@@ -2,6 +2,12 @@
 
 .new-account{
   min-height: 200vh;
+  &--title {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: bold;
+    padding-bottom: 1.5em;
+  }
   &--field__input {
     display: block;
     width: 100%;
@@ -28,6 +34,11 @@
     padding: vars.$gutter;
     text-align: left;
     margin-bottom: 2em;
+  }
+
+  &--paragraphe {
+    padding-bottom: 1em;
+    margin: 0;
   }
 
   &--button__submit{

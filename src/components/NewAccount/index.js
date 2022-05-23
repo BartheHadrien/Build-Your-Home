@@ -192,7 +192,7 @@ function NewAccount() {
             </button>
           </form>
         </div>
-        <p>Vous possédez déjà un compte ?</p>
+        <p className="new-account--paragraphe">Vous possédez déjà un compte ?</p>
         <Link to="/connexion">
           <button
             type="button"
