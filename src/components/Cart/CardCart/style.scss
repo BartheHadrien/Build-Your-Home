@@ -3,15 +3,16 @@
     border-radius: 15px;
 
   }
-  &__description {
+  &__container {
 
-  }
-  &__value {
+    .carts__article__title {
+      font-size: 1.2em;
+      font-weight: bold;
+      padding-bottom: 1em;
 
+    }
   }
-  &__available {
 
-  }
   &__stock {
    
     &__delete {
