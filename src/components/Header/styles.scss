@@ -158,11 +158,6 @@
     background-color: vars.$secondary-color;
     display: flex;
     align-items: center;
-
-    // &__burger:hover{
-    //   // border: white;
-    // }
-    
     
     &__list{
       display: flex;
@@ -184,11 +179,11 @@
     }
 
     &__user {
-  padding: 0.5rem;
-  display: inline-block;
-  width: auto;
-  margin: 0.5rem;
-  color: vars.$text-color;
+      padding: 0.5rem;
+      display: inline-block;
+      width: auto;
+      margin: 0.5rem;
+      color: vars.$text-color;
     }
   }
   
