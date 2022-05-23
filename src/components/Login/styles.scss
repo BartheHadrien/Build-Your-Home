@@ -1,6 +1,7 @@
 @use 'src/styles/vars';
 
 .login{
+  min-height: 200vh;
   &--field__input {
     display: block;
     width: 100%;
