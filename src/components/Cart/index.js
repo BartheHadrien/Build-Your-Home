@@ -6,6 +6,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useMemo } from 'react';
+import { useAlert } from 'react-alert';
 
 // ==================Action======================
 import { findFiveArticles } from 'src/selectors/article';
@@ -18,10 +19,12 @@ import './styles.scss';
 import CardArticle from 'src/components/CardArticle';
 import CardCart from './CardCart';
 
+
 function Carts() {
   // ==================HOOK===================
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const alert = useAlert();
   const location = useLocation();
   const articles = useSelector((state) => state.article.list);
   const isLogged = useSelector((state) => state.user.user.logged);
@@ -76,6 +79,9 @@ function Carts() {
       dispatch(addCartToOrder(initialValue));
       // On dispatch l'action d'ajout de commande en BDD
       dispatch(addCartToOrderBdd());
+      alert.success('Votre commande a était prise en compte');
+      localStorage.setItem('allCart', JSON.stringify([]));
+      navigate('/');
     }
     else {
       // Si l'utilisateur n'est pas connecté, il est redirigé vers la page de connexion
