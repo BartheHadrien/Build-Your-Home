@@ -25,7 +25,7 @@ function Carts() {
   const location = useLocation();
   const articles = useSelector((state) => state.article.list);
   const isLogged = useSelector((state) => state.user.user.logged);
-  const listArticleInCart = useSelector((state) => state.cart.name);
+  let listArticleInCart = useSelector((state) => state.cart.name);
 
   // ==================Fonctions================
   // Stockage dans une constante de 5 articles à afficher
@@ -36,8 +36,8 @@ function Carts() {
     const value = localStorage.getItem('allCart');
     return JSON.parse(value);
   }, [localStorage]);
-
   // Pour chaque item on récupère la quantité d'articles
+  if (listArticleInCart == null) listArticleInCart = [0];
   const quantityListArticle = listArticleInCart.map((item) => item.quantity);
 
   // On déclare une variable nbArticle à 0
@@ -91,7 +91,6 @@ function Carts() {
   return (
     <>
       <div className="carts">
-
         {/* Head of content */}
         <section className="carts__content">
           <div className="carts__content__head">

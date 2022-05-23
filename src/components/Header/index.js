@@ -46,7 +46,8 @@ function Header() {
 
   // Fonction filtrant le nombre de catégorie à afficher
   const filteredCategories = () => {
-    const filteredCategorie = categories.filter((categorie) => categorie.displayOrder < 10);
+    const filteredCategorie = categories.filter((categorie) => categorie.displayOrder < 11
+    && categorie.displayOrder > 0);
     return filteredCategorie;
   };
   const categoriesToDisplay = filteredCategories();
@@ -152,9 +153,6 @@ function Header() {
                   <Link to="/favoris">
                     <li className="header--top__usernav__item" onClick={handleUserNav}>Vos favoris</li>
                   </Link>
-                  <Link to="historique">
-                    <li className="header--top__usernav__item" onClick={handleUserNav}>Historique des commandes</li>
-                  </Link>
                   <Link to="">
                     <li className="header--top__usernav__disconnect" onClick={handleDisconnect}>Déconnexion</li>
                   </Link>
@@ -189,7 +187,7 @@ function Header() {
                   </li>
                 </Link>
                 <Link to="/profil">
-                  <li className="header--nav__user">Bienvenue {username}</li>
+                  <li className="header--nav__item">Bienvenue {username}</li>
                 </Link>
               </>
             )}
@@ -203,9 +201,26 @@ function Header() {
         <div className="header--nav__burgertranslation">
           <ul className="header--nav__burgertranslation--list">
             {
-              categoriesToDisplay.map((categorie) => (
+              categories.map((categorie) => (
                 <BurgerItems key={categorie.id} {...categorie} />))
             }
+            {islogged && (
+              <>
+                <Link to="/favoris">
+                  <li className="header--nav__burgertranslation--item">
+                    Mes favoris
+                  </li>
+                </Link>
+                <Link to="/profil">
+                  <li className="header--nav__burgertranslation--item">Bienvenue {username}</li>
+                </Link>
+              </>
+            )}
+            {role.includes('ROLE_ADMIN') && (
+              <li className="header--nav__burgertranslation--item">
+                <a href="http://floriannaud-server.eddi.cloud/projet-09-build-your-home-back/public/login">BackOffice</a>
+              </li>
+            )}
           </ul>
         </div>
       </div>

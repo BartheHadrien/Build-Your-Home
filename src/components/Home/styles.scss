@@ -2,6 +2,7 @@
 
 .home {
 width: 100vw;
+min-height: 200vh;
 @media (min-width : vars.$pad) {
   width: 80vw;
   margin: auto;
