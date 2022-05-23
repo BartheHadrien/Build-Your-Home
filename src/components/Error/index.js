@@ -19,7 +19,6 @@ function Error() {
           <div className="symbol" />
           <div className="symbol" />
           <div className="symbol" />
-
           <div className="box__ghost-container">
             <div className="box__ghost-eyes">
               <div className="box__eye-left" />
@@ -41,8 +40,8 @@ function Error() {
             <div className="box__description-title">Whoops!</div>
             <div className="box__description-text">La page demandée n'existe pas</div>
           </div>
-          <Link to="/" target="_blank">
-            <p className="box__button">Go home</p>
+          <Link to="/">
+            <p className="box__button">Accueil</p>
           </Link>
 
         </div>

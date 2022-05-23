@@ -19,7 +19,6 @@ import './styles.scss';
 import CardArticle from 'src/components/CardArticle';
 import CardCart from './CardCart';
 
-
 function Carts() {
   // ==================HOOK===================
   const dispatch = useDispatch();
