@@ -48,7 +48,7 @@
     margin-bottom: 5em;
     width: 100%;
 
-    @media (min-width : vars.$phone) {
+    @media (min-width : vars.$pad) {
       width: 45vh;
     }
   }

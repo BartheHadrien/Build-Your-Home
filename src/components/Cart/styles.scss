@@ -27,7 +27,7 @@ background-color: white;
 
     &__head {
       display: flex;
-      // justify-content: space-between;
+      justify-content: space-between;
       align-items: baseline;
       // border-bottom: 0.1rem solid vars.$secondary-color;
       margin: 1rem 1rem 1rem 1rem;
@@ -36,9 +36,10 @@ background-color: white;
         color: black;
       }
       &__price {
-        position: relative;
+        // position: relative;
+        padding-right: 3.8rem;
         color: black;
-        left: 52%;
+        // left: 52%;
       }
       }
 
@@ -312,7 +313,7 @@ background-color: white;
       max-height: 250px;
       min-width: 300px;
       background-color: vars.$primary-color;
-      margin: 1rem 1rem 1rem 1rem;
+      margin: 3rem 1rem 1rem 1rem;
       padding: 0.5rem 0.5rem 0.5rem 0.5rem;
       border: 0.1rem solid vars.$secondary-color;
       border-radius: 1%;
