@@ -280,15 +280,6 @@ export const setLastNameInProfile = (lastname) => ({
   lastname,
 });
 
-// ACTION TYPE SET_BIRTHDATE_IN_PROFILE
-export const SET_BIRTHDATE_IN_PROFILE = 'SET_BIRTHDATE_IN_PROFILE';
-
-// ACTION CREATOR SET_BIRTHDATE_IN_PROFILE
-export const setBirthDateInProfile = (birthdate) => ({
-  type: SET_BIRTHDATE_IN_PROFILE,
-  birthdate,
-});
-
 // ACTION TYPE SET_PHONE_IN_PROFILE
 export const SET_PHONE_IN_PROFILE = 'SET_PHONE_IN_PROFILE';
 

@@ -138,7 +138,6 @@ const apiMiddleWare = (store) => (next) => (action) => {
             // L'api renvoie les données d'un user
             // On demande la sauvegarde de nos données
             // via l'action saveUserData
-            console.log('response.data', response.data);
             store.dispatch(saveUserData(response.data));
           },
         );

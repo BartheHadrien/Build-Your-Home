@@ -10,7 +10,7 @@ import { useAlert } from 'react-alert';
 // ==================Action======================
 import {
   deleteUser, logout, modifyProfile, setAdressInProfile,
-  setBirthDateInProfile, setFirstNameInProfile,
+  setFirstNameInProfile,
   setLastNameInProfile, setPhoneInProfile,
 } from '../../actions/user';
 
@@ -46,9 +46,6 @@ function Profile() {
   function handleChangeLastName(event) {
     dispatch(setLastNameInProfile(event.target.value));
   }
-  function handleChangeBirthDate(event) {
-    dispatch(setBirthDateInProfile(event.target.value));
-  }
   function handleChangePhone(event) {
     dispatch(setPhoneInProfile(event.target.value));
   }
@@ -81,16 +78,6 @@ function Profile() {
               onChange={handleChangeFirstName}
               defaultValue={user.firstname}
               required
-            />
-          </label>
-          <label htmlFor="birthdate" className="profile--field__label">
-            <span className="profile--field__birthdate">Date de Naissance</span>
-            <input
-              className="profile--field__input"
-              type="text"
-              id="birthdate"
-              onChange={handleChangeBirthDate}
-              defaultValue={user.birthdate}
             />
           </label>
           <label htmlFor="phone" className="profile--field__label">
