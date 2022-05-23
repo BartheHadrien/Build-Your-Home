@@ -106,7 +106,7 @@ function Login() {
               <a className="login--button__mdp" href={resetPassword}>Mot de passe oublié ?</a>
             </form>
           </div>
-          <p>Nouveau ?</p>
+          <p className="login--paragraphe">Nouveau ?</p>
           <Link to="/inscription">
             <button
               type="button"
