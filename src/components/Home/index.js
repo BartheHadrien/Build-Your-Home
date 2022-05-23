@@ -22,6 +22,18 @@ function Home() {
   const filteredCategories = () => {
     const filteredCategorie = categories.filter((categorie) => categorie.displayOrder < 10
     && categorie.displayOrder > 0);
+
+    function compare(a, b) {
+      if (a.displayOrder < b.displayOrder) {
+        return -1;
+      }
+      if (a.displayOrder > b.displayOrder) {
+        return 1;
+      }
+      return 0;
+    }
+
+    filteredCategorie.sort(compare);
     return filteredCategorie;
   };
   const categoriesToDisplay = filteredCategories();
