@@ -153,7 +153,7 @@ function userReducer(state = initialState, action = {}) {
           adress: null,
           birthdate: null,
           phone: null,
-          roles: null,
+          roles: [],
           orders: null,
           favorites: [],
           comments: null,
