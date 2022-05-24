@@ -112,7 +112,7 @@
         &__title {
           text-transform: capitalize;
           font-weight: bold;
-          font-size: 5em;
+          font-size: 4em;
           display: inline-block;
           padding-bottom: 2rem;
 
@@ -124,6 +124,9 @@
           }
           @media (max-width : vars.$pad) {
             width: 100%;
+            white-space: normal;
+            font-size: 2em;
+            text-align: center;
             
           }
         }
