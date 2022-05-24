@@ -1,7 +1,7 @@
 @use 'src/styles/vars';
 
 .favorites {
-  height: 100%;
+  min-height: 100vh;
 
   &--title {
     padding: vars.$gutter;
