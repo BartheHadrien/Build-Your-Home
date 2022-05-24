@@ -208,7 +208,7 @@ transform: translate(-40%);
   //   ;
   //   }
     @media (max-width : vars.$pad) {
-      transform: translate(-100%);
+      transform: translate(-90%);
 
       }
 
@@ -219,7 +219,8 @@ transform: translate(-40%);
     
   .header--nav__burgertranslation{
 
-    
+    overflow-y: scroll;
+    height: 590px;
       background-color: rgb(35, 47, 62);
       
       width: 40%;
@@ -228,7 +229,7 @@ transform: translate(-40%);
       position: absolute;
       
         @media (max-width : vars.$pad) {
-          width: 100%;
+          width: 90%;
           }
       
 
@@ -265,6 +266,26 @@ transform: translate(-40%);
     
 
   }
+
+  .header--nav__burgertranslation{
+    scrollbar-width: thin;
+    scrollbar-color: white vars.$secondary-color;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  .header--nav__burgertranslation::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  .header--nav__burgertranslation::-webkit-scrollbar-track {
+    background: vars.$secondary-color;
+  }
+  
+  .header--nav__burgertranslation::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 20px;
+    border: 3px solid vars.$secondary-color;
+}
 }
 
 
