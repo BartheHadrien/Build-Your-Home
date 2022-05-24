@@ -2,7 +2,7 @@
 
 .articles {
   margin-top: 2rem;
-  min-height: 200vh;
+  height: 100%;
   width: 80%;
   margin: 2rem auto 2rem;
   @media (max-width : vars.$pad) {
