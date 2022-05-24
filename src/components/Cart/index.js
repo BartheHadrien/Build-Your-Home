@@ -100,7 +100,7 @@ function Carts() {
         <section className="carts__content">
           <div className="carts__content__head">
             <h2 className="carts__content__head__title">Votre panier</h2>
-            <span className="carts__content__head__price">Prix</span>
+            {/* <span className="carts__content__head__price">Prix</span> */}
           </div>
 
           {/* Content of article */}
