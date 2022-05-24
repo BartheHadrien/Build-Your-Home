@@ -5,7 +5,12 @@ body {
   font-family: 'Roboto', sans-serif;
   height: auto;
   scrollbar-width: thin;
-  scrollbar-color: white vars.$secondary-color;}
+  scrollbar-color: white vars.$secondary-color;
+
+  #root {
+    height: 100%;
+  }
+}
 
 
 /* Works on Chrome, Edge, and Safari */

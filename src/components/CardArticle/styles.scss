@@ -26,6 +26,7 @@
     &--container {  
       display: flex;
       justify-content: space-between;
+      overflow-wrap: break-word;
 
       &__rate {
         padding: 1em;
@@ -55,6 +56,12 @@
       color: vars.$secondary-color;
       text-align: center;
       font-size: 1.5em;
+
+      @media (max-width: vars.$desktop){
+        font-size: 1.1em;
+
+      }
+      
     }
   }
 

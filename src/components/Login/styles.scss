@@ -20,14 +20,14 @@
   &--container {
     border: 1px solid grey;
     border-radius: 4px;
-    width: 20vw;
+    width: 35%;
     margin: 5em auto;
     padding: vars.$gutter;
     text-align: left;
     margin-bottom: 2em;
 
-    @media (min-width : vars.$phone) {
-      width: 45vh;
+    @media (max-width : vars.$pad) {
+      width: 80%;
     }
   }
 
@@ -58,10 +58,10 @@
     border: 1px solid grey;
     border-radius: 4px;
     margin-bottom: 5em;
-    width: 100%;
+    width: 35%;
 
-    @media (min-width : vars.$pad) {
-      width: 45vh;
+    @media (max-width : vars.$pad) {
+      width: 80%;
     }
   }
 
