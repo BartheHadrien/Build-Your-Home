@@ -2,7 +2,7 @@
 
 .legal-mentions {
   width: 90vw;
-  min-height: 100vh;
+  min-height: 70qvh;
   margin: auto;
   padding: 4em 0 4em;
 
@@ -10,6 +10,12 @@
     padding: 2rem 0rem 2rem 0rem;
     margin-bottom: 2.5rem;
     border-bottom: 2px solid vars.$secondary-color;
+    font-size: 4em;
+
+  }
+
+  &__subtitle {
+    font-size: 3em;
   }
 
   &__paragraph:last-child {
