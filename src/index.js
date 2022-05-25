@@ -21,7 +21,7 @@ const options = {
 const rootReactElement = (
   <AlertProvider template={AlertTemplate} {...options}>
     <Provider store={store}>
-      <BrowserRouter basename="guillaumeverbiese-server.eddi.cloud/projet-09-build-your-home-front/dist/">
+      <BrowserRouter basename="/dist">
         <App />
       </BrowserRouter>
     </Provider>
