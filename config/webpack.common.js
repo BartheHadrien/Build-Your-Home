@@ -17,7 +17,7 @@ module.exports = {
   ],
   output: {
     path: paths.build,
-    publicPath: 'auto',
+    publicPath: '/dist',
     filename: 'js/[name].[contenthash].js',
   },
   resolve: {
