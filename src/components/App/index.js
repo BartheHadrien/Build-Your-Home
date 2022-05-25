@@ -68,7 +68,7 @@ function App() {
     <div className="app">
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="http://barthehadrien-server.eddi.cloud/projet-09-build-your-home-front/dist/" element={<Home />} />
         <Route exact path="/article/:slug" element={<Article />} />
         <Route path="/categories/:slug" element={<Articles />} />
         <Route path="/panier" element={<Cart />} />

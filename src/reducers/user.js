@@ -19,8 +19,8 @@ import {
 
 const initialState = {
   login: {
-    email: 'admin@admin.com',
-    password: 'admin',
+    email: '',
+    password: '',
     isVerified: false,
     captchaToken: '',
   },
