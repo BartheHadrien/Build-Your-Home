@@ -53,6 +53,11 @@ Zone réservée aux administrateurs.
 Pour déployer le projet sur un serveur personnel il faut:
 
 - copier le dossier du projet.
+- éxecuter la commande ```sudo apt install nodejs``` dans le terminal a la racine du dossier.
+- éxecuter la commande ```sudo apt install npm``` dans le terminal a la racine du dossier.
+- éxecuter la commande ```sudo npm install --global yarn``` dans le terminal a la racine du dossier.
+- éxecuter la commande ```sudo npm install -g n``` dans le terminal a la racine du dossier.
+- éxecuter la commande ```sudo n lts``` dans le terminal a la racine du dossier.
 - éxecuter la commande ```yarn``` dans le terminal a la racine du dossier. Cela va permettre d'installer les dépendances du projet.
 - éxécuter la commande ```yarn build``` pour transpiler le code et l'optimiser. Cela va créer un dossier 'dist' qui sera notre point d'entrée de l'application.
 - Le point d'entrée sera donc ce fichier dist
