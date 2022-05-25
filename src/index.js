@@ -21,7 +21,7 @@ const options = {
 const rootReactElement = (
   <AlertProvider template={AlertTemplate} {...options}>
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename="/">
         <App />
       </BrowserRouter>
     </Provider>
